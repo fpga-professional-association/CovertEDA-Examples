@@ -1,0 +1,11 @@
+# 400G Ethernet PDC
+
+set_pin clk_ref -loc ETH_CLK_REF -iostandard LVDS
+
+set_pin tx_data[255] -loc ETH_TX_DATA_255
+set_pin tx_valid -loc ETH_TX_VALID
+set_pin tx_ready -loc ETH_TX_READY
+
+set_pin rx_data[255] -loc ETH_RX_DATA_255
+set_pin rx_valid -loc ETH_RX_VALID
+set_pin rx_ready -loc ETH_RX_READY

@@ -1,0 +1,25 @@
+# UART Controller - Pin Definition Constraints
+# Device: LIFCL-40-7BG400I
+# Baud Rate: 115200 bps, 50 MHz clock
+
+# Clock input
+set_io clk       H3
+
+# Reset input
+set_io rst_n     H4
+
+# UART RX/TX pins
+set_io rx        D3
+set_io tx        D4
+
+# Status/Control outputs (optional)
+set_io rx_valid  G5
+set_io tx_ready  H5
+
+# Bank voltage assignments
+set_bank H3 3.3V
+set_bank H4 3.3V
+set_bank D3 3.3V
+set_bank D4 3.3V
+set_bank G5 3.3V
+set_bank H5 3.3V

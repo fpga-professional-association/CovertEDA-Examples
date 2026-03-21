@@ -1,0 +1,114 @@
+# Quartus II QSF for 10/100 Ethernet MAC
+# Cyclone V GX - 5CGXFC7C7F23C8
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CGXFC7C7F23C8
+set_global_assignment -name TOP_LEVEL_ENTITY eth_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:30:12 MAR 21 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION 15.1
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name BOARD "Altera 5CGXFC7 FPGA Board"
+
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
+set_global_assignment -name FITTER_AGGRESSIVE_ROUTABILITY_OPTIMIZATION LEVEL_2
+set_global_assignment -name OPTIMIZE_TIMING "NORMAL COMPILATION"
+
+# Design Files
+set_global_assignment -name VERILOG_FILE src/eth_top.v
+set_global_assignment -name VERILOG_FILE src/mac_tx.v
+set_global_assignment -name VERILOG_FILE src/mac_rx.v
+set_global_assignment -name VERILOG_FILE src/crc32.v
+set_global_assignment -name VERILOG_FILE src/mii_intf.v
+
+# Pin Assignments - 125MHz Clock
+set_location_assignment PIN_B14 -to clk_125m
+set_location_assignment PIN_E6 -to rst_n
+
+# MII TX Interface
+set_location_assignment PIN_F10 -to mii_txd[0]
+set_location_assignment PIN_E10 -to mii_txd[1]
+set_location_assignment PIN_D9 -to mii_txd[2]
+set_location_assignment PIN_C9 -to mii_txd[3]
+set_location_assignment PIN_C8 -to mii_tx_en
+set_location_assignment PIN_B8 -to mii_tx_er
+set_location_assignment PIN_A10 -to mii_tx_clk
+
+# MII RX Interface
+set_location_assignment PIN_C10 -to mii_rxd[0]
+set_location_assignment PIN_B10 -to mii_rxd[1]
+set_location_assignment PIN_A9 -to mii_rxd[2]
+set_location_assignment PIN_D8 -to mii_rxd[3]
+set_location_assignment PIN_C7 -to mii_rx_dv
+set_location_assignment PIN_D7 -to mii_rx_er
+set_location_assignment PIN_B7 -to mii_rx_clk
+
+# Control Signals
+set_location_assignment PIN_F8 -to mac_addr[0]
+set_location_assignment PIN_E8 -to mac_addr[1]
+set_location_assignment PIN_F7 -to mac_addr[2]
+set_location_assignment PIN_E7 -to mac_addr[3]
+set_location_assignment PIN_D6 -to mac_addr[4]
+set_location_assignment PIN_C6 -to mac_addr[5]
+set_location_assignment PIN_B6 -to eth_type[0]
+set_location_assignment PIN_A6 -to eth_type[1]
+
+# Data Interface
+set_location_assignment PIN_F6 -to tx_data[0]
+set_location_assignment PIN_E5 -to tx_data[1]
+set_location_assignment PIN_D5 -to tx_data[2]
+set_location_assignment PIN_C5 -to tx_data[3]
+set_location_assignment PIN_B5 -to tx_data[4]
+set_location_assignment PIN_A5 -to tx_data[5]
+set_location_assignment PIN_F4 -to tx_data[6]
+set_location_assignment PIN_E4 -to tx_data[7]
+set_location_assignment PIN_D4 -to tx_valid
+set_location_assignment PIN_C4 -to tx_ready
+
+set_location_assignment PIN_B4 -to rx_data[0]
+set_location_assignment PIN_A4 -to rx_data[1]
+set_location_assignment PIN_F3 -to rx_data[2]
+set_location_assignment PIN_E3 -to rx_data[3]
+set_location_assignment PIN_D3 -to rx_data[4]
+set_location_assignment PIN_C3 -to rx_data[5]
+set_location_assignment PIN_B3 -to rx_data[6]
+set_location_assignment PIN_A3 -to rx_data[7]
+set_location_assignment PIN_F2 -to rx_valid
+set_location_assignment PIN_E2 -to rx_last
+set_location_assignment PIN_D2 -to rx_ready
+
+# I/O Attributes
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clk_125m
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_txd[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_tx_en
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_tx_er
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_txd[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rxd[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rx_dv
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rx_er
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mac_addr[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to eth_type[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_data[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_valid
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_ready
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_data[*]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_valid
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_last
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_ready
+
+set_instance_assignment -name SLEW_RATE 1 -to mii_txd
+set_instance_assignment -name SLEW_RATE 1 -to mii_tx_en
+set_instance_assignment -name CURRENT_STRENGTH_NEW "12MA" -to mii_txd
+set_instance_assignment -name CURRENT_STRENGTH_NEW "12MA" -to mii_tx_en
+
+# Timing
+set_global_assignment -name SDC_FILE constraints/eth.sdc
+
+# Device & Compiler Settings
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_global_assignment -name CYCLONE_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH SOME AIR CIRCULATION"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"

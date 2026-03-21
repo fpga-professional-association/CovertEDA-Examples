@@ -1,0 +1,19 @@
+# Libero Physical Design Constraints (PDC) for Blinky LED
+# Device: MPF300T-1FCG484I
+# Package: FCG484
+
+# Clock input - 50 MHz
+set_io clk -pinname P19 -fixed yes
+
+# Reset input (active low)
+set_io rst_n -pinname R1 -fixed yes
+
+# LED output
+set_io led -pinname T2 -fixed yes
+
+# Bank voltage constraints
+set_io clk -bank 1 -iostandard LVCMOS33
+
+# I/O standard definitions
+set_io rst_n -iostandard LVCMOS33 -bank 1
+set_io led -iostandard LVCMOS33 -bank 2 -slew SLOW -drive 8

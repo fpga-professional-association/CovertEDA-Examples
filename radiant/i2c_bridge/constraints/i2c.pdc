@@ -1,0 +1,23 @@
+# I2C Bridge - Pin Definition Constraints
+# Device: LFD2NX-40-7MG672
+# Frequency: 50 MHz
+
+# Clock and Reset
+set_io clk       A2
+set_io rst_n     B2
+
+# I2C interface (open-drain, no external resistors needed)
+set_io sda       D4
+set_io scl       D3
+
+# Wishbone status signals (optional for debugging)
+set_io wb_cyc    E4
+set_io wb_stb    E3
+
+# Bank voltage assignments
+set_bank A2 3.3V
+set_bank B2 3.3V
+set_bank D4 3.3V
+set_bank D3 3.3V
+set_bank E4 3.3V
+set_bank E3 3.3V

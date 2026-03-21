@@ -1,0 +1,80 @@
+// Lattice Diamond LPF constraints for wishbone_soc
+// Target: LFE5U-85F-6BG554I
+// Oscillator: 50 MHz
+
+LOCATE COMP "clk_50m" SITE "P4";
+LOCATE COMP "reset_n" SITE "U17";
+
+// GPIO Interface
+LOCATE COMP "gpio_in[0]" SITE "V20";
+LOCATE COMP "gpio_in[1]" SITE "W20";
+LOCATE COMP "gpio_in[2]" SITE "U20";
+LOCATE COMP "gpio_in[3]" SITE "T20";
+
+LOCATE COMP "gpio_out[0]" SITE "V19";
+LOCATE COMP "gpio_out[1]" SITE "W19";
+LOCATE COMP "gpio_out[2]" SITE "U19";
+LOCATE COMP "gpio_out[3]" SITE "T19";
+
+// Status LEDs
+LOCATE COMP "status_led[0]" SITE "R20";
+LOCATE COMP "status_led[1]" SITE "R19";
+LOCATE COMP "status_led[2]" SITE "R18";
+LOCATE COMP "status_led[3]" SITE "R17";
+
+// Debug serial interface
+LOCATE COMP "debug_tx" SITE "Q20";
+LOCATE COMP "debug_rx" SITE "Q19";
+
+// I/O voltage standards
+IOBUF PORT "clk_50m" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+
+IOBUF PORT "gpio_in[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_in[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_in[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_in[3]" IO_TYPE=LVCMOS33;
+
+IOBUF PORT "gpio_out[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_out[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_out[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "gpio_out[3]" IO_TYPE=LVCMOS33;
+
+IOBUF PORT "status_led[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "status_led[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "status_led[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "status_led[3]" IO_TYPE=LVCMOS33;
+
+IOBUF PORT "debug_tx" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_rx" IO_TYPE=LVCMOS33;
+
+// Pull-up resistors
+IOBUF PORT "clk_50m" PULLMODE=UP;
+IOBUF PORT "reset_n" PULLMODE=UP;
+IOBUF PORT "gpio_in[0]" PULLMODE=UP;
+IOBUF PORT "gpio_in[1]" PULLMODE=UP;
+IOBUF PORT "gpio_in[2]" PULLMODE=UP;
+IOBUF PORT "gpio_in[3]" PULLMODE=UP;
+IOBUF PORT "debug_rx" PULLMODE=UP;
+
+// Drive strength for outputs
+IOBUF PORT "gpio_out[0]" DRIVE=12;
+IOBUF PORT "gpio_out[1]" DRIVE=12;
+IOBUF PORT "gpio_out[2]" DRIVE=12;
+IOBUF PORT "gpio_out[3]" DRIVE=12;
+IOBUF PORT "status_led[0]" DRIVE=12;
+IOBUF PORT "status_led[1]" DRIVE=12;
+IOBUF PORT "status_led[2]" DRIVE=12;
+IOBUF PORT "status_led[3]" DRIVE=12;
+IOBUF PORT "debug_tx" DRIVE=12;
+
+// Frequency specification
+FREQUENCY PORT "clk_50m" 50.0 MHz;
+
+// Clock group
+DEFINE CLOCK clk_const 0.0 0.0 0.0 0.0 0.0 clk_50m 0.0;
+CLOCK_GROUP "clk_50m" 50.0 MHZ;
+
+// Wishbone bus timing constraint
+DEFINE CONSTRAINT WB_SETUP 10.0 ns;
+DEFINE CONSTRAINT WB_HOLD 2.0 ns;

@@ -1,0 +1,91 @@
+// Lattice Diamond LPF constraints for serdes_loopback
+// Target: LFE5UM5G-85F-8BG756C
+// SERDES frequency: 2.5 Gbps (312.5 MHz)
+
+LOCATE COMP "ref_clk" SITE "G23";
+LOCATE COMP "reset_n" SITE "Y18";
+
+// SERDES differential pairs
+// TX pair
+LOCATE COMP "serdes_tx_p" SITE "C28";
+LOCATE COMP "serdes_tx_n" SITE "D28";
+
+// RX pair
+LOCATE COMP "serdes_rx_p" SITE "A28";
+LOCATE COMP "serdes_rx_n" SITE "B28";
+
+// Status LEDs
+LOCATE COMP "prbs_status_led[0]" SITE "A14";
+LOCATE COMP "prbs_status_led[1]" SITE "A13";
+LOCATE COMP "prbs_status_led[2]" SITE "A12";
+LOCATE COMP "prbs_status_led[3]" SITE "A11";
+LOCATE COMP "prbs_status_led[4]" SITE "A10";
+LOCATE COMP "prbs_status_led[5]" SITE "A9";
+LOCATE COMP "prbs_status_led[6]" SITE "A8";
+LOCATE COMP "prbs_status_led[7]" SITE "A7";
+
+// Test mode input
+LOCATE COMP "test_mode" SITE "W18";
+
+// I/O voltage standards
+IOBUF PORT "ref_clk" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+IOBUF PORT "test_mode" IO_TYPE=LVCMOS33;
+
+// Status LED outputs
+IOBUF PORT "prbs_status_led[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[3]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[4]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[5]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[6]" IO_TYPE=LVCMOS33;
+IOBUF PORT "prbs_status_led[7]" IO_TYPE=LVCMOS33;
+
+// SERDES I/O standards (LVDS for high-speed)
+IOBUF PORT "serdes_tx_p" IO_TYPE=LVDS25;
+IOBUF PORT "serdes_tx_n" IO_TYPE=LVDS25;
+IOBUF PORT "serdes_rx_p" IO_TYPE=LVDS25;
+IOBUF PORT "serdes_rx_n" IO_TYPE=LVDS25;
+
+// Pull-ups on inputs
+IOBUF PORT "ref_clk" PULLMODE=UP;
+IOBUF PORT "reset_n" PULLMODE=UP;
+IOBUF PORT "test_mode" PULLMODE=UP;
+
+// Drive strength for LVDS outputs
+IOBUF PORT "serdes_tx_p" DRIVE=12;
+IOBUF PORT "serdes_tx_n" DRIVE=12;
+
+// Status LED drive strength
+IOBUF PORT "prbs_status_led[0]" DRIVE=12;
+IOBUF PORT "prbs_status_led[1]" DRIVE=12;
+IOBUF PORT "prbs_status_led[2]" DRIVE=12;
+IOBUF PORT "prbs_status_led[3]" DRIVE=12;
+IOBUF PORT "prbs_status_led[4]" DRIVE=12;
+IOBUF PORT "prbs_status_led[5]" DRIVE=12;
+IOBUF PORT "prbs_status_led[6]" DRIVE=12;
+IOBUF PORT "prbs_status_led[7]" DRIVE=12;
+
+// Frequency specification
+FREQUENCY PORT "ref_clk" 312.5 MHz;
+
+// Clock group
+DEFINE CLOCK clk_const 0.0 0.0 0.0 0.0 0.0 ref_clk 0.0;
+CLOCK_GROUP "ref_clk" 312.5 MHZ;
+
+// SERDES specific constraints
+// SERDES clock input
+DEFINE SERDES_IN LVDS ref_clk PORT "ref_clk";
+
+// SERDES pair pairing constraints
+DEFINE PAIR SERDES_TX "serdes_tx_p" "serdes_tx_n";
+DEFINE PAIR SERDES_RX "serdes_rx_p" "serdes_rx_n";
+
+// Differential pair termination (on PCB)
+// IOBUF PORT "serdes_tx_p" DIFF_TERM=YES;
+// IOBUF PORT "serdes_rx_p" DIFF_TERM=YES;
+
+// SERDES timing constraints
+DEFINE CONSTRAINT SERDES_JITTER 100 ps;  // 100ps max jitter on reference clock
+DEFINE CONSTRAINT SERDES_SKEW 50 ps;      // 50ps max skew on differential pairs

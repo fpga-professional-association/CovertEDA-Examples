@@ -1,0 +1,101 @@
+# Quartus Pro QSF for PCIe Gen2 x4 Endpoint
+# Arria 10 - 10AX115S2F45I1SG
+
+set_global_assignment -name FAMILY "Arria 10"
+set_global_assignment -name DEVICE 10AX115S2F45I1SG
+set_global_assignment -name TOP_LEVEL_ENTITY pcie_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:30:22 MAR 21 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION 17.1
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 8
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
+set_global_assignment -name FITTER_AGGRESSIVE_ROUTABILITY_OPTIMIZATION LEVEL_2
+
+# Design Files
+set_global_assignment -name SYSTEMVERILOG_FILE src/pcie_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE src/tlp_handler.sv
+set_global_assignment -name SYSTEMVERILOG_FILE src/bar_decoder.sv
+set_global_assignment -name QIP_FILE pcie_core.qip
+
+# Pin Assignments - Reference Clock
+set_location_assignment PIN_Y27 -to clk_250m
+set_location_assignment PIN_W28 -to rst_n
+
+# PCIe Lanes TX (x4)
+set_location_assignment PIN_AV42 -to pcie_tx[0]
+set_location_assignment PIN_AT42 -to pcie_tx[1]
+set_location_assignment PIN_AR42 -to pcie_tx[2]
+set_location_assignment PIN_AP42 -to pcie_tx[3]
+
+# PCIe Lanes RX (x4)
+set_location_assignment PIN_AW40 -to pcie_rx[0]
+set_location_assignment PIN_AU40 -to pcie_rx[1]
+set_location_assignment PIN_AS40 -to pcie_rx[2]
+set_location_assignment PIN_AQ40 -to pcie_rx[3]
+
+# Application Interface
+set_location_assignment PIN_V27 -to app_data_in[0]
+set_location_assignment PIN_U27 -to app_data_in[1]
+set_location_assignment PIN_V26 -to app_data_in[2]
+set_location_assignment PIN_U26 -to app_data_in[3]
+set_location_assignment PIN_V25 -to app_data_in[4]
+set_location_assignment PIN_U25 -to app_data_in[5]
+set_location_assignment PIN_V24 -to app_data_in[6]
+set_location_assignment PIN_U24 -to app_data_in[7]
+
+set_location_assignment PIN_T27 -to app_byte_en[0]
+set_location_assignment PIN_R27 -to app_byte_en[1]
+set_location_assignment PIN_T26 -to app_byte_en[2]
+set_location_assignment PIN_R26 -to app_byte_en[3]
+set_location_assignment PIN_T25 -to app_byte_en[4]
+set_location_assignment PIN_R25 -to app_byte_en[5]
+set_location_assignment PIN_T24 -to app_byte_en[6]
+set_location_assignment PIN_R24 -to app_byte_en[7]
+
+set_location_assignment PIN_P27 -to app_valid
+set_location_assignment PIN_N27 -to app_ready
+
+set_location_assignment PIN_P26 -to app_data_out[0]
+set_location_assignment PIN_N26 -to app_data_out[1]
+set_location_assignment PIN_P25 -to app_data_out[2]
+set_location_assignment PIN_N25 -to app_data_out[3]
+set_location_assignment PIN_P24 -to app_data_out[4]
+set_location_assignment PIN_N24 -to app_data_out[5]
+set_location_assignment PIN_P23 -to app_data_out[6]
+set_location_assignment PIN_N23 -to app_data_out[7]
+
+# Control Signals
+set_location_assignment PIN_M27 -to device_id[0]
+set_location_assignment PIN_L27 -to device_id[1]
+set_location_assignment PIN_M26 -to bar0_config[0]
+set_location_assignment PIN_L26 -to bar0_config[1]
+set_location_assignment PIN_M25 -to pcie_link_up
+set_location_assignment PIN_L25 -to link_speed[0]
+
+# I/O Attributes
+set_instance_assignment -name IO_STANDARD "1.8V" -to clk_250m
+set_instance_assignment -name IO_STANDARD "1.8V" -to rst_n
+set_instance_assignment -name IO_STANDARD "1.2V" -to app_data_in[*]
+set_instance_assignment -name IO_STANDARD "1.2V" -to app_byte_en[*]
+set_instance_assignment -name IO_STANDARD "1.2V" -to app_valid
+set_instance_assignment -name IO_STANDARD "1.2V" -to app_ready
+set_instance_assignment -name IO_STANDARD "1.2V" -to app_data_out[*]
+set_instance_assignment -name IO_STANDARD "1.2V" -to device_id[*]
+set_instance_assignment -name IO_STANDARD "1.2V" -to bar0_config[*]
+set_instance_assignment -name IO_STANDARD "1.2V" -to pcie_link_up
+set_instance_assignment -name IO_STANDARD "1.2V" -to link_speed[*]
+
+# Differential Signaling
+set_instance_assignment -name DIFFERENTIAL_SIGNALING ON -to pcie_tx[*]
+set_instance_assignment -name DIFFERENTIAL_SIGNALING ON -to pcie_rx[*]
+
+# Timing
+set_global_assignment -name SDC_FILE constraints/pcie.sdc
+
+# Device & Compiler Settings
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE C5
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "HEAT SINK WITH 31 CFM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"

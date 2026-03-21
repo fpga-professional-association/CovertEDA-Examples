@@ -1,0 +1,23 @@
+# Blinky LED Design - Pin Definition Constraints
+# Device: LIFCL-40-7BG400I
+# Date: 2026-03-21
+
+# Clock input - 25 MHz
+set_io clk       H3
+
+# Reset input (active-low)
+set_io rst_n     H4
+
+# LED outputs
+set_io led[0]    G17
+set_io led[1]    H17
+set_io led[2]    G16
+set_io led[3]    H16
+
+# Bank voltage assignments
+set_bank H3 3.3V
+set_bank H4 3.3V
+set_bank G17 3.3V
+set_bank H17 3.3V
+set_bank G16 3.3V
+set_bank H16 3.3V

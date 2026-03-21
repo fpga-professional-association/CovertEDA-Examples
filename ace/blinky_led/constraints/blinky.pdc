@@ -1,0 +1,11 @@
+# ACE Physical Design Constraints for Blinky
+# Device: AC7t1500ES0 (Speedster7t)
+
+# Clock input - 100 MHz
+set_pin clk -loc CLK0 -iostandard LVDS
+
+# Reset input
+set_pin rst_n -loc RST0 -iostandard LVCMOS18
+
+# LED output
+set_pin led -loc LED0 -iostandard LVCMOS18 -slew SLOW -drive 8

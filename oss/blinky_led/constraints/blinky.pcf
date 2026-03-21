@@ -1,0 +1,10 @@
+# Physical Constraint File for iCE40UP5K Blinky
+
+# Clock input - 12 MHz on pin 35
+set_io clk 35
+
+# Reset input on pin 34
+set_io rst_n 34
+
+# LED output on pin 4
+set_io led 4

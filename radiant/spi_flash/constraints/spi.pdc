@@ -1,0 +1,31 @@
+# SPI Flash Controller - Pin Definition Constraints
+# Device: LIFCL-40-9BG400C
+# Frequency: 100 MHz
+
+# Clock and Reset
+set_io clk       H3
+set_io rst_n     H4
+
+# SPI Interface
+set_io sclk      F2
+set_io cs_n      F1
+set_io mosi      G2
+set_io miso      G1
+
+# QSPI Interface (I/O pins for quad mode)
+set_io qspi_io[0] E2
+set_io qspi_io[1] E1
+set_io qspi_io[2] D2
+set_io qspi_io[3] D1
+
+# Control/Status
+set_io spi_mode  H5
+set_io busy      J5
+set_io rd_en     J4
+set_io wr_en     J3
+
+# Bank assignments
+set_bank H3 3.3V
+set_bank H4 3.3V
+set_bank F2 3.3V
+set_bank F1 3.3V

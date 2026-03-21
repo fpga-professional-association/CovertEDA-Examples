@@ -1,0 +1,29 @@
+// Lattice Diamond LPF constraints for blinky_led
+// Target: LFE5U-25F-6BG256C
+// Oscillator: 25 MHz on P3
+
+LOCATE COMP "clk" SITE "P3";
+LOCATE COMP "reset_n" SITE "T14";
+LOCATE COMP "led_out[0]" SITE "B2";
+LOCATE COMP "led_out[1]" SITE "C2";
+LOCATE COMP "led_out[2]" SITE "A2";
+LOCATE COMP "led_out[3]" SITE "B1";
+
+// I/O voltage standard
+IOBUF PORT "clk" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+IOBUF PORT "led_out[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "led_out[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "led_out[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "led_out[3]" IO_TYPE=LVCMOS33;
+
+// Input/Output specifications
+IOBUF PORT "clk" PULLMODE=UP;
+IOBUF PORT "reset_n" PULLMODE=UP;
+
+// Frequency specification
+FREQUENCY PORT "clk" 25.0 MHz;
+
+// Clock group definition for timing analysis
+DEFINE CLOCK clk_const 0.0 0.0 0.0 0.0 0.0 clk 0.0;
+CLOCK_GROUP "clk" 25.0 MHZ;

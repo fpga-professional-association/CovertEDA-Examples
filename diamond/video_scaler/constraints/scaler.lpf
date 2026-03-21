@@ -1,0 +1,168 @@
+// Lattice Diamond LPF constraints for video_scaler
+// Target: LFE5U-85F-8BG756C
+// Pixel clock: 148.5 MHz (1080p@60Hz)
+
+LOCATE COMP "pixel_clk" SITE "J2";
+LOCATE COMP "reset_n" SITE "M2";
+
+// Video input (HDMI-like)
+LOCATE COMP "vsync_in" SITE "A1";
+LOCATE COMP "hsync_in" SITE "B1";
+LOCATE COMP "valid_in" SITE "C1";
+
+LOCATE COMP "pixel_in[0]" SITE "D1";
+LOCATE COMP "pixel_in[1]" SITE "E1";
+LOCATE COMP "pixel_in[2]" SITE "F1";
+LOCATE COMP "pixel_in[3]" SITE "G1";
+LOCATE COMP "pixel_in[4]" SITE "H1";
+LOCATE COMP "pixel_in[5]" SITE "J1";
+LOCATE COMP "pixel_in[6]" SITE "K1";
+LOCATE COMP "pixel_in[7]" SITE "L1";
+LOCATE COMP "pixel_in[8]" SITE "A2";
+LOCATE COMP "pixel_in[9]" SITE "B2";
+LOCATE COMP "pixel_in[10]" SITE "C2";
+LOCATE COMP "pixel_in[11]" SITE "D2";
+LOCATE COMP "pixel_in[12]" SITE "E2";
+LOCATE COMP "pixel_in[13]" SITE "F2";
+LOCATE COMP "pixel_in[14]" SITE "G2";
+LOCATE COMP "pixel_in[15]" SITE "H2";
+LOCATE COMP "pixel_in[16]" SITE "J3";
+LOCATE COMP "pixel_in[17]" SITE "K3";
+LOCATE COMP "pixel_in[18]" SITE "L3";
+LOCATE COMP "pixel_in[19]" SITE "M3";
+LOCATE COMP "pixel_in[20]" SITE "N3";
+LOCATE COMP "pixel_in[21]" SITE "P3";
+LOCATE COMP "pixel_in[22]" SITE "R3";
+LOCATE COMP "pixel_in[23]" SITE "T3";
+
+// Video output
+LOCATE COMP "vsync_out" SITE "A4";
+LOCATE COMP "hsync_out" SITE "B4";
+LOCATE COMP "valid_out" SITE "C4";
+
+LOCATE COMP "pixel_out[0]" SITE "D4";
+LOCATE COMP "pixel_out[1]" SITE "E4";
+LOCATE COMP "pixel_out[2]" SITE "F4";
+LOCATE COMP "pixel_out[3]" SITE "G4";
+LOCATE COMP "pixel_out[4]" SITE "H4";
+LOCATE COMP "pixel_out[5]" SITE "J4";
+LOCATE COMP "pixel_out[6]" SITE "K4";
+LOCATE COMP "pixel_out[7]" SITE "L4";
+LOCATE COMP "pixel_out[8]" SITE "A5";
+LOCATE COMP "pixel_out[9]" SITE "B5";
+LOCATE COMP "pixel_out[10]" SITE "C5";
+LOCATE COMP "pixel_out[11]" SITE "D5";
+LOCATE COMP "pixel_out[12]" SITE "E5";
+LOCATE COMP "pixel_out[13]" SITE "F5";
+LOCATE COMP "pixel_out[14]" SITE "G5";
+LOCATE COMP "pixel_out[15]" SITE "H5";
+LOCATE COMP "pixel_out[16]" SITE "J6";
+LOCATE COMP "pixel_out[17]" SITE "K6";
+LOCATE COMP "pixel_out[18]" SITE "L6";
+LOCATE COMP "pixel_out[19]" SITE "M6";
+LOCATE COMP "pixel_out[20]" SITE "N6";
+LOCATE COMP "pixel_out[21]" SITE "P6";
+LOCATE COMP "pixel_out[22]" SITE "R6";
+LOCATE COMP "pixel_out[23]" SITE "T6";
+
+// Debug status output
+LOCATE COMP "debug_status[0]" SITE "U1";
+LOCATE COMP "debug_status[1]" SITE "U2";
+LOCATE COMP "debug_status[2]" SITE "U3";
+LOCATE COMP "debug_status[3]" SITE "U4";
+LOCATE COMP "debug_status[4]" SITE "U5";
+LOCATE COMP "debug_status[5]" SITE "U6";
+LOCATE COMP "debug_status[6]" SITE "U7";
+LOCATE COMP "debug_status[7]" SITE "U8";
+
+// I/O voltage standards (LVCMOS33 for most, LVDS for video data)
+IOBUF PORT "pixel_clk" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+IOBUF PORT "vsync_in" IO_TYPE=LVCMOS33;
+IOBUF PORT "hsync_in" IO_TYPE=LVCMOS33;
+IOBUF PORT "valid_in" IO_TYPE=LVCMOS33;
+
+// Video data as LVDS pairs (for better signal integrity at 148.5 MHz)
+IOBUF PORT "pixel_in[0]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[1]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[2]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[3]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[4]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[5]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[6]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[7]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[8]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[9]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[10]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[11]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[12]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[13]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[14]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[15]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[16]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[17]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[18]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[19]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[20]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[21]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[22]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_in[23]" IO_TYPE=LVDS25;
+
+IOBUF PORT "vsync_out" IO_TYPE=LVCMOS33;
+IOBUF PORT "hsync_out" IO_TYPE=LVCMOS33;
+IOBUF PORT "valid_out" IO_TYPE=LVCMOS33;
+
+IOBUF PORT "pixel_out[0]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[1]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[2]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[3]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[4]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[5]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[6]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[7]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[8]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[9]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[10]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[11]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[12]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[13]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[14]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[15]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[16]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[17]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[18]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[19]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[20]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[21]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[22]" IO_TYPE=LVDS25;
+IOBUF PORT "pixel_out[23]" IO_TYPE=LVDS25;
+
+IOBUF PORT "debug_status[0]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[1]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[2]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[3]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[4]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[5]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[6]" IO_TYPE=LVCMOS33;
+IOBUF PORT "debug_status[7]" IO_TYPE=LVCMOS33;
+
+// Pull-ups on inputs
+IOBUF PORT "pixel_clk" PULLMODE=UP;
+IOBUF PORT "reset_n" PULLMODE=UP;
+IOBUF PORT "valid_in" PULLMODE=UP;
+
+// Drive strength
+IOBUF PORT "vsync_out" DRIVE=12;
+IOBUF PORT "hsync_out" DRIVE=12;
+IOBUF PORT "valid_out" DRIVE=12;
+
+// Frequency specification
+FREQUENCY PORT "pixel_clk" 148.5 MHz;
+
+// Clock group
+DEFINE CLOCK clk_const 0.0 0.0 0.0 0.0 0.0 pixel_clk 0.0;
+CLOCK_GROUP "pixel_clk" 148.5 MHZ;
+
+// High-speed timing constraints
+DEFINE CONSTRAINT VIDEO_PIXEL_SKEW 50 ps;  // Pixel data skew limit
+DEFINE CONSTRAINT VIDEO_SYNC_JITTER 100 ps; // Sync jitter limit

@@ -1,0 +1,22 @@
+# ADC Interface PDC
+# 25 MHz reference clock
+
+set_io clk -pinname P19 -fixed yes -iostandard LVCMOS33
+set_io rst_n -pinname R1 -fixed yes -iostandard LVCMOS33
+set_io adc_sclk -pinname T2 -fixed yes -iostandard LVCMOS33
+set_io adc_cs_n -pinname T3 -fixed yes -iostandard LVCMOS33
+set_io adc_mosi -pinname U2 -fixed yes -iostandard LVCMOS33
+set_io adc_miso -pinname U3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[11] -pinname V2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[10] -pinname V3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[9] -pinname W2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[8] -pinname W3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[7] -pinname Y2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[6] -pinname Y3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[5] -pinname AA2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[4] -pinname AA3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[3] -pinname AB2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[2] -pinname AB3 -fixed yes -iostandard LVCMOS33
+set_io adc_data[1] -pinname AC2 -fixed yes -iostandard LVCMOS33
+set_io adc_data[0] -pinname AC3 -fixed yes -iostandard LVCMOS33
+set_io data_valid -pinname AD2 -fixed yes -iostandard LVCMOS33

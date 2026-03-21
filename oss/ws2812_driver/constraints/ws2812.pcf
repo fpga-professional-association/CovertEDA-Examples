@@ -1,0 +1,5 @@
+# WS2812 Driver PCF
+
+set_io clk 91
+set_io rst_n 88
+set_io ws2812_out 2
