@@ -6,7 +6,7 @@ module spi_slave (
     input  spi_clk,
     input  spi_cs_n,
     input  spi_mosi,
-    output spi_miso,
+    output reg spi_miso,
     output [31:0] data_out,
     output valid
 );
@@ -15,8 +15,12 @@ module spi_slave (
     reg [5:0] bit_count;
     reg valid_reg;
 
-    always @(posedge spi_clk or negedge spi_cs_n) begin
-        if (!spi_cs_n) begin
+    always @(posedge spi_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            bit_count <= 6'h0;
+            shift_in  <= 32'h0;
+            valid_reg <= 1'b0;
+        end else if (spi_cs_n) begin
             bit_count <= 6'h0;
         end else begin
             shift_in <= {shift_in[30:0], spi_mosi};
@@ -27,8 +31,11 @@ module spi_slave (
         end
     end
 
-    always @(negedge spi_clk) begin
-        if (!spi_cs_n) begin
+    always @(negedge spi_clk or negedge rst_n) begin
+        if (!rst_n) begin
+            spi_miso  <= 1'b0;
+            shift_out <= 32'h0;
+        end else if (!spi_cs_n) begin
             spi_miso <= shift_out[31];
             shift_out <= {shift_out[30:0], 1'b0};
         end
