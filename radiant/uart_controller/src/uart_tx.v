@@ -42,6 +42,8 @@ module uart_tx (
             case (state)
                 IDLE: begin
                     tx <= 1'b1;
+                    bit_count <= 4'h0;
+                    sample_count <= 4'h0;
                     if (data_valid) begin
                         shift_reg <= data_in;
                     end

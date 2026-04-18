@@ -1,13 +1,13 @@
 // =============================================================================
 // Design      : SPI Flash Controller
 // Module      : spi_top
-// Description : SPI master with QSPI support for flash memory
-// Device      : LIFCL-40-9BG400C
-// Frequency   : 100 MHz
+// Description : SPI master controller for flash memory access
+// Device      : LIFCL-40-7BG400I
+// Frequency   : 50 MHz
 // =============================================================================
 
 module spi_top (
-    input   wire        clk,        // 100 MHz system clock
+    input   wire        clk,        // 50 MHz system clock
     input   wire        rst_n,      // Active-low reset
 
     // SPI interface
@@ -16,12 +16,8 @@ module spi_top (
     output  wire        mosi,       // Master out, slave in
     input   wire        miso,       // Master in, slave out
 
-    // QSPI interface
-    inout   wire [3:0]  qspi_io,    // Quad SPI I/O [3:0]
-
     // Control interface
-    input   wire        spi_mode,   // 0=SPI, 1=QSPI
-    input   wire [31:0] addr,       // Address for flash
+    input   wire [15:0] addr,       // Address for flash (16-bit)
     input   wire [7:0]  data_in,    // Data to write
     output  wire [7:0]  data_out,   // Data read
     input   wire        rd_en,      // Read enable
@@ -57,7 +53,7 @@ module spi_top (
         .rst_n(rst_n),
         .wr_en(wr_en | rd_en),
         .rd_en(spi_tx_ready),
-        .data_in({addr[15:8], addr[7:0]}),
+        .data_in(addr),
         .data_out(fifo_data_out),
         .empty(fifo_empty),
         .full(fifo_full)

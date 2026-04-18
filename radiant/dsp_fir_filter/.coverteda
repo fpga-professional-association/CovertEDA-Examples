@@ -1,0 +1,21 @@
+{
+  "name": "dsp_fir_filter",
+  "description": "16-tap FIR filter with multiply-accumulate pipeline",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "fir_top",
+  "sourcePatterns": [
+    "src/**/*.v",
+    "src/**/*.sv"
+  ],
+  "constraintFiles": [
+    "constraints/*.pdc",
+    "constraints/*.sdc"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-03-22T01:36:32.161040600+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

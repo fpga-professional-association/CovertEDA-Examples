@@ -1,6 +1,7 @@
 // =============================================================================
 // Module: uart_rx
 // Description: UART receiver with 8 data bits, 1 start, 1 stop bit
+//              Uses 16x oversampling with mid-bit sampling
 // =============================================================================
 
 module uart_rx (
@@ -25,7 +26,7 @@ module uart_rx (
     reg [7:0] shift_reg;
     reg rx_sync, rx_sync2;
 
-    // Synchronize RX input
+    // Synchronize RX input (2-stage synchronizer for metastability)
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             rx_sync <= 1'b1;
@@ -42,6 +43,8 @@ module uart_rx (
             state <= IDLE;
             bit_count <= 4'h0;
             sample_count <= 4'h0;
+            shift_reg <= 8'h0;
+            data_out <= 8'h0;
             data_valid <= 1'b0;
         end else if (baud_clk) begin
             state <= next_state;
@@ -54,26 +57,29 @@ module uart_rx (
                 end
 
                 START: begin
-                    sample_count <= sample_count + 1'b1;
-                    if (sample_count == 4'h7) begin
+                    // Count to mid-bit (8 samples at 16x = half bit period)
+                    if (sample_count == 4'h7)
                         sample_count <= 4'h0;
-                    end
+                    else
+                        sample_count <= sample_count + 1'b1;
                 end
 
                 DATA: begin
-                    sample_count <= sample_count + 1'b1;
-                    if (sample_count == 4'h7) begin
+                    // Count 16 samples per bit, sample at mid-point
+                    if (sample_count == 4'hF) begin
                         sample_count <= 4'h0;
                         shift_reg <= {rx_sync2, shift_reg[7:1]};
                         bit_count <= bit_count + 1'b1;
+                    end else begin
+                        sample_count <= sample_count + 1'b1;
                     end
                 end
 
                 STOP: begin
-                    sample_count <= sample_count + 1'b1;
-                    if (sample_count == 4'h7) begin
+                    if (sample_count == 4'hF)
                         sample_count <= 4'h0;
-                    end
+                    else
+                        sample_count <= sample_count + 1'b1;
                 end
 
                 VALID: begin
@@ -96,15 +102,18 @@ module uart_rx (
             end
 
             START: begin
-                if (sample_count == 4'h8) next_state = DATA;
+                // After 8 samples (mid-bit), move to DATA
+                if (sample_count == 4'h7) next_state = DATA;
             end
 
             DATA: begin
+                // After all 8 data bits received
                 if (bit_count == 4'h8) next_state = STOP;
             end
 
             STOP: begin
-                if (sample_count == 4'h8) next_state = VALID;
+                // Wait full bit period for stop bit
+                if (sample_count == 4'hF) next_state = VALID;
             end
 
             VALID: begin

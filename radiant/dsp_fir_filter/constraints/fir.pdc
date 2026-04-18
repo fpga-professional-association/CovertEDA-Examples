@@ -3,65 +3,69 @@
 # Frequency: 100 MHz
 
 # Clock and Reset
-set_io clk          H3
-set_io rst_n        H4
+ldc_set_location -site {H3} [get_ports clk]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
-# Data interface
-set_io data_in[0]   F1
-set_io data_in[1]   F2
-set_io data_in[2]   F3
-set_io data_in[3]   F4
-set_io data_in[4]   F5
-set_io data_in[5]   G1
-set_io data_in[6]   G2
-set_io data_in[7]   G3
-set_io data_in[8]   G4
-set_io data_in[9]   G5
-set_io data_in[10]  J1
-set_io data_in[11]  J2
-set_io data_in[12]  J3
-set_io data_in[13]  J4
-set_io data_in[14]  J5
-set_io data_in[15]  K1
+ldc_set_location -site {H4} [get_ports rst_n]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
-# Output (32-bit)
-set_io data_out[0]  K2
-set_io data_out[1]  K3
-set_io data_out[2]  K4
-set_io data_out[3]  K5
-set_io data_out[4]  L1
-set_io data_out[5]  L2
-set_io data_out[6]  L3
-set_io data_out[7]  L4
-set_io data_out[8]  L5
-set_io data_out[9]  M1
-set_io data_out[10] M2
-set_io data_out[11] M3
-set_io data_out[12] M4
-set_io data_out[13] M5
-set_io data_out[14] N1
-set_io data_out[15] N2
-set_io data_out[16] N3
-set_io data_out[17] N4
-set_io data_out[18] N5
-set_io data_out[19] P1
-set_io data_out[20] P2
-set_io data_out[21] P3
-set_io data_out[22] P4
-set_io data_out[23] P5
-set_io data_out[24] R1
-set_io data_out[25] R2
-set_io data_out[26] R3
-set_io data_out[27] R4
-set_io data_out[28] R5
-set_io data_out[29] T1
-set_io data_out[30] T2
-set_io data_out[31] T3
+# Data input (16-bit)
+ldc_set_location -site {F1} [get_ports {data_in[0]}]
+ldc_set_location -site {F2} [get_ports {data_in[1]}]
+ldc_set_location -site {F3} [get_ports {data_in[2]}]
+ldc_set_location -site {F4} [get_ports {data_in[3]}]
+ldc_set_location -site {F5} [get_ports {data_in[4]}]
+ldc_set_location -site {G1} [get_ports {data_in[5]}]
+ldc_set_location -site {G2} [get_ports {data_in[6]}]
+ldc_set_location -site {G3} [get_ports {data_in[7]}]
+ldc_set_location -site {G4} [get_ports {data_in[8]}]
+ldc_set_location -site {G5} [get_ports {data_in[9]}]
+ldc_set_location -site {J1} [get_ports {data_in[10]}]
+ldc_set_location -site {J2} [get_ports {data_in[11]}]
+ldc_set_location -site {J3} [get_ports {data_in[12]}]
+ldc_set_location -site {J4} [get_ports {data_in[13]}]
+ldc_set_location -site {J5} [get_ports {data_in[14]}]
+ldc_set_location -site {K1} [get_ports {data_in[15]}]
+
+# Data output (32-bit)
+ldc_set_location -site {K2} [get_ports {data_out[0]}]
+ldc_set_location -site {K3} [get_ports {data_out[1]}]
+ldc_set_location -site {K4} [get_ports {data_out[2]}]
+ldc_set_location -site {K5} [get_ports {data_out[3]}]
+ldc_set_location -site {L1} [get_ports {data_out[4]}]
+ldc_set_location -site {L2} [get_ports {data_out[5]}]
+ldc_set_location -site {L3} [get_ports {data_out[6]}]
+ldc_set_location -site {L4} [get_ports {data_out[7]}]
+ldc_set_location -site {L5} [get_ports {data_out[8]}]
+ldc_set_location -site {M1} [get_ports {data_out[9]}]
+ldc_set_location -site {M2} [get_ports {data_out[10]}]
+ldc_set_location -site {M3} [get_ports {data_out[11]}]
+ldc_set_location -site {M4} [get_ports {data_out[12]}]
+ldc_set_location -site {M5} [get_ports {data_out[13]}]
+ldc_set_location -site {N1} [get_ports {data_out[14]}]
+ldc_set_location -site {N2} [get_ports {data_out[15]}]
+ldc_set_location -site {N3} [get_ports {data_out[16]}]
+ldc_set_location -site {N4} [get_ports {data_out[17]}]
+ldc_set_location -site {N5} [get_ports {data_out[18]}]
+ldc_set_location -site {P1} [get_ports {data_out[19]}]
+ldc_set_location -site {P2} [get_ports {data_out[20]}]
+ldc_set_location -site {P3} [get_ports {data_out[21]}]
+ldc_set_location -site {P4} [get_ports {data_out[22]}]
+ldc_set_location -site {P5} [get_ports {data_out[23]}]
+ldc_set_location -site {R1} [get_ports {data_out[24]}]
+ldc_set_location -site {R2} [get_ports {data_out[25]}]
+ldc_set_location -site {R3} [get_ports {data_out[26]}]
+ldc_set_location -site {R4} [get_ports {data_out[27]}]
+ldc_set_location -site {R5} [get_ports {data_out[28]}]
+ldc_set_location -site {T1} [get_ports {data_out[29]}]
+ldc_set_location -site {T2} [get_ports {data_out[30]}]
+ldc_set_location -site {T3} [get_ports {data_out[31]}]
 
 # Control signals
-set_io valid_in     H5
-set_io valid_out    J6
+ldc_set_location -site {H5} [get_ports valid_in]
+ldc_set_location -site {J6} [get_ports valid_out]
 
-# Bank voltage assignments
-set_bank H3 3.3V
-set_bank H4 3.3V
+# IO type for all ports
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {data_in[*]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {data_out[*]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {valid_in valid_out}]

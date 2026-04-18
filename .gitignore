@@ -1,0 +1,13 @@
+# Radiant build artifacts
+**/impl1/
+**/*.rdf
+**/promote.xml
+**/promote.pfl
+**/.setting.ini
+**/*.sty
+
+# General build outputs
+**/*.bit
+**/*.jed
+**/*.sof
+**/*.bin

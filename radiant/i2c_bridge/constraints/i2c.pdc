@@ -3,21 +3,22 @@
 # Frequency: 50 MHz
 
 # Clock and Reset
-set_io clk       A2
-set_io rst_n     B2
+ldc_set_location -site {A2} [get_ports clk]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
-# I2C interface (open-drain, no external resistors needed)
-set_io sda       D4
-set_io scl       D3
+ldc_set_location -site {B2} [get_ports rst_n]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
+
+# I2C interface
+ldc_set_location -site {D4} [get_ports sda]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33 OPENDRAIN=ON} [get_ports sda]
+
+ldc_set_location -site {D3} [get_ports scl]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33 OPENDRAIN=ON} [get_ports scl]
 
 # Wishbone status signals (optional for debugging)
-set_io wb_cyc    E4
-set_io wb_stb    E3
+ldc_set_location -site {E4} [get_ports wb_cyc]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports wb_cyc]
 
-# Bank voltage assignments
-set_bank A2 3.3V
-set_bank B2 3.3V
-set_bank D4 3.3V
-set_bank D3 3.3V
-set_bank E4 3.3V
-set_bank E3 3.3V
+ldc_set_location -site {E3} [get_ports wb_stb]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports wb_stb]
