@@ -5,6 +5,11 @@ module serdes_wrapper (
     input clk,              // Parallel clock (312.5 MHz for 2.5 Gbps)
     input reset_n,
 
+    // PLL ports (active when used as PLL)
+    input  ref_clk,         // Reference clock input (PLL mode)
+    output pll_clk,         // PLL output clock
+    output pll_locked,      // PLL lock indicator
+
     // Parallel data interface
     input [31:0] data_in,   // 32-bit input data
     output [31:0] data_out, // 32-bit output data
@@ -104,5 +109,16 @@ module serdes_wrapper (
     end
 
     assign data_out = rx_data_latch;
+
+    // PLL mode: pass reference clock through and assert locked after reset
+    reg pll_locked_reg;
+    always @(posedge ref_clk or negedge reset_n) begin
+        if (!reset_n)
+            pll_locked_reg <= 1'b0;
+        else
+            pll_locked_reg <= 1'b1;
+    end
+    assign pll_clk    = ref_clk;
+    assign pll_locked = pll_locked_reg;
 
 endmodule

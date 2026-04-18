@@ -31,13 +31,13 @@ module rv32i_top (
     wire [31:0] immediate;
 
     // Control signals
-    wire [3:0] alu_op;
-    wire reg_write;
-    wire mem_write;
-    wire mem_read;
-    wire [1:0] alu_src_a;
-    wire [1:0] alu_src_b;
-    wire pc_src;
+    reg [3:0] alu_op;
+    reg reg_write;
+    reg mem_write;
+    reg mem_read;
+    reg [1:0] alu_src_a;
+    reg [1:0] alu_src_b;
+    reg pc_src;
 
     // Instruction fields
     wire [6:0] opcode;

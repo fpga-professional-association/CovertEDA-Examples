@@ -142,7 +142,10 @@ module dma_top (
         .m_axi_wstrb(m_axi_wstrb),
         .m_axi_wlast(m_axi_wlast),
         .m_axi_wvalid(m_axi_wvalid),
-        .m_axi_wready(m_axi_wready)
+        .m_axi_wready(m_axi_wready),
+        .m_axi_bresp(m_axi_bresp),
+        .m_axi_bvalid(m_axi_bvalid),
+        .m_axi_bready(m_axi_bready)
     );
 
     // ---- DMA Control FSM ----

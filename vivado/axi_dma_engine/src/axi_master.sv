@@ -40,7 +40,12 @@ module axi_master #(
     output wire [(DATA_WIDTH/8)-1:0] m_axi_wstrb,
     output wire                     m_axi_wlast,
     output wire                     m_axi_wvalid,
-    input  wire                     m_axi_wready
+    input  wire                     m_axi_wready,
+
+    // AXI Write Response Channel
+    input  wire [1:0]               m_axi_bresp,
+    input  wire                     m_axi_bvalid,
+    output wire                     m_axi_bready
 );
 
     reg [ADDR_WIDTH-1:0] addr_r;
@@ -85,5 +90,8 @@ module axi_master #(
     assign m_axi_wstrb = {(DATA_WIDTH/8){1'b1}};
     assign m_axi_wvalid = m_axi_rvalid;
     assign m_axi_wlast = m_axi_rlast;
+
+    // Write Response Channel
+    assign m_axi_bready = 1'b1;
 
 endmodule

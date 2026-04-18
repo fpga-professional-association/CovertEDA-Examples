@@ -6,7 +6,7 @@ module spi_slave (
     input  spi_clk,
     input  spi_cs_n,
     input  spi_mosi,
-    output spi_miso,
+    output reg spi_miso,
     output [31:0] data_out,
     output valid
 );

@@ -5,8 +5,8 @@ module nco (
     input  clk,
     input  rst,
     input  [31:0] freq_word,       // Frequency tuning word (32-bit)
-    output signed [15:0] i_out,    // Cosine output (I component)
-    output signed [15:0] q_out,    // Sine output (Q component)
+    output reg signed [15:0] i_out,    // Cosine output (I component)
+    output reg signed [15:0] q_out,    // Sine output (Q component)
     output valid
 );
 

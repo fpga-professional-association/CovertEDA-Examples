@@ -11,3 +11,9 @@
 **/*.jed
 **/*.sof
 **/*.bin
+
+# Simulation artifacts
+sim_build/
+results.xml
+__pycache__/
+*.vcd
