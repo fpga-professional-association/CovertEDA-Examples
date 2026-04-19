@@ -2,7 +2,7 @@
   "name": "clock_divider",
   "description": "Programmable clock divider with 8-bit divisor and tick output",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "clock_divider",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

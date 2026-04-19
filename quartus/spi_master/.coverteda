@@ -2,7 +2,7 @@
   "name": "spi_master",
   "description": "SPI master controller with configurable CPOL/CPHA modes",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "spi_master",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

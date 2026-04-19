@@ -2,7 +2,7 @@
   "name": "moving_average",
   "description": "8-sample moving average filter with 16-bit data path",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "moving_average",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

@@ -18,5 +18,14 @@ results.xml
 __pycache__/
 *.vcd
 
+# Quartus build artifacts
+**/qdb/
+**/dni/
+**/*.done
+**/*.flow.rpt
+**/*.syn.rpt
+**/*.syn.ae.rpt
+**/*.ipg.rpt
+
 # Virtual environment
 .venv/

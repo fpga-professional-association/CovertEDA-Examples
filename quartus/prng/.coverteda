@@ -2,7 +2,7 @@
   "name": "prng",
   "description": "32-bit xorshift pseudo-random number generator",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "prng",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

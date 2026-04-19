@@ -2,7 +2,7 @@
   "name": "stack_controller",
   "description": "16-deep x 32-bit hardware stack with push/pop and full/empty flags",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "stack_controller",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

@@ -2,7 +2,7 @@
   "name": "rotary_encoder",
   "description": "Quadrature rotary encoder decoder with 16-bit position counter",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "rotary_encoder",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

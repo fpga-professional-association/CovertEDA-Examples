@@ -32,13 +32,13 @@ module eth_top (
     input  rx_ready
 );
 
-    wire mac_tx_clk;
-    wire mac_rx_clk;
+    wire mac_tx_clk_int;
+    wire mac_rx_clk_int;
     wire [7:0] tx_payload;
     wire [7:0] rx_payload;
     wire crc_valid;
 
-    // TX Path
+    // TX Path - use the external MII TX clock from the PHY
     mac_tx tx_inst (
         .clk(clk_125m),
         .rst(~rst_n),
@@ -53,7 +53,7 @@ module eth_top (
         .tx_ready(tx_ready)
     );
 
-    // RX Path
+    // RX Path - use the external MII RX clock from the PHY
     mac_rx rx_inst (
         .clk(clk_125m),
         .rst(~rst_n),
@@ -68,11 +68,11 @@ module eth_top (
         .crc_valid(crc_valid)
     );
 
-    // MII Interface Manager
+    // MII Interface Manager - internal clock gen (unused when using external PHY clocks)
     mii_intf mii_inst (
         .clk_125m(clk_125m),
-        .tx_clk(mii_tx_clk),
-        .rx_clk(mii_rx_clk)
+        .tx_clk(mac_tx_clk_int),
+        .rx_clk(mac_rx_clk_int)
     );
 
 endmodule

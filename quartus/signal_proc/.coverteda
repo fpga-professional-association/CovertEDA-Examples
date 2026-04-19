@@ -1,9 +1,9 @@
 {
-  "name": "keypad_scanner",
-  "description": "4x4 matrix keypad scanner with key code output and debounce",
+  "name": "signal_proc",
+  "description": "Digital downconverter (DDC) with NCO, CIC filter, and FIR decimator",
   "backendId": "quartus",
   "device": "10CX085YU484E5G",
-  "topModule": "keypad_scanner",
+  "topModule": "ddc_top",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],
   "implDir": "output_files",
@@ -11,5 +11,5 @@
   "buildStages": [],
   "buildOptions": {},
   "createdAt": "2026-04-18T12:00:00.000000000+00:00",
-  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+  "updatedAt": "2026-04-19T12:00:00.000000000+00:00"
 }

@@ -2,7 +2,7 @@
   "name": "power_on_reset",
   "description": "Power-on reset generator with configurable delay count",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "power_on_reset",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

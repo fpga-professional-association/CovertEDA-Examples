@@ -2,7 +2,7 @@
   "name": "i2c_master",
   "description": "I2C master controller with byte read/write support",
   "backendId": "quartus",
-  "device": "5CGXFC5C6F27C7",
+  "device": "10CX085YU484E5G",
   "topModule": "i2c_master",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

@@ -1,9 +1,9 @@
 {
-  "name": "keypad_scanner",
-  "description": "4x4 matrix keypad scanner with key code output and debounce",
+  "name": "ethernet_mac",
+  "description": "10/100 Ethernet MAC with MII interface, CRC32, TX and RX paths",
   "backendId": "quartus",
   "device": "10CX085YU484E5G",
-  "topModule": "keypad_scanner",
+  "topModule": "eth_top",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],
   "implDir": "output_files",
@@ -11,5 +11,5 @@
   "buildStages": [],
   "buildOptions": {},
   "createdAt": "2026-04-18T12:00:00.000000000+00:00",
-  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+  "updatedAt": "2026-04-19T12:00:00.000000000+00:00"
 }

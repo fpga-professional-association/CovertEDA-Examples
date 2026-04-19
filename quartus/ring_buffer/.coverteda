@@ -2,7 +2,7 @@
   "name": "ring_buffer",
   "description": "16-entry x 16-bit circular buffer with full/empty flags",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "ring_buffer",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],

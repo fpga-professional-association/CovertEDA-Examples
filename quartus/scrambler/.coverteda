@@ -2,7 +2,7 @@
   "name": "scrambler",
   "description": "8-bit data scrambler/descrambler with configurable XOR key and LFSR",
   "backendId": "quartus",
-  "device": "EP4CE6E22C8",
+  "device": "10CX085YU484E5G",
   "topModule": "scrambler",
   "sourcePatterns": ["src/**/*.v"],
   "constraintFiles": ["constraints/*.sdc"],
