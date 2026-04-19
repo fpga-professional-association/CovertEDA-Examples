@@ -1,0 +1,15 @@
+{
+  "name": "crc16",
+  "description": "CRC-16/CCITT generator with byte-wise computation (polynomial 0x1021)",
+  "backendId": "ace",
+  "device": "AC7t1500",
+  "topModule": "crc16",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

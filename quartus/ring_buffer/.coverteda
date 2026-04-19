@@ -1,0 +1,15 @@
+{
+  "name": "ring_buffer",
+  "description": "16-entry x 16-bit circular buffer with full/empty flags",
+  "backendId": "quartus",
+  "device": "EP4CE6E22C8",
+  "topModule": "ring_buffer",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "output_files",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

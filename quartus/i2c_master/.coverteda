@@ -1,0 +1,15 @@
+{
+  "name": "i2c_master",
+  "description": "I2C master controller with byte read/write support",
+  "backendId": "quartus",
+  "device": "5CGXFC5C6F27C7",
+  "topModule": "i2c_master",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "output_files",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -1,0 +1,12 @@
+// Lattice Diamond LPF constraints for uart_rx
+// Target: LFE5U-25F-6BG256C
+
+LOCATE COMP "clk" SITE "P3";
+LOCATE COMP "reset_n" SITE "T14";
+LOCATE COMP "rx_serial" SITE "A2";
+
+IOBUF PORT "clk" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+IOBUF PORT "rx_serial" IO_TYPE=LVCMOS33;
+
+FREQUENCY PORT "clk" 25.0 MHz;

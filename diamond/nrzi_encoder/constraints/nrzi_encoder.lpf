@@ -1,0 +1,10 @@
+// Lattice Diamond LPF constraints for nrzi_encoder
+// Target: LFE5U-25F-6BG256C
+
+LOCATE COMP "clk" SITE "P3";
+LOCATE COMP "reset_n" SITE "T14";
+
+IOBUF PORT "clk" IO_TYPE=LVCMOS33;
+IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;
+
+FREQUENCY PORT "clk" 25.0 MHz;

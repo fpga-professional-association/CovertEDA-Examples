@@ -1,0 +1,15 @@
+{
+  "name": "elevator_controller",
+  "description": "4-floor elevator FSM controller",
+  "backendId": "diamond",
+  "device": "LFE5U-25F",
+  "topModule": "elevator_controller",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.lpf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

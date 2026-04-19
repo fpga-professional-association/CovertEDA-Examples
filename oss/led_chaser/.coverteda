@@ -1,0 +1,15 @@
+{
+  "name": "led_chaser",
+  "description": "N-LED chaser with configurable speed and direction control",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "led_chaser",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

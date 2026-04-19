@@ -1,0 +1,15 @@
+{
+  "name": "convolution_engine",
+  "description": "3x3 convolution engine with signed coefficients for image processing",
+  "backendId": "ace",
+  "device": "AC7t1500",
+  "topModule": "convolution_engine",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

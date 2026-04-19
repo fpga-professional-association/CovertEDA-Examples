@@ -1,0 +1,15 @@
+{
+  "name": "onewire_master",
+  "description": "1-Wire bus master supporting reset, write-bit, and read-bit operations",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "onewire_master",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sequence_detector",
+  "description": "FSM-based pattern sequence detector for bit pattern 1011 with overlap detection",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "sequence_detector",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

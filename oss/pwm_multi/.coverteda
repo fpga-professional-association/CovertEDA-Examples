@@ -1,0 +1,15 @@
+{
+  "name": "pwm_multi",
+  "description": "4-channel independent PWM generator with 8-bit duty cycle per channel",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "pwm_multi",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -1,0 +1,5 @@
+# PCF for iCE40UP5K IR Decoder
+
+set_io clk 35
+set_io rst_n 34
+set_io ir_in 2

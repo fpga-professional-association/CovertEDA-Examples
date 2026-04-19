@@ -1,0 +1,15 @@
+{
+  "name": "rotary_encoder",
+  "description": "Quadrature rotary encoder decoder with 16-bit position counter",
+  "backendId": "quartus",
+  "device": "EP4CE6E22C8",
+  "topModule": "rotary_encoder",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "output_files",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -1,0 +1,8 @@
+# PCF for iCE40UP5K Phase Detector
+
+set_io clk 35
+set_io rst_n 34
+set_io ref_clk 2
+set_io fb_clk 3
+set_io up 23
+set_io down 25

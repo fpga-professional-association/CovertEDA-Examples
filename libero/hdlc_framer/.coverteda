@@ -1,0 +1,15 @@
+{
+  "name": "hdlc_framer",
+  "description": "HDLC frame encoder with zero insertion",
+  "backendId": "libero",
+  "device": "MPF100T",
+  "topModule": "hdlc_framer",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

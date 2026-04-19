@@ -1,0 +1,15 @@
+{
+  "name": "logic_analyzer",
+  "description": "Simple 8-channel logic analyzer with pattern trigger and 256-sample buffer",
+  "backendId": "oss",
+  "device": "ECP5 LFE5U-25F",
+  "topModule": "logic_analyzer",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

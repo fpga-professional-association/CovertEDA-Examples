@@ -1,0 +1,15 @@
+{
+  "name": "crc_generator",
+  "description": "CRC-32 generator for 8-bit input data",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "crc_generator",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc", "constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}
