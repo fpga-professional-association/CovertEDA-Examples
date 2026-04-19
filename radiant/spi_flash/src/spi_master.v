@@ -17,7 +17,7 @@ module spi_master (
     output  reg         busy        // Busy flag
 );
 
-    parameter CLK_DIV = 4;  // Clock divider for 100MHz -> 25MHz SPI
+    parameter CLK_DIV = 4;  // Clock divider for 50MHz -> 12.5MHz SPI
 
     reg [3:0] clk_count;
     reg [3:0] bit_count;

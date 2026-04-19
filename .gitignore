@@ -1,0 +1,19 @@
+# Radiant build artifacts
+**/impl1/
+**/*.rdf
+**/promote.xml
+**/promote.pfl
+**/.setting.ini
+**/*.sty
+
+# General build outputs
+**/*.bit
+**/*.jed
+**/*.sof
+**/*.bin
+
+# Simulation artifacts
+sim_build/
+results.xml
+__pycache__/
+*.vcd

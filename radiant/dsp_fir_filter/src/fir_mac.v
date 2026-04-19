@@ -1,38 +1,30 @@
 // =============================================================================
 // Module: fir_mac
-// Description: MAC cell using DSP18X18 block for FIR filter coefficient
+// Description: MAC cell for FIR filter coefficient
 // Implements: output = (sample * coeff) + input_accumulator
 // =============================================================================
 
 module fir_mac (
+    input   wire        clk,        // System clock
+    input   wire        rst_n,      // Active-low reset
     input   wire [15:0] sample,     // Input sample
     input   wire [15:0] coeff,      // FIR coefficient
     input   wire [31:0] mac_in,     // Accumulator input
-    output  wire [31:0] mac_out     // Accumulator output
+    output  reg  [31:0] mac_out     // Accumulator output
 );
 
-    // Internal registers for pipelining
-    reg [15:0] sample_r1, sample_r2;
-    reg [15:0] coeff_r1, coeff_r2;
-    reg [31:0] mac_in_r1, mac_in_r2;
+    // Internal pipeline registers
     wire [31:0] product;
-    reg [31:0] mac_out_r;
 
-    assign mac_out = mac_out_r;
+    // Multiply
+    assign product = sample * coeff;
 
-    // Stage 1: Register inputs
-    always @(*) begin
-        sample_r1 = sample;
-        coeff_r1 = coeff;
-        mac_in_r1 = mac_in;
-    end
-
-    // Stage 2: Multiply
-    assign product = sample_r1 * coeff_r1;
-
-    // Stage 3: Accumulate
-    always @(*) begin
-        mac_out_r = mac_in + product;
+    // Register the accumulate result
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            mac_out <= 32'h0;
+        else
+            mac_out <= mac_in + product;
     end
 
 endmodule

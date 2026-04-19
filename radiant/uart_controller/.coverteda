@@ -1,0 +1,21 @@
+{
+  "name": "uart_controller",
+  "description": "UART controller with TX, RX, and baud rate generator",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "uart_top",
+  "sourcePatterns": [
+    "src/**/*.v",
+    "src/**/*.sv"
+  ],
+  "constraintFiles": [
+    "constraints/*.pdc",
+    "constraints/*.sdc"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-03-28T02:52:12.768424+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

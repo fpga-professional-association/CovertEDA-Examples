@@ -24,8 +24,8 @@ module serdes_top (
     wire [31:0] rx_data;
     wire serdes_clk_tx;
     wire serdes_clk_rx;
-    wire tx_ready;
-    wire rx_valid;
+    wire tx_ready = pll_locked;
+    wire rx_valid  = pll_locked;
     wire [7:0] prbs_err;
     wire pll_locked;
     wire prbs_locked;

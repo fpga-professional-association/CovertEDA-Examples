@@ -24,7 +24,7 @@ module gddr6_top (
         .valid(gen_valid)
     );
 
-    data_checker checker (
+    data_checker u_checker (
         .clk(clk),
         .rst_n(rst_n),
         .expected(gen_data),

@@ -1,0 +1,21 @@
+{
+  "name": "blinky_led",
+  "description": "Simple counter-based LED blinker with 4 independent LEDs",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "blinky_top",
+  "sourcePatterns": [
+    "src/**/*.v",
+    "src/**/*.sv"
+  ],
+  "constraintFiles": [
+    "constraints/*.pdc",
+    "constraints/*.sdc"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-03-22T02:14:15.941891200+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

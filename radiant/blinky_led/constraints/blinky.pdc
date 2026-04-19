@@ -1,23 +1,24 @@
 # Blinky LED Design - Pin Definition Constraints
-# Device: LIFCL-40-7BG400I
+# Device: LIFCL-40-7BG400I (CABGA400 package)
 # Date: 2026-03-21
 
-# Clock input - 25 MHz
-set_io clk       H3
+# Clock input - 25 MHz (PL bank)
+ldc_set_location -site {D10} [get_ports clk]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
 # Reset input (active-low)
-set_io rst_n     H4
+ldc_set_location -site {D9} [get_ports rst_n]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
-# LED outputs
-set_io led[0]    G17
-set_io led[1]    H17
-set_io led[2]    G16
-set_io led[3]    H16
+# LED outputs (PL bank)
+ldc_set_location -site {D7} [get_ports {led[0]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {led[0]}]
 
-# Bank voltage assignments
-set_bank H3 3.3V
-set_bank H4 3.3V
-set_bank G17 3.3V
-set_bank H17 3.3V
-set_bank G16 3.3V
-set_bank H16 3.3V
+ldc_set_location -site {D8} [get_ports {led[1]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {led[1]}]
+
+ldc_set_location -site {D6} [get_ports {led[2]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {led[2]}]
+
+ldc_set_location -site {D5} [get_ports {led[3]}]
+ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {led[3]}]
