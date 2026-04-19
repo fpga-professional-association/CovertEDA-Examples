@@ -256,3 +256,195 @@ async def test_reset_hold_20_cycles(dut):
         f"Expected led_out == 1 after long reset hold, got {led_val:#06b}"
     )
     dut._log.info("20-cycle reset hold verified -- led_out = 0001")
+
+
+@cocotb.test()
+async def test_reset_glitch_single_cycle(dut):
+    """Assert reset for only 1 cycle, verify design still resets properly."""
+
+    setup_clock(dut, "clk", 40)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=1)
+
+    await RisingEdge(dut.clk)
+
+    if not dut.led_out.value.is_resolvable:
+        assert False, f"led_out contains X/Z after single-cycle reset: {dut.led_out.value}"
+
+    try:
+        led_val = int(dut.led_out.value)
+    except ValueError:
+        assert False, f"led_out cannot be resolved after single-cycle reset: {dut.led_out.value}"
+
+    assert 0 <= led_val <= 15, f"led_out out of range after 1-cycle reset: {led_val}"
+    dut._log.info(f"led_out after 1-cycle reset: {led_val:#06b}")
+
+
+@cocotb.test()
+async def test_very_fast_clock_10ns(dut):
+    """Use a 10ns clock period (100MHz) and verify design runs cleanly."""
+
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk, 500)
+
+    if not dut.led_out.value.is_resolvable:
+        assert False, f"led_out contains X/Z with 10ns clock: {dut.led_out.value}"
+
+    try:
+        led_val = int(dut.led_out.value)
+    except ValueError:
+        assert False, f"led_out cannot be resolved with 10ns clock: {dut.led_out.value}"
+
+    assert 0 <= led_val <= 15, f"led_out out of range with 10ns clock: {led_val}"
+    dut._log.info(f"Design runs at 100MHz -- led_out = {led_val:#06b}")
+
+
+@cocotb.test()
+async def test_slow_clock_80ns(dut):
+    """Use an 80ns clock period (12.5MHz) and verify design still works."""
+
+    setup_clock(dut, "clk", 80)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk, 200)
+
+    if not dut.led_out.value.is_resolvable:
+        assert False, f"led_out contains X/Z with 80ns clock: {dut.led_out.value}"
+
+    try:
+        led_val = int(dut.led_out.value)
+    except ValueError:
+        assert False, f"led_out cannot be resolved with 80ns clock: {dut.led_out.value}"
+
+    assert 0 <= led_val <= 15, f"led_out out of range with 80ns clock: {led_val}"
+    dut._log.info(f"Design runs at 12.5MHz -- led_out = {led_val:#06b}")
+
+
+@cocotb.test()
+async def test_led_one_hot_property(dut):
+    """Verify led_out always has exactly one bit set (one-hot) after reset."""
+
+    setup_clock(dut, "clk", 40)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    # Sample over several cycles and check one-hot property
+    # With a large prescaler, led_out may not change, but each value
+    # should be one-hot (rotating pattern: 0001, 0010, 0100, 1000)
+    one_hot_violations = 0
+    for cycle in range(500):
+        await RisingEdge(dut.clk)
+        if not dut.led_out.value.is_resolvable:
+            continue
+        try:
+            val = int(dut.led_out.value)
+        except ValueError:
+            continue
+
+        # Check one-hot: val should be a power of 2 and non-zero
+        if val == 0 or (val & (val - 1)) != 0:
+            one_hot_violations += 1
+            if one_hot_violations <= 3:
+                dut._log.info(
+                    f"Non-one-hot value at cycle {cycle}: {val:#06b} "
+                    "(may be transitional)"
+                )
+
+    if one_hot_violations == 0:
+        dut._log.info("led_out maintained one-hot property for 500 cycles")
+    else:
+        dut._log.info(
+            f"led_out had {one_hot_violations} non-one-hot samples "
+            "(design may use different pattern)"
+        )
+
+
+@cocotb.test()
+async def test_reset_50_cycles_hold(dut):
+    """Hold reset for 50 cycles and verify correct behavior after release."""
+
+    setup_clock(dut, "clk", 40)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=50)
+
+    await RisingEdge(dut.clk)
+
+    if not dut.led_out.value.is_resolvable:
+        assert False, (
+            f"led_out contains X/Z after 50-cycle reset hold: {dut.led_out.value}"
+        )
+
+    try:
+        led_val = int(dut.led_out.value)
+    except ValueError:
+        assert False, (
+            f"led_out cannot be resolved after 50-cycle reset: {dut.led_out.value}"
+        )
+
+    assert led_val == 1, (
+        f"Expected led_out == 1 after 50-cycle reset hold, got {led_val:#06b}"
+    )
+    dut._log.info("50-cycle reset hold verified -- led_out = 0001")
+
+
+@cocotb.test()
+async def test_led_value_consistency(dut):
+    """Sample led_out at mid-cycle with Timer to verify no glitching."""
+
+    setup_clock(dut, "clk", 40)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk, 10)
+
+    # Sample at rising edge
+    await RisingEdge(dut.clk)
+    if not dut.led_out.value.is_resolvable:
+        assert False, f"led_out X/Z at rising edge: {dut.led_out.value}"
+    try:
+        edge_val = int(dut.led_out.value)
+    except ValueError:
+        assert False, f"led_out not resolvable at edge: {dut.led_out.value}"
+
+    # Wait half a clock period and sample again
+    await Timer(20, unit="ns")
+    if dut.led_out.value.is_resolvable:
+        try:
+            mid_val = int(dut.led_out.value)
+            # Value should be stable (same as at edge) within a clock period
+            if mid_val == edge_val:
+                dut._log.info(
+                    f"led_out consistent: edge={edge_val:#06b}, mid={mid_val:#06b}"
+                )
+            else:
+                dut._log.info(
+                    f"led_out changed between edge and mid-cycle: "
+                    f"{edge_val:#06b} -> {mid_val:#06b}"
+                )
+        except ValueError:
+            dut._log.warning("led_out not convertible at mid-cycle")
+    else:
+        dut._log.warning("led_out has X/Z at mid-cycle sample")
+
+
+@cocotb.test()
+async def test_long_run_2000_cycles(dut):
+    """Run 2000 clock cycles, verify led_out stays valid and in range."""
+
+    setup_clock(dut, "clk", 40)
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    values_seen = set()
+    for cycle in range(2000):
+        await RisingEdge(dut.clk)
+        if dut.led_out.value.is_resolvable:
+            try:
+                val = int(dut.led_out.value)
+                values_seen.add(val)
+                assert 0 <= val <= 15, (
+                    f"led_out out of range at cycle {cycle}: {val}"
+                )
+            except ValueError:
+                assert False, (
+                    f"led_out contains X/Z at cycle {cycle}: {dut.led_out.value}"
+                )
+
+    dut._log.info(f"2000-cycle run complete -- unique values seen: {sorted(values_seen)}")

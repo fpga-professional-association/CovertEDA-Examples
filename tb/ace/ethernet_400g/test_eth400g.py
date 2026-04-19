@@ -345,3 +345,160 @@ async def test_long_run_500(dut):
 
     dut.tx_valid.value = 0
     dut._log.info("500 cycles continuous data: no X/Z -- PASS")
+
+
+@cocotb.test()
+async def test_alternating_0x55_pattern(dut):
+    """Send 256-bit 0x5555... pattern, verify rx_data resolvable."""
+    setup_clock(dut, "clk_ref", 10)
+    dut.tx_data.value = 0
+    dut.tx_valid.value = 0
+    dut.rx_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    pattern = 0
+    for i in range(32):
+        pattern |= 0x55 << (i * 8)
+
+    dut.tx_data.value = pattern
+    dut.tx_valid.value = 1
+    for _ in range(1000):
+        await RisingEdge(dut.clk_ref)
+        if dut.tx_ready.value.is_resolvable:
+            try:
+                if int(dut.tx_ready.value) == 1:
+                    break
+            except ValueError:
+                pass
+    await RisingEdge(dut.clk_ref)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk_ref, 50)
+    rx_data = dut.rx_data.value
+    assert rx_data.is_resolvable, f"rx_data has X/Z after 0x55 pattern: {rx_data}"
+    dut._log.info("Send 0x55 pattern: rx_data is resolvable -- PASS")
+
+
+@cocotb.test()
+async def test_tx_valid_held_without_ready(dut):
+    """Hold tx_valid=1 for many cycles, verify tx_ready and rx signals stay clean."""
+    setup_clock(dut, "clk_ref", 10)
+    dut.tx_data.value = 0xBEEF
+    dut.tx_valid.value = 0
+    dut.rx_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    dut.tx_valid.value = 1
+    await ClockCycles(dut.clk_ref, 200)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk_ref, 50)
+
+    for sig_name in ["rx_data", "rx_valid", "tx_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after persistent valid: {sig}"
+    dut._log.info("Persistent tx_valid (200 cycles): all signals clean -- PASS")
+
+
+@cocotb.test()
+async def test_rx_ready_toggle_during_transfer(dut):
+    """Toggle rx_ready every cycle during data transfer, verify no X/Z."""
+    setup_clock(dut, "clk_ref", 10)
+    dut.tx_data.value = 0
+    dut.tx_valid.value = 0
+    dut.rx_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Send a frame
+    dut.tx_data.value = 0xCAFE_BABE
+    dut.tx_valid.value = 1
+    for _ in range(1000):
+        await RisingEdge(dut.clk_ref)
+        if dut.tx_ready.value.is_resolvable:
+            try:
+                if int(dut.tx_ready.value) == 1:
+                    break
+            except ValueError:
+                pass
+    await RisingEdge(dut.clk_ref)
+    dut.tx_valid.value = 0
+
+    # Toggle rx_ready rapidly
+    for cycle in range(100):
+        dut.rx_ready.value = cycle % 2
+        await RisingEdge(dut.clk_ref)
+
+    dut.rx_ready.value = 1
+    await ClockCycles(dut.clk_ref, 30)
+
+    for sig_name in ["rx_data", "rx_valid", "tx_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after ready toggling: {sig}"
+    dut._log.info("rx_ready toggle during transfer: clean -- PASS")
+
+
+@cocotb.test()
+async def test_multiple_resets(dut):
+    """Apply 3 resets with data sends between, verify clean recovery each time."""
+    setup_clock(dut, "clk_ref", 10)
+    dut.tx_data.value = 0
+    dut.tx_valid.value = 0
+    dut.rx_ready.value = 1
+
+    for attempt in range(3):
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+        # Send a frame
+        dut.tx_data.value = (attempt + 1) << 64
+        dut.tx_valid.value = 1
+        for _ in range(1000):
+            await RisingEdge(dut.clk_ref)
+            if dut.tx_ready.value.is_resolvable:
+                try:
+                    if int(dut.tx_ready.value) == 1:
+                        break
+                except ValueError:
+                    pass
+        await RisingEdge(dut.clk_ref)
+        dut.tx_valid.value = 0
+        await ClockCycles(dut.clk_ref, 50)
+
+        for sig_name in ["rx_data", "rx_valid", "tx_ready"]:
+            sig = getattr(dut, sig_name).value
+            assert sig.is_resolvable, (
+                f"{sig_name} has X/Z after reset #{attempt+1}: {sig}"
+            )
+        dut._log.info(f"Reset #{attempt+1}: clean recovery")
+
+    dut._log.info("3 resets with data: all clean -- PASS")
+
+
+@cocotb.test()
+async def test_incrementing_data_pattern(dut):
+    """Send 20 frames with incrementing data, verify no X/Z accumulates."""
+    setup_clock(dut, "clk_ref", 10)
+    dut.tx_data.value = 0
+    dut.tx_valid.value = 0
+    dut.rx_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for frame in range(20):
+        dut.tx_data.value = frame * 0x1111_1111_1111_1111
+        dut.tx_valid.value = 1
+        for _ in range(1000):
+            await RisingEdge(dut.clk_ref)
+            if dut.tx_ready.value.is_resolvable:
+                try:
+                    if int(dut.tx_ready.value) == 1:
+                        break
+                except ValueError:
+                    pass
+        await RisingEdge(dut.clk_ref)
+
+    dut.tx_valid.value = 0
+    await ClockCycles(dut.clk_ref, 100)
+
+    for sig_name in ["rx_data", "rx_valid", "tx_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after 20 incrementing frames: {sig}"
+    dut._log.info("20 incrementing data frames: all clean -- PASS")

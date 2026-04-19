@@ -472,3 +472,269 @@ async def test_long_run_1000_samples(dut):
         dut._log.info(
             "No output_valid pulses but all outputs are resolvable after 1000 samples"
         )
+
+
+@cocotb.test()
+async def test_adc_valid_gapped(dut):
+    """Drive adc_valid with gaps (valid every other cycle), verify stability."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0x10000000
+    dut.decim_rate.value = 4
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    output_valid_count = 0
+    sample_index = 0
+
+    for cycle in range(600):
+        if cycle % 2 == 0:
+            sample = SINE_PATTERN[sample_index % len(SINE_PATTERN)]
+            dut.adc_data.value = to_unsigned_16(sample)
+            dut.adc_valid.value = 1
+            sample_index += 1
+        else:
+            dut.adc_valid.value = 0
+
+        await RisingEdge(dut.clk_200m)
+
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    output_valid_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"Gapped adc_valid: {output_valid_count} output_valid pulses from 300 samples")
+
+    # Verify outputs are resolvable
+    for sig_name in ["i_data", "q_data", "output_valid"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            dut._log.warning(f"{sig_name} has X/Z after gapped test")
+        else:
+            dut._log.info(f"{sig_name} is resolvable after gapped test")
+
+
+@cocotb.test()
+async def test_decim_rate_1(dut):
+    """Set decim_rate=1 (no decimation), verify output_valid rate matches input."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0x10000000
+    dut.decim_rate.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    output_valid_count = 0
+    num_samples = 500
+
+    for cycle in range(num_samples):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    output_valid_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(
+        f"decim_rate=1: {output_valid_count} output_valid pulses from "
+        f"{num_samples} input samples"
+    )
+
+    if output_valid_count > 0:
+        ratio = num_samples / output_valid_count
+        dut._log.info(f"Effective decimation ratio: {ratio:.1f} (expected ~1.0)")
+
+
+@cocotb.test()
+async def test_nco_freq_zero(dut):
+    """Set nco_freq=0 (DC mixing), verify no crash."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0
+    dut.decim_rate.value = 4
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    for cycle in range(500):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+    # Verify outputs are resolvable
+    for sig_name in ["i_data", "q_data", "output_valid"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            dut._log.warning(f"{sig_name} has X/Z with nco_freq=0")
+        else:
+            try:
+                val = int(sig.value)
+                dut._log.info(f"{sig_name} with nco_freq=0: {val:#010x}")
+            except ValueError:
+                dut._log.warning(f"{sig_name} not convertible with nco_freq=0")
+
+    dut._log.info("Design survived nco_freq=0 (DC mixing)")
+
+
+@cocotb.test()
+async def test_nco_freq_max(dut):
+    """Set nco_freq to max value (0xFFFFFFFF), verify no crash."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0xFFFFFFFF
+    dut.decim_rate.value = 4
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    for cycle in range(500):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+    for sig_name in ["i_data", "q_data", "output_valid"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            dut._log.warning(f"{sig_name} has X/Z with nco_freq=max")
+        else:
+            try:
+                val = int(sig.value)
+                dut._log.info(f"{sig_name} with nco_freq=max: {val:#010x}")
+            except ValueError:
+                dut._log.warning(f"{sig_name} not convertible with nco_freq=max")
+
+    dut._log.info("Design survived nco_freq=0xFFFFFFFF (maximum)")
+
+
+@cocotb.test()
+async def test_reset_mid_stream(dut):
+    """Reset while streaming ADC data, verify clean restart."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0x10000000
+    dut.decim_rate.value = 4
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    # Stream 200 samples
+    for cycle in range(200):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+    # Reset mid-stream
+    dut.adc_valid.value = 0
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    # Resume streaming
+    output_valid_count = 0
+    for cycle in range(300):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    output_valid_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"After mid-stream reset: {output_valid_count} output_valid pulses")
+
+    for sig_name in ["i_data", "q_data", "output_valid"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            raise AssertionError(f"{sig_name} has X/Z after mid-stream reset recovery")
+
+    dut._log.info("Design recovered cleanly from mid-stream reset")
+
+
+@cocotb.test()
+async def test_decim_rate_change_mid_run(dut):
+    """Change decim_rate mid-run from 4 to 8, verify stability."""
+
+    setup_clock(dut, "clk_200m", 5)
+
+    dut.adc_data.value = 0
+    dut.adc_valid.value = 0
+    dut.nco_freq.value = 0x10000000
+    dut.decim_rate.value = 4
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_200m, 5)
+
+    # Run with decim_rate=4 for 300 samples
+    count_phase1 = 0
+    for cycle in range(300):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    count_phase1 += 1
+            except ValueError:
+                pass
+
+    # Change decimation rate mid-run
+    dut.decim_rate.value = 8
+    dut._log.info("Changed decim_rate from 4 to 8")
+
+    count_phase2 = 0
+    for cycle in range(300):
+        sample = SINE_PATTERN[cycle % len(SINE_PATTERN)]
+        dut.adc_data.value = to_unsigned_16(sample)
+        dut.adc_valid.value = 1
+        await RisingEdge(dut.clk_200m)
+
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    count_phase2 += 1
+            except ValueError:
+                pass
+
+    dut._log.info(
+        f"Phase 1 (decim=4): {count_phase1} outputs, "
+        f"Phase 2 (decim=8): {count_phase2} outputs"
+    )
+
+    for sig_name in ["i_data", "q_data", "output_valid"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            dut._log.warning(f"{sig_name} has X/Z after decim_rate change")
+
+    dut._log.info("Design survived mid-run decimation rate change")

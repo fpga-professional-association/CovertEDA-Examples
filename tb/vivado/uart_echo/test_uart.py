@@ -323,3 +323,166 @@ async def test_status_led_values(dut):
             dut._log.info("status_led unchanged after UART activity")
 
     dut._log.info("status_led values checked successfully")
+
+
+@cocotb.test()
+async def test_send_byte_0x00(dut):
+    """Send byte 0x00 (all zeros boundary), verify design stays clean."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 50)
+
+    await uart_send_byte(dut, 0x00)
+    dut._log.info("Sent byte 0x00 via uart_rx")
+
+    await ClockCycles(dut.clk, 500)
+
+    assert dut.uart_tx.value.is_resolvable, "uart_tx has X/Z after sending 0x00"
+    assert dut.status_led.value.is_resolvable, "status_led has X/Z after sending 0x00"
+    dut._log.info("Design handled byte 0x00 boundary without crashing")
+
+
+@cocotb.test()
+async def test_send_byte_0xff(dut):
+    """Send byte 0xFF (all ones boundary), verify design stays clean."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 50)
+
+    await uart_send_byte(dut, 0xFF)
+    dut._log.info("Sent byte 0xFF via uart_rx")
+
+    # Watch for echo activity
+    tx_activity = False
+    for _ in range(2000):
+        await RisingEdge(dut.clk)
+        if dut.uart_tx.value.is_resolvable:
+            try:
+                if int(dut.uart_tx.value) == 0:
+                    tx_activity = True
+                    break
+            except ValueError:
+                pass
+
+    if tx_activity:
+        dut._log.info("uart_tx showed echo activity for 0xFF")
+    else:
+        dut._log.info("uart_tx did not echo 0xFF within window")
+
+    assert dut.uart_tx.value.is_resolvable, "uart_tx has X/Z after sending 0xFF"
+    dut._log.info("Byte 0xFF boundary test completed")
+
+
+@cocotb.test()
+async def test_back_to_back_bytes(dut):
+    """Send 5 bytes with minimal gap, verify design does not crash."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 50)
+
+    test_bytes = [0x01, 0x55, 0xAA, 0xFE, 0x80]
+    for byte_val in test_bytes:
+        await uart_send_byte(dut, byte_val)
+        dut._log.info(f"Sent byte {byte_val:#04x}")
+        # Minimal inter-byte gap (just 2 stop-bit periods)
+        await Timer(BAUD_NS * 2, unit="ns")
+
+    # Wait for processing
+    await ClockCycles(dut.clk, 2000)
+
+    assert dut.uart_tx.value.is_resolvable, "uart_tx has X/Z after 5 back-to-back bytes"
+    assert dut.status_led.value.is_resolvable, "status_led has X/Z after 5 back-to-back bytes"
+    dut._log.info("Design survived 5 back-to-back bytes without crash")
+
+
+@cocotb.test()
+async def test_rx_noise_pattern(dut):
+    """Drive random-like noise on uart_rx for 200 clocks, verify no crash."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 50)
+
+    # Drive a pseudo-random noise pattern on rx
+    pattern = [1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0]
+    for cycle in range(200):
+        dut.uart_rx.value = pattern[cycle % len(pattern)]
+        await RisingEdge(dut.clk)
+
+    # Return to idle
+    dut.uart_rx.value = 1
+    await ClockCycles(dut.clk, 500)
+
+    assert dut.uart_tx.value.is_resolvable, "uart_tx has X/Z after noise pattern"
+    assert dut.status_led.value.is_resolvable, "status_led has X/Z after noise pattern"
+    dut._log.info("Design handled rx noise pattern without crash")
+
+
+@cocotb.test()
+async def test_multiple_resets_with_activity(dut):
+    """Send byte, reset, send another byte, reset, verify clean each time."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    for i, byte_val in enumerate([0x42, 0x69, 0xAA]):
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+        await ClockCycles(dut.clk, 50)
+
+        # Verify idle state after reset
+        assert dut.uart_tx.value.is_resolvable, f"uart_tx has X/Z after reset #{i + 1}"
+        try:
+            tx_val = int(dut.uart_tx.value)
+            assert tx_val == 1, f"uart_tx not idle after reset #{i + 1}: {tx_val}"
+        except ValueError:
+            pass
+
+        # Send a byte
+        await uart_send_byte(dut, byte_val)
+        dut._log.info(f"Cycle #{i + 1}: sent {byte_val:#04x}")
+        await ClockCycles(dut.clk, 500)
+
+        assert dut.uart_tx.value.is_resolvable, f"uart_tx has X/Z after byte in cycle #{i + 1}"
+        assert dut.status_led.value.is_resolvable, (
+            f"status_led has X/Z after byte in cycle #{i + 1}"
+        )
+
+    dut._log.info("Multiple reset-send cycles completed cleanly")
+
+
+@cocotb.test()
+async def test_uart_tx_stability_during_idle(dut):
+    """Verify uart_tx never glitches low during 3000 idle cycles."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.uart_rx.value = 1
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 20)
+
+    glitch_count = 0
+    for cycle in range(3000):
+        await RisingEdge(dut.clk)
+        if dut.uart_tx.value.is_resolvable:
+            try:
+                if int(dut.uart_tx.value) == 0:
+                    glitch_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"uart_tx went low {glitch_count} times during 3000 idle cycles")
+    assert glitch_count == 0, (
+        f"uart_tx glitched low {glitch_count} times during idle -- expected 0"
+    )
+    dut._log.info("uart_tx remained stable high during extended idle period")

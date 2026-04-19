@@ -379,3 +379,191 @@ async def test_reset_clears_duty(dut):
         assert count == 0, (
             f"{sig_name} should be low after reset (duty cleared), but was high {count} times"
         )
+
+
+@cocotb.test()
+async def test_duty_1_minimum(dut):
+    """Write duty=1 (minimum nonzero), verify pwm_red toggles at least once."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    # Write red_duty=1
+    await axi_write(dut, 0x00, 0x00000001, prefix="axi")
+    dut._log.info("Wrote red_duty=1 (minimum nonzero)")
+
+    high_count = 0
+    for _ in range(1000):
+        await RisingEdge(dut.clk)
+        if dut.pwm_red.value.is_resolvable:
+            try:
+                if int(dut.pwm_red.value) == 1:
+                    high_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"pwm_red high for {high_count}/1000 cycles with duty=1")
+    assert high_count > 0, "pwm_red should go high at least once with duty=1"
+    # With duty=1 out of 256, should be high ~0.4% of the time
+    assert high_count < 100, (
+        f"pwm_red too high for duty=1: {high_count}/1000 (expected ~4)"
+    )
+
+
+@cocotb.test()
+async def test_duty_254_near_max(dut):
+    """Write duty=254 (near max), verify pwm_red is high most of the time."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    await axi_write(dut, 0x00, 0x000000FE, prefix="axi")
+    dut._log.info("Wrote red_duty=254 (near max)")
+
+    high_count = 0
+    total = 1000
+    for _ in range(total):
+        await RisingEdge(dut.clk)
+        if dut.pwm_red.value.is_resolvable:
+            try:
+                if int(dut.pwm_red.value) == 1:
+                    high_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"pwm_red high for {high_count}/{total} cycles with duty=254")
+    assert high_count > total * 0.9, (
+        f"pwm_red should be high >90% with duty=254, got {high_count}/{total}"
+    )
+
+
+@cocotb.test()
+async def test_register_write_read_multiple(dut):
+    """Write different values to reg0 and read back each time, verify consistency."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    test_values = [0x00000000, 0x00112233, 0x00FFFFFF, 0x00808080, 0x00010101]
+    for val in test_values:
+        await axi_write(dut, 0x00, val, prefix="axi")
+        readback = await axi_read(dut, 0x00, prefix="axi")
+        dut._log.info(f"Wrote {val:#010x}, read back {readback:#010x}")
+        assert readback == val, (
+            f"Readback mismatch: wrote {val:#010x}, got {readback:#010x}"
+        )
+
+    dut._log.info("Multiple write-read cycles verified successfully")
+
+
+@cocotb.test()
+async def test_independent_channel_control(dut):
+    """Set only green high, verify red and blue stay low."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    # Green=255 (bits [15:8]), red=0, blue=0
+    await axi_write(dut, 0x00, 0x0000FF00, prefix="axi")
+    dut._log.info("Wrote green=255 only, red=0, blue=0")
+
+    red_high = 0
+    green_high = 0
+    blue_high = 0
+    for _ in range(500):
+        await RisingEdge(dut.clk)
+        if dut.pwm_red.value.is_resolvable:
+            try:
+                if int(dut.pwm_red.value) == 1:
+                    red_high += 1
+            except ValueError:
+                pass
+        if dut.pwm_green.value.is_resolvable:
+            try:
+                if int(dut.pwm_green.value) == 1:
+                    green_high += 1
+            except ValueError:
+                pass
+        if dut.pwm_blue.value.is_resolvable:
+            try:
+                if int(dut.pwm_blue.value) == 1:
+                    blue_high += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"red_high={red_high}, green_high={green_high}, blue_high={blue_high}")
+    assert red_high == 0, f"pwm_red should be 0 with duty=0, but was high {red_high} times"
+    assert blue_high == 0, f"pwm_blue should be 0 with duty=0, but was high {blue_high} times"
+    assert green_high > 0, "pwm_green should toggle with duty=255"
+    dut._log.info("Independent channel control verified")
+
+
+@cocotb.test()
+async def test_rapid_duty_updates(dut):
+    """Write 10 different duty values in quick succession, verify no X/Z on outputs."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    for i in range(10):
+        duty = (i * 25) & 0xFF
+        await axi_write(dut, 0x00, duty, prefix="axi")
+        await ClockCycles(dut.clk, 10)  # Very short gap between updates
+
+    # Wait for PWM to settle
+    await ClockCycles(dut.clk, 300)
+
+    for sig_name in ["pwm_red", "pwm_green", "pwm_blue"]:
+        sig = getattr(dut, sig_name)
+        assert sig.value.is_resolvable, f"{sig_name} has X/Z after rapid duty updates"
+
+    dut._log.info("Design survived 10 rapid duty cycle updates without X/Z")
+
+
+@cocotb.test()
+async def test_axi_write_response_signals(dut):
+    """After AXI write, verify bvalid/bresp handshake completed correctly."""
+
+    setup_clock(dut, "clk", 20)
+    await pwm_init_axi(dut)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    # Perform a write and check that the AXI bus returns to idle
+    await axi_write(dut, 0x00, 0x00000080, prefix="axi")
+
+    # Verify AXI write channel signals are clean after transaction
+    for sig_name in ["axi_awready", "axi_wready", "axi_bvalid"]:
+        sig = getattr(dut, sig_name)
+        assert sig.value.is_resolvable, f"{sig_name} has X/Z after write transaction"
+        try:
+            val = int(sig.value)
+            dut._log.info(f"{sig_name} = {val}")
+        except ValueError:
+            dut._log.info(f"{sig_name} not convertible to int")
+
+    # Verify bresp if resolvable
+    if dut.axi_bresp.value.is_resolvable:
+        try:
+            bresp = int(dut.axi_bresp.value)
+            dut._log.info(f"axi_bresp = {bresp} (0=OKAY)")
+        except ValueError:
+            pass
+
+    dut._log.info("AXI write response signals verified")

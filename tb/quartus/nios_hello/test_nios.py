@@ -288,3 +288,184 @@ async def test_reset_recovery(dut):
         )
     except ValueError:
         raise AssertionError("Outputs not convertible after reset recovery")
+
+
+@cocotb.test()
+async def test_switch_walking_zero(dut):
+    """Cycle through walking-zero pattern: 0xFE, 0xFD, 0xFB, ..., 0x7F."""
+
+    setup_clock(dut, "clk_100m", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for bit in range(8):
+        sw_val = 0xFF ^ (1 << bit)
+        dut.sw_input.value = sw_val
+        await ClockCycles(dut.clk_100m, 30)
+
+        if not dut.led_output.value.is_resolvable:
+            raise AssertionError(f"led_output has X/Z with sw_input={sw_val:#04x}")
+
+        try:
+            led_val = int(dut.led_output.value)
+            seg_val = int(dut.seg_output.value)
+            dut._log.info(
+                f"sw={sw_val:#04x}: led={led_val:#04x}, seg={seg_val:#04x}"
+            )
+        except ValueError:
+            raise AssertionError(f"Outputs not convertible with sw_input={sw_val:#04x}")
+
+
+@cocotb.test()
+async def test_rapid_switch_toggling(dut):
+    """Toggle sw_input between 0x00 and 0xFF every cycle for 200 cycles."""
+
+    setup_clock(dut, "clk_100m", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(200):
+        dut.sw_input.value = 0xFF if (cycle % 2 == 0) else 0x00
+        await RisingEdge(dut.clk_100m)
+
+    # After rapid toggling, verify outputs are clean
+    if not dut.led_output.value.is_resolvable:
+        raise AssertionError("led_output has X/Z after rapid toggling")
+    if not dut.seg_output.value.is_resolvable:
+        raise AssertionError("seg_output has X/Z after rapid toggling")
+
+    try:
+        led_val = int(dut.led_output.value)
+        seg_val = int(dut.seg_output.value)
+        dut._log.info(f"After rapid toggle: led={led_val:#04x}, seg={seg_val:#04x}")
+    except ValueError:
+        raise AssertionError("Outputs not convertible after rapid toggling")
+
+    dut._log.info("Design survived 200 cycles of rapid switch toggling")
+
+
+@cocotb.test()
+async def test_gpio_bidir_driven(dut):
+    """Drive gpio_bidir externally and verify design does not crash."""
+
+    setup_clock(dut, "clk_100m", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    dut.sw_input.value = 0x00
+
+    # Attempt to drive gpio_bidir with a value
+    try:
+        dut.gpio_bidir.value = 0xA5
+    except Exception:
+        dut._log.info("gpio_bidir cannot be driven externally (expected for bidirectional)")
+
+    await ClockCycles(dut.clk_100m, 200)
+
+    # Verify other outputs remain clean
+    if not dut.led_output.value.is_resolvable:
+        raise AssertionError("led_output has X/Z after driving gpio_bidir")
+
+    try:
+        led_val = int(dut.led_output.value)
+        dut._log.info(f"led_output after gpio_bidir drive: {led_val:#04x}")
+    except ValueError:
+        raise AssertionError("led_output not convertible after gpio_bidir drive")
+
+
+@cocotb.test()
+async def test_clock_period_5ns(dut):
+    """Use a 5ns clock period (200 MHz) to stress the design."""
+
+    setup_clock(dut, "clk_100m", 5)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    dut.sw_input.value = 0x33
+    await ClockCycles(dut.clk_100m, 500)
+
+    if not dut.led_output.value.is_resolvable:
+        raise AssertionError("led_output has X/Z with 5ns clock")
+    if not dut.seg_output.value.is_resolvable:
+        raise AssertionError("seg_output has X/Z with 5ns clock")
+
+    try:
+        led_val = int(dut.led_output.value)
+        seg_val = int(dut.seg_output.value)
+        dut._log.info(f"5ns clock: led={led_val:#04x}, seg={seg_val:#04x}")
+    except ValueError:
+        raise AssertionError("Outputs not convertible with 5ns clock")
+
+    dut._log.info("Design ran cleanly at 200 MHz (5ns) for 500 cycles")
+
+
+@cocotb.test()
+async def test_reset_hold_50_cycles(dut):
+    """Hold reset for 50 cycles and verify clean recovery."""
+
+    setup_clock(dut, "clk_100m", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=50)
+
+    dut.sw_input.value = 0xCC
+    await ClockCycles(dut.clk_100m, 100)
+
+    if not dut.led_output.value.is_resolvable:
+        raise AssertionError("led_output has X/Z after 50-cycle reset hold")
+    if not dut.seg_output.value.is_resolvable:
+        raise AssertionError("seg_output has X/Z after 50-cycle reset hold")
+
+    try:
+        led_val = int(dut.led_output.value)
+        seg_val = int(dut.seg_output.value)
+        dut._log.info(f"After 50-cycle reset: led={led_val:#04x}, seg={seg_val:#04x}")
+    except ValueError:
+        raise AssertionError("Outputs not convertible after 50-cycle reset hold")
+
+
+@cocotb.test()
+async def test_switch_boundary_single_bit(dut):
+    """Test sw_input at single-bit boundary values 0x01 and 0x80."""
+
+    setup_clock(dut, "clk_100m", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for sw_val in [0x01, 0x80]:
+        dut.sw_input.value = sw_val
+        await ClockCycles(dut.clk_100m, 50)
+
+        if not dut.led_output.value.is_resolvable:
+            raise AssertionError(f"led_output has X/Z with sw_input={sw_val:#04x}")
+        if not dut.seg_output.value.is_resolvable:
+            raise AssertionError(f"seg_output has X/Z with sw_input={sw_val:#04x}")
+
+        try:
+            led_val = int(dut.led_output.value)
+            seg_val = int(dut.seg_output.value)
+            dut._log.info(f"sw={sw_val:#04x}: led={led_val:#04x}, seg={seg_val:#04x}")
+        except ValueError:
+            raise AssertionError(f"Outputs not convertible with sw_input={sw_val:#04x}")
+
+    dut._log.info("Single-bit boundary switch values handled cleanly")
+
+
+@cocotb.test()
+async def test_consecutive_resets_different_inputs(dut):
+    """Three resets with different sw_input each time, verify clean outputs."""
+
+    setup_clock(dut, "clk_100m", 10)
+
+    test_inputs = [0x00, 0x55, 0xFF]
+    for i, sw_val in enumerate(test_inputs):
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+        dut.sw_input.value = sw_val
+        await ClockCycles(dut.clk_100m, 100)
+
+        if not dut.led_output.value.is_resolvable:
+            raise AssertionError(f"led_output X/Z on iteration {i} (sw={sw_val:#04x})")
+
+        try:
+            led_val = int(dut.led_output.value)
+            seg_val = int(dut.seg_output.value)
+            dut._log.info(
+                f"Reset #{i}: sw={sw_val:#04x}, led={led_val:#04x}, seg={seg_val:#04x}"
+            )
+        except ValueError:
+            raise AssertionError(f"Outputs not convertible on iteration {i}")
+
+    dut._log.info("All three consecutive resets with different inputs passed")

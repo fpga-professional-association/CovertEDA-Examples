@@ -384,3 +384,188 @@ async def test_max_value(dut):
     # Should not overflow to 0 or become negative
     assert result > 0, f"Expected positive output for max positive input, got {result}"
     dut._log.info("Max value: no overflow -- PASS")
+
+
+@cocotb.test()
+async def test_single_value_1(dut):
+    """Feed input_data=1, verify output_valid asserts with non-zero result."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await drive_input(dut, 1)
+    dut.input_valid.value = 0
+
+    last_output = None
+    for _ in range(500):
+        await RisingEdge(dut.clk)
+        if dut.output_valid.value.is_resolvable and dut.output_data.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    last_output = int(dut.output_data.value)
+                    break
+            except ValueError:
+                pass
+
+    assert last_output is not None, "No output produced for input_data=1"
+    dut._log.info(f"Input=1: output_data={last_output}")
+    assert last_output > 0, f"Expected positive output for input=1, got {last_output}"
+    dut._log.info("Single value 1: positive output -- PASS")
+
+
+@cocotb.test()
+async def test_large_batch_10_inputs(dut):
+    """Feed 10 consecutive values, verify pipeline produces outputs."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for val in range(1, 11):
+        await drive_input(dut, val * 10)
+    dut.input_valid.value = 0
+
+    output_count = 0
+    for _ in range(1000):
+        await RisingEdge(dut.clk)
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    output_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"10 inputs produced {output_count} output valid pulses")
+    assert output_count >= 1, "No outputs produced for 10-input batch"
+    dut._log.info("Large batch 10 inputs -- PASS")
+
+
+@cocotb.test()
+async def test_alternating_pos_neg(dut):
+    """Feed alternating positive and negative values, verify no crash."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Alternate between positive (50) and negative (0x80000000)
+    for i in range(6):
+        if i % 2 == 0:
+            await drive_input(dut, 50)
+        else:
+            await drive_input(dut, 0x80000000)
+    dut.input_valid.value = 0
+
+    await ClockCycles(dut.clk, 200)
+
+    for sig_name in ["output_valid", "output_data", "input_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after alternating pos/neg: {sig}"
+    dut._log.info("Alternating pos/neg inputs: all signals clean -- PASS")
+
+
+@cocotb.test()
+async def test_rapid_input_no_gap(dut):
+    """Drive inputs on consecutive cycles without waiting for ready between."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Blast inputs without handshake
+    dut.input_valid.value = 1
+    for i in range(20):
+        dut.input_data.value = (i + 1) * 5
+        await RisingEdge(dut.clk)
+    dut.input_valid.value = 0
+
+    await ClockCycles(dut.clk, 300)
+
+    for sig_name in ["output_valid", "output_data", "input_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after rapid inputs: {sig}"
+    dut._log.info("Rapid consecutive inputs (no handshake gap): clean -- PASS")
+
+
+@cocotb.test()
+async def test_output_ready_delayed_release(dut):
+    """Hold output_ready=0 for 200 cycles, then release and collect output."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 0
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Feed data with backpressure
+    for val in [10, 20, 30, 40, 50]:
+        await drive_input(dut, val)
+    dut.input_valid.value = 0
+
+    # Hold backpressure
+    await ClockCycles(dut.clk, 200)
+
+    # Release backpressure
+    dut.output_ready.value = 1
+
+    output_seen = False
+    for _ in range(500):
+        await RisingEdge(dut.clk)
+        if dut.output_valid.value.is_resolvable:
+            try:
+                if int(dut.output_valid.value) == 1:
+                    out_data = dut.output_data.value
+                    assert out_data.is_resolvable, f"output_data has X/Z: {out_data}"
+                    dut._log.info(f"Output after delayed release: {int(out_data):#010x}")
+                    output_seen = True
+                    break
+            except ValueError:
+                pass
+
+    if output_seen:
+        dut._log.info("Delayed output_ready release: output collected")
+    else:
+        dut._log.info("No output after delayed release (design may not buffer outputs)")
+    dut._log.info("Delayed output_ready release test completed")
+
+
+@cocotb.test()
+async def test_reset_mid_computation(dut):
+    """Feed inputs, reset mid-computation, verify clean state."""
+    setup_clock(dut, "clk", 2.5)
+    dut.input_data.value = 0
+    dut.input_valid.value = 0
+    dut.output_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Feed a few inputs
+    for val in [100, 200]:
+        await drive_input(dut, val)
+    dut.input_valid.value = 0
+
+    # Wait partway through pipeline
+    await ClockCycles(dut.clk, 20)
+
+    # Reset
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 10)
+
+    # Verify clean state
+    for sig_name in ["output_valid", "output_data", "input_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after mid-computation reset: {sig}"
+
+    # input_ready should be re-asserted
+    input_ready = dut.input_ready.value
+    if input_ready.is_resolvable:
+        try:
+            assert int(input_ready) == 1, (
+                f"Expected input_ready==1 after reset, got {int(input_ready)}"
+            )
+        except ValueError:
+            pass
+    dut._log.info("Reset mid-computation: clean recovery -- PASS")

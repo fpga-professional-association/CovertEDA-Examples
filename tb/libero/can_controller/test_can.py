@@ -466,3 +466,193 @@ async def test_back_to_back_tx(dut):
     else:
         assert dut.can_tx.value.is_resolvable, "can_tx has X/Z after second TX"
         dut._log.info("tx_ready did not re-assert after second TX; outputs clean")
+
+
+@cocotb.test()
+async def test_tx_id_max(dut):
+    """Send frame with tx_id=0x7FF (max 11-bit CAN ID), verify clean operation."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 1
+    dut.tx_id.value = 0
+    dut.tx_data.value = 0
+    dut.tx_dlc.value = 0
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    cocotb.start_soon(can_loopback(dut))
+
+    await ClockCycles(dut.clk, 50)
+
+    dut.tx_id.value = 0x7FF
+    dut.tx_data.value = 0xAA
+    dut.tx_dlc.value = 1
+    dut.tx_valid.value = 1
+    await RisingEdge(dut.clk)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after max ID TX"
+
+    dut._log.info("TX with max ID 0x7FF completed cleanly")
+
+
+@cocotb.test()
+async def test_tx_id_zero(dut):
+    """Send frame with tx_id=0x000 (min CAN ID), verify clean operation."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 1
+    dut.tx_id.value = 0
+    dut.tx_data.value = 0
+    dut.tx_dlc.value = 0
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    cocotb.start_soon(can_loopback(dut))
+
+    await ClockCycles(dut.clk, 50)
+
+    dut.tx_id.value = 0x000
+    dut.tx_data.value = 0x55
+    dut.tx_dlc.value = 1
+    dut.tx_valid.value = 1
+    await RisingEdge(dut.clk)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after zero ID TX"
+
+    dut._log.info("TX with ID 0x000 completed cleanly")
+
+
+@cocotb.test()
+async def test_tx_data_all_ones(dut):
+    """Send frame with tx_data=0xFFFFFFFFFFFFFFFF (all ones), verify clean."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 1
+    dut.tx_id.value = 0
+    dut.tx_data.value = 0
+    dut.tx_dlc.value = 0
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    cocotb.start_soon(can_loopback(dut))
+
+    await ClockCycles(dut.clk, 50)
+
+    dut.tx_id.value = 0x150
+    dut.tx_data.value = 0xFFFFFFFFFFFFFFFF
+    dut.tx_dlc.value = 8
+    dut.tx_valid.value = 1
+    await RisingEdge(dut.clk)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after all-ones data TX"
+
+    dut._log.info("TX with all-ones data completed cleanly")
+
+
+@cocotb.test()
+async def test_tx_data_all_zeros(dut):
+    """Send frame with tx_data=0x0000000000000000, DLC=8, verify clean."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 1
+    dut.tx_id.value = 0
+    dut.tx_data.value = 0
+    dut.tx_dlc.value = 0
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    cocotb.start_soon(can_loopback(dut))
+
+    await ClockCycles(dut.clk, 50)
+
+    dut.tx_id.value = 0x160
+    dut.tx_data.value = 0x0000000000000000
+    dut.tx_dlc.value = 8
+    dut.tx_valid.value = 1
+    await RisingEdge(dut.clk)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after all-zeros data TX"
+
+    dut._log.info("TX with all-zeros data (DLC=8) completed cleanly")
+
+
+@cocotb.test()
+async def test_can_rx_dominant_bus(dut):
+    """Drive can_rx=0 (dominant) continuously, verify no crash or X/Z."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 0  # Dominant bus state
+    dut.tx_id.value = 0
+    dut.tx_data.value = 0
+    dut.tx_dlc.value = 0
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z with dominant bus: {sig.value}"
+
+    dut._log.info("Dominant bus (can_rx=0): design survived 500 cycles without X/Z")
+
+
+@cocotb.test()
+async def test_tx_valid_held_high(dut):
+    """Hold tx_valid=1 for many cycles, verify design handles persistent valid."""
+    setup_clock(dut, "clk", 20)
+
+    dut.can_rx.value = 1
+    dut.tx_id.value = 0x333
+    dut.tx_data.value = 0xCC
+    dut.tx_dlc.value = 1
+    dut.tx_valid.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    cocotb.start_soon(can_loopback(dut))
+
+    await ClockCycles(dut.clk, 50)
+
+    # Hold tx_valid high for 100 cycles instead of single-cycle pulse
+    dut.tx_valid.value = 1
+    await ClockCycles(dut.clk, 100)
+    dut.tx_valid.value = 0
+
+    await ClockCycles(dut.clk, 500)
+
+    for sig_name in ["can_tx", "tx_ready"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after persistent tx_valid"
+
+    dut._log.info("Persistent tx_valid (100 cycles): design handled cleanly")

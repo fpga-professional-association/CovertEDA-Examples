@@ -574,3 +574,246 @@ async def test_long_run_2000(dut):
             dut._log.info("debug_status not convertible after long run")
     else:
         dut._log.info("debug_status has X/Z after long run")
+
+
+@cocotb.test()
+async def test_pixel_boundary_max(dut):
+    """Drive pixel_in=0xFFFFFF (max white) and verify pipeline handles it."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    # Frame/line sync
+    dut.vsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.vsync_in.value = 0
+
+    dut.hsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.hsync_in.value = 0
+
+    # Drive max-value pixels
+    dut.valid_in.value = 1
+    dut.pixel_in.value = 0xFFFFFF
+    for _ in range(30):
+        await RisingEdge(dut.pixel_clk)
+    dut.valid_in.value = 0
+    dut.pixel_in.value = 0
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    # Verify no X/Z on debug_status
+    if not dut.debug_status.value.is_resolvable:
+        assert False, f"debug_status has X/Z with max pixel: {dut.debug_status.value}"
+
+    dut._log.info("Pipeline handled max pixel value (0xFFFFFF) without crash")
+
+
+@cocotb.test()
+async def test_pixel_boundary_zero(dut):
+    """Drive pixel_in=0x000000 (black) and verify pipeline handles it."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    dut.vsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.vsync_in.value = 0
+
+    dut.hsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.hsync_in.value = 0
+
+    # Drive all-zero pixels
+    dut.valid_in.value = 1
+    dut.pixel_in.value = 0x000000
+    for _ in range(30):
+        await RisingEdge(dut.pixel_clk)
+    dut.valid_in.value = 0
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    if not dut.debug_status.value.is_resolvable:
+        assert False, f"debug_status has X/Z with zero pixel: {dut.debug_status.value}"
+
+    dut._log.info("Pipeline handled zero pixel value (0x000000) without crash")
+
+
+@cocotb.test()
+async def test_multiple_hsync_per_frame(dut):
+    """Drive multiple hsync pulses within a single frame (multiple lines)."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    # vsync (start of frame)
+    dut.vsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.vsync_in.value = 0
+
+    # Drive 5 lines
+    for line in range(5):
+        dut.hsync_in.value = 1
+        await RisingEdge(dut.pixel_clk)
+        dut.hsync_in.value = 0
+
+        dut.valid_in.value = 1
+        for pix in range(20):
+            dut.pixel_in.value = ((line * 20 + pix) * 0x010101) & 0xFFFFFF
+            await RisingEdge(dut.pixel_clk)
+        dut.valid_in.value = 0
+        dut.pixel_in.value = 0
+
+        # Horizontal blanking
+        await ClockCycles(dut.pixel_clk, 10)
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    # Verify outputs
+    if not dut.debug_status.value.is_resolvable:
+        assert False, f"debug_status has X/Z after multi-line frame: {dut.debug_status.value}"
+
+    # Count valid_out pulses
+    valid_count = 0
+    for _ in range(200):
+        await RisingEdge(dut.pixel_clk)
+        if dut.valid_out.value.is_resolvable:
+            try:
+                if int(dut.valid_out.value) == 1:
+                    valid_count += 1
+            except ValueError:
+                continue
+
+    dut._log.info(f"Multi-line frame: valid_out pulses = {valid_count}")
+
+
+@cocotb.test()
+async def test_vsync_without_hsync(dut):
+    """Drive vsync without any hsync, verify design handles gracefully."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    # Pulse vsync
+    dut.vsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.vsync_in.value = 0
+
+    # Drive pixels without hsync
+    dut.valid_in.value = 1
+    dut.pixel_in.value = 0xFF0000
+    for _ in range(20):
+        await RisingEdge(dut.pixel_clk)
+    dut.valid_in.value = 0
+    dut.pixel_in.value = 0
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    # Verify design survived
+    if not dut.debug_status.value.is_resolvable:
+        assert False, f"debug_status has X/Z without hsync: {dut.debug_status.value}"
+
+    dut._log.info("Design survived vsync without hsync -- no crash")
+
+
+@cocotb.test()
+async def test_rapid_vsync_pulses(dut):
+    """Send 10 rapid vsync pulses with no data, verify stability."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    # Drive 10 rapid vsync pulses
+    for _ in range(10):
+        dut.vsync_in.value = 1
+        await RisingEdge(dut.pixel_clk)
+        dut.vsync_in.value = 0
+        await ClockCycles(dut.pixel_clk, 5)
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    if not dut.debug_status.value.is_resolvable:
+        assert False, f"debug_status has X/Z after rapid vsync: {dut.debug_status.value}"
+
+    # Check vsync_out is resolvable
+    if not dut.vsync_out.value.is_resolvable:
+        assert False, f"vsync_out has X/Z after rapid vsync: {dut.vsync_out.value}"
+
+    dut._log.info("Design handled 10 rapid vsync pulses without crash")
+
+
+@cocotb.test()
+async def test_valid_in_toggling_stress(dut):
+    """Toggle valid_in every cycle for 200 cycles, verify no X/Z."""
+
+    setup_clock(dut, "pixel_clk", CLK_PERIOD_NS)
+
+    dut.vsync_in.value = 0
+    dut.hsync_in.value = 0
+    dut.pixel_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.pixel_clk, 5)
+
+    # Frame/line sync
+    dut.vsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.vsync_in.value = 0
+
+    dut.hsync_in.value = 1
+    await RisingEdge(dut.pixel_clk)
+    dut.hsync_in.value = 0
+
+    # Toggle valid_in every cycle (pixel data with gaps)
+    for cycle in range(200):
+        dut.valid_in.value = cycle % 2
+        dut.pixel_in.value = (cycle * 0x010305) & 0xFFFFFF
+        await RisingEdge(dut.pixel_clk)
+
+    dut.valid_in.value = 0
+    dut.pixel_in.value = 0
+
+    await ClockCycles(dut.pixel_clk, 100)
+
+    if not dut.debug_status.value.is_resolvable:
+        assert False, (
+            f"debug_status has X/Z after valid toggling: {dut.debug_status.value}"
+        )
+
+    dut._log.info("Design handled rapid valid_in toggling stress test")

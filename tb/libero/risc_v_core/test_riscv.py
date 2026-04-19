@@ -480,3 +480,235 @@ async def test_long_nop_sequence(dut):
     # PC should have reached at least 0x50 (20 * 4 = 80)
     assert pc >= 0x50, f"Expected PC >= 0x50 after 20+ NOPs, got {pc:#010x}"
     dut._log.info(f"Long NOP sequence: PC reached {pc:#010x} (>= 0x50)")
+
+
+@cocotb.test()
+async def test_addi_negative_immediate(dut):
+    """ADDI x1, x0, -1 (0xFFF00093) -- verify x1 is set."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    # ADDI x1, x0, -1: imm=0xFFF, rs1=x0, funct3=000, rd=x1, opcode=0010011
+    # 111111111111 00000 000 00001 0010011 = 0xFFF00093
+    local_imem = {
+        0x00: 0xFFF00093,  # ADDI x1, x0, -1
+        0x04: 0x00000013,  # NOP
+    }
+
+    async def local_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    addr = int(dut.imem_addr.value)
+                    dut.imem_data.value = local_imem.get(addr, 0x00000013)
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(local_responder(dut))
+
+    await ClockCycles(dut.clk, 20)
+
+    x1_val = dut.reg_x1_debug.value
+    if not x1_val.is_resolvable:
+        assert False, f"reg_x1_debug has X/Z: {x1_val}"
+    try:
+        x1 = int(x1_val)
+    except ValueError:
+        assert False, f"reg_x1_debug not convertible: {x1_val}"
+
+    # -1 in 32-bit two's complement is 0xFFFFFFFF
+    dut._log.info(f"ADDI x1, x0, -1: x1={x1:#010x}")
+    assert x1 == 0xFFFFFFFF, f"Expected x1==0xFFFFFFFF (-1), got {x1:#010x}"
+    dut._log.info("Negative immediate test passed")
+
+
+@cocotb.test()
+async def test_reset_clears_registers(dut):
+    """After ADDI x1,x0,5 then reset, x1 should be 0."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    local_imem = {
+        0x00: 0x00500093,  # ADDI x1, x0, 5
+        0x04: 0x00000013,
+    }
+
+    async def local_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    addr = int(dut.imem_addr.value)
+                    dut.imem_data.value = local_imem.get(addr, 0x00000013)
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(local_responder(dut))
+
+    await ClockCycles(dut.clk, 20)
+
+    # Verify x1 is 5
+    x1_val = dut.reg_x1_debug.value
+    if x1_val.is_resolvable:
+        dut._log.info(f"x1 before reset: {int(x1_val)}")
+
+    # Apply reset
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    x1_val = dut.reg_x1_debug.value
+    if not x1_val.is_resolvable:
+        assert False, f"reg_x1_debug has X/Z after reset: {x1_val}"
+    try:
+        x1 = int(x1_val)
+    except ValueError:
+        assert False, f"reg_x1_debug not convertible after reset: {x1_val}"
+
+    assert x1 == 0, f"Expected x1==0 after reset, got {x1}"
+    dut._log.info("Reset cleared x1 register to 0")
+
+
+@cocotb.test()
+async def test_pc_alignment(dut):
+    """Verify PC is always 4-byte aligned (bits [1:0] == 0)."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    async def nop_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    dut.imem_data.value = 0x00000013
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(nop_responder(dut))
+
+    for cycle in range(30):
+        await RisingEdge(dut.clk)
+        pc_val = dut.pc_debug.value
+        if pc_val.is_resolvable:
+            try:
+                pc = int(pc_val)
+                assert (pc & 0x3) == 0, f"PC not 4-byte aligned at cycle {cycle}: {pc:#010x}"
+            except ValueError:
+                pass
+
+    dut._log.info("PC was always 4-byte aligned")
+
+
+@cocotb.test()
+async def test_multiple_addi_accumulate(dut):
+    """Execute 3 consecutive ADDI to x1: x1=1, x1=x1+2, x1=x1+3 -> x1==6."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    # ADDI x1, x0, 1 -> x1=1
+    # ADDI x1, x1, 2 -> x1=3
+    # ADDI x1, x1, 3 -> x1=6
+    local_imem = {
+        0x00: 0x00100093,  # ADDI x1, x0, 1
+        0x04: 0x00208093,  # ADDI x1, x1, 2
+        0x08: 0x00308093,  # ADDI x1, x1, 3
+        0x0C: 0x00000013,  # NOP
+    }
+
+    async def local_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    addr = int(dut.imem_addr.value)
+                    dut.imem_data.value = local_imem.get(addr, 0x00000013)
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(local_responder(dut))
+
+    await ClockCycles(dut.clk, 30)
+
+    x1_val = dut.reg_x1_debug.value
+    if not x1_val.is_resolvable:
+        assert False, f"reg_x1_debug has X/Z: {x1_val}"
+    try:
+        x1 = int(x1_val)
+    except ValueError:
+        assert False, f"reg_x1_debug not convertible: {x1_val}"
+
+    assert x1 == 6, f"Expected x1==6 (1+2+3), got {x1}"
+    dut._log.info(f"Multiple ADDI accumulation: x1={x1} (correct)")
+
+
+@cocotb.test()
+async def test_dmem_signals_clean_after_reset(dut):
+    """Verify dmem_addr, dmem_we, dmem_data_out are resolvable after reset."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    async def nop_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    dut.imem_data.value = 0x00000013
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(nop_responder(dut))
+
+    await ClockCycles(dut.clk, 10)
+
+    for sig_name in ["dmem_addr", "dmem_we"]:
+        sig = getattr(dut, sig_name).value
+        if not sig.is_resolvable:
+            assert False, f"{sig_name} has X/Z after reset: {sig}"
+        dut._log.info(f"{sig_name} = {int(sig):#010x}")
+
+    dut._log.info("Data memory signals clean after reset")
+
+
+@cocotb.test()
+async def test_imem_addr_matches_pc(dut):
+    """Verify imem_addr follows pc_debug (they should be the same or closely related)."""
+    setup_clock(dut, "clk", 20)
+    dut.dmem_data_in.value = 0
+
+    async def nop_responder(dut):
+        while True:
+            await RisingEdge(dut.clk)
+            try:
+                if dut.imem_addr.value.is_resolvable:
+                    dut.imem_data.value = 0x00000013
+            except ValueError:
+                dut.imem_data.value = 0x00000013
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    cocotb.start_soon(nop_responder(dut))
+
+    match_count = 0
+    total = 0
+    for _ in range(20):
+        await RisingEdge(dut.clk)
+        pc_val = dut.pc_debug.value
+        imem_val = dut.imem_addr.value
+        if pc_val.is_resolvable and imem_val.is_resolvable:
+            try:
+                pc = int(pc_val)
+                imem = int(imem_val)
+                total += 1
+                if pc == imem:
+                    match_count += 1
+            except ValueError:
+                pass
+
+    dut._log.info(f"imem_addr == pc_debug: {match_count}/{total} cycles")
+    if total > 0:
+        assert match_count > 0, "imem_addr never matched pc_debug"
+    dut._log.info("imem_addr tracks pc_debug correctly")

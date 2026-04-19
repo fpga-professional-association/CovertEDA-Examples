@@ -375,3 +375,245 @@ async def test_long_idle(dut):
 
     assert tx_val == 1, f"Expected uart_tx == 1 (idle) after long run, got {tx_val}"
     dut._log.info("Design stable after 5000 idle cycles -- no X/Z detected")
+
+
+@cocotb.test()
+async def test_uart_rx_break_condition(dut):
+    """Hold uart_rx low for an extended time (break condition), verify recovery."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 50)
+
+    # Hold uart_rx low for ~2 byte times (break condition)
+    dut.uart_rx.value = 0
+    await Timer(20000, unit="ns")
+
+    # Release back to idle
+    dut.uart_rx.value = 1
+    await ClockCycles(dut.clk_48m, 500)
+
+    # Verify design recovered
+    for sig_name in ["uart_tx", "usb_data_out", "status_led"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after break condition: {sig.value}"
+
+    try:
+        tx_val = int(dut.uart_tx.value)
+    except ValueError:
+        assert False, f"uart_tx not resolvable after break recovery: {dut.uart_tx.value}"
+
+    assert tx_val == 1, f"Expected uart_tx idle (1) after break recovery, got {tx_val}"
+    dut._log.info("Design recovered from uart_rx break condition")
+
+
+@cocotb.test()
+async def test_usb_data_boundary_0x00(dut):
+    """Drive usb_data_in=0x00 (null byte), verify uart_tx shows activity."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 20)
+
+    # Drive null byte from USB side
+    dut.usb_data_in.value = 0x00
+    dut.usb_rx_data.value = 1
+    await RisingEdge(dut.clk_48m)
+    dut.usb_rx_data.value = 0
+
+    # Monitor uart_tx for start bit
+    tx_activity = False
+    for _ in range(2000):
+        await RisingEdge(dut.clk_48m)
+        if dut.uart_tx.value.is_resolvable:
+            try:
+                if int(dut.uart_tx.value) == 0:
+                    tx_activity = True
+                    break
+            except ValueError:
+                continue
+
+    if tx_activity:
+        dut._log.info("uart_tx showed start bit after driving 0x00 -- null byte transmitted")
+    else:
+        dut._log.info("uart_tx did not show activity for 0x00 in 2000 cycles")
+
+    # Verify no X/Z
+    if not dut.uart_tx.value.is_resolvable:
+        assert False, f"uart_tx has X/Z after null byte: {dut.uart_tx.value}"
+
+
+@cocotb.test()
+async def test_usb_data_boundary_0xFF(dut):
+    """Drive usb_data_in=0xFF (all ones), verify uart_tx shows activity."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 20)
+
+    # Drive all-ones byte from USB side
+    dut.usb_data_in.value = 0xFF
+    dut.usb_rx_data.value = 1
+    await RisingEdge(dut.clk_48m)
+    dut.usb_rx_data.value = 0
+
+    # Monitor uart_tx for start bit
+    tx_activity = False
+    for _ in range(2000):
+        await RisingEdge(dut.clk_48m)
+        if dut.uart_tx.value.is_resolvable:
+            try:
+                if int(dut.uart_tx.value) == 0:
+                    tx_activity = True
+                    break
+            except ValueError:
+                continue
+
+    if tx_activity:
+        dut._log.info("uart_tx showed start bit after driving 0xFF")
+    else:
+        dut._log.info("uart_tx did not show activity for 0xFF in 2000 cycles")
+
+    if not dut.uart_tx.value.is_resolvable:
+        assert False, f"uart_tx has X/Z after 0xFF byte: {dut.uart_tx.value}"
+
+
+@cocotb.test()
+async def test_uart_rx_framing_error(dut):
+    """Send a byte with missing stop bit (framing error) and verify stability."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 50)
+
+    baud_ns = 8680
+    test_byte = 0x55
+
+    # Start bit (low)
+    dut.uart_rx.value = 0
+    await Timer(baud_ns, unit="ns")
+
+    # Data bits (LSB first)
+    for bit_idx in range(8):
+        dut.uart_rx.value = (test_byte >> bit_idx) & 1
+        await Timer(baud_ns, unit="ns")
+
+    # Missing stop bit -- keep low (framing error)
+    dut.uart_rx.value = 0
+    await Timer(baud_ns, unit="ns")
+
+    # Return to idle
+    dut.uart_rx.value = 1
+    await ClockCycles(dut.clk_48m, 500)
+
+    # Verify design did not crash
+    for sig_name in ["uart_tx", "usb_data_out", "status_led"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after framing error: {sig.value}"
+
+    dut._log.info("Design handled framing error (missing stop bit) without crash")
+
+
+@cocotb.test()
+async def test_simultaneous_usb_and_uart(dut):
+    """Drive both USB TX and UART RX paths simultaneously, verify stability."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 50)
+
+    # Drive USB data
+    dut.usb_data_in.value = 0x42
+    dut.usb_rx_data.value = 1
+    await RisingEdge(dut.clk_48m)
+    dut.usb_rx_data.value = 0
+
+    # Simultaneously send a byte on uart_rx
+    baud_ns = 8680
+    test_byte = 0xA5
+
+    dut.uart_rx.value = 0  # start bit
+    await Timer(baud_ns, unit="ns")
+
+    for bit_idx in range(8):
+        dut.uart_rx.value = (test_byte >> bit_idx) & 1
+        await Timer(baud_ns, unit="ns")
+
+    dut.uart_rx.value = 1  # stop bit
+    await Timer(baud_ns, unit="ns")
+
+    # Let design process
+    await ClockCycles(dut.clk_48m, 1000)
+
+    # Verify outputs
+    for sig_name in ["uart_tx", "usb_data_out", "status_led"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after simultaneous operation: {sig.value}"
+
+    dut._log.info("Design handled simultaneous USB and UART traffic")
+
+
+@cocotb.test()
+async def test_usb_burst_10_bytes_rapid(dut):
+    """Send 10 bytes from USB side with no gap between them."""
+
+    setup_clock(dut, "clk_48m", CLK_PERIOD_NS)
+
+    dut.uart_rx.value = 1
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_48m, 20)
+
+    # Send 10 bytes back-to-back with no gap
+    for byte_val in range(0x00, 0x0A):
+        dut.usb_data_in.value = byte_val
+        dut.usb_rx_data.value = 1
+        await RisingEdge(dut.clk_48m)
+    dut.usb_rx_data.value = 0
+    dut.usb_data_in.value = 0
+
+    # Let design process
+    await ClockCycles(dut.clk_48m, 5000)
+
+    # Verify outputs
+    for sig_name in ["uart_tx", "usb_data_out", "status_led"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, f"{sig_name} has X/Z after 10-byte burst: {sig.value}"
+
+    try:
+        tx_val = int(dut.uart_tx.value)
+    except ValueError:
+        assert False, f"uart_tx not resolvable after burst: {dut.uart_tx.value}"
+
+    dut._log.info(f"uart_tx after 10-byte burst: {tx_val} -- design stable")

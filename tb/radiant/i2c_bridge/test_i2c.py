@@ -355,3 +355,217 @@ async def test_multiple_resets(dut):
         await ClockCycles(dut.clk, 50)
 
     dut._log.info("All 3 reset cycles recovered cleanly")
+
+
+@cocotb.test()
+async def test_wb_data_i_boundary_max(dut):
+    """Drive wb_data_i=0xFFFFFFFF and pulse wb_ack, verify no crash."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 20)
+
+    # Drive maximum value on wb_data_i with ack
+    dut.wb_data_i.value = 0xFFFFFFFF
+    dut.wb_ack.value = 1
+    await RisingEdge(dut.clk)
+    dut.wb_ack.value = 0
+    dut.wb_data_i.value = 0
+
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after max wb_data_i"
+        except AttributeError:
+            pass
+
+    dut._log.info("Design survived wb_data_i=0xFFFFFFFF boundary without crash")
+
+
+@cocotb.test()
+async def test_sda_low_during_idle(dut):
+    """Drive sda=0 while scl=1 (looks like start condition), verify wb outputs remain clean."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 20)
+
+    # Drive a start-like condition on I2C bus
+    dut.sda.value = 0  # SDA goes low while SCL is high = start condition
+    await ClockCycles(dut.clk, 50)
+
+    # Release SDA (stop condition)
+    dut.sda.value = 1
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after SDA start condition"
+            try:
+                dut._log.info(f"{sig_name} = {int(sig.value)}")
+            except ValueError:
+                pass
+        except AttributeError:
+            pass
+
+    dut._log.info("Design handled SDA start condition stimulus without X/Z")
+
+
+@cocotb.test()
+async def test_scl_toggle_stress(dut):
+    """Toggle scl rapidly for 200 cycles while sda=1, verify no crash."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 10)
+
+    # Rapid SCL toggling
+    for cycle in range(200):
+        dut.scl.value = cycle % 2
+        await RisingEdge(dut.clk)
+
+    dut.scl.value = 1  # return to idle
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after SCL stress"
+        except AttributeError:
+            pass
+
+    dut._log.info("Design survived rapid SCL toggling stress test")
+
+
+@cocotb.test()
+async def test_wb_rst_assert_during_operation(dut):
+    """Assert wb_rst=1 during normal operation, verify wb outputs reset."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 50)
+
+    # Assert Wishbone reset
+    dut.wb_rst.value = 1
+    await ClockCycles(dut.clk, 10)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 30)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after wb_rst pulse"
+            try:
+                val = int(sig.value)
+                dut._log.info(f"{sig_name} after wb_rst pulse: {val}")
+            except ValueError:
+                pass
+        except AttributeError:
+            pass
+
+    dut._log.info("Wishbone reset pulse handled cleanly")
+
+
+@cocotb.test()
+async def test_i2c_start_stop_sequence(dut):
+    """Drive an I2C start-then-stop sequence (no data), verify design handles it."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 20)
+
+    # I2C Start: SDA goes low while SCL is high
+    dut.sda.value = 0
+    await ClockCycles(dut.clk, 10)
+
+    # SCL goes low (clock stretch)
+    dut.scl.value = 0
+    await ClockCycles(dut.clk, 10)
+
+    # I2C Stop: SDA goes high while SCL is high
+    dut.scl.value = 1
+    await ClockCycles(dut.clk, 5)
+    dut.sda.value = 1
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after start-stop sequence"
+        except AttributeError:
+            pass
+
+    dut._log.info("I2C start-stop sequence handled without crash")
+
+
+@cocotb.test()
+async def test_simultaneous_rst_n_and_wb_rst(dut):
+    """Assert both rst_n and wb_rst simultaneously, verify clean recovery."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.sda.value = 1
+    dut.scl.value = 1
+    dut.wb_data_i.value = 0
+    dut.wb_ack.value = 0
+
+    # Normal operation first
+    dut.rst_n.value = 1
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 30)
+
+    # Assert both resets
+    dut.rst_n.value = 0
+    dut.wb_rst.value = 1
+    await ClockCycles(dut.clk, 10)
+
+    # Release both
+    dut.rst_n.value = 1
+    dut.wb_rst.value = 0
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["wb_stb", "wb_cyc", "wb_we"]:
+        try:
+            sig = getattr(dut, sig_name)
+            assert sig.value.is_resolvable, f"{sig_name} has X/Z after dual reset"
+            try:
+                val = int(sig.value)
+                dut._log.info(f"{sig_name} after dual reset: {val}")
+            except ValueError:
+                pass
+        except AttributeError:
+            pass
+
+    dut._log.info("Design recovered cleanly from simultaneous rst_n + wb_rst")

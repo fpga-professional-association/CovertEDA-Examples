@@ -439,3 +439,226 @@ async def test_reset_recovery(dut):
         assert link_up == 1, f"Link should be up after reset, got {link_up}"
     except ValueError:
         raise AssertionError("Outputs not convertible after reset recovery")
+
+
+@cocotb.test()
+async def test_byte_enable_partial(dut):
+    """Drive app_byte_en with partial enables (0x0F, 0xF0), verify stability."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b0000
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.device_id.value = 0x1234
+    dut.bar0_config.value = 0x01
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_250m, 10)
+
+    for be_val in [0x0F, 0xF0, 0x01, 0x80, 0xAA, 0x55]:
+        dut.app_data_in.value = 0x1234567890ABCDEF
+        dut.app_byte_en.value = be_val
+        dut.app_valid.value = 1
+        await ClockCycles(dut.clk_250m, 5)
+        dut.app_valid.value = 0
+
+        await ClockCycles(dut.clk_250m, 20)
+
+        if not dut.pcie_link_up.value.is_resolvable:
+            raise AssertionError(f"pcie_link_up has X/Z with byte_en={be_val:#04x}")
+
+        try:
+            link_up = int(dut.pcie_link_up.value)
+            dut._log.info(f"byte_en={be_val:#04x}: link_up={link_up}")
+        except ValueError:
+            raise AssertionError(f"pcie_link_up not convertible with byte_en={be_val:#04x}")
+
+    dut._log.info("All partial byte enable patterns handled cleanly")
+
+
+@cocotb.test()
+async def test_app_ready_out_deassert(dut):
+    """Deassert app_ready_out (back-pressure), drive data, verify stability."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b0000
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0xFF
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.device_id.value = 0x1234
+    dut.bar0_config.value = 0x01
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_250m, 10)
+
+    # Deassert app_ready_out (downstream not ready)
+    dut.app_ready_out.value = 0
+
+    # Drive data anyway
+    dut.app_data_in.value = 0xAAAAAAAABBBBBBBB
+    dut.app_valid.value = 1
+    await ClockCycles(dut.clk_250m, 20)
+    dut.app_valid.value = 0
+    dut.app_data_in.value = 0
+
+    await ClockCycles(dut.clk_250m, 50)
+
+    # Re-assert app_ready_out
+    dut.app_ready_out.value = 1
+    await ClockCycles(dut.clk_250m, 30)
+
+    if not dut.pcie_link_up.value.is_resolvable:
+        raise AssertionError("pcie_link_up has X/Z after back-pressure test")
+
+    try:
+        link_up = int(dut.pcie_link_up.value)
+        dut._log.info(f"After back-pressure: link_up={link_up}")
+        assert link_up == 1, f"Link should remain up after back-pressure, got {link_up}"
+    except ValueError:
+        raise AssertionError("pcie_link_up not convertible after back-pressure")
+
+
+@cocotb.test()
+async def test_pcie_rx_all_ones(dut):
+    """Drive pcie_rx=0xF (all ones on 4 lanes) and verify stability."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b1111
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.device_id.value = 0x1234
+    dut.bar0_config.value = 0x01
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_250m, 100)
+
+    if not dut.pcie_link_up.value.is_resolvable:
+        raise AssertionError("pcie_link_up has X/Z with pcie_rx=0xF")
+
+    try:
+        link_up = int(dut.pcie_link_up.value)
+        link_spd = int(dut.link_speed.value)
+        dut._log.info(f"pcie_rx=0xF: link_up={link_up}, link_speed={link_spd}")
+    except ValueError:
+        raise AssertionError("Outputs not convertible with pcie_rx=0xF")
+
+    dut._log.info("Design stable with all pcie_rx lanes high")
+
+
+@cocotb.test()
+async def test_pcie_rx_toggling(dut):
+    """Toggle pcie_rx pattern every cycle for 100 cycles, verify no crash."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b0000
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.device_id.value = 0x1234
+    dut.bar0_config.value = 0x01
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_250m, 10)
+
+    # Toggle pcie_rx between 0x5 (0101) and 0xA (1010) each cycle
+    for cycle in range(100):
+        dut.pcie_rx.value = 0b0101 if (cycle % 2 == 0) else 0b1010
+        await RisingEdge(dut.clk_250m)
+
+    await ClockCycles(dut.clk_250m, 50)
+
+    if not dut.pcie_link_up.value.is_resolvable:
+        raise AssertionError("pcie_link_up has X/Z after RX toggling")
+
+    try:
+        link_up = int(dut.pcie_link_up.value)
+        dut._log.info(f"After RX toggling: link_up={link_up}")
+    except ValueError:
+        raise AssertionError("pcie_link_up not convertible after RX toggling")
+
+    dut._log.info("Design survived 100 cycles of pcie_rx toggling")
+
+
+@cocotb.test()
+async def test_sustained_valid_long(dut):
+    """Hold app_valid=1 for 200 consecutive cycles with changing data."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b0000
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0xFF
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.device_id.value = 0x1234
+    dut.bar0_config.value = 0x01
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_250m, 10)
+
+    # Sustained valid for 200 cycles with incrementing data
+    dut.app_valid.value = 1
+    for i in range(200):
+        dut.app_data_in.value = (i * 0x0123456789ABCDEF) & 0xFFFFFFFFFFFFFFFF
+        await RisingEdge(dut.clk_250m)
+    dut.app_valid.value = 0
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0
+
+    await ClockCycles(dut.clk_250m, 100)
+
+    if not dut.pcie_link_up.value.is_resolvable:
+        raise AssertionError("pcie_link_up has X/Z after sustained valid")
+
+    try:
+        link_up = int(dut.pcie_link_up.value)
+        app_rdy = int(dut.app_ready.value)
+        dut._log.info(f"After sustained valid: link_up={link_up}, app_ready={app_rdy}")
+    except ValueError:
+        raise AssertionError("Outputs not convertible after sustained valid")
+
+    dut._log.info("Design handled 200-cycle sustained valid cleanly")
+
+
+@cocotb.test()
+async def test_device_id_boundary_values(dut):
+    """Test device_id with boundary values 0x0000 and 0xFFFF."""
+
+    setup_clock(dut, "clk_250m", 4)
+
+    dut.pcie_rx.value = 0b0000
+    dut.app_data_in.value = 0
+    dut.app_byte_en.value = 0
+    dut.app_valid.value = 0
+    dut.app_ready_out.value = 1
+    dut.bar0_config.value = 0x01
+
+    for dev_id in [0x0000, 0xFFFF]:
+        dut.device_id.value = dev_id
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+        await ClockCycles(dut.clk_250m, 30)
+
+        if not dut.pcie_link_up.value.is_resolvable:
+            raise AssertionError(f"pcie_link_up has X/Z with device_id={dev_id:#06x}")
+
+        try:
+            link_up = int(dut.pcie_link_up.value)
+            link_spd = int(dut.link_speed.value)
+            dut._log.info(
+                f"device_id={dev_id:#06x}: link_up={link_up}, link_speed={link_spd}"
+            )
+            assert link_up == 1, f"Link should be up with device_id={dev_id:#06x}"
+        except ValueError:
+            raise AssertionError(f"Outputs not convertible with device_id={dev_id:#06x}")
+
+    dut._log.info("Boundary device_id values handled correctly")

@@ -360,3 +360,237 @@ async def test_multiple_gpio_changes(dut):
         dut._log.info(f"gpio_in={pattern:#06b} -> gpio_out={gpio_val:#06b}")
 
     dut._log.info("All GPIO pattern changes handled cleanly")
+
+
+@cocotb.test()
+async def test_debug_rx_start_bit(dut):
+    """Send a start bit on debug_rx and verify design does not crash."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_50m, 50)
+
+    # Send a start bit (UART start = low)
+    dut.debug_rx.value = 0
+    await Timer(8680, unit="ns")  # 115200 baud bit time
+
+    # Return to idle
+    dut.debug_rx.value = 1
+    await ClockCycles(dut.clk_50m, 500)
+
+    # Verify outputs are clean after incomplete byte reception
+    for sig_name in ["gpio_out", "status_led", "debug_tx"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, (
+                f"{sig_name} has X/Z after debug_rx start bit: {sig.value}"
+            )
+
+    dut._log.info("Design handled partial debug_rx byte without crash")
+
+
+@cocotb.test()
+async def test_debug_rx_full_byte(dut):
+    """Send a complete byte (0xA5) on debug_rx at 115200 baud."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_50m, 100)
+
+    baud_ns = 8680
+    test_byte = 0xA5
+
+    # Start bit
+    dut.debug_rx.value = 0
+    await Timer(baud_ns, unit="ns")
+
+    # Data bits (LSB first)
+    for bit_idx in range(8):
+        dut.debug_rx.value = (test_byte >> bit_idx) & 1
+        await Timer(baud_ns, unit="ns")
+
+    # Stop bit
+    dut.debug_rx.value = 1
+    await Timer(baud_ns, unit="ns")
+
+    # Wait for processing
+    await ClockCycles(dut.clk_50m, 500)
+
+    for sig_name in ["gpio_out", "status_led", "debug_tx"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, (
+                f"{sig_name} has X/Z after debug_rx byte: {sig.value}"
+            )
+
+    dut._log.info("Complete byte sent on debug_rx -- design stable")
+
+
+@cocotb.test()
+async def test_gpio_in_rapid_transitions(dut):
+    """Change gpio_in every clock cycle for 100 cycles."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_50m, 10)
+
+    for cycle in range(100):
+        dut.gpio_in.value = cycle & 0xF
+        await RisingEdge(dut.clk_50m)
+
+    await ClockCycles(dut.clk_50m, 50)
+
+    if not dut.gpio_out.value.is_resolvable:
+        assert False, f"gpio_out has X/Z after rapid transitions: {dut.gpio_out.value}"
+
+    try:
+        gpio_val = int(dut.gpio_out.value)
+    except ValueError:
+        assert False, (
+            f"gpio_out not resolvable after rapid transitions: {dut.gpio_out.value}"
+        )
+
+    assert 0 <= gpio_val <= 15, f"gpio_out out of range: {gpio_val}"
+    dut._log.info(f"gpio_out after rapid transitions: {gpio_val:#06b}")
+
+
+@cocotb.test()
+async def test_reset_hold_50_cycles(dut):
+    """Hold reset for 50 cycles, verify clean recovery."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=50)
+    await ClockCycles(dut.clk_50m, 20)
+
+    if not dut.gpio_out.value.is_resolvable:
+        assert False, f"gpio_out has X/Z after 50-cycle reset: {dut.gpio_out.value}"
+
+    try:
+        gpio_val = int(dut.gpio_out.value)
+    except ValueError:
+        assert False, f"gpio_out not resolvable after 50-cycle reset: {dut.gpio_out.value}"
+
+    assert gpio_val == 0, f"Expected gpio_out==0 after long reset, got {gpio_val:#06b}"
+    dut._log.info("50-cycle reset hold -- gpio_out correctly reset to 0")
+
+
+@cocotb.test()
+async def test_status_led_over_time(dut):
+    """Monitor status_led over 1000 cycles and log unique values seen."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    values_seen = set()
+    for cycle in range(1000):
+        await RisingEdge(dut.clk_50m)
+        if dut.status_led.value.is_resolvable:
+            try:
+                val = int(dut.status_led.value)
+                values_seen.add(val)
+                assert 0 <= val <= 15, (
+                    f"status_led out of range at cycle {cycle}: {val}"
+                )
+            except ValueError:
+                pass
+
+    dut._log.info(f"status_led unique values over 1000 cycles: {sorted(values_seen)}")
+    assert len(values_seen) >= 1, "No valid status_led values observed"
+
+
+@cocotb.test()
+async def test_gpio_walking_one(dut):
+    """Cycle gpio_in through walking-one pattern: 0x1, 0x2, 0x4, 0x8."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+
+    for bit in range(4):
+        gpio_val_in = 1 << bit
+        dut.gpio_in.value = gpio_val_in
+        await ClockCycles(dut.clk_50m, 100)
+
+        if not dut.gpio_out.value.is_resolvable:
+            assert False, (
+                f"gpio_out has X/Z with gpio_in={gpio_val_in:#06b}: "
+                f"{dut.gpio_out.value}"
+            )
+
+        try:
+            gpio_out_val = int(dut.gpio_out.value)
+        except ValueError:
+            assert False, (
+                f"gpio_out not resolvable with gpio_in={gpio_val_in:#06b}"
+            )
+
+        dut._log.info(
+            f"gpio_in={gpio_val_in:#06b} -> gpio_out={gpio_out_val:#06b}"
+        )
+
+    dut._log.info("Walking-one GPIO pattern handled cleanly")
+
+
+@cocotb.test()
+async def test_simultaneous_gpio_and_debug(dut):
+    """Drive gpio_in and debug_rx simultaneously, verify no interference."""
+
+    setup_clock(dut, "clk_50m", CLK_PERIOD_NS)
+
+    dut.gpio_in.value = 0
+    dut.debug_rx.value = 1
+
+    await reset_dut(dut, "reset_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_50m, 50)
+
+    # Drive gpio_in to 0xA
+    dut.gpio_in.value = 0xA
+
+    # Simultaneously send a start bit on debug_rx
+    dut.debug_rx.value = 0
+    await Timer(8680, unit="ns")
+    dut.debug_rx.value = 1
+
+    await ClockCycles(dut.clk_50m, 500)
+
+    # Verify all outputs clean
+    for sig_name in ["gpio_out", "status_led", "debug_tx"]:
+        sig = getattr(dut, sig_name)
+        if not sig.value.is_resolvable:
+            assert False, (
+                f"{sig_name} has X/Z during simultaneous operation: {sig.value}"
+            )
+
+    try:
+        gpio_val = int(dut.gpio_out.value)
+        led_val = int(dut.status_led.value)
+    except ValueError as e:
+        assert False, f"Outputs not resolvable during simultaneous operation: {e}"
+
+    dut._log.info(
+        f"Simultaneous gpio+debug: gpio_out={gpio_val:#06b}, "
+        f"status_led={led_val:#06b}"
+    )

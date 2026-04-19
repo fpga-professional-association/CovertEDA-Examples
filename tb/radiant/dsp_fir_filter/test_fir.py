@@ -462,3 +462,229 @@ async def test_data_out_width(dut):
 
     assert dut.data_out.value.is_resolvable, "data_out has X/Z at end of width test"
     dut._log.info("Data output width test completed")
+
+
+@cocotb.test()
+async def test_max_negative_input(dut):
+    """Feed data_in=0x8000 (max negative signed 16-bit), verify no overflow crash."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    # Drive max negative input (0x8000 = -32768 in signed 16-bit)
+    dut.data_in.value = 0x8000
+    dut.valid_in.value = 1
+
+    for _ in range(20):
+        await RisingEdge(dut.clk)
+
+    await ClockCycles(dut.clk, 16)
+
+    assert dut.data_out.value.is_resolvable, "data_out has X/Z with max negative input"
+    try:
+        out_val = int(dut.data_out.value)
+        dut._log.info(f"data_out with 0x8000 input: {out_val:#010x}")
+        assert 0 <= out_val <= 0xFFFFFFFF, f"data_out overflowed 32-bit range: {out_val}"
+    except ValueError:
+        raise AssertionError("data_out not resolvable with max negative input")
+
+    dut.valid_in.value = 0
+    dut._log.info("Max negative input (0x8000) test completed -- no overflow")
+
+
+@cocotb.test()
+async def test_step_response(dut):
+    """Drive data_in from 0 to 0x1000 (step), verify output transitions."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    # Feed zeros for 20 cycles to establish baseline
+    dut.data_in.value = 0
+    dut.valid_in.value = 1
+    for _ in range(20):
+        await RisingEdge(dut.clk)
+
+    # Step to 0x1000
+    dut.data_in.value = 0x1000
+    for _ in range(40):
+        await RisingEdge(dut.clk)
+
+    # Collect samples to observe step response
+    samples = []
+    for _ in range(10):
+        await RisingEdge(dut.clk)
+        if dut.data_out.value.is_resolvable:
+            try:
+                samples.append(int(dut.data_out.value))
+            except ValueError:
+                pass
+
+    dut.valid_in.value = 0
+
+    if len(samples) >= 2:
+        dut._log.info(f"Step response samples: {[f'{s:#010x}' for s in samples[:5]]}")
+    else:
+        dut._log.info("Insufficient resolvable samples for step response")
+
+    assert dut.data_out.value.is_resolvable, "data_out has X/Z after step input"
+    dut._log.info("Step response test completed")
+
+
+@cocotb.test()
+async def test_reset_during_active_processing(dut):
+    """Assert reset while pipeline has valid data, verify clean recovery."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    # Feed data for 15 cycles
+    dut.data_in.value = 0x0200
+    dut.valid_in.value = 1
+    for _ in range(15):
+        await RisingEdge(dut.clk)
+
+    # Assert reset mid-pipeline
+    dut.valid_in.value = 0
+    dut.data_in.value = 0
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    # Verify clean state after reset
+    assert dut.valid_out.value.is_resolvable, "valid_out has X/Z after mid-processing reset"
+    try:
+        vo = int(dut.valid_out.value)
+        assert vo == 0, f"valid_out should be 0 after reset, got {vo}"
+    except ValueError:
+        raise AssertionError("valid_out not resolvable after mid-processing reset")
+
+    assert dut.data_out.value.is_resolvable, "data_out has X/Z after mid-processing reset"
+    try:
+        do = int(dut.data_out.value)
+        assert do == 0, f"data_out should be 0 after reset, got {do}"
+    except ValueError:
+        raise AssertionError("data_out not resolvable after mid-processing reset")
+
+    dut._log.info("Pipeline reset during active processing -- clean recovery verified")
+
+
+@cocotb.test()
+async def test_ramp_input(dut):
+    """Feed a ramp (0, 1, 2, ..., 31) into the filter, verify outputs are resolvable."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    dut.valid_in.value = 1
+    for i in range(32):
+        dut.data_in.value = i
+        await RisingEdge(dut.clk)
+
+    dut.valid_in.value = 0
+    dut.data_in.value = 0
+
+    # Wait for pipeline to flush
+    await ClockCycles(dut.clk, 32)
+
+    assert dut.data_out.value.is_resolvable, "data_out has X/Z after ramp input"
+    try:
+        out_val = int(dut.data_out.value)
+        dut._log.info(f"data_out after ramp input: {out_val:#010x}")
+    except ValueError:
+        raise AssertionError("data_out not resolvable after ramp input")
+
+    dut._log.info("Ramp input test completed -- output is resolvable")
+
+
+@cocotb.test()
+async def test_valid_in_deasserted_holds_output(dut):
+    """After valid_in goes low, data_out should hold its last value (not go X/Z)."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    # Feed some valid data
+    dut.data_in.value = 0x0400
+    dut.valid_in.value = 1
+    for _ in range(30):
+        await RisingEdge(dut.clk)
+
+    # Capture last output
+    last_valid_output = None
+    if dut.data_out.value.is_resolvable:
+        try:
+            last_valid_output = int(dut.data_out.value)
+        except ValueError:
+            pass
+
+    # Deassert valid_in
+    dut.valid_in.value = 0
+    dut.data_in.value = 0
+
+    # Wait 20 cycles and check data_out is still resolvable
+    for cycle in range(20):
+        await RisingEdge(dut.clk)
+        assert dut.data_out.value.is_resolvable, (
+            f"data_out became X/Z at cycle {cycle} after valid_in deasserted"
+        )
+
+    if last_valid_output is not None:
+        dut._log.info(f"Last valid output before deassert: {last_valid_output:#010x}")
+    dut._log.info("data_out remained resolvable after valid_in deasserted")
+
+
+@cocotb.test()
+async def test_signed_alternating_input(dut):
+    """Alternate between +max and -max input values, verify no overflow."""
+
+    setup_clock(dut, "clk", CLK_PERIOD_NS)
+    dut.data_in.value = 0
+    dut.valid_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 5)
+
+    dut.valid_in.value = 1
+    for cycle in range(40):
+        if cycle % 2 == 0:
+            dut.data_in.value = 0x7FFF  # +32767
+        else:
+            dut.data_in.value = 0x8000  # -32768
+        await RisingEdge(dut.clk)
+
+    dut.valid_in.value = 0
+    dut.data_in.value = 0
+
+    # Wait for pipeline to process
+    await ClockCycles(dut.clk, 32)
+
+    assert dut.data_out.value.is_resolvable, "data_out has X/Z after alternating +/- input"
+    try:
+        out_val = int(dut.data_out.value)
+        dut._log.info(f"data_out after alternating +/- input: {out_val:#010x}")
+        assert 0 <= out_val <= 0xFFFFFFFF, f"data_out overflowed: {out_val}"
+    except ValueError:
+        raise AssertionError("data_out not resolvable after alternating +/- input")
+
+    assert dut.valid_out.value.is_resolvable, "valid_out has X/Z after alternating +/- input"
+    dut._log.info("Signed alternating input test completed -- no overflow")

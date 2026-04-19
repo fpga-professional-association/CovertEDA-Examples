@@ -290,3 +290,152 @@ async def test_btn_change_during_run(dut):
     assert dut.led_out.value.is_resolvable, "led_out has X/Z after btn_in returned to 0"
 
     dut._log.info("Design handled btn_in changes during operation cleanly")
+
+
+@cocotb.test()
+async def test_btn_all_ones(dut):
+    """Set btn_in to max value (all bits 1), run 200 cycles, verify outputs clean."""
+
+    setup_clock(dut, "clk_in", 10)
+    dut.btn_in.value = 0x3  # all 2 bits high (btn_in is 2-bit)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(200):
+        await RisingEdge(dut.clk_in)
+        assert dut.led_out.value.is_resolvable, (
+            f"led_out has X/Z at cycle {cycle} with btn_in=0xF"
+        )
+
+    try:
+        led_val = int(dut.led_out.value)
+        dut._log.info(f"led_out after 200 cycles with btn_in=0xF: {led_val:#06b}")
+    except ValueError:
+        assert False, "led_out not resolvable after 200 cycles with btn_in=0xF"
+
+    dut._log.info("Design handles maximum btn_in value cleanly")
+
+
+@cocotb.test()
+async def test_clock_5ns_stress(dut):
+    """Stress test: use 5ns clock (200 MHz), verify led_out remains clean."""
+
+    setup_clock(dut, "clk_in", 5)
+    dut.btn_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk_in, 500)
+
+    assert dut.led_out.value.is_resolvable, "led_out has X/Z with 5ns clock"
+    try:
+        led_val = int(dut.led_out.value)
+        dut._log.info(f"led_out with 5ns (200MHz) clock: {led_val:#06b}")
+        assert 0 <= led_val <= 15, f"led_out out of range: {led_val}"
+    except ValueError:
+        assert False, "led_out not resolvable with 5ns clock"
+
+    dut._log.info("Design operates correctly under 200 MHz stress clock")
+
+
+@cocotb.test()
+async def test_btn_rapid_switching(dut):
+    """Switch btn_in every clock for 100 cycles, verify no X/Z."""
+
+    setup_clock(dut, "clk_in", 10)
+    dut.btn_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(100):
+        dut.btn_in.value = cycle % 4
+        await RisingEdge(dut.clk_in)
+        assert dut.led_out.value.is_resolvable, (
+            f"led_out has X/Z at cycle {cycle} during rapid btn switching"
+        )
+
+    try:
+        led_val = int(dut.led_out.value)
+        dut._log.info(f"led_out after rapid btn switching: {led_val:#06b}")
+    except ValueError:
+        assert False, "led_out not resolvable after rapid btn switching"
+
+    dut._log.info("Design handled rapid btn_in switching without X/Z")
+
+
+@cocotb.test()
+async def test_reset_hold_extended(dut):
+    """Hold reset for 50 cycles, verify clean release and normal operation."""
+
+    setup_clock(dut, "clk_in", 10)
+    dut.btn_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=50)
+    await RisingEdge(dut.clk_in)
+
+    assert dut.led_out.value.is_resolvable, "led_out has X/Z after 50-cycle reset hold"
+    try:
+        led_val = int(dut.led_out.value)
+        dut._log.info(f"led_out after 50-cycle reset: {led_val:#06b}")
+        assert 0 <= led_val <= 15, f"led_out out of range after extended reset: {led_val}"
+    except ValueError:
+        assert False, "led_out not resolvable after extended reset hold"
+
+    # Verify normal operation continues
+    await ClockCycles(dut.clk_in, 100)
+    assert dut.led_out.value.is_resolvable, "led_out has X/Z 100 cycles after extended reset"
+    dut._log.info("Design recovered from 50-cycle extended reset hold")
+
+
+@cocotb.test()
+async def test_led_deterministic_reset(dut):
+    """Reset 5 times, verify led_out always returns to same initial value."""
+
+    setup_clock(dut, "clk_in", 10)
+    dut.btn_in.value = 0
+
+    reset_values = []
+    for i in range(5):
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+        await RisingEdge(dut.clk_in)
+
+        assert dut.led_out.value.is_resolvable, f"led_out has X/Z after reset #{i + 1}"
+        try:
+            led_val = int(dut.led_out.value)
+            reset_values.append(led_val)
+            dut._log.info(f"Reset #{i + 1}: led_out = {led_val:#06b}")
+        except ValueError:
+            assert False, f"led_out not resolvable after reset #{i + 1}"
+
+        await ClockCycles(dut.clk_in, 20)
+
+    assert all(v == reset_values[0] for v in reset_values), (
+        f"led_out reset values not deterministic: {reset_values}"
+    )
+    dut._log.info(f"led_out deterministically resets to {reset_values[0]:#06b}")
+
+
+@cocotb.test()
+async def test_led_transition_count(dut):
+    """Count led_out transitions over 1000 cycles, log transition rate."""
+
+    setup_clock(dut, "clk_in", 10)
+    dut.btn_in.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk_in)
+
+    transitions = 0
+    prev_val = None
+    for _ in range(1000):
+        await RisingEdge(dut.clk_in)
+        if dut.led_out.value.is_resolvable:
+            try:
+                cur_val = int(dut.led_out.value)
+                if prev_val is not None and cur_val != prev_val:
+                    transitions += 1
+                prev_val = cur_val
+            except ValueError:
+                pass
+
+    dut._log.info(f"led_out transitioned {transitions} times in 1000 cycles")
+    dut._log.info("LED transition count test completed")

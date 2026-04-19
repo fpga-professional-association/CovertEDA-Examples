@@ -242,3 +242,197 @@ async def test_independent_leds(dut):
             dut._log.info(f"{ctr_name} not accessible (may be optimized out)")
         except ValueError:
             dut._log.warning(f"{ctr_name} not convertible to int")
+
+
+@cocotb.test()
+async def test_counter_monotonic_increase(dut):
+    """Verify div_counter0 increases monotonically over consecutive samples."""
+
+    setup_clock(dut, "clk_50m", 20)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    prev_val = None
+    for cycle in range(200):
+        await RisingEdge(dut.clk_50m)
+        if not dut.div_counter0.value.is_resolvable:
+            continue
+        try:
+            cur_val = int(dut.div_counter0.value)
+        except ValueError:
+            continue
+        if prev_val is not None:
+            assert cur_val >= prev_val or cur_val == 0, (
+                f"Counter0 went backwards at cycle {cycle}: {prev_val} -> {cur_val}"
+            )
+        prev_val = cur_val
+
+    dut._log.info(f"div_counter0 monotonically increased over 200 cycles, final={prev_val}")
+
+
+@cocotb.test()
+async def test_reset_during_counting(dut):
+    """Assert reset while counters are running, verify clean restart."""
+
+    setup_clock(dut, "clk_50m", 20)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Let counters run for a while
+    await ClockCycles(dut.clk_50m, 300)
+
+    if not dut.div_counter0.value.is_resolvable:
+        raise AssertionError("div_counter0 has X/Z before mid-run reset")
+
+    try:
+        cnt_before = int(dut.div_counter0.value)
+    except ValueError:
+        raise AssertionError("div_counter0 not convertible before mid-run reset")
+
+    dut._log.info(f"Counter0 before mid-run reset: {cnt_before}")
+    assert cnt_before > 0, "Counter0 should be >0 after 300 cycles"
+
+    # Reset mid-counting
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk_50m)
+
+    if not dut.div_counter0.value.is_resolvable:
+        raise AssertionError("div_counter0 has X/Z after mid-run reset")
+
+    try:
+        cnt_after = int(dut.div_counter0.value)
+    except ValueError:
+        raise AssertionError("div_counter0 not convertible after mid-run reset")
+
+    assert cnt_after <= 1, f"Counter0 should be 0 or 1 after reset, got {cnt_after}"
+    dut._log.info("Counter restarted cleanly after mid-run reset")
+
+
+@cocotb.test()
+async def test_very_fast_clock_5ns(dut):
+    """Use a 5ns clock period (200MHz) and verify no metastability or X/Z."""
+
+    setup_clock(dut, "clk_50m", 5)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk_50m, 500)
+
+    if not dut.led.value.is_resolvable:
+        raise AssertionError("LED has X/Z with 5ns (200MHz) clock")
+
+    try:
+        led_val = int(dut.led.value)
+        dut._log.info(f"LED with 5ns clock after 500 cycles: {led_val:#06b}")
+        assert 0 <= led_val <= 15, f"LED out of range: {led_val}"
+    except ValueError:
+        raise AssertionError("LED not convertible with 5ns clock")
+
+
+@cocotb.test()
+async def test_slow_clock_100ns(dut):
+    """Use a 100ns clock period (10MHz) and verify design still works."""
+
+    setup_clock(dut, "clk_50m", 100)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk_50m, 200)
+
+    if not dut.led.value.is_resolvable:
+        raise AssertionError("LED has X/Z with 100ns (10MHz) clock")
+
+    try:
+        led_val = int(dut.led.value)
+        dut._log.info(f"LED with 100ns clock after 200 cycles: {led_val:#06b}")
+        assert 0 <= led_val <= 15, f"LED out of range: {led_val}"
+    except ValueError:
+        raise AssertionError("LED not convertible with 100ns clock")
+
+
+@cocotb.test()
+async def test_reset_glitch_single_cycle(dut):
+    """Assert reset for only 1 cycle, verify design still resets properly."""
+
+    setup_clock(dut, "clk_50m", 20)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=1)
+
+    await RisingEdge(dut.clk_50m)
+
+    if not dut.led.value.is_resolvable:
+        raise AssertionError("LED has X/Z after single-cycle reset")
+
+    try:
+        led_val = int(dut.led.value)
+        dut._log.info(f"LED after 1-cycle reset: {led_val:#06b}")
+        assert 0 <= led_val <= 15, f"LED out of range: {led_val}"
+    except ValueError:
+        raise AssertionError("LED not convertible after 1-cycle reset")
+
+
+@cocotb.test()
+async def test_all_counters_increment_together(dut):
+    """Verify all four counters are incrementing after reset."""
+
+    setup_clock(dut, "clk_50m", 20)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk_50m, 50)
+
+    counter_vals = {}
+    for ctr_name in ["div_counter0", "div_counter1", "div_counter2", "div_counter3"]:
+        try:
+            ctr_sig = getattr(dut, ctr_name)
+            if ctr_sig.value.is_resolvable:
+                ctr_val = int(ctr_sig.value)
+                counter_vals[ctr_name] = ctr_val
+                dut._log.info(f"{ctr_name} after 50 cycles = {ctr_val}")
+                assert ctr_val > 0, f"{ctr_name} should be >0 after 50 cycles"
+            else:
+                dut._log.warning(f"{ctr_name} has X/Z after 50 cycles")
+        except AttributeError:
+            dut._log.info(f"{ctr_name} not accessible")
+        except ValueError:
+            dut._log.warning(f"{ctr_name} not convertible")
+
+    if len(counter_vals) >= 2:
+        dut._log.info(f"All accessible counters incrementing: {counter_vals}")
+    else:
+        dut._log.info("Fewer than 2 counters accessible for comparison")
+
+
+@cocotb.test()
+async def test_led_value_sampled_at_edges(dut):
+    """Sample LED at rising and falling edges to ensure consistency."""
+
+    setup_clock(dut, "clk_50m", 20)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Sample at multiple rising edges and verify value doesn't glitch
+    prev_val = None
+    glitch_count = 0
+    for cycle in range(100):
+        await RisingEdge(dut.clk_50m)
+        if not dut.led.value.is_resolvable:
+            continue
+        try:
+            cur_val = int(dut.led.value)
+        except ValueError:
+            continue
+
+        assert 0 <= cur_val <= 15, f"LED out of range at cycle {cycle}: {cur_val}"
+
+        # Check for unexpected transitions -- with large counters LED should
+        # not change in 100 cycles, but if it does, log it
+        if prev_val is not None and cur_val != prev_val:
+            glitch_count += 1
+            dut._log.info(f"LED changed at cycle {cycle}: {prev_val:#06b} -> {cur_val:#06b}")
+        prev_val = cur_val
+
+    # Wait half a clock period and sample again to check setup/hold
+    await Timer(10, unit="ns")
+    if dut.led.value.is_resolvable:
+        try:
+            mid_val = int(dut.led.value)
+            dut._log.info(f"LED sampled mid-cycle: {mid_val:#06b}")
+            assert 0 <= mid_val <= 15, f"LED mid-cycle out of range: {mid_val}"
+        except ValueError:
+            dut._log.warning("LED not convertible at mid-cycle sample")
+
+    dut._log.info(f"LED edge sampling complete, transitions observed: {glitch_count}")

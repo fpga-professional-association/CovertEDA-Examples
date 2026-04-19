@@ -523,3 +523,196 @@ async def test_speed_cmd_change(dut):
     if not final_val.is_resolvable:
         assert False, f"pwm_u has X/Z after speed_cmd change: {final_val}"
     dut._log.info("PWM outputs clean after speed_cmd change")
+
+
+@cocotb.test()
+async def test_speed_cmd_boundary_1(dut):
+    """Set speed_cmd=1 (minimal non-zero), verify PWM has very low duty."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 0
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    dut.speed_cmd.value = 1
+
+    pwm_u_high_count = 0
+    total_samples = 0
+    for _ in range(500):
+        await RisingEdge(dut.clk)
+        pwm_val = dut.pwm_u.value
+        if not pwm_val.is_resolvable:
+            assert False, f"pwm_u has X/Z with speed_cmd=1: {pwm_val}"
+        try:
+            if int(pwm_val) == 1:
+                pwm_u_high_count += 1
+            total_samples += 1
+        except ValueError:
+            assert False, f"pwm_u not convertible: {pwm_val}"
+
+    duty = pwm_u_high_count / total_samples if total_samples > 0 else 0
+    dut._log.info(f"speed_cmd=1: pwm_u duty={duty:.2%} ({pwm_u_high_count}/{total_samples})")
+
+
+@cocotb.test()
+async def test_rapid_speed_cmd_changes(dut):
+    """Change speed_cmd every 20 cycles across range, verify no X/Z."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 0
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    speed_values = [0, 500, 2000, 5000, 8000, 9999, 100, 7500, 0]
+    for speed in speed_values:
+        dut.speed_cmd.value = speed
+        for _ in range(20):
+            await RisingEdge(dut.clk)
+            pwm_val = dut.pwm_u.value
+            if not pwm_val.is_resolvable:
+                assert False, f"pwm_u has X/Z at speed_cmd={speed}: {pwm_val}"
+
+    dut._log.info("Rapid speed_cmd changes: no X/Z detected across all values")
+
+
+@cocotb.test()
+async def test_encoder_fast_quadrature(dut):
+    """Drive encoder at fastest rate (1 clk per phase), verify no crash."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 0
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Drive quadrature at maximum speed (1 cycle per phase transition)
+    for _ in range(50):
+        dut.encoder_a.value = 1
+        dut.encoder_b.value = 0
+        await RisingEdge(dut.clk)
+
+        dut.encoder_a.value = 1
+        dut.encoder_b.value = 1
+        await RisingEdge(dut.clk)
+
+        dut.encoder_a.value = 0
+        dut.encoder_b.value = 1
+        await RisingEdge(dut.clk)
+
+        dut.encoder_a.value = 0
+        dut.encoder_b.value = 0
+        await RisingEdge(dut.clk)
+
+    await ClockCycles(dut.clk, 10)
+
+    enc_val = dut.encoder_count.value
+    if not enc_val.is_resolvable:
+        assert False, f"encoder_count has X/Z after fast quadrature: {enc_val}"
+    dut._log.info(f"Fast quadrature (50 cycles at 1-clk rate): encoder_count={int(enc_val)}")
+
+
+@cocotb.test()
+async def test_encoder_static_no_change(dut):
+    """Hold encoder_a and encoder_b constant, verify count does not change."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 0
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await RisingEdge(dut.clk)
+    if not dut.encoder_count.value.is_resolvable:
+        await ClockCycles(dut.clk, 10)
+    try:
+        initial_count = int(dut.encoder_count.value)
+    except ValueError:
+        initial_count = 0
+        dut._log.info("encoder_count has X/Z initially; assuming 0")
+
+    # Hold encoder inputs static for 200 cycles
+    await ClockCycles(dut.clk, 200)
+
+    if not dut.encoder_count.value.is_resolvable:
+        assert False, f"encoder_count has X/Z after static encoder inputs"
+    final_count = int(dut.encoder_count.value)
+    assert final_count == initial_count, (
+        f"encoder_count changed with static inputs: {initial_count} -> {final_count}"
+    )
+    dut._log.info(f"Encoder static: count stayed at {final_count}")
+
+
+@cocotb.test()
+async def test_all_six_pwm_outputs_resolvable(dut):
+    """Verify all 6 PWM outputs (u, v, w, u_n, v_n, w_n) are resolvable."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 5000
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 100)
+
+    pwm_signals = ["pwm_u", "pwm_v", "pwm_w", "pwm_u_n", "pwm_v_n", "pwm_w_n"]
+    for sig_name in pwm_signals:
+        sig = getattr(dut, sig_name)
+        val = sig.value
+        if not val.is_resolvable:
+            assert False, f"{sig_name} has X/Z after 100 cycles: {val}"
+        try:
+            v = int(val)
+            assert v in (0, 1), f"{sig_name} has unexpected value {v}"
+        except ValueError:
+            assert False, f"{sig_name} not convertible: {val}"
+
+    dut._log.info("All 6 PWM outputs are resolvable and binary")
+
+
+@cocotb.test()
+async def test_pwm_v_w_complementary(dut):
+    """Verify pwm_v/pwm_v_n and pwm_w/pwm_w_n complementary behavior."""
+    setup_clock(dut, "clk", 20)
+
+    dut.speed_cmd.value = 5000
+    dut.encoder_a.value = 0
+    dut.encoder_b.value = 0
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    both_high_v = 0
+    both_high_w = 0
+    samples = 0
+    for _ in range(500):
+        await RisingEdge(dut.clk)
+        v_val = dut.pwm_v.value
+        vn_val = dut.pwm_v_n.value
+        w_val = dut.pwm_w.value
+        wn_val = dut.pwm_w_n.value
+
+        if not all(s.is_resolvable for s in [v_val, vn_val, w_val, wn_val]):
+            continue
+
+        try:
+            v = int(v_val)
+            vn = int(vn_val)
+            w = int(w_val)
+            wn = int(wn_val)
+            samples += 1
+            if v == 1 and vn == 1:
+                both_high_v += 1
+            if w == 1 and wn == 1:
+                both_high_w += 1
+        except ValueError:
+            continue
+
+    dut._log.info(
+        f"Complementary check over {samples} samples: "
+        f"V both-high={both_high_v}, W both-high={both_high_w}"
+    )

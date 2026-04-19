@@ -363,3 +363,135 @@ async def test_alternating_valid(dut):
     assert out_valid.is_resolvable, f"noc_out_valid has X/Z: {out_valid}"
     assert out_data.is_resolvable, f"noc_out_data has X/Z: {out_data}"
     dut._log.info("Alternating valid test -- PASS")
+
+
+@cocotb.test()
+async def test_zero_data_packet(dut):
+    """Send packet with data=0x0000000000000000, verify output is clean."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0
+    dut.noc_in_valid.value = 0
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await send_packet(dut, 0x0000000000000000)
+    await ClockCycles(dut.clk, 50)
+
+    out_data = dut.noc_out_data.value
+    assert out_data.is_resolvable, f"noc_out_data has X/Z after zero packet: {out_data}"
+    dut._log.info("Zero data packet: output clean -- PASS")
+
+
+@cocotb.test()
+async def test_all_ones_packet(dut):
+    """Send packet with data=0xFFFFFFFFFFFFFFFF, verify output is clean."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0
+    dut.noc_in_valid.value = 0
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await send_packet(dut, 0xFFFFFFFFFFFFFFFF)
+    await ClockCycles(dut.clk, 50)
+
+    out_data = dut.noc_out_data.value
+    assert out_data.is_resolvable, f"noc_out_data has X/Z after all-ones packet: {out_data}"
+    dut._log.info("All-ones packet: output clean -- PASS")
+
+
+@cocotb.test()
+async def test_valid_without_ready(dut):
+    """Assert noc_in_valid with noc_in_ready not checked, verify no X/Z."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0xABCD_0000_0000_0000
+    dut.noc_in_valid.value = 1
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Hold valid high for 50 cycles without waiting for ready
+    await ClockCycles(dut.clk, 50)
+    dut.noc_in_valid.value = 0
+    await ClockCycles(dut.clk, 20)
+
+    for sig_name in ["noc_out_valid", "noc_out_data", "noc_in_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after persistent valid: {sig}"
+    dut._log.info("Persistent valid without ready check: all signals clean -- PASS")
+
+
+@cocotb.test()
+async def test_rapid_ready_toggling(dut):
+    """Toggle noc_out_ready every cycle while sending data, verify no X/Z."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0
+    dut.noc_in_valid.value = 0
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Send a few packets first
+    for i in range(3):
+        await send_packet(dut, 0x1111_0000_0000_0000 | i)
+
+    # Now toggle out_ready rapidly
+    for cycle in range(200):
+        dut.noc_out_ready.value = cycle % 2
+        await RisingEdge(dut.clk)
+
+    dut.noc_out_ready.value = 1
+    await ClockCycles(dut.clk, 50)
+
+    for sig_name in ["noc_out_valid", "noc_out_data"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after ready toggling: {sig}"
+    dut._log.info("Rapid ready toggling: clean -- PASS")
+
+
+@cocotb.test()
+async def test_reset_mid_stream(dut):
+    """Reset while actively streaming packets, verify clean recovery."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0
+    dut.noc_in_valid.value = 0
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Start sending packets
+    for i in range(5):
+        await send_packet(dut, 0x2222_0000_0000_0000 | i)
+
+    # Reset mid-stream
+    dut.noc_in_valid.value = 0
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await ClockCycles(dut.clk, 20)
+
+    # Verify clean state after reset
+    out_valid = dut.noc_out_valid.value
+    assert out_valid.is_resolvable, f"noc_out_valid has X/Z after mid-stream reset: {out_valid}"
+    try:
+        assert int(out_valid) == 0, f"noc_out_valid should be 0 after reset, got {int(out_valid)}"
+    except ValueError:
+        assert False, f"noc_out_valid not convertible: {out_valid}"
+
+    in_ready = dut.noc_in_ready.value
+    assert in_ready.is_resolvable, f"noc_in_ready has X/Z after reset: {in_ready}"
+    dut._log.info("Reset mid-stream: clean recovery -- PASS")
+
+
+@cocotb.test()
+async def test_large_burst_100_packets(dut):
+    """Send 100 packets rapidly, verify design handles large burst."""
+    setup_clock(dut, "clk", 2)
+    dut.noc_in_data.value = 0
+    dut.noc_in_valid.value = 0
+    dut.noc_out_ready.value = 1
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for i in range(100):
+        await send_packet(dut, 0x3333_0000_0000_0000 | i)
+
+    await ClockCycles(dut.clk, 200)
+
+    for sig_name in ["noc_out_valid", "noc_out_data", "noc_in_ready"]:
+        sig = getattr(dut, sig_name).value
+        assert sig.is_resolvable, f"{sig_name} has X/Z after 100-packet burst: {sig}"
+    dut._log.info("100-packet burst: all outputs clean -- PASS")
