@@ -2,39 +2,13 @@
 // Target: LFE5U-45F-8BG381C
 // Oscillator: 48 MHz
 
-LOCATE COMP "clk_48m" SITE "J4";
-LOCATE COMP "reset_n" SITE "U18";
 
 // UART pins
-LOCATE COMP "uart_tx" SITE "N14";
-LOCATE COMP "uart_rx" SITE "M14";
 
 // USB interface (simulated as parallel interface for this demo)
-LOCATE COMP "usb_rx_data" SITE "P13";
-LOCATE COMP "usb_data_in[0]" SITE "P11";
-LOCATE COMP "usb_data_in[1]" SITE "P10";
-LOCATE COMP "usb_data_in[2]" SITE "P9";
-LOCATE COMP "usb_data_in[3]" SITE "P8";
-LOCATE COMP "usb_data_in[4]" SITE "P7";
-LOCATE COMP "usb_data_in[5]" SITE "P6";
-LOCATE COMP "usb_data_in[6]" SITE "P5";
-LOCATE COMP "usb_data_in[7]" SITE "P4";
 
-LOCATE COMP "usb_tx_ready" SITE "R14";
-LOCATE COMP "usb_tx_valid" SITE "R13";
-LOCATE COMP "usb_data_out[0]" SITE "R12";
-LOCATE COMP "usb_data_out[1]" SITE "R11";
-LOCATE COMP "usb_data_out[2]" SITE "R10";
-LOCATE COMP "usb_data_out[3]" SITE "R9";
-LOCATE COMP "usb_data_out[4]" SITE "R8";
-LOCATE COMP "usb_data_out[5]" SITE "R7";
-LOCATE COMP "usb_data_out[6]" SITE "R6";
-LOCATE COMP "usb_data_out[7]" SITE "R5";
 
 // Status LEDs
-LOCATE COMP "status_led[0]" SITE "T20";
-LOCATE COMP "status_led[1]" SITE "T19";
-LOCATE COMP "status_led[2]" SITE "T18";
 
 // I/O voltage standards
 IOBUF PORT "clk_48m" IO_TYPE=LVCMOS33;

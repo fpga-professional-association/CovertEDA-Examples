@@ -34,7 +34,6 @@ set_false_path -from [get_ports rst_n]
 
 # ---- Placement Constraints ----
 # Locate DSP blocks near arithmetic units
-set_property LOC SLICE_X45Y100 [get_cells dma_top/axi_read/addr_r]
 
 # ---- Design Constraints ----
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
@@ -42,3 +41,36 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
 # ---- Optimization Settings ----
 # Maximize performance for this high-speed design
 set_property SEVERITY WARNING [get_drc_checks PLCK-12]
+
+# ========== Virtual-port assignments ==========
+# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+set_property IO_BUFFER_TYPE NONE [get_ports {clk}]
+set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
+set_property IO_BUFFER_TYPE NONE [get_ports {start}]
+set_property IO_BUFFER_TYPE NONE [get_ports {addr}]
+set_property IO_BUFFER_TYPE NONE [get_ports {burst_len}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_araddr}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_arlen}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_arsize}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_arburst}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_arvalid}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_arready}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_rdata}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_rresp}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_rlast}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_rvalid}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_rready}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awaddr}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awlen}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awsize}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awburst}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awvalid}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_awready}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_wdata}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_wstrb}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_wlast}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_wvalid}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_wready}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_bresp}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_bvalid}]
+set_property IO_BUFFER_TYPE NONE [get_ports {m_axi_bready}]

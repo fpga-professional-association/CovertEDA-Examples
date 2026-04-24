@@ -2,10 +2,10 @@
 # Device: AC7t1500ES0 (Speedster7t)
 
 # Clock input - 100 MHz
-set_pin clk -loc CLK0 -iostandard LVDS
+set_pin clk -iostandard LVDS
 
 # Reset input
-set_pin rst_n -loc RST0 -iostandard LVCMOS18
+set_pin rst_n -iostandard LVCMOS18
 
 # LED output
-set_pin led -loc LED0 -iostandard LVCMOS18 -slew SLOW -drive 8
+set_pin led -iostandard LVCMOS18 -slew SLOW -drive 8

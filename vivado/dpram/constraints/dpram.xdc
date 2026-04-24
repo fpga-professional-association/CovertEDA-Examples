@@ -18,3 +18,18 @@ set_output_delay -clock clk_b -max 2.0 [get_ports {dout_b[*]}]
 
 set_property -dict { PACKAGE_PIN E3 IOSTANDARD LVCMOS33 } [get_ports {clk_a}]
 set_property -dict { PACKAGE_PIN H16 IOSTANDARD LVCMOS33 } [get_ports {clk_b}]
+
+# ========== Virtual-port assignments ==========
+# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+set_property IO_BUFFER_TYPE NONE [get_ports {clk_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {en_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {we_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {addr_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {din_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {dout_a}]
+set_property IO_BUFFER_TYPE NONE [get_ports {clk_b}]
+set_property IO_BUFFER_TYPE NONE [get_ports {en_b}]
+set_property IO_BUFFER_TYPE NONE [get_ports {we_b}]
+set_property IO_BUFFER_TYPE NONE [get_ports {addr_b}]
+set_property IO_BUFFER_TYPE NONE [get_ports {din_b}]
+set_property IO_BUFFER_TYPE NONE [get_ports {dout_b}]

@@ -1,12 +1,12 @@
 # ML Accelerator PDC
 
-set_pin clk -loc ML_CLK0 -iostandard LVDS
-set_pin rst_n -loc ML_RST0 -iostandard LVCMOS18
+set_pin clk -iostandard LVDS
+set_pin rst_n -iostandard LVCMOS18
 
-set_pin input_data[31] -loc ML_INPUT_31
-set_pin input_valid -loc ML_INPUT_VALID
-set_pin input_ready -loc ML_INPUT_READY
+set_pin input_data[31]
+set_pin input_valid
+set_pin input_ready
 
-set_pin output_data[31] -loc ML_OUTPUT_31
-set_pin output_valid -loc ML_OUTPUT_VALID
-set_pin output_ready -loc ML_OUTPUT_READY
+set_pin output_data[31]
+set_pin output_valid
+set_pin output_ready

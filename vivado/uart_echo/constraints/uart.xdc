@@ -43,3 +43,16 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
 # The FIFO is synchronous to sys_clk, but the clock domain crossing
 # synchronizers have their own CDC constraints built in
 set_false_path -from [get_clocks clk_16x_divider/clk_16x] -to [get_clocks sys_clk]
+
+# ========== Virtual-port assignments ==========
+# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+set_property IO_BUFFER_TYPE NONE [get_ports {clk}]
+set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
+set_property IO_BUFFER_TYPE NONE [get_ports {din}]
+set_property IO_BUFFER_TYPE NONE [get_ports {wr_en}]
+set_property IO_BUFFER_TYPE NONE [get_ports {dout}]
+set_property IO_BUFFER_TYPE NONE [get_ports {rd_en}]
+set_property IO_BUFFER_TYPE NONE [get_ports {empty}]
+set_property IO_BUFFER_TYPE NONE [get_ports {full}]
+set_property IO_BUFFER_TYPE NONE [get_ports {almost_full}]
+set_property IO_BUFFER_TYPE NONE [get_ports {count}]

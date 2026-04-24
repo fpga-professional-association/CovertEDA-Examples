@@ -49,3 +49,10 @@ set_property PROHIBIT TRUE [get_sites SLICE_X0Y1]
 
 # Optimize for area
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
+
+# ========== Virtual-port assignments ==========
+# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+set_property IO_BUFFER_TYPE NONE [get_ports {clk_in}]
+set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
+set_property IO_BUFFER_TYPE NONE [get_ports {led_out}]
+set_property IO_BUFFER_TYPE NONE [get_ports {btn_in}]

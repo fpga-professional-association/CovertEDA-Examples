@@ -2,29 +2,13 @@
 // Target: LFE5U-85F-6BG554I
 // Oscillator: 50 MHz
 
-LOCATE COMP "clk_50m" SITE "P4";
-LOCATE COMP "reset_n" SITE "U17";
 
 // GPIO Interface
-LOCATE COMP "gpio_in[0]" SITE "V20";
-LOCATE COMP "gpio_in[1]" SITE "W20";
-LOCATE COMP "gpio_in[2]" SITE "U20";
-LOCATE COMP "gpio_in[3]" SITE "T20";
 
-LOCATE COMP "gpio_out[0]" SITE "V19";
-LOCATE COMP "gpio_out[1]" SITE "W19";
-LOCATE COMP "gpio_out[2]" SITE "U19";
-LOCATE COMP "gpio_out[3]" SITE "T19";
 
 // Status LEDs
-LOCATE COMP "status_led[0]" SITE "R20";
-LOCATE COMP "status_led[1]" SITE "R19";
-LOCATE COMP "status_led[2]" SITE "R18";
-LOCATE COMP "status_led[3]" SITE "R17";
 
 // Debug serial interface
-LOCATE COMP "debug_tx" SITE "Q20";
-LOCATE COMP "debug_rx" SITE "Q19";
 
 // I/O voltage standards
 IOBUF PORT "clk_50m" IO_TYPE=LVCMOS33;

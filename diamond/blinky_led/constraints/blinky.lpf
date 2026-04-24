@@ -2,12 +2,6 @@
 // Target: LFE5U-25F-6BG256C
 // Oscillator: 25 MHz on P3
 
-LOCATE COMP "clk" SITE "P3";
-LOCATE COMP "reset_n" SITE "T14";
-LOCATE COMP "led_out[0]" SITE "B2";
-LOCATE COMP "led_out[1]" SITE "C2";
-LOCATE COMP "led_out[2]" SITE "A2";
-LOCATE COMP "led_out[3]" SITE "B1";
 
 // I/O voltage standard
 IOBUF PORT "clk" IO_TYPE=LVCMOS33;

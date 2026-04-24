@@ -1,5 +1,5 @@
 Flow report for servo_controller
-Thu Apr 23 21:27:23 2026
+Fri Apr 24 13:22:31 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-----------------------------------------------------+
 ; Flow Summary                                        ;
 +-------------+---------------------------------------+
-; Flow Status ; Successful - Thu Apr 23 21:27:23 2026 ;
+; Flow Status ; Successful - Fri Apr 24 13:22:31 2026 ;
 +-------------+---------------------------------------+
 
 
@@ -28,7 +28,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/23/2026 21:27:15 ;
+; Start date & time ; 04/24/2026 13:22:23 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; servo_controller    ;
 +-------------------+---------------------+
@@ -39,7 +39,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +--------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name          ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID    ; 193621989228127.177699763514296 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID    ; 193621989228127.177705494320564 ; --            ; --          ; --         ;
 ; NUM_PARALLEL_PROCESSORS  ; 4                               ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY ; output_files                    ; --            ; --          ; --         ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
@@ -50,7 +50,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------+--------------+---------------------+
 ; Module Name ; Elapsed Time ; Peak Virtual Memory ;
 +-------------+--------------+---------------------+
-; Synthesis   ; 00:00:09     ; 804 MB              ;
+; Synthesis   ; 00:00:09     ; 803 MB              ;
 ; Total       ; 00:00:09     ; --                  ;
 +-------------+--------------+---------------------+
 

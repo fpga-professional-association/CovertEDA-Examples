@@ -2,29 +2,29 @@
 # Device: MPFS250T-FCVG484I (PolarFire SoC)
 
 # Clock input - 100 MHz
-set_io clk -pinname P19 -fixed yes -iostandard LVCMOS33 -bank 1
+set_io clk -iostandard LVCMOS33 -bank 1
 
 # Reset input (active low)
-set_io rst_n -pinname R1 -fixed yes -iostandard LVCMOS33 -bank 1
+set_io rst_n -iostandard LVCMOS33 -bank 1
 
 # Instruction Memory Interface
-set_io imem_addr[31] -pinname T2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[30] -pinname T3 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[29] -pinname U2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[28] -pinname U3 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[27] -pinname V2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[26] -pinname V3 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[25] -pinname W2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[24] -pinname W3 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[23] -pinname Y2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[22] -pinname Y3 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[21] -pinname AA2 -fixed yes -iostandard LVCMOS33 -bank 2
-set_io imem_addr[20] -pinname AA3 -fixed yes -iostandard LVCMOS33 -bank 2
+set_io imem_addr[31] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[30] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[29] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[28] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[27] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[26] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[25] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[24] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[23] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[22] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[21] -iostandard LVCMOS33 -bank 2
+set_io imem_addr[20] -iostandard LVCMOS33 -bank 2
 
 # Data Memory Interface
-set_io dmem_addr[31] -pinname AB2 -fixed yes -iostandard LVCMOS33 -bank 3
-set_io dmem_addr[30] -pinname AB3 -fixed yes -iostandard LVCMOS33 -bank 3
+set_io dmem_addr[31] -iostandard LVCMOS33 -bank 3
+set_io dmem_addr[30] -iostandard LVCMOS33 -bank 3
 
 # Debug outputs
-set_io pc_debug[31] -pinname AC1 -fixed yes -iostandard LVCMOS33 -bank 3
-set_io reg_x1_debug[31] -pinname AC2 -fixed yes -iostandard LVCMOS33 -bank 3
+set_io pc_debug[31] -iostandard LVCMOS33 -bank 3
+set_io reg_x1_debug[31] -iostandard LVCMOS33 -bank 3

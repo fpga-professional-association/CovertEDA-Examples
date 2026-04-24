@@ -1,13 +1,13 @@
 # NoC Endpoint PDC
 # 500 MHz NoC clock
 
-set_pin clk -loc NOC_CLK0 -iostandard LVDS
+set_pin clk -iostandard LVDS
 
-set_pin noc_in_data[63] -loc NOC_IN_63
-set_pin noc_in_data[62] -loc NOC_IN_62
-set_pin noc_in_valid -loc NOC_VALID_IN
-set_pin noc_in_ready -loc NOC_READY_IN
+set_pin noc_in_data[63]
+set_pin noc_in_data[62]
+set_pin noc_in_valid
+set_pin noc_in_ready
 
-set_pin noc_out_data[63] -loc NOC_OUT_63
-set_pin noc_out_data[62] -loc NOC_OUT_62
-set_pin noc_out_valid -loc NOC_VALID_OUT
+set_pin noc_out_data[63]
+set_pin noc_out_data[62]
+set_pin noc_out_valid

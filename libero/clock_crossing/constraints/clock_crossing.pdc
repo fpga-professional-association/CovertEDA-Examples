@@ -1,10 +1,10 @@
 # Libero PDC constraints for clock_crossing
 # Device: MPF100T-1FCG484I
 
-set_io wr_clk -pinname P19 -fixed yes
-set_io rd_clk -pinname R2 -fixed yes
-set_io wr_reset_n -pinname R1 -fixed yes
-set_io rd_reset_n -pinname T1 -fixed yes
+set_io wr_clk
+set_io rd_clk
+set_io wr_reset_n
+set_io rd_reset_n
 
 set_io wr_clk -iostandard LVCMOS33
 set_io rd_clk -iostandard LVCMOS33

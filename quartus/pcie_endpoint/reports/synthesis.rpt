@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:26:14 2026
+Fri Apr 24 13:21:24 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -54,7 +54,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:26:14 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:21:24 2026      ;
 ; Revision Name                        ; pcie_endpoint                              ;
 ; Top-level Entity Name                ; pcie_top                                   ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -182,7 +182,7 @@ on the Quartus Prime software download page.
 ; pcie_ip_stub.sv                  ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/pcie_endpoint/.build/pcie_ip_stub.sv ;         ;           ;               ; b22e3e417226ade9233140cd9969ce16 ;
 ; pcie_top.sv                      ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/pcie_endpoint/.build/pcie_top.sv     ;         ;           ;               ; 25b1552c72ab51e14fb91dc3395aa3d4 ;
 ; tlp_handler.sv                   ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/pcie_endpoint/.build/tlp_handler.sv  ;         ;           ;               ; bfb30ebfee444d5bd69e32dfe1c36753 ;
-; pcie.sdc                         ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/pcie_endpoint/.build/pcie.sdc        ;         ;           ;               ; 598c738e9630f328cc70d729e8346de3 ;
+; pcie.sdc                         ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/pcie_endpoint/.build/pcie.sdc        ;         ;           ;               ; 2a8b806573254cbfb95edd7b18322d5b ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -400,8 +400,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:26:05 2026
-    Info: System process ID: 23804
+    Info: Processing started: Fri Apr 24 13:21:15 2026
+    Info: System process ID: 28652
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off pcie_endpoint -c pcie_endpoint --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -442,9 +442,9 @@ Info (21057): Implemented 193 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 801 megabytes
-    Info: Processing ended: Thu Apr 23 21:26:14 2026
+    Info: Peak virtual memory: 802 megabytes
+    Info: Processing ended: Fri Apr 24 13:21:24 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 23804
+    Info: System process ID: 28652
 
 

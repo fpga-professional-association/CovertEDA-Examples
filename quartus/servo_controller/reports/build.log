@@ -15,14 +15,14 @@ Info: Running Quartus Prime Shell
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Thu Apr 23 21:27:13 2026
-    Info: System process ID: 23540
+    Info: Processing started: Fri Apr 24 13:22:21 2026
+    Info: System process ID: 28976
 Info: Command: quartus_sh -t run_flow.tcl
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:27:14 2026
-    Info: System process ID: 14296
+    Info: Processing started: Fri Apr 24 13:22:22 2026
+    Info: System process ID: 20564
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off servo_controller -c servo_controller --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -47,15 +47,15 @@ Info (21057): Implemented 96 device resources after synthesis - the final resour
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 804 megabytes
-    Info: Processing ended: Thu Apr 23 21:27:23 2026
+    Info: Peak virtual memory: 803 megabytes
+    Info: Processing ended: Fri Apr 24 13:22:31 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 14296
+    Info: System process ID: 20564
 Info (23030): Evaluation of Tcl script run_flow.tcl was successful
 Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 451 megabytes
-    Info: Processing ended: Thu Apr 23 21:27:24 2026
+    Info: Processing ended: Fri Apr 24 13:22:32 2026
     Info: Elapsed time: 00:00:11
-    Info: System process ID: 23540
+    Info: System process ID: 28976
 
 --- STDERR ---

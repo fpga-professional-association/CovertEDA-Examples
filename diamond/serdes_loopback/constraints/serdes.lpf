@@ -2,30 +2,15 @@
 // Target: LFE5UM5G-85F-8BG756C
 // SERDES frequency: 2.5 Gbps (312.5 MHz)
 
-LOCATE COMP "ref_clk" SITE "G23";
-LOCATE COMP "reset_n" SITE "Y18";
 
 // SERDES differential pairs
 // TX pair
-LOCATE COMP "serdes_tx_p" SITE "C28";
-LOCATE COMP "serdes_tx_n" SITE "D28";
 
 // RX pair
-LOCATE COMP "serdes_rx_p" SITE "A28";
-LOCATE COMP "serdes_rx_n" SITE "B28";
 
 // Status LEDs
-LOCATE COMP "prbs_status_led[0]" SITE "A14";
-LOCATE COMP "prbs_status_led[1]" SITE "A13";
-LOCATE COMP "prbs_status_led[2]" SITE "A12";
-LOCATE COMP "prbs_status_led[3]" SITE "A11";
-LOCATE COMP "prbs_status_led[4]" SITE "A10";
-LOCATE COMP "prbs_status_led[5]" SITE "A9";
-LOCATE COMP "prbs_status_led[6]" SITE "A8";
-LOCATE COMP "prbs_status_led[7]" SITE "A7";
 
 // Test mode input
-LOCATE COMP "test_mode" SITE "W18";
 
 // I/O voltage standards
 IOBUF PORT "ref_clk" IO_TYPE=LVCMOS33;

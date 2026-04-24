@@ -15,14 +15,14 @@ Info: Running Quartus Prime Shell
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Fri Apr 24 12:37:58 2026
-    Info: System process ID: 21980
+    Info: Processing started: Fri Apr 24 13:19:45 2026
+    Info: System process ID: 24436
 Info: Command: quartus_sh -t run_flow.tcl
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Fri Apr 24 12:38:02 2026
-    Info: System process ID: 25332
+    Info: Processing started: Fri Apr 24 13:19:46 2026
+    Info: System process ID: 13620
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off blinky_led -c blinky_led --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -46,15 +46,15 @@ Info (21057): Implemented 144 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 801 megabytes
-    Info: Processing ended: Fri Apr 24 12:38:11 2026
-    Info: Elapsed time: 00:00:09
-    Info: System process ID: 25332
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Fri Apr 24 13:19:56 2026
+    Info: Elapsed time: 00:00:10
+    Info: System process ID: 13620
 Info (23030): Evaluation of Tcl script run_flow.tcl was successful
 Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 451 megabytes
-    Info: Processing ended: Fri Apr 24 12:38:12 2026
-    Info: Elapsed time: 00:00:14
-    Info: System process ID: 21980
+    Info: Processing ended: Fri Apr 24 13:19:57 2026
+    Info: Elapsed time: 00:00:12
+    Info: System process ID: 24436
 
 --- STDERR ---

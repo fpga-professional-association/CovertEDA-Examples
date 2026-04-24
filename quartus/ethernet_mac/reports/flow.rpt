@@ -1,5 +1,5 @@
 Flow report for ethernet_mac
-Thu Apr 23 21:25:20 2026
+Fri Apr 24 13:20:29 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-----------------------------------------------------+
 ; Flow Summary                                        ;
 +-------------+---------------------------------------+
-; Flow Status ; Successful - Thu Apr 23 21:25:20 2026 ;
+; Flow Status ; Successful - Fri Apr 24 13:20:29 2026 ;
 +-------------+---------------------------------------+
 
 
@@ -28,7 +28,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/23/2026 21:25:12 ;
+; Start date & time ; 04/24/2026 13:20:21 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ethernet_mac        ;
 +-------------------+---------------------+
@@ -39,7 +39,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +--------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name          ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID    ; 193621989228127.177699751222604 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID    ; 193621989228127.177705482128004 ; --            ; --          ; --         ;
 ; NUM_PARALLEL_PROCESSORS  ; 4                               ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY ; output_files                    ; --            ; --          ; --         ;
 ; TOP_LEVEL_ENTITY         ; eth_top                         ; ethernet_mac  ; --          ; --         ;
@@ -51,7 +51,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------+--------------+---------------------+
 ; Module Name ; Elapsed Time ; Peak Virtual Memory ;
 +-------------+--------------+---------------------+
-; Synthesis   ; 00:00:09     ; 801 MB              ;
+; Synthesis   ; 00:00:09     ; 800 MB              ;
 ; Total       ; 00:00:09     ; --                  ;
 +-------------+--------------+---------------------+
 

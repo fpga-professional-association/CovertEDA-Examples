@@ -1,11 +1,8 @@
 # Priority Encoder - Pin Definition Constraints
 # Device: LIFCL-40-7BG400I (CABGA400 package)
 
-ldc_set_location -site {D10} [get_ports clk]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
-ldc_set_location -site {D9} [get_ports rst_n]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
-ldc_set_location -site {D7} [get_ports valid]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports valid]

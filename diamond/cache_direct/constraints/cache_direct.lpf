@@ -1,8 +1,6 @@
 // Lattice Diamond LPF constraints for cache_direct
 // Target: LFE5U-85F-6BG756C
 
-LOCATE COMP "clk" SITE "P3";
-LOCATE COMP "reset_n" SITE "T14";
 
 IOBUF PORT "clk" IO_TYPE=LVCMOS33;
 IOBUF PORT "reset_n" IO_TYPE=LVCMOS33;

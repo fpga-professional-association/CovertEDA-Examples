@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:26:03 2026
+Fri Apr 24 13:21:13 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -48,7 +48,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:26:03 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:21:12 2026      ;
 ; Revision Name                        ; nios_hello                                 ;
 ; Top-level Entity Name                ; nios_top                                   ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -175,7 +175,7 @@ on the Quartus Prime software download page.
 ; gpio_ctrl.v                      ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/nios_hello/.build/gpio_ctrl.v  ;         ;           ;               ; 498d4331e37f14a10eac48e96ba60cb2 ;
 ; nios_top.v                       ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/nios_hello/.build/nios_top.v   ;         ;           ;               ; a83b28ef99e88327b014bcda8bf4b027 ;
 ; system_pll.v                     ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/nios_hello/.build/system_pll.v ;         ;           ;               ; b79a1d5bd0eaedbef669a1fbec9e8d65 ;
-; nios.sdc                         ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/nios_hello/.build/nios.sdc     ;         ;           ;               ; e15117554cb74a9a16d7aedc203ed33e ;
+; nios.sdc                         ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/nios_hello/.build/nios.sdc     ;         ;           ;               ; d601ca74c1fa90bcb553410d3e914c45 ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -321,8 +321,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:25:55 2026
-    Info: System process ID: 3636
+    Info: Processing started: Fri Apr 24 13:21:04 2026
+    Info: System process ID: 27012
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off nios_hello -c nios_hello --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -354,9 +354,9 @@ Info (21057): Implemented 35 device resources after synthesis - the final resour
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 802 megabytes
-    Info: Processing ended: Thu Apr 23 21:26:03 2026
-    Info: Elapsed time: 00:00:08
-    Info: System process ID: 3636
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Fri Apr 24 13:21:13 2026
+    Info: Elapsed time: 00:00:09
+    Info: System process ID: 27012
 
 

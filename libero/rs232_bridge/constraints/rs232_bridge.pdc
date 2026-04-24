@@ -1,12 +1,12 @@
 # Libero PDC constraints for rs232_bridge
 # Device: MPF100T-1FCG484I
 
-set_io clk -pinname P19 -fixed yes
-set_io reset_n -pinname R1 -fixed yes
-set_io txd -pinname T2 -fixed yes
-set_io rxd -pinname T3 -fixed yes
-set_io cts_n -pinname T4 -fixed yes
-set_io rts_n -pinname T5 -fixed yes
+set_io clk
+set_io reset_n
+set_io txd
+set_io rxd
+set_io cts_n
+set_io rts_n
 
 set_io clk -iostandard LVCMOS33
 set_io reset_n -iostandard LVCMOS33

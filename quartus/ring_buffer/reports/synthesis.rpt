@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:26:47 2026
+Fri Apr 24 13:21:58 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -48,7 +48,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:26:47 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:21:58 2026      ;
 ; Revision Name                        ; ring_buffer                                ;
 ; Top-level Entity Name                ; ring_buffer                                ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -167,25 +167,25 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------------------------+-------------------------+-------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Synthesis Source Files Read                                                                                                                                                                                                                                                                                                                                                                                                                  ;
-+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
-; File Name with User-Entered Path                                                                                                          ; File Type                                                                   ; File Name with Absolute Path                                                                                                              ; Library ; IP Source ; Include Files ; MD5                              ;
-+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
-; ring_buffer.v                                                                                                                             ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/ring_buffer.v                                      ;         ;           ;               ; 086683d36bc03d7600b8f44036820f09 ;
-; ring_buffer.sdc                                                                                                                           ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/ring_buffer.sdc                                    ;         ;           ;               ; 836f3ac842dfecde9c1752ab7725f82c ;
-; c:/altera_pro/25.3/quartus/libraries/megafunctions/altsyncram.tdf                                                                         ; Megafunction                                                                ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altsyncram.tdf                                                                         ; work    ;           ;               ;                                  ;
-; stratix_ram_block.inc                                                                                                                     ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                  ;         ;           ;               ;                                  ;
-; lpm_mux.inc                                                                                                                               ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/lpm_mux.inc                                                                            ;         ;           ;               ;                                  ;
-; lpm_decode.inc                                                                                                                            ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/lpm_decode.inc                                                                         ;         ;           ;               ;                                  ;
-; aglobal253.inc                                                                                                                            ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/aglobal253.inc                                                                         ;         ;           ;               ;                                  ;
-; a_rdenreg.inc                                                                                                                             ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/a_rdenreg.inc                                                                          ;         ;           ;               ;                                  ;
-; altrom.inc                                                                                                                                ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altrom.inc                                                                             ;         ;           ;               ;                                  ;
-; altram.inc                                                                                                                                ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altram.inc                                                                             ;         ;           ;               ;                                  ;
-; altdpram.inc                                                                                                                              ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altdpram.inc                                                                           ;         ;           ;               ;                                  ;
-; cbx.lst                                                                                                                                   ; Auto-Found Unspecified File                                                 ; c:/altera_pro/25.3/quartus/libraries/megafunctions/cbx.lst                                                                                ;         ;           ;               ;                                  ;
-; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/tmp-clearbox/ring_buffer/4484/altsyncram_4ovl1.tdf ; Auto-Generated Megafunction                                                 ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/tmp-clearbox/ring_buffer/4484/altsyncram_4ovl1.tdf ;         ;           ;               ;                                  ;
-+-------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Synthesis Source Files Read                                                                                                                                                                                                                                                                                                                                                                                                                    ;
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
+; File Name with User-Entered Path                                                                                                           ; File Type                                                                   ; File Name with Absolute Path                                                                                                               ; Library ; IP Source ; Include Files ; MD5                              ;
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
+; ring_buffer.v                                                                                                                              ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/ring_buffer.v                                       ;         ;           ;               ; 086683d36bc03d7600b8f44036820f09 ;
+; ring_buffer.sdc                                                                                                                            ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/ring_buffer.sdc                                     ;         ;           ;               ; bd1fb07bee4f6f117fb5905912c39003 ;
+; c:/altera_pro/25.3/quartus/libraries/megafunctions/altsyncram.tdf                                                                          ; Megafunction                                                                ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altsyncram.tdf                                                                          ; work    ;           ;               ;                                  ;
+; stratix_ram_block.inc                                                                                                                      ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                   ;         ;           ;               ;                                  ;
+; lpm_mux.inc                                                                                                                                ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/lpm_mux.inc                                                                             ;         ;           ;               ;                                  ;
+; lpm_decode.inc                                                                                                                             ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/lpm_decode.inc                                                                          ;         ;           ;               ;                                  ;
+; aglobal253.inc                                                                                                                             ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/aglobal253.inc                                                                          ;         ;           ;               ;                                  ;
+; a_rdenreg.inc                                                                                                                              ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/a_rdenreg.inc                                                                           ;         ;           ;               ;                                  ;
+; altrom.inc                                                                                                                                 ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altrom.inc                                                                              ;         ;           ;               ;                                  ;
+; altram.inc                                                                                                                                 ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altram.inc                                                                              ;         ;           ;               ;                                  ;
+; altdpram.inc                                                                                                                               ; Auto-Found File                                                             ; c:/altera_pro/25.3/quartus/libraries/megafunctions/altdpram.inc                                                                            ;         ;           ;               ;                                  ;
+; cbx.lst                                                                                                                                    ; Auto-Found Unspecified File                                                 ; c:/altera_pro/25.3/quartus/libraries/megafunctions/cbx.lst                                                                                 ;         ;           ;               ;                                  ;
+; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/tmp-clearbox/ring_buffer/29484/altsyncram_4ovl1.tdf ; Auto-Generated Megafunction                                                 ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ring_buffer/.build/tmp-clearbox/ring_buffer/29484/altsyncram_4ovl1.tdf ;         ;           ;               ;                                  ;
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
 +--------------------------------------------------------------------------------------------+
@@ -233,13 +233,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+--------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Source Assignments for mem_rtl_0|auto_generated                                                                         ;
-+---------------------------------+--------------------+------+----+------------------------------------------------------+
-; Assignment                      ; Value              ; From ; To ; Source Location                                      ;
-+---------------------------------+--------------------+------+----+------------------------------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -  ; tmp-clearbox/ring_buffer/4484/altsyncram_4ovl1.tdf:0 ;
-+---------------------------------+--------------------+------+----+------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Source Assignments for mem_rtl_0|auto_generated                                                                          ;
++---------------------------------+--------------------+------+----+-------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To ; Source Location                                       ;
++---------------------------------+--------------------+------+----+-------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -  ; tmp-clearbox/ring_buffer/29484/altsyncram_4ovl1.tdf:0 ;
++---------------------------------+--------------------+------+----+-------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------+
@@ -373,8 +373,8 @@ Note: Logical size represents the size at the time of creation, implementation b
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:26:38 2026
-    Info: System process ID: 4484
+    Info: Processing started: Fri Apr 24 13:21:49 2026
+    Info: System process ID: 29484
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off ring_buffer -c ring_buffer --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -418,9 +418,9 @@ Info (21057): Implemented 78 device resources after synthesis - the final resour
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 804 megabytes
-    Info: Processing ended: Thu Apr 23 21:26:47 2026
+    Info: Peak virtual memory: 805 megabytes
+    Info: Processing ended: Fri Apr 24 13:21:58 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 4484
+    Info: System process ID: 29484
 
 

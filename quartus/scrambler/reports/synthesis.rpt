@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:27:12 2026
+Fri Apr 24 13:22:20 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -45,7 +45,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:27:11 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:22:19 2026      ;
 ; Revision Name                        ; scrambler                                  ;
 ; Top-level Entity Name                ; scrambler                                  ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -170,7 +170,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                       ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; scrambler.v                      ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/scrambler/.build/scrambler.v   ;         ;           ;               ; 797814a6997fc4825211f11266b2e03b ;
-; scrambler.sdc                    ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/scrambler/.build/scrambler.sdc ;         ;           ;               ; eeae02a45a856bf5513faacf8416f94a ;
+; scrambler.sdc                    ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/scrambler/.build/scrambler.sdc ;         ;           ;               ; 1131432a27abf8ac3f278b72ef3688ea ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -282,8 +282,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:27:02 2026
-    Info: System process ID: 23932
+    Info: Processing started: Fri Apr 24 13:22:11 2026
+    Info: System process ID: 26452
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off scrambler -c scrambler --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -307,9 +307,9 @@ Info (21057): Implemented 46 device resources after synthesis - the final resour
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 800 megabytes
-    Info: Processing ended: Thu Apr 23 21:27:12 2026
-    Info: Elapsed time: 00:00:10
-    Info: System process ID: 23932
+    Info: Peak virtual memory: 799 megabytes
+    Info: Processing ended: Fri Apr 24 13:22:20 2026
+    Info: Elapsed time: 00:00:09
+    Info: System process ID: 26452
 
 

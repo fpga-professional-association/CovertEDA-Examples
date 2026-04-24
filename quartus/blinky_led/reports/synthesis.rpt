@@ -1,5 +1,5 @@
 Synthesis report
-Fri Apr 24 12:38:11 2026
+Fri Apr 24 13:19:56 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -44,7 +44,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Fri Apr 24 12:38:11 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:19:56 2026      ;
 ; Revision Name                        ; blinky_led                                 ;
 ; Top-level Entity Name                ; blinky_top                                 ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -169,7 +169,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                       ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; blinky_top.v                     ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/blinky_led/.build/blinky_top.v ;         ;           ;               ; f679fda96b5a9ce5da22eb96ca16ef63 ;
-; blinky.sdc                       ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/blinky_led/.build/blinky.sdc   ;         ;           ;               ; 1df5646909172bd78fd97ece4ad4138e ;
+; blinky.sdc                       ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/blinky_led/.build/blinky.sdc   ;         ;           ;               ; ffb68aa7d70333d8eb062a96c013c5a8 ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -269,8 +269,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Fri Apr 24 12:38:02 2026
-    Info: System process ID: 25332
+    Info: Processing started: Fri Apr 24 13:19:46 2026
+    Info: System process ID: 13620
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off blinky_led -c blinky_led --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -294,9 +294,9 @@ Info (21057): Implemented 144 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 801 megabytes
-    Info: Processing ended: Fri Apr 24 12:38:11 2026
-    Info: Elapsed time: 00:00:09
-    Info: System process ID: 25332
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Fri Apr 24 13:19:56 2026
+    Info: Elapsed time: 00:00:10
+    Info: System process ID: 13620
 
 

@@ -1,28 +1,28 @@
 QUARTUS build summary
-Date: 2026-04-23 21:28:08
+Date: 2026-04-24 13:23:15
 ==================================================
 Total:   19
 PASS:    19
 FAIL:    0
-Runtime: 212.6s
+Runtime: 210.5s
 ==================================================
 
-  PASS  blinky_led                        11.9s
-  PASS  bus_monitor                       11.8s
-  PASS  clock_divider                     10.7s
-  PASS  ethernet_mac                      10.6s
-  PASS  i2c_master                        11.1s
-  PASS  keypad_scanner                    11.3s
-  PASS  moving_average                    10.7s
-  PASS  nios_hello                        10.6s
-  PASS  pcie_endpoint                     10.8s
-  PASS  power_on_reset                    10.6s
-  PASS  prng                              10.7s
-  PASS  ring_buffer                       11.8s
-  PASS  rotary_encoder                    11.6s
-  PASS  scrambler                         12.7s
-  PASS  servo_controller                  11.5s
-  PASS  signal_proc                       11.1s
-  PASS  spi_master                        10.8s
-  PASS  stack_controller                  11.1s
-  PASS  stepper_driver                    11.0s
+  PASS  blinky_led                        12.0s
+  PASS  bus_monitor                       10.8s
+  PASS  clock_divider                     11.1s
+  PASS  ethernet_mac                      11.1s
+  PASS  i2c_master                        10.9s
+  PASS  keypad_scanner                    10.8s
+  PASS  moving_average                    10.9s
+  PASS  nios_hello                        10.8s
+  PASS  pcie_endpoint                     11.8s
+  PASS  power_on_reset                    11.8s
+  PASS  prng                              10.8s
+  PASS  ring_buffer                       11.2s
+  PASS  rotary_encoder                    11.1s
+  PASS  scrambler                         10.8s
+  PASS  servo_controller                  11.1s
+  PASS  signal_proc                       11.0s
+  PASS  spi_master                        10.9s
+  PASS  stack_controller                  11.0s
+  PASS  stepper_driver                    10.8s

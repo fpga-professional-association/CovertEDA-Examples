@@ -1,5 +1,5 @@
 Synthesis Analysis & Elaboration Stage Report for nios_hello
-Thu Apr 23 21:25:58 2026
+Fri Apr 24 13:21:07 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -58,8 +58,8 @@ Table limited at 10 items. To change the number of top root causes reported, set
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:25:55 2026
-    Info: System process ID: 3636
+    Info: Processing started: Fri Apr 24 13:21:04 2026
+    Info: System process ID: 27012
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off nios_hello -c nios_hello --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...

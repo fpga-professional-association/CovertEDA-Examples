@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:25:20 2026
+Fri Apr 24 13:20:29 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -57,7 +57,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:25:19 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:20:29 2026      ;
 ; Revision Name                        ; ethernet_mac                               ;
 ; Top-level Entity Name                ; eth_top                                    ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -186,7 +186,7 @@ on the Quartus Prime software download page.
 ; mac_rx.v                         ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ethernet_mac/.build/mac_rx.v   ;         ;           ;               ; 085d4fbdafb08835cfe84e66855fd540 ;
 ; mac_tx.v                         ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ethernet_mac/.build/mac_tx.v   ;         ;           ;               ; b71228a1c60b8176bcc7d69e0e146f20 ;
 ; mii_intf.v                       ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ethernet_mac/.build/mii_intf.v ;         ;           ;               ; c993dcb818187dcb99ecd9ef23d6e52f ;
-; eth.sdc                          ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ethernet_mac/.build/eth.sdc    ;         ;           ;               ; 50de22211f84fd05c1369d0487a72466 ;
+; eth.sdc                          ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/ethernet_mac/.build/eth.sdc    ;         ;           ;               ; be94ffd70a5ced678b550afa90fda612 ;
 +----------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -469,8 +469,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:25:11 2026
-    Info: System process ID: 22604
+    Info: Processing started: Fri Apr 24 13:20:20 2026
+    Info: System process ID: 28004
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off ethernet_mac -c ethernet_mac --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -515,9 +515,9 @@ Info (21057): Implemented 141 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 801 megabytes
-    Info: Processing ended: Thu Apr 23 21:25:20 2026
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Fri Apr 24 13:20:29 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 22604
+    Info: System process ID: 28004
 
 

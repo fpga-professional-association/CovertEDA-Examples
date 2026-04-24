@@ -1,13 +1,13 @@
 # GDDR6 Test PDC
 
-set_pin clk -loc GDDR_CLK0 -iostandard LVDS
+set_pin clk -iostandard LVDS
 
-set_pin wr_addr[31] -loc GDDR_WR_ADDR_31
-set_pin wr_data[255] -loc GDDR_WR_DATA_255
-set_pin wr_en -loc GDDR_WR_EN
+set_pin wr_addr[31]
+set_pin wr_data[255]
+set_pin wr_en
 
-set_pin rd_data[255] -loc GDDR_RD_DATA_255
-set_pin rd_addr[31] -loc GDDR_RD_ADDR_31
-set_pin rd_en -loc GDDR_RD_EN
+set_pin rd_data[255]
+set_pin rd_addr[31]
+set_pin rd_en
 
-set_pin test_result[31] -loc TEST_RESULT_31
+set_pin test_result[31]

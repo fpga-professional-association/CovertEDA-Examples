@@ -1,27 +1,27 @@
 # Motor PWM PDC
 # 100 MHz system clock
 
-set_io clk -pinname P19 -fixed yes -iostandard LVCMOS33
-set_io rst_n -pinname R1 -fixed yes -iostandard LVCMOS33
+set_io clk -iostandard LVCMOS33
+set_io rst_n -iostandard LVCMOS33
 
 # Speed command (from external processor)
-set_io speed_cmd[15] -pinname T2 -fixed yes -iostandard LVCMOS33
-set_io speed_cmd[14] -pinname T3 -fixed yes -iostandard LVCMOS33
-set_io speed_cmd[13] -pinname U2 -fixed yes -iostandard LVCMOS33
-set_io speed_cmd[12] -pinname U3 -fixed yes -iostandard LVCMOS33
+set_io speed_cmd[15] -iostandard LVCMOS33
+set_io speed_cmd[14] -iostandard LVCMOS33
+set_io speed_cmd[13] -iostandard LVCMOS33
+set_io speed_cmd[12] -iostandard LVCMOS33
 
 # PWM outputs (to MOSFET driver)
-set_io pwm_u -pinname V2 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
-set_io pwm_v -pinname V3 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
-set_io pwm_w -pinname W2 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
-set_io pwm_u_n -pinname W3 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
-set_io pwm_v_n -pinname Y2 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
-set_io pwm_w_n -pinname Y3 -fixed yes -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_u -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_v -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_w -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_u_n -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_v_n -iostandard LVCMOS33 -slew FAST -drive 12
+set_io pwm_w_n -iostandard LVCMOS33 -slew FAST -drive 12
 
 # Encoder inputs
-set_io encoder_a -pinname AA2 -fixed yes -iostandard LVCMOS33
-set_io encoder_b -pinname AA3 -fixed yes -iostandard LVCMOS33
+set_io encoder_a -iostandard LVCMOS33
+set_io encoder_b -iostandard LVCMOS33
 
 # Speed and count outputs
-set_io encoder_count[15] -pinname AB2 -fixed yes -iostandard LVCMOS33
-set_io speed_measured[15] -pinname AB3 -fixed yes -iostandard LVCMOS33
+set_io encoder_count[15] -iostandard LVCMOS33
+set_io speed_measured[15] -iostandard LVCMOS33

@@ -14,3 +14,15 @@ set_property -dict { PACKAGE_PIN E3 IOSTANDARD LVCMOS33 } [get_ports {clk}]
 set_property -dict { PACKAGE_PIN D9 IOSTANDARD LVCMOS33 PULLUP TRUE } [get_ports {rst_n}]
 
 set_false_path -from [get_ports rst_n]
+
+# ========== Virtual-port assignments ==========
+# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+set_property IO_BUFFER_TYPE NONE [get_ports {clk}]
+set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
+set_property IO_BUFFER_TYPE NONE [get_ports {dividend}]
+set_property IO_BUFFER_TYPE NONE [get_ports {divisor}]
+set_property IO_BUFFER_TYPE NONE [get_ports {start}]
+set_property IO_BUFFER_TYPE NONE [get_ports {quotient}]
+set_property IO_BUFFER_TYPE NONE [get_ports {remainder}]
+set_property IO_BUFFER_TYPE NONE [get_ports {done}]
+set_property IO_BUFFER_TYPE NONE [get_ports {div_by_zero}]

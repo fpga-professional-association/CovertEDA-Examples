@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:27:45 2026
+Fri Apr 24 13:22:53 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -48,7 +48,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:27:45 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:22:52 2026      ;
 ; Revision Name                        ; spi_master                                 ;
 ; Top-level Entity Name                ; spi_master                                 ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -173,7 +173,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                         ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; spi_master.v                     ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/spi_master/.build/spi_master.v   ;         ;           ;               ; 7f47797892ac5f134fd36b84e9289184 ;
-; spi_master.sdc                   ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/spi_master/.build/spi_master.sdc ;         ;           ;               ; 4bbeb39ebaada2de0dd89d5709a87fe5 ;
+; spi_master.sdc                   ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/spi_master/.build/spi_master.sdc ;         ;           ;               ; 142b0019bc642f5270d9a71b3a365da1 ;
 +----------------------------------+-----------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -317,8 +317,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:27:36 2026
-    Info: System process ID: 11216
+    Info: Processing started: Fri Apr 24 13:22:44 2026
+    Info: System process ID: 25384
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off spi_master -c spi_master --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -343,8 +343,8 @@ Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 800 megabytes
-    Info: Processing ended: Thu Apr 23 21:27:45 2026
+    Info: Processing ended: Fri Apr 24 13:22:53 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 11216
+    Info: System process ID: 25384
 
 

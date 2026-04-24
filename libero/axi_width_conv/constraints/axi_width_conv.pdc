@@ -1,8 +1,8 @@
 # Libero PDC constraints for axi_width_conv
 # Device: MPF300T-1FCG484I
 
-set_io clk -pinname P19 -fixed yes
-set_io reset_n -pinname R1 -fixed yes
+set_io clk
+set_io reset_n
 
 set_io clk -iostandard LVCMOS33
 set_io reset_n -iostandard LVCMOS33

@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:25:42 2026
+Fri Apr 24 13:20:51 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -46,7 +46,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:25:42 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:20:50 2026      ;
 ; Revision Name                        ; keypad_scanner                             ;
 ; Top-level Entity Name                ; keypad_scanner                             ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -171,7 +171,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                                 ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; keypad_scanner.v                 ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/keypad_scanner/.build/keypad_scanner.v   ;         ;           ;               ; 13e052683d97428a9d36b74f5f54f6f3 ;
-; keypad_scanner.sdc               ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/keypad_scanner/.build/keypad_scanner.sdc ;         ;           ;               ; 90c7a7fb30ba81ee8b05d05932fcfcdd ;
+; keypad_scanner.sdc               ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/keypad_scanner/.build/keypad_scanner.sdc ;         ;           ;               ; ace446f21e6e4cb698fa0dd9af0b0776 ;
 +----------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -294,8 +294,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:25:33 2026
-    Info: System process ID: 19676
+    Info: Processing started: Fri Apr 24 13:20:42 2026
+    Info: System process ID: 28604
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off keypad_scanner -c keypad_scanner --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -320,8 +320,8 @@ Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 799 megabytes
-    Info: Processing ended: Thu Apr 23 21:25:42 2026
+    Info: Processing ended: Fri Apr 24 13:20:51 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 19676
+    Info: System process ID: 28604
 
 

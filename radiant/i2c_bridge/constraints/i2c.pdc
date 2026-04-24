@@ -3,22 +3,16 @@
 # Frequency: 50 MHz
 
 # Clock and Reset
-ldc_set_location -site {A2} [get_ports clk]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
-ldc_set_location -site {B2} [get_ports rst_n]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
 # I2C interface
-ldc_set_location -site {D4} [get_ports sda]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33 OPENDRAIN=ON} [get_ports sda]
 
-ldc_set_location -site {D3} [get_ports scl]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33 OPENDRAIN=ON} [get_ports scl]
 
 # Wishbone status signals (optional for debugging)
-ldc_set_location -site {E4} [get_ports wb_cyc]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports wb_cyc]
 
-ldc_set_location -site {E3} [get_ports wb_stb]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports wb_stb]

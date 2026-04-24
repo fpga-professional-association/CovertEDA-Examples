@@ -1,5 +1,5 @@
 Flow report for rotary_encoder
-Thu Apr 23 21:26:59 2026
+Fri Apr 24 13:22:09 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-----------------------------------------------------+
 ; Flow Summary                                        ;
 +-------------+---------------------------------------+
-; Flow Status ; Successful - Thu Apr 23 21:26:59 2026 ;
+; Flow Status ; Successful - Fri Apr 24 13:22:09 2026 ;
 +-------------+---------------------------------------+
 
 
@@ -28,7 +28,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/23/2026 21:26:51 ;
+; Start date & time ; 04/24/2026 13:22:01 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rotary_encoder      ;
 +-------------------+---------------------+
@@ -39,7 +39,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +--------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name          ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID    ; 193621989228127.177699761124216 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID    ; 193621989228127.177705492127656 ; --            ; --          ; --         ;
 ; NUM_PARALLEL_PROCESSORS  ; 4                               ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY ; output_files                    ; --            ; --          ; --         ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
@@ -50,8 +50,8 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------+--------------+---------------------+
 ; Module Name ; Elapsed Time ; Peak Virtual Memory ;
 +-------------+--------------+---------------------+
-; Synthesis   ; 00:00:10     ; 800 MB              ;
-; Total       ; 00:00:10     ; --                  ;
+; Synthesis   ; 00:00:09     ; 800 MB              ;
+; Total       ; 00:00:09     ; --                  ;
 +-------------+--------------+---------------------+
 
 

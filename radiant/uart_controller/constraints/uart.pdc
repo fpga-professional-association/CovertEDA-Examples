@@ -3,23 +3,17 @@
 # Baud Rate: 115200 bps, 50 MHz clock
 
 # Clock input
-ldc_set_location -site {H3} [get_ports clk]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
 # Reset input
-ldc_set_location -site {H4} [get_ports rst_n]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
 # UART RX/TX pins
-ldc_set_location -site {D3} [get_ports rx]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rx]
 
-ldc_set_location -site {D4} [get_ports tx]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports tx]
 
 # Status/Control outputs
-ldc_set_location -site {G5} [get_ports rx_valid]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rx_valid]
 
-ldc_set_location -site {H5} [get_ports tx_ready]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports tx_ready]

@@ -3,35 +3,21 @@
 # Frequency: 100 MHz
 
 # Clock and Reset
-ldc_set_location -site {H3} [get_ports clk]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports clk]
 
-ldc_set_location -site {H4} [get_ports rst_n]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports rst_n]
 
 # SPI Interface
-ldc_set_location -site {F2} [get_ports sclk]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports sclk]
 
-ldc_set_location -site {F1} [get_ports cs_n]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports cs_n]
 
-ldc_set_location -site {G2} [get_ports mosi]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports mosi]
 
-ldc_set_location -site {G1} [get_ports miso]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports miso]
 
 # QSPI Interface
-ldc_set_location -site {E2} [get_ports {qspi_io[0]}]
-ldc_set_location -site {E1} [get_ports {qspi_io[1]}]
-ldc_set_location -site {D2} [get_ports {qspi_io[2]}]
-ldc_set_location -site {D1} [get_ports {qspi_io[3]}]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {qspi_io[*]}]
 
 # Control/Status
-ldc_set_location -site {H5} [get_ports spi_mode]
-ldc_set_location -site {J5} [get_ports busy]
-ldc_set_location -site {J4} [get_ports rd_en]
-ldc_set_location -site {J3} [get_ports wr_en]
 ldc_set_port -iobuf {IO_TYPE=LVCMOS33} [get_ports {spi_mode busy rd_en wr_en}]

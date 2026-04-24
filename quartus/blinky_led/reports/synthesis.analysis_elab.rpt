@@ -1,5 +1,5 @@
 Synthesis Analysis & Elaboration Stage Report for blinky_led
-Fri Apr 24 12:38:06 2026
+Fri Apr 24 13:19:50 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -37,8 +37,8 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Fri Apr 24 12:38:02 2026
-    Info: System process ID: 25332
+    Info: Processing started: Fri Apr 24 13:19:46 2026
+    Info: System process ID: 13620
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off blinky_led -c blinky_led --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...

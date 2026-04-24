@@ -1,5 +1,5 @@
 Flow report for blinky_led
-Fri Apr 24 12:38:11 2026
+Fri Apr 24 13:19:56 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -19,7 +19,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-----------------------------------------------------+
 ; Flow Summary                                        ;
 +-------------+---------------------------------------+
-; Flow Status ; Successful - Fri Apr 24 12:38:11 2026 ;
+; Flow Status ; Successful - Fri Apr 24 13:19:56 2026 ;
 +-------------+---------------------------------------+
 
 
@@ -28,7 +28,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/24/2026 12:38:03 ;
+; Start date & time ; 04/24/2026 13:19:48 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; blinky_led          ;
 +-------------------+---------------------+
@@ -39,7 +39,7 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +--------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name          ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +--------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID    ; 193621989228127.177705228325332 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID    ; 193621989228127.177705478813620 ; --            ; --          ; --         ;
 ; NUM_PARALLEL_PROCESSORS  ; 4                               ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY ; output_files                    ; --            ; --          ; --         ;
 ; TOP_LEVEL_ENTITY         ; blinky_top                      ; blinky_led    ; --          ; --         ;
@@ -51,8 +51,8 @@ Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 +-------------+--------------+---------------------+
 ; Module Name ; Elapsed Time ; Peak Virtual Memory ;
 +-------------+--------------+---------------------+
-; Synthesis   ; 00:00:09     ; 801 MB              ;
-; Total       ; 00:00:09     ; --                  ;
+; Synthesis   ; 00:00:10     ; 800 MB              ;
+; Total       ; 00:00:10     ; --                  ;
 +-------------+--------------+---------------------+
 
 

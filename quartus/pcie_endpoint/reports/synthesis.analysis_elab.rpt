@@ -1,5 +1,5 @@
 Synthesis Analysis & Elaboration Stage Report for pcie_endpoint
-Thu Apr 23 21:26:09 2026
+Fri Apr 24 13:21:18 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -69,8 +69,8 @@ Table limited at 10 items. To change the number of top root causes reported, set
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:26:05 2026
-    Info: System process ID: 23804
+    Info: Processing started: Fri Apr 24 13:21:15 2026
+    Info: System process ID: 28652
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off pcie_endpoint -c pcie_endpoint --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...

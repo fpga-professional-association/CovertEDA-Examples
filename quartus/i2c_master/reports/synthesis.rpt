@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:25:31 2026
+Fri Apr 24 13:20:40 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -50,13 +50,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:25:30 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:20:40 2026      ;
 ; Revision Name                        ; i2c_master                                 ;
 ; Top-level Entity Name                ; i2c_master                                 ;
 ; Family                               ; Cyclone 10 GX                              ;
 ; Quartus Prime Version                ; 25.3.0 Build 109 09/24/2025 SC Pro Edition ;
-; Device                               ; 10CX085YU484E5G                            ;
-; Logic utilization estimate (in ALMs) ; 42 / 31,000 ( < 1 % )                      ;
+; Device                               ; 10CX220YF780I5G                            ;
+; Logic utilization estimate (in ALMs) ; 42 / 80,330 ( < 1 % )                      ;
 ; Total registers                      ; 36                                         ;
 ; Estimated DSP Blocks Post-Merging    ; 0                                          ;
 +--------------------------------------+--------------------------------------------+
@@ -67,7 +67,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------------------------+-------------------------+-------------------------+
 ; Option                                                                          ; Setting                 ; Default Value           ;
 +---------------------------------------------------------------------------------+-------------------------+-------------------------+
-; Device                                                                          ; 10CX085YU484E5G         ;                         ;
+; Device                                                                          ; 10CX220YF780I5G         ;                         ;
 ; Top-level entity name                                                           ; i2c_master              ; i2c_master              ;
 ; Family name                                                                     ; Cyclone 10 GX           ; Cyclone 10 GX           ;
 ; Maximum processors allowed for parallel compilation                             ; 4                       ;                         ;
@@ -175,7 +175,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                         ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; i2c_master.v                     ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/i2c_master/.build/i2c_master.v   ;         ;           ;               ; 63f5749e0c3a5423f38417edabc8764f ;
-; i2c_master.sdc                   ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/i2c_master/.build/i2c_master.sdc ;         ;           ;               ; 919a0356dfdb5bb69c3afea76e86328d ;
+; i2c_master.sdc                   ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/i2c_master/.build/i2c_master.sdc ;         ;           ;               ; 73eb8bedb66b252561da09de95df2225 ;
 +----------------------------------+-----------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -350,8 +350,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:25:22 2026
-    Info: System process ID: 25152
+    Info: Processing started: Fri Apr 24 13:20:31 2026
+    Info: System process ID: 26976
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off i2c_master -c i2c_master --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -376,9 +376,9 @@ Info (21057): Implemented 95 device resources after synthesis - the final resour
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 800 megabytes
-    Info: Processing ended: Thu Apr 23 21:25:31 2026
+    Info: Peak virtual memory: 799 megabytes
+    Info: Processing ended: Fri Apr 24 13:20:40 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 25152
+    Info: System process ID: 26976
 
 

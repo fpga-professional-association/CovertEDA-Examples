@@ -1,24 +1,24 @@
 # CAN Controller PDC
 # 80 MHz clock
 
-set_io clk -pinname P19 -fixed yes -iostandard LVCMOS33
-set_io rst_n -pinname R1 -fixed yes -iostandard LVCMOS33
-set_io can_rx -pinname T2 -fixed yes -iostandard LVCMOS33
-set_io can_tx -pinname T3 -fixed yes -iostandard LVCMOS33
+set_io clk -iostandard LVCMOS33
+set_io rst_n -iostandard LVCMOS33
+set_io can_rx -iostandard LVCMOS33
+set_io can_tx -iostandard LVCMOS33
 
-set_io tx_id[31] -pinname U2 -fixed yes -iostandard LVCMOS33
-set_io tx_id[30] -pinname U3 -fixed yes -iostandard LVCMOS33
-set_io tx_id[29] -pinname V2 -fixed yes -iostandard LVCMOS33
-set_io tx_id[28] -pinname V3 -fixed yes -iostandard LVCMOS33
-set_io tx_id[27] -pinname W2 -fixed yes -iostandard LVCMOS33
-set_io tx_id[26] -pinname W3 -fixed yes -iostandard LVCMOS33
-set_io tx_id[25] -pinname Y2 -fixed yes -iostandard LVCMOS33
-set_io tx_id[24] -pinname Y3 -fixed yes -iostandard LVCMOS33
+set_io tx_id[31] -iostandard LVCMOS33
+set_io tx_id[30] -iostandard LVCMOS33
+set_io tx_id[29] -iostandard LVCMOS33
+set_io tx_id[28] -iostandard LVCMOS33
+set_io tx_id[27] -iostandard LVCMOS33
+set_io tx_id[26] -iostandard LVCMOS33
+set_io tx_id[25] -iostandard LVCMOS33
+set_io tx_id[24] -iostandard LVCMOS33
 
-set_io tx_dlc[3] -pinname AA2 -fixed yes -iostandard LVCMOS33
-set_io tx_dlc[2] -pinname AA3 -fixed yes -iostandard LVCMOS33
-set_io tx_dlc[1] -pinname AB2 -fixed yes -iostandard LVCMOS33
-set_io tx_dlc[0] -pinname AB3 -fixed yes -iostandard LVCMOS33
+set_io tx_dlc[3] -iostandard LVCMOS33
+set_io tx_dlc[2] -iostandard LVCMOS33
+set_io tx_dlc[1] -iostandard LVCMOS33
+set_io tx_dlc[0] -iostandard LVCMOS33
 
-set_io tx_valid -pinname AC2 -fixed yes -iostandard LVCMOS33
-set_io tx_ready -pinname AC3 -fixed yes -iostandard LVCMOS33
+set_io tx_valid -iostandard LVCMOS33
+set_io tx_ready -iostandard LVCMOS33

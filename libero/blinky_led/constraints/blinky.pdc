@@ -3,13 +3,13 @@
 # Package: FCG484
 
 # Clock input - 50 MHz
-set_io clk -pinname P19 -fixed yes
+set_io clk
 
 # Reset input (active low)
-set_io rst_n -pinname R1 -fixed yes
+set_io rst_n
 
 # LED output
-set_io led -pinname T2 -fixed yes
+set_io led
 
 # Bank voltage constraints
 set_io clk -bank 1 -iostandard LVCMOS33

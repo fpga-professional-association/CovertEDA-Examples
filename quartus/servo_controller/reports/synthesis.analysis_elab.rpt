@@ -1,5 +1,5 @@
 Synthesis Analysis & Elaboration Stage Report for servo_controller
-Thu Apr 23 21:27:17 2026
+Fri Apr 24 13:22:25 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -63,8 +63,8 @@ Top root causes of logic optimization that have been identified during sweep. Fo
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:27:14 2026
-    Info: System process ID: 14296
+    Info: Processing started: Fri Apr 24 13:22:22 2026
+    Info: System process ID: 20564
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off servo_controller -c servo_controller --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...

@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:24:58 2026
+Fri Apr 24 13:20:07 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -44,7 +44,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:24:58 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 13:20:07 2026      ;
 ; Revision Name                        ; bus_monitor                                ;
 ; Top-level Entity Name                ; bus_monitor                                ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -169,7 +169,7 @@ on the Quartus Prime software download page.
 ; File Name with User-Entered Path ; File Type                                                                   ; File Name with Absolute Path                                                                           ; Library ; IP Source ; Include Files ; MD5                              ;
 +----------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 ; bus_monitor.v                    ; User-Specified Verilog HDL File                                             ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/bus_monitor/.build/bus_monitor.v   ;         ;           ;               ; 1a6c6279ef95563e51ccbc135f12759d ;
-; bus_monitor.sdc                  ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/bus_monitor/.build/bus_monitor.sdc ;         ;           ;               ; aad5af7d6592179a5e5e187a018e0c16 ;
+; bus_monitor.sdc                  ; User-Specified SDC File (Read by the Timing Analyzer at each fitter stage)  ; C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/quartus/bus_monitor/.build/bus_monitor.sdc ;         ;           ;               ; 833f86e06a2231bd8aae135ac453f71b ;
 +----------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+---------+-----------+---------------+----------------------------------+
 
 
@@ -268,8 +268,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:24:49 2026
-    Info: System process ID: 18304
+    Info: Processing started: Fri Apr 24 13:19:58 2026
+    Info: System process ID: 13552
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off bus_monitor -c bus_monitor --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -293,9 +293,9 @@ Info (21057): Implemented 154 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 798 megabytes
-    Info: Processing ended: Thu Apr 23 21:24:58 2026
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Fri Apr 24 13:20:07 2026
     Info: Elapsed time: 00:00:09
-    Info: System process ID: 18304
+    Info: System process ID: 13552
 
 

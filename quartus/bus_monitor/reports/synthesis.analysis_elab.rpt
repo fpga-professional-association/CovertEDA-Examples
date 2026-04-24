@@ -1,5 +1,5 @@
 Synthesis Analysis & Elaboration Stage Report for bus_monitor
-Thu Apr 23 21:24:52 2026
+Fri Apr 24 13:20:02 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -37,8 +37,8 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:24:49 2026
-    Info: System process ID: 18304
+    Info: Processing started: Fri Apr 24 13:19:58 2026
+    Info: System process ID: 13552
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off bus_monitor -c bus_monitor --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
