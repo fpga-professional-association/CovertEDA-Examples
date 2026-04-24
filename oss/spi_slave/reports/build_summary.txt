@@ -1,0 +1,6 @@
+Project:  spi_slave
+Device:   LFE5U-25F
+Family:   ecp5
+Top:      spi_top
+yosys:    PASS
+nextpnr:  PASS

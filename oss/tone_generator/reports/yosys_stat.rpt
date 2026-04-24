@@ -1,0 +1,62 @@
+=== tone_generator ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      147 wire bits
+       71 public wires
+      147 public wire bits
+        5 ports
+       20 port bits
+       83 submodules
+       30   SB_CARRY
+        1   SB_DFFER
+       16   SB_DFFR
+       36   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - tone_generator
+
+        +----------Count including submodules.
+        | 
+       71 wires
+      147 wire bits
+       71 public wires
+      147 public wire bits
+        5 ports
+       20 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+       83 submodules
+       30   SB_CARRY
+        1   SB_DFFER
+       16   SB_DFFR
+       36   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module tone_generator...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== tone_generator ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      147 wire bits
+       71 public wires
+      147 public wire bits
+        5 ports
+       20 port bits
+       83 cells
+       30   SB_CARRY
+        1   SB_DFFER
+       16   SB_DFFR
+       36   SB_LUT4

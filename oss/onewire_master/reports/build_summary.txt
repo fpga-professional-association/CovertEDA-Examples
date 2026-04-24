@@ -1,0 +1,6 @@
+Project:  onewire_master
+Device:   iCE40UP5K
+Family:   ice40
+Top:      onewire_master
+yosys:    PASS
+nextpnr:  PASS

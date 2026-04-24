@@ -1,0 +1,1642 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+
+-- Executing script file `build.ys' --
+
+1. Executing Verilog-2005 frontend: temp_sensor_spi.v
+Parsing Verilog input from `temp_sensor_spi.v' to AST representation.
+Generating RTLIL representation for module `\temp_sensor_spi'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+
+2.2. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+Removed 0 unused modules.
+
+3. Executing SYNTH_ICE40 pass.
+
+3.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+3.2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `temp_sensor_spi'. Setting top module to temp_sensor_spi.
+
+3.2.1. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+
+3.2.2. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+Removed 0 unused modules.
+
+3.3. Executing PROC pass (convert processes to netlists).
+
+3.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$temp_sensor_spi.v:44$1 in module temp_sensor_spi.
+Removed a total of 0 dead cases.
+
+3.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+3.3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+
+3.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~5 debug messages>
+
+3.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+     1/9: $0\temp_valid_r[0:0]
+     2/9: $0\state[1:0]
+     3/9: $0\over_r[0:0]
+     4/9: $0\temp_r[15:0]
+     5/9: $0\spi_cs_r[0:0]
+     6/9: $0\spi_clk_r[0:0]
+     7/9: $0\clk_div[7:0]
+     8/9: $0\shift_reg[15:0]
+     9/9: $0\bit_cnt[4:0]
+
+3.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\temp_sensor_spi.\bit_cnt' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$451' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\shift_reg' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$456' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\clk_div' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$461' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\spi_clk_r' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$466' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\spi_cs_r' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$471' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\temp_r' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$476' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\temp_valid_r' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$481' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\over_r' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$486' with positive edge clock and positive level reset.
+Creating register for signal `\temp_sensor_spi.\state' using process `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+  created $adff cell `$procdff$491' with positive edge clock and positive level reset.
+
+3.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 5 empty switches in `\temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+Removing empty process `temp_sensor_spi.$proc$temp_sensor_spi.v:44$1'.
+Cleaned up 5 empty switches.
+
+3.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~28 debug messages>
+
+3.4. Executing FLATTEN pass (flatten design).
+
+3.5. Executing TRIBUF pass.
+
+3.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+3.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 11 unused cells and 43 unused wires.
+<suppressed ~12 debug messages>
+
+3.9. Executing CHECK pass (checking for obvious problems).
+Checking module temp_sensor_spi...
+Found and reported 0 problems.
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 55 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 41 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+<suppressed ~42 debug messages>
+Removed a total of 14 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+    New ctrl vector for $pmux cell $procmux$413: { $procmux$443_CMP $auto$opt_reduce.cc:137:opt_pmux$493 }
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 1 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 42 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 14 unused wires.
+<suppressed ~1 debug messages>
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+3.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.10.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 42 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.10.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.10.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing FSM pass (extract and optimize FSM).
+
+3.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register temp_sensor_spi.state.
+
+3.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `\temp_sensor_spi'.
+  found $adff cell for state register: $procdff$491
+  root of input selection tree: $0\state[1:0]
+  found reset state: 2'00 (from async reset)
+  found ctrl input: $procmux$391_CMP
+  found ctrl input: $procmux$400_CMP
+  found ctrl input: $procmux$403_CMP
+  found ctrl input: $eq$temp_sensor_spi.v:71$4_Y
+  found ctrl input: \spi_clk_r
+  found ctrl input: $eq$temp_sensor_spi.v:78$8_Y
+  found state code: 2'10
+  found ctrl input: \start
+  found state code: 2'01
+  found ctrl output: $procmux$391_CMP
+  found ctrl output: $procmux$400_CMP
+  found ctrl output: $procmux$403_CMP
+  ctrl inputs: { $eq$temp_sensor_spi.v:78$8_Y $eq$temp_sensor_spi.v:71$4_Y \spi_clk_r \start }
+  ctrl outputs: { $procmux$403_CMP $procmux$400_CMP $procmux$391_CMP $0\state[1:0] }
+  transition:       2'00 4'---0 ->       2'00 5'10000
+  transition:       2'00 4'---1 ->       2'01 5'10001
+  transition:       2'10 4'---- ->       2'00 5'00100
+  transition:       2'01 4'-0-- ->       2'01 5'01001
+  transition:       2'01 4'010- ->       2'01 5'01001
+  transition:       2'01 4'110- ->       2'10 5'01010
+  transition:       2'01 4'-11- ->       2'01 5'01001
+
+3.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$494' from module `\temp_sensor_spi'.
+
+3.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 9 unused cells and 9 unused wires.
+<suppressed ~10 debug messages>
+
+3.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$494' from module `\temp_sensor_spi'.
+  Removing unused output signal $0\state[1:0] [0].
+  Removing unused output signal $0\state[1:0] [1].
+
+3.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$494' from module `\temp_sensor_spi' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> --1
+  10 -> -1-
+  01 -> 1--
+
+3.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$494' from module `temp_sensor_spi':
+-------------------------------------
+
+  Information on FSM $fsm$\state$494 (\state):
+
+  Number of input signals:    4
+  Number of output signals:   3
+  Number of state bits:       3
+
+  Input signals:
+    0: \start
+    1: \spi_clk_r
+    2: $eq$temp_sensor_spi.v:71$4_Y
+    3: $eq$temp_sensor_spi.v:78$8_Y
+
+  Output signals:
+    0: $procmux$391_CMP
+    1: $procmux$400_CMP
+    2: $procmux$403_CMP
+
+  State encoding:
+    0:      3'--1  <RESET STATE>
+    1:      3'-1-
+    2:      3'1--
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 4'---0   ->     0 3'100
+      1:     0 4'---1   ->     2 3'100
+      2:     1 4'----   ->     0 3'001
+      3:     2 4'110-   ->     1 3'010
+      4:     2 4'010-   ->     2 3'010
+      5:     2 4'-11-   ->     2 3'010
+      6:     2 4'-0--   ->     2 3'010
+
+-------------------------------------
+
+3.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$494' from module `\temp_sensor_spi'.
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~3 debug messages>
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 47 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~26 debug messages>
+
+3.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 47 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$461 ($adff) from module temp_sensor_spi (D = $0\clk_div[7:0], Q = \clk_div).
+Adding EN signal on $procdff$466 ($adff) from module temp_sensor_spi (D = $0\spi_clk_r[0:0], Q = \spi_clk_r).
+Adding EN signal on $procdff$456 ($adff) from module temp_sensor_spi (D = $0\shift_reg[15:0], Q = \shift_reg).
+Adding EN signal on $procdff$476 ($adff) from module temp_sensor_spi (D = \shift_reg, Q = \temp_r).
+Adding EN signal on $procdff$471 ($adff) from module temp_sensor_spi (D = $0\spi_cs_r[0:0], Q = \spi_cs_r).
+Adding EN signal on $procdff$451 ($adff) from module temp_sensor_spi (D = $0\bit_cnt[4:0], Q = \bit_cnt).
+Adding EN signal on $procdff$486 ($adff) from module temp_sensor_spi (D = $gt$temp_sensor_spi.v:88$9_Y, Q = \over_r).
+
+3.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 2 unused cells and 9 unused wires.
+<suppressed ~3 debug messages>
+
+3.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~5 debug messages>
+
+3.12.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.12.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.12.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.12.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 62 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 55 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 54 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+<suppressed ~24 debug messages>
+Removed a total of 8 cells.
+
+3.12.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.12.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 8 unused wires.
+<suppressed ~1 debug messages>
+
+3.12.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.12.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.12.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.12.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.12.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 54 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.12.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.12.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.12.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.12.23. Finished fast OPT passes. (There is nothing left to do.)
+
+3.13. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell temp_sensor_spi.$auto$opt_dff.cc:235:make_patterns_logic$551 ($ne).
+Removed top 1 bits (of 3) from port B of cell temp_sensor_spi.$auto$fsm_map.cc:77:implement_pattern_cache$517 ($eq).
+Removed top 5 bits (of 8) from port B of cell temp_sensor_spi.$eq$temp_sensor_spi.v:71$4 ($eq).
+Removed top 1 bits (of 5) from port B of cell temp_sensor_spi.$eq$temp_sensor_spi.v:78$8 ($eq).
+
+3.14. Executing PEEPOPT pass (run peephole optimizers).
+
+3.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.16. Executing SHARE pass (SAT-based resource sharing).
+
+3.17. Executing TECHMAP pass (map to technology primitives).
+
+3.17.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+3.17.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~36 debug messages>
+
+3.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module temp_sensor_spi:
+  creating $macc model for $add$temp_sensor_spi.v:77$7 ($add).
+  creating $macc model for $add$temp_sensor_spi.v:70$3 ($add).
+  creating $alu model for $macc $add$temp_sensor_spi.v:70$3.
+  creating $alu model for $macc $add$temp_sensor_spi.v:77$7.
+  creating $alu model for $gt$temp_sensor_spi.v:88$9 ($gt): new $alu
+  creating $alu cell for $gt$temp_sensor_spi.v:88$9: $auto$alumacc.cc:512:replace_alu$572
+  creating $alu cell for $add$temp_sensor_spi.v:77$7: $auto$alumacc.cc:512:replace_alu$583
+  creating $alu cell for $add$temp_sensor_spi.v:70$3: $auto$alumacc.cc:512:replace_alu$586
+  created 3 $alu and 0 $macc cells.
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 58 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 58 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+3.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 58 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.21.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing MEMORY pass.
+
+3.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+
+3.25. Executing TECHMAP pass (map to technology primitives).
+
+3.25.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+3.25.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+3.25.3. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.26. Executing ICE40_BRAMINIT pass.
+
+3.27. Executing OPT pass (performing simple optimizations).
+
+3.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~14 debug messages>
+
+3.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 49 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 9 unused wires.
+<suppressed ~1 debug messages>
+
+3.27.5. Finished fast OPT passes.
+
+3.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.29. Executing OPT pass (performing simple optimizations).
+
+3.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 49 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+3.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 49 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.29.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.31. Executing TECHMAP pass (map to technology primitives).
+
+3.31.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.31.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+3.31.3. Continuing TECHMAP pass.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_80_ice40_alu for cells of type $alu.
+Using template $paramod$672a140277c71df8314410f22acc08d55222c3c7\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~198 debug messages>
+
+3.32. Executing OPT pass (performing simple optimizations).
+
+3.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~82 debug messages>
+
+3.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 242 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 227 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+<suppressed ~45 debug messages>
+Removed a total of 15 cells.
+
+3.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 7 unused cells and 85 unused wires.
+<suppressed ~8 debug messages>
+
+3.32.5. Finished fast OPT passes.
+
+3.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.33.1. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) temp_sensor_spi.$auto$alumacc.cc:512:replace_alu$583.slice[0].carry: CO=\bit_cnt [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) temp_sensor_spi.$auto$alumacc.cc:512:replace_alu$586.slice[0].carry: CO=\clk_div [0]
+
+3.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 220 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.33.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.33.7. Running ICE40 specific optimizations.
+
+3.33.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.33.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 220 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.33.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.33.12. Finished OPT passes. (There is nothing left to do.)
+
+3.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+3.35. Executing TECHMAP pass (map to technology primitives).
+
+3.35.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.35.2. Continuing TECHMAP pass.
+Using template $_DFF_PP0_ for cells of type $_DFF_PP0_.
+Using template $_DFF_PP1_ for cells of type $_DFF_PP1_.
+Using template $_DFFE_PP0P_ for cells of type $_DFFE_PP0P_.
+Using template $_DFFE_PP1P_ for cells of type $_DFFE_PP1P_.
+No more expansions possible.
+<suppressed ~74 debug messages>
+
+3.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping temp_sensor_spi.$auto$alumacc.cc:512:replace_alu$583.slice[0].carry ($lut).
+Mapping temp_sensor_spi.$auto$alumacc.cc:512:replace_alu$586.slice[0].carry ($lut).
+
+3.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.38.1. Running ICE40 specific optimizations.
+
+3.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~66 debug messages>
+
+3.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 272 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 220 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+<suppressed ~156 debug messages>
+Removed a total of 52 cells.
+
+3.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 367 unused wires.
+<suppressed ~1 debug messages>
+
+3.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.38.7. Running ICE40 specific optimizations.
+
+3.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 220 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.38.12. Finished OPT passes. (There is nothing left to do.)
+
+3.39. Executing TECHMAP pass (map to technology primitives).
+
+3.39.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `$_DLATCH_N_'.
+Generating RTLIL representation for module `$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+3.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.40. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_CARRY_WRAPPER'.
+Successfully finished Verilog frontend.
+
+3.41. Executing ABC9 pass.
+
+3.41.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.3. Executing PROC pass (convert processes to netlists).
+
+3.41.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201 in module SB_DFFER.
+Removed a total of 0 dead cases.
+
+3.41.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.41.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$204'.
+  Set init value: \Q = 1'0
+
+3.41.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \R in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201'.
+
+3.41.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.41.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$204'.
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201'.
+     1/1: $0\Q[0:0]
+
+3.41.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201'.
+  created $adff cell `$procdff$1272' with positive edge clock and positive level reset.
+
+3.41.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$204'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201'.
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$201'.
+Cleaned up 1 empty switch.
+
+3.41.4. Executing PROC pass (convert processes to netlists).
+
+3.41.4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212 in module SB_DFFES.
+Removed a total of 0 dead cases.
+
+3.41.4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.41.4.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$215'.
+  Set init value: \Q = 1'0
+
+3.41.4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212'.
+
+3.41.4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.41.4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$215'.
+Creating decoders for process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212'.
+     1/1: $0\Q[0:0]
+
+3.41.4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFES.\Q' using process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212'.
+  created $adff cell `$procdff$1277' with positive edge clock and positive level reset.
+
+3.41.4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$215'.
+Found and cleaned up 1 empty switch in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212'.
+Removing empty process `SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$212'.
+Cleaned up 1 empty switch.
+
+3.41.5. Executing PROC pass (convert processes to netlists).
+
+3.41.5.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:527$191 in module SB_DFFS.
+Removed a total of 0 dead cases.
+
+3.41.5.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 1 assignment to connection.
+
+3.41.5.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:525$193'.
+  Set init value: \Q = 1'0
+
+3.41.5.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:527$191'.
+
+3.41.5.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.41.5.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:525$193'.
+Creating decoders for process `\SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:527$191'.
+     1/1: $0\Q[0:0]
+
+3.41.5.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.5.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFS.\Q' using process `\SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:527$191'.
+  created $adff cell `$procdff$1280' with positive edge clock and positive level reset.
+
+3.41.5.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.5.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:525$193'.
+Removing empty process `SB_DFFS.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:527$191'.
+Cleaned up 0 empty switches.
+
+3.41.6. Executing PROC pass (convert processes to netlists).
+
+3.41.6.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.6.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$185 in module SB_DFFR.
+Removed a total of 0 dead cases.
+
+3.41.6.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 1 assignment to connection.
+
+3.41.6.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$187'.
+  Set init value: \Q = 1'0
+
+3.41.6.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \R in `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$185'.
+
+3.41.6.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.41.6.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$187'.
+Creating decoders for process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$185'.
+     1/1: $0\Q[0:0]
+
+3.41.6.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.6.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFR.\Q' using process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$185'.
+  created $adff cell `$procdff$1283' with positive edge clock and positive level reset.
+
+3.41.6.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.6.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$187'.
+Removing empty process `SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$185'.
+Cleaned up 0 empty switches.
+
+3.41.7. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module temp_sensor_spi.
+Found 0 SCCs.
+
+3.41.8. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.9. Executing TECHMAP pass (map to technology primitives).
+
+3.41.9.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.9.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~134 debug messages>
+
+3.41.10. Executing OPT pass (performing simple optimizations).
+
+3.41.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+Optimizing module SB_DFFES.
+Optimizing module SB_DFFS.
+Optimizing module SB_DFFR.
+
+3.41.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Finding identical cells in module `\SB_DFFES'.
+Computing hashes of 2 cells of `\SB_DFFES'.
+Finding duplicate cells in `\SB_DFFES'.
+Finding identical cells in module `\SB_DFFS'.
+Computing hashes of 2 cells of `\SB_DFFS'.
+Finding duplicate cells in `\SB_DFFS'.
+Finding identical cells in module `\SB_DFFR'.
+Computing hashes of 2 cells of `\SB_DFFR'.
+Finding duplicate cells in `\SB_DFFR'.
+Removed a total of 0 cells.
+
+3.41.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \SB_DFFER..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \SB_DFFES..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \SB_DFFS..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \SB_DFFR..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \SB_DFFER.
+  Optimizing cells in module \SB_DFFES.
+  Optimizing cells in module \SB_DFFS.
+  Optimizing cells in module \SB_DFFR.
+Performed a total of 0 changes.
+
+3.41.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Finding identical cells in module `\SB_DFFES'.
+Computing hashes of 2 cells of `\SB_DFFES'.
+Finding duplicate cells in `\SB_DFFES'.
+Finding identical cells in module `\SB_DFFS'.
+Computing hashes of 2 cells of `\SB_DFFS'.
+Finding duplicate cells in `\SB_DFFS'.
+Finding identical cells in module `\SB_DFFR'.
+Computing hashes of 2 cells of `\SB_DFFR'.
+Finding duplicate cells in `\SB_DFFR'.
+Removed a total of 0 cells.
+
+3.41.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \SB_DFFER..
+Finding unused cells or wires in module \SB_DFFES..
+Finding unused cells or wires in module \SB_DFFS..
+Finding unused cells or wires in module \SB_DFFR..
+
+3.41.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+Optimizing module SB_DFFES.
+Optimizing module SB_DFFS.
+Optimizing module SB_DFFR.
+
+3.41.10.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.11. Executing TECHMAP pass (map to technology primitives).
+
+3.41.11.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v' to AST representation.
+Successfully finished Verilog frontend.
+
+3.41.11.2. Continuing TECHMAP pass.
+Using template SB_DFFR for cells of type SB_DFFR.
+Using template SB_DFFS for cells of type SB_DFFS.
+Using template SB_DFFER for cells of type SB_DFFER.
+Using template SB_DFFES for cells of type SB_DFFES.
+No more expansions possible.
+<suppressed ~58 debug messages>
+
+3.41.12. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+3.41.13. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.14. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.15. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.16. Executing TECHMAP pass (map to technology primitives).
+
+3.41.16.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.16.2. Continuing TECHMAP pass.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+Using template $paramod\SB_LUT4\LUT_INIT=16'0110100110010110 for cells of type SB_LUT4.
+Using template SB_CARRY for cells of type SB_CARRY.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+No more expansions possible.
+<suppressed ~153 debug messages>
+
+3.41.17. Executing OPT pass (performing simple optimizations).
+
+3.41.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+<suppressed ~4 debug messages>
+
+3.41.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 30 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 20 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Computing hashes of 18 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+<suppressed ~29 debug messages>
+Removed a total of 12 cells.
+
+3.41.17.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.17.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.41.17.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 18 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.41.17.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.17.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+Removed 0 unused cells and 24 unused wires.
+<suppressed ~1 debug messages>
+
+3.41.17.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.41.17.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.41.17.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \temp_sensor_spi..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.17.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \temp_sensor_spi.
+Performed a total of 0 changes.
+
+3.41.17.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\temp_sensor_spi'.
+Computing hashes of 18 cells of `\temp_sensor_spi'.
+Finding duplicate cells in `\temp_sensor_spi'.
+Removed a total of 0 cells.
+
+3.41.17.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.17.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \temp_sensor_spi..
+
+3.41.17.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module temp_sensor_spi.
+
+3.41.17.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.18. Executing AIGMAP pass (map logic to AIG).
+Module temp_sensor_spi: replaced 7 cells with 43 new cells, skipped 11 cells.
+  replaced 2 cell types:
+       5 $_MUX_
+       2 $_OR_
+  not replaced 3 cell types:
+       2 $_AND_
+       1 $_NOT_
+       8 $specify2
+
+3.41.19. Executing AIGMAP pass (map logic to AIG).
+Module temp_sensor_spi: replaced 44 cells with 227 new cells, skipped 228 cells.
+  replaced 3 cell types:
+       1 $_MUX_
+      27 $_OR_
+      16 $_XOR_
+  not replaced 11 cell types:
+      62 $_AND_
+      35 $_NOT_
+       3 SB_DFFR
+       1 SB_DFFS
+      47 SB_DFFER
+       1 SB_DFFES
+       3 SB_DFFR_$abc9_byp
+       1 SB_DFFS_$abc9_byp
+       1 SB_DFFES_$abc9_byp
+      47 SB_DFFER_$abc9_byp
+      27 $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1
+
+3.41.19.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.19.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.19.3. Executing XAIGER backend.
+<suppressed ~63 debug messages>
+Extracted 140 AND gates and 529 wires from module `temp_sensor_spi' to a netlist network with 72 inputs and 77 outputs.
+
+3.41.19.4. Executing ABC9_EXE pass (technology mapping using ABC9).
+
+3.41.19.5. Executing ABC9.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_lut <abc-temp-dir>/input.lut 
+ABC: + read_box <abc-temp-dir>/input.box 
+ABC: + &read <abc-temp-dir>/input.xaig 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     72/     77  and =     136  lev =    8 (   0.32)  mem = 0.01 MB  box = 79  bb = 52
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 2 carries.
+ABC: + &scorr 
+ABC: Warning: The network is combinational.
+ABC: + &sweep 
+ABC: + &dc2 
+ABC: + &dch -f -r 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     72/     77  and =     202  lev =    7 (   0.25)  mem = 0.01 MB  ch =   12  box = 79  bb = 52
+ABC: cst =       0  cls =     11  lit =      12  unused =     357  proof =     0
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 2 carries.
+ABC: + &if -W 250 -v 
+ABC: K = 4. Memory (bytes): Truth =    0. Cut =   64. Obj =  144. Set =  672. CutMin = no
+ABC: Node =     202.  Ch =    11.  Total mem =    0.11 MB. Peak cut mem =    0.02 MB.
+ABC: P:  Del = 3314.00.  Ar =      58.0.  Edge =      153.  Cut =      752.  T =     0.00 sec
+ABC: P:  Del = 3314.00.  Ar =      56.0.  Edge =      156.  Cut =      751.  T =     0.00 sec
+ABC: P:  Del = 3625.00.  Ar =      56.0.  Edge =      148.  Cut =      752.  T =     0.00 sec
+ABC: F:  Del = 3625.00.  Ar =      56.0.  Edge =      148.  Cut =      766.  T =     0.00 sec
+ABC: A:  Del = 3625.00.  Ar =      56.0.  Edge =      144.  Cut =      766.  T =     0.00 sec
+ABC: A:  Del = 3625.00.  Ar =      56.0.  Edge =      144.  Cut =      766.  T =     0.00 sec
+ABC: Total time =     0.00 sec
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &mfs 
+ABC: The network is not changed by "&mfs".
+ABC: + &ps -l 
+ABC: <abc-temp-dir>/input : i/o =     72/     77  and =     120  lev =    8 (   0.26)  mem = 0.01 MB  box = 79  bb = 52
+ABC: Mapping (K=4)  :  lut =     56  edge =     144  lev =    5 (0.21)  levB =   18  mem = 0.00 MB
+ABC: LUT = 56 : 2=37 66.1 %  3=6 10.7 %  4=13 23.2 %  Ave = 2.57
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 2 carries.
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &verify 
+ABC: Networks are equivalent.  Time =     0.01 sec
+ABC: + time 
+ABC: elapse: 0.02 seconds, total: 0.02 seconds
+
+3.41.19.6. Executing AIGER frontend.
+<suppressed ~309 debug messages>
+Removed 139 unused cells and 665 unused wires.
+
+3.41.19.7. Executing ABC9_OPS pass (helper functions for ABC9).
+ABC RESULTS:              $lut cells:       73
+ABC RESULTS:   \SB_DFFR_$abc9_byp cells:        3
+ABC RESULTS:   \SB_DFFS_$abc9_byp cells:        1
+ABC RESULTS:   \SB_DFFES_$abc9_byp cells:        1
+ABC RESULTS:   \SB_DFFER_$abc9_byp cells:       47
+ABC RESULTS:   $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 cells:       27
+ABC RESULTS:           input signals:       57
+ABC RESULTS:          output signals:       20
+Removing temp directory.
+
+3.41.20. Executing TECHMAP pass (map to technology primitives).
+
+3.41.20.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v' to AST representation.
+Generating RTLIL representation for module `$__DFF_x__$abc9_flop'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Successfully finished Verilog frontend.
+
+3.41.20.2. Continuing TECHMAP pass.
+Using template SB_DFFER_$abc9_byp for cells of type SB_DFFER_$abc9_byp.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+Using template SB_DFFS_$abc9_byp for cells of type SB_DFFS_$abc9_byp.
+Using template SB_DFFR_$abc9_byp for cells of type SB_DFFR_$abc9_byp.
+Using template SB_DFFES_$abc9_byp for cells of type SB_DFFES_$abc9_byp.
+No more expansions possible.
+<suppressed ~89 debug messages>
+
+3.42. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.43. Executing TECHMAP pass (map to technology primitives).
+
+3.43.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.43.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 21 unused cells and 1238 unused wires.
+
+3.44. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:       85
+  1-LUT               17
+  2-LUT               39
+  3-LUT               16
+  4-LUT               13
+  with \SB_CARRY    (#0)   10
+  with \SB_CARRY    (#1)    9
+
+Eliminating LUTs.
+Number of LUTs:       85
+  1-LUT               17
+  2-LUT               39
+  3-LUT               16
+  4-LUT               13
+  with \SB_CARRY    (#0)   10
+  with \SB_CARRY    (#1)    9
+
+Combining LUTs.
+Number of LUTs:       74
+  1-LUT               17
+  2-LUT               26
+  3-LUT                9
+  4-LUT               22
+  with \SB_CARRY    (#0)   10
+  with \SB_CARRY    (#1)    9
+
+Eliminated 0 LUTs.
+Combined 11 LUTs.
+<suppressed ~464 debug messages>
+
+3.45. Executing TECHMAP pass (map to technology primitives).
+
+3.45.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+3.45.2. Continuing TECHMAP pass.
+Using template $paramod$c28a8b7ce0535d090c4cfb52e9c74affd52b110c$lut for cells of type $lut.
+Using template $paramod$658b9ed803f0d3d335616d3858b53e0a2522f1e8$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0010 for cells of type $lut.
+Using template $paramod$9d707d218adbd63b6f9a0c79d7ee037306fb6296$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1101 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1110 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10101100 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
+Using template $paramod$6d6beead1425af15cf78b27fd9b11b41b5d4bce8$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+Using template $paramod$5b4b4ed558983d9f3ab4c896a7a011d129b0db9a$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0001 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11100100 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11000100 for cells of type $lut.
+Using template $paramod$8d7a8d6e3356de09670738ba85f2c6b874f6b06d$lut for cells of type $lut.
+Using template $paramod$571404c0889eaf57f492cb5e37f8acb5df5852f9$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10010000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10110000 for cells of type $lut.
+No more expansions possible.
+<suppressed ~350 debug messages>
+Removed 0 unused cells and 174 unused wires.
+
+3.46. Executing AUTONAME pass.
+Renamed 223 objects in module temp_sensor_spi (88 iterations).
+<suppressed ~223 debug messages>
+
+3.47. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `temp_sensor_spi'. Setting top module to temp_sensor_spi.
+
+3.47.1. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+
+3.47.2. Analyzing design hierarchy..
+Top module:  \temp_sensor_spi
+Removed 0 unused modules.
+
+3.48. Printing statistics.
+
+=== temp_sensor_spi ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+      151 submodules
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - temp_sensor_spi
+
+        +----------Count including submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      151 submodules
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module temp_sensor_spi...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+4. Printing statistics.
+
+=== temp_sensor_spi ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+      151 cells
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4
+
+End of script. Logfile hash: ee9ade534f
+Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+Time spent: 1% 27x opt_expr (0 sec), 1% 24x opt_clean (0 sec), ...
+
+--- STDERR ---

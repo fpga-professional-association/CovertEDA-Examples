@@ -1,33 +1,216 @@
-nextpnr -- Next Generation Place and Route
 
-Version: nextpnr-ecp5 -- Version 0.6
+--- STDERR ---
 
-Device: LFE5U-25F-6
 
-Importing design...
+Info: Logic utilisation before packing:
+Info:     Total LUT4s:        15/24288     0%
+Info:         logic LUTs:      9/24288     0%
+Info:         carry LUTs:      6/24288     0%
+Info:           RAM LUTs:      0/ 3036     0%
+Info:          RAMW LUTs:      0/ 6072     0%
 
-Read constraints from spi.lpf...
+Info:      Total DFFs:        39/24288     0%
+
+Info: Packing IOs..
+Info: Packing constants..
+Info: Packing carries...
+Info: Packing LUTs...
+Info: Packing LUT5-7s...
+Info: Packing FFs...
+Info:     7 FFs paired with LUTs.
+Info: Generating derived timing constraints...
+Info: Promoting globals...
+Info:     promoting clock net spi_clk$TRELLIS_IO_IN to global network
+Info: Checksum: 0x894f4d4f
 
 Info: Device utilisation:
-Info:
-Info: LUT: 345/33120 (1.04%)
-Info: FF: 234/33120 (0.71%)
-Info: CARRY: 0/39525 (0.00%)
-Info: DCC: 0/2 (0.00%)
-Info: IOLOGIC: 0/320 (0.00%)
-Info: SIOLOGIC: 0/68 (0.00%)
-Info: RAMW: 0/320 (0.00%)
-Info: RAMX: 0/40 (0.00%)
-Info: PFU: 0/39525 (0.00%)
-Info: BRAM36K: 0/74 (0.00%)
-Info: BRAM18K: 0/148 (0.00%)
+Info: 	          TRELLIS_IO:      39/    197    19%
+Info: 	                DCCA:       1/     56     1%
+Info: 	              DP16KD:       0/     56     0%
+Info: 	          MULT18X18D:       0/     28     0%
+Info: 	              ALU54B:       0/     14     0%
+Info: 	             EHXPLLL:       0/      2     0%
+Info: 	             EXTREFB:       0/      1     0%
+Info: 	                DCUA:       0/      1     0%
+Info: 	           PCSCLKDIV:       0/      2     0%
+Info: 	             IOLOGIC:       0/    128     0%
+Info: 	            SIOLOGIC:       0/     69     0%
+Info: 	                 GSR:       0/      1     0%
+Info: 	               JTAGG:       0/      1     0%
+Info: 	                OSCG:       0/      1     0%
+Info: 	               SEDGA:       0/      1     0%
+Info: 	                 DTR:       0/      1     0%
+Info: 	             USRMCLK:       0/      1     0%
+Info: 	             CLKDIVF:       0/      4     0%
+Info: 	           ECLKSYNCB:       0/     10     0%
+Info: 	             DLLDELD:       0/      8     0%
+Info: 	              DDRDLL:       0/      4     0%
+Info: 	             DQSBUFM:       0/      8     0%
+Info: 	     TRELLIS_ECLKBUF:       0/      8     0%
+Info: 	        ECLKBRIDGECS:       0/      2     0%
+Info: 	                DCSC:       0/      2     0%
+Info: 	          TRELLIS_FF:      39/  24288     0%
+Info: 	        TRELLIS_COMB:      21/  24288     0%
+Info: 	        TRELLIS_RAMW:       0/   3036     0%
 
-Info: Placed 345 cells based on constraints.
-Info: Running main placement...
-Info: Executing constraint propagation...
-Info: Running detailed placement for 345 cells.
-Info: Routed 345 nets.
+Info: Placed 0 cells based on constraints.
+Info: Creating initial analytic placement for 44 cells, random placement wirelen = 3199.
+Info:     at initial placer iter 0, wirelen = 1320
+Info:     at initial placer iter 1, wirelen = 1288
+Info:     at initial placer iter 2, wirelen = 1288
+Info:     at initial placer iter 3, wirelen = 1288
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type ALL: wirelen solved = 1287, spread = 1362, legal = 1350; time = 0.01s
+Info: HeAP Placer Time: 0.02s
+Info:   of which solving equations: 0.00s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
 
-Info: Max frequency for clock 'clk': 100 MHz
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 7, wirelen = 1350
+Info:   at iteration #5: temp = 0.000000, timing cost = 7, wirelen = 975
+Info:   at iteration #10: temp = 0.000000, timing cost = 7, wirelen = 933
+Info:   at iteration #15: temp = 0.000000, timing cost = 6, wirelen = 915
+Info:   at iteration #16: temp = 0.000000, timing cost = 6, wirelen = 914 
+Info: SA placement time 0.02s
 
-Info: Timing analysis complete! (real time: 0.34s)
+Info: Max frequency for clock '$glbnet$spi_clk$TRELLIS_IO_IN': 313.19 MHz (PASS at 12.00 MHz)
+
+Info: Max delay <async>                               -> posedge $glbnet$spi_clk$TRELLIS_IO_IN: 10.02 ns
+Info: Max delay posedge $glbnet$spi_clk$TRELLIS_IO_IN -> <async>                              : 6.93 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 80140,  80262) |**** 
+Info: [ 80262,  80384) |* 
+Info: [ 80384,  80506) | 
+Info: [ 80506,  80628) | 
+Info: [ 80628,  80750) |* 
+Info: [ 80750,  80872) |* 
+Info: [ 80872,  80994) | 
+Info: [ 80994,  81116) |* 
+Info: [ 81116,  81238) |*** 
+Info: [ 81238,  81360) |* 
+Info: [ 81360,  81482) |*** 
+Info: [ 81482,  81604) |* 
+Info: [ 81604,  81726) | 
+Info: [ 81726,  81848) | 
+Info: [ 81848,  81970) |**** 
+Info: [ 81970,  82092) |**** 
+Info: [ 82092,  82214) |****** 
+Info: [ 82214,  82336) |******* 
+Info: [ 82336,  82458) | 
+Info: [ 82458,  82580) |* 
+Info: Checksum: 0xfcbc3e6d
+Info: Routing globals...
+Info:     routing clock net $glbnet$spi_clk$TRELLIS_IO_IN using global 0
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 175 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:        183 |        8        170 |    8   170 |         0|       0.07       0.07|
+Info: Routing complete.
+Info: Router1 time 0.07s
+Info: Checksum: 0x0d4e9d69
+
+Info: Critical path report for clock '$glbnet$spi_clk$TRELLIS_IO_IN' (posedge -> posedge):
+Info:       type curr  total name
+Info:   clk-to-q  0.52  0.52 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_LUT4_Z_C_TRELLIS_FF_Q_2.Q
+Info:    routing  1.07  1.59 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_LUT4_Z_C[1] (68,34) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN_CCU2C_COUT$CCU2_COMB0.B
+Info:                          Defined in:
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.45  2.04 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN_CCU2C_COUT$CCU2_COMB0.FCO
+Info:    routing  0.00  2.04 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN_CCU2C_COUT$CCU2_FCI_INT (69,33) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN_CCU2C_COUT$CCU2_COMB1.FCI
+Info:      logic  0.00  2.04 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN_CCU2C_COUT$CCU2_COMB1.FCO
+Info:    routing  0.00  2.04 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_CIN (69,33) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               spi_slave.v:27.26-27.42
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice\ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  2.11 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0$CCU2_COMB0.FCO
+Info:    routing  0.00  2.11 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0$CCU2_FCI_INT (69,33) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0$CCU2_COMB1.FCI
+Info:      logic  0.00  2.11 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0$CCU2_COMB1.FCO
+Info:    routing  0.00  2.11 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B0_COUT (69,33) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1$CCU2_COMB0.FCI
+Info:                          Defined in:
+Info:                               spi_slave.v:27.26-27.42
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice/arith_map_ccu2c.v:74.7-80.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice\ccu2c_sim.vh:9.9-9.13
+Info:      logic  0.07  2.18 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1$CCU2_COMB0.FCO
+Info:    routing  0.00  2.18 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1$CCU2_FCI_INT (69,33) -> (69,33)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1$CCU2_COMB1.FCI
+Info:      logic  0.40  2.58 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1$CCU2_COMB1.F
+Info:    routing  0.71  3.30 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_CCU2C_B1_S1[1] (69,33) -> (69,32)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_TRELLIS_FF_Q_DI_LUT4_Z.D
+Info:                          Defined in:
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  3.53 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_TRELLIS_FF_Q_DI_LUT4_Z.F
+Info:    routing  0.13  3.66 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_TRELLIS_FF_Q_DI[5] (69,32) -> (69,32)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_TRELLIS_FF_Q_2.DI
+Info:      setup  0.00  3.66 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_TRELLIS_FF_Q_2.DI
+Info: 1.75 ns logic, 1.91 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge $glbnet$spi_clk$TRELLIS_IO_IN':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source spi_cs_n$tr_io.O
+Info:    routing  5.44  5.44 Net spi_cs_n$TRELLIS_IO_IN (0,23) -> (69,34)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_LUT4_Z.D
+Info:                          Defined in:
+Info:                               spi_slave.v:7.12-7.20
+Info:      logic  0.24  5.67 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D_LUT4_Z.F
+Info:    routing  0.21  5.89 Net rx_valid_TRELLIS_FF_Q_CE_LUT4_Z_D[3] (69,34) -> (69,34)
+Info:                          Sink rx_valid_TRELLIS_FF_Q_CE_LUT4_Z.D
+Info:                          Defined in:
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/lattice/cells_map_trellis.v:108.23-108.24
+Info:      logic  0.24  6.12 Source rx_valid_TRELLIS_FF_Q_CE_LUT4_Z.F
+Info:    routing  0.64  6.77 Net rx_valid_TRELLIS_FF_Q_CE (69,34) -> (69,35)
+Info:                          Sink rx_valid_TRELLIS_FF_Q.CE
+Info:      setup  0.00  6.77 Source rx_valid_TRELLIS_FF_Q.CE
+Info: 0.47 ns logic, 6.30 ns routing
+
+Info: Critical path report for cross-domain path 'posedge $glbnet$spi_clk$TRELLIS_IO_IN' -> '<async>':
+Info:       type curr  total name
+Info:   clk-to-q  0.52  0.52 Source spi_inst.shift_in_TRELLIS_FF_Q.Q
+Info:    routing  4.42  4.94 Net rx_data[24]$TRELLIS_IO_OUT (34,2) -> (18,50)
+Info:                          Sink rx_data[24]$tr_io.I
+Info:                          Defined in:
+Info:                               spi_slave.v:14.16-14.24
+Info: 0.52 ns logic, 4.42 ns routing
+
+Info: Max frequency for clock '$glbnet$spi_clk$TRELLIS_IO_IN': 273.07 MHz (PASS at 12.00 MHz)
+
+Info: Max delay <async>                               -> posedge $glbnet$spi_clk$TRELLIS_IO_IN: 6.77 ns
+Info: Max delay posedge $glbnet$spi_clk$TRELLIS_IO_IN -> <async>                              : 4.94 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 79671,  79807) |*** 
+Info: [ 79807,  79943) | 
+Info: [ 79943,  80079) |** 
+Info: [ 80079,  80215) | 
+Info: [ 80215,  80351) | 
+Info: [ 80351,  80487) | 
+Info: [ 80487,  80623) | 
+Info: [ 80623,  80759) |* 
+Info: [ 80759,  80895) | 
+Info: [ 80895,  81031) | 
+Info: [ 81031,  81167) | 
+Info: [ 81167,  81303) | 
+Info: [ 81303,  81439) | 
+Info: [ 81439,  81575) |***** 
+Info: [ 81575,  81711) | 
+Info: [ 81711,  81847) |**** 
+Info: [ 81847,  81983) |* 
+Info: [ 81983,  82119) |****** 
+Info: [ 82119,  82255) |******** 
+Info: [ 82255,  82391) |******** 
+
+Info: Program finished normally.

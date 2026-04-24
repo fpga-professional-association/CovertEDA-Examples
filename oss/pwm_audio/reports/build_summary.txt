@@ -1,0 +1,6 @@
+Project:  pwm_audio
+Device:   None
+Family:   ice40
+Top:      audio_top
+yosys:    PASS
+nextpnr:  PASS

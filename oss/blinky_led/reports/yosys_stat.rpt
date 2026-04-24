@@ -1,0 +1,62 @@
+=== blinky_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       56 wires
+       85 wire bits
+       56 public wires
+       85 public wire bits
+        3 ports
+        3 port bits
+       81 submodules
+       22   SB_CARRY
+        1   SB_DFFESR
+       24   SB_DFFSR
+       34   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - blinky_top
+
+        +----------Count including submodules.
+        | 
+       56 wires
+       85 wire bits
+       56 public wires
+       85 public wire bits
+        3 ports
+        3 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+       81 submodules
+       22   SB_CARRY
+        1   SB_DFFESR
+       24   SB_DFFSR
+       34   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module blinky_top...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== blinky_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       56 wires
+       85 wire bits
+       56 public wires
+       85 public wire bits
+        3 ports
+        3 port bits
+       81 cells
+       22   SB_CARRY
+        1   SB_DFFESR
+       24   SB_DFFSR
+       34   SB_LUT4

@@ -1,0 +1,64 @@
+=== event_counter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      136 wires
+      429 wire bits
+      136 public wires
+      429 public wire bits
+        8 ports
+       27 port bits
+      326 submodules
+       60   SB_CARRY
+      128   SB_DFFER
+       21   SB_DFFR
+      117   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - event_counter
+
+        +----------Count including submodules.
+        | 
+      136 wires
+      429 wire bits
+      136 public wires
+      429 public wire bits
+        8 ports
+       27 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      326 submodules
+       60   SB_CARRY
+      128   SB_DFFER
+       21   SB_DFFR
+      117   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module event_counter...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== event_counter ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      136 wires
+      429 wire bits
+      136 public wires
+      429 public wire bits
+        8 ports
+       27 port bits
+      326 cells
+       60   SB_CARRY
+      128   SB_DFFER
+       21   SB_DFFR
+      117   SB_LUT4
+
+Warnings: 2 unique messages, 2 total

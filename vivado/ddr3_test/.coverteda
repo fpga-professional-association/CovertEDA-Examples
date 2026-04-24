@@ -1,0 +1,19 @@
+{
+  "name": "ddr3_test",
+  "description": "ddr3 test example \u2014 top module mem_top",
+  "backendId": "vivado",
+  "device": "XC7A200T",
+  "topModule": "mem_top",
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.xdc"
+  ],
+  "implDir": "impl_1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}

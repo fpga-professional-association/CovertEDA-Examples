@@ -1,0 +1,19 @@
+{
+  "name": "serdes_loopback",
+  "description": "serdes loopback example \u2014 top module serdes_top",
+  "backendId": "diamond",
+  "device": "LFE5UM5G-85F-8BG756C",
+  "topModule": "serdes_top",
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.lpf"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}

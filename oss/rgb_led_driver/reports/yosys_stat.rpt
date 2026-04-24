@@ -1,0 +1,65 @@
+=== rgb_led_driver ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+      644 submodules
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - rgb_led_driver
+
+        +----------Count including submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      644 submodules
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module rgb_led_driver...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== rgb_led_driver ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+      644 cells
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4

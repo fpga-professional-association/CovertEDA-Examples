@@ -1,0 +1,6 @@
+Project:  rgb_led_driver
+Device:   iCE40UP5K
+Family:   ice40
+Top:      rgb_led_driver
+yosys:    PASS
+nextpnr:  PASS

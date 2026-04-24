@@ -1,0 +1,7 @@
+Project:   stack_controller
+Family:    Cyclone 10 GX
+Device:    10CX085YU484E5G
+Top:       stack_controller
+Quartus:   25.3 Pro
+Status:    PASS
+Reports:   4

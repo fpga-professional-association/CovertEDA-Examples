@@ -1,0 +1,65 @@
+=== spi_flash_reader ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       72 wires
+      226 wire bits
+       72 public wires
+      226 public wire bits
+       11 ports
+       41 port bits
+      111 submodules
+        7   SB_CARRY
+       40   SB_DFFER
+        1   SB_DFFES
+        1   SB_DFFR
+       62   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - spi_flash_reader
+
+        +----------Count including submodules.
+        | 
+       72 wires
+      226 wire bits
+       72 public wires
+      226 public wire bits
+       11 ports
+       41 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      111 submodules
+        7   SB_CARRY
+       40   SB_DFFER
+        1   SB_DFFES
+        1   SB_DFFR
+       62   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module spi_flash_reader...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== spi_flash_reader ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       72 wires
+      226 wire bits
+       72 public wires
+      226 public wire bits
+       11 ports
+       41 port bits
+      111 cells
+        7   SB_CARRY
+       40   SB_DFFER
+        1   SB_DFFES
+        1   SB_DFFR
+       62   SB_LUT4

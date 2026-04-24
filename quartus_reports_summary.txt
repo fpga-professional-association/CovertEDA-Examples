@@ -1,0 +1,28 @@
+QUARTUS build summary
+Date: 2026-04-23 21:28:08
+==================================================
+Total:   19
+PASS:    19
+FAIL:    0
+Runtime: 212.6s
+==================================================
+
+  PASS  blinky_led                        11.9s
+  PASS  bus_monitor                       11.8s
+  PASS  clock_divider                     10.7s
+  PASS  ethernet_mac                      10.6s
+  PASS  i2c_master                        11.1s
+  PASS  keypad_scanner                    11.3s
+  PASS  moving_average                    10.7s
+  PASS  nios_hello                        10.6s
+  PASS  pcie_endpoint                     10.8s
+  PASS  power_on_reset                    10.6s
+  PASS  prng                              10.7s
+  PASS  ring_buffer                       11.8s
+  PASS  rotary_encoder                    11.6s
+  PASS  scrambler                         12.7s
+  PASS  servo_controller                  11.5s
+  PASS  signal_proc                       11.1s
+  PASS  spi_master                        10.8s
+  PASS  stack_controller                  11.1s
+  PASS  stepper_driver                    11.0s

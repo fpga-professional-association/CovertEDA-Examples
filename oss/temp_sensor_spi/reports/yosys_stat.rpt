@@ -1,0 +1,68 @@
+=== temp_sensor_spi ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+      151 submodules
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - temp_sensor_spi
+
+        +----------Count including submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      151 submodules
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module temp_sensor_spi...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== temp_sensor_spi ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       89 wires
+      222 wire bits
+       89 public wires
+      222 public wire bits
+       10 ports
+       40 port bits
+      151 cells
+       25   SB_CARRY
+       47   SB_DFFER
+        1   SB_DFFES
+        3   SB_DFFR
+        1   SB_DFFS
+       74   SB_LUT4

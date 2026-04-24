@@ -1,0 +1,6 @@
+Project:  spi_flash_reader
+Device:   iCE40UP5K
+Family:   ice40
+Top:      spi_flash_reader
+yosys:    PASS
+nextpnr:  FAIL (timing/routing)

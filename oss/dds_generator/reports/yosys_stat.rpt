@@ -1,0 +1,59 @@
+=== dds_generator ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       52 wires
+      171 wire bits
+       52 public wires
+      171 public wire bits
+        6 ports
+       29 port bits
+       77 submodules
+       17   SB_CARRY
+       25   SB_DFFR
+       35   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - dds_generator
+
+        +----------Count including submodules.
+        | 
+       52 wires
+      171 wire bits
+       52 public wires
+      171 public wire bits
+        6 ports
+       29 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+       77 submodules
+       17   SB_CARRY
+       25   SB_DFFR
+       35   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module dds_generator...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== dds_generator ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       52 wires
+      171 wire bits
+       52 public wires
+      171 public wire bits
+        6 ports
+       29 port bits
+       77 cells
+       17   SB_CARRY
+       25   SB_DFFR
+       35   SB_LUT4

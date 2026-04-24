@@ -1,0 +1,1522 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+
+-- Executing script file `build.ys' --
+
+1. Executing Verilog-2005 frontend: morse_encoder.v
+Parsing Verilog input from `morse_encoder.v' to AST representation.
+Generating RTLIL representation for module `\morse_encoder'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \morse_encoder
+
+2.2. Analyzing design hierarchy..
+Top module:  \morse_encoder
+Removed 0 unused modules.
+
+3. Executing SYNTH_ICE40 pass.
+
+3.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+3.2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `morse_encoder'. Setting top module to morse_encoder.
+
+3.2.1. Analyzing design hierarchy..
+Top module:  \morse_encoder
+
+3.2.2. Analyzing design hierarchy..
+Top module:  \morse_encoder
+Removed 0 unused modules.
+
+3.3. Executing PROC pass (convert processes to netlists).
+
+3.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$morse_encoder.v:52$4 in module morse_encoder.
+Marked 1 switch rules as full_case in process $proc$morse_encoder.v:35$2 in module morse_encoder.
+Removed a total of 0 dead cases.
+
+3.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 2 assignments to connections.
+
+3.3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\morse_encoder.$proc$morse_encoder.v:52$4'.
+
+3.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~8 debug messages>
+
+3.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+     1/6: $0\cur_pat[3:0]
+     2/6: $0\cur_len[2:0]
+     3/6: $0\output_r[0:0]
+     4/6: $0\state[1:0]
+     5/6: $0\timer[15:0]
+     6/6: $0\elem_idx[2:0]
+Creating decoders for process `\morse_encoder.$proc$morse_encoder.v:35$2'.
+     1/2: $1\length[2:0]
+     2/2: $1\pattern[3:0]
+
+3.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\morse_encoder.\pattern' from process `\morse_encoder.$proc$morse_encoder.v:35$2'.
+No latch inferred for signal `\morse_encoder.\length' from process `\morse_encoder.$proc$morse_encoder.v:35$2'.
+
+3.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\morse_encoder.\elem_idx' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$488' with positive edge clock and positive level reset.
+Creating register for signal `\morse_encoder.\timer' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$493' with positive edge clock and positive level reset.
+Creating register for signal `\morse_encoder.\state' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$498' with positive edge clock and positive level reset.
+Creating register for signal `\morse_encoder.\output_r' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$503' with positive edge clock and positive level reset.
+Creating register for signal `\morse_encoder.\cur_len' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$508' with positive edge clock and positive level reset.
+Creating register for signal `\morse_encoder.\cur_pat' using process `\morse_encoder.$proc$morse_encoder.v:52$4'.
+  created $adff cell `$procdff$513' with positive edge clock and positive level reset.
+
+3.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 7 empty switches in `\morse_encoder.$proc$morse_encoder.v:52$4'.
+Removing empty process `morse_encoder.$proc$morse_encoder.v:52$4'.
+Found and cleaned up 1 empty switch in `\morse_encoder.$proc$morse_encoder.v:35$2'.
+Removing empty process `morse_encoder.$proc$morse_encoder.v:35$2'.
+Cleaned up 8 empty switches.
+
+3.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~21 debug messages>
+
+3.4. Executing FLATTEN pass (flatten design).
+
+3.5. Executing TRIBUF pass.
+
+3.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+3.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 7 unused cells and 47 unused wires.
+<suppressed ~8 debug messages>
+
+3.9. Executing CHECK pass (checking for obvious problems).
+Checking module morse_encoder...
+Found and reported 0 problems.
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 74 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 56 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~54 debug messages>
+Removed a total of 18 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~34 debug messages>
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+    New ctrl vector for $pmux cell $procmux$477: { $procmux$483_CMP $procmux$481_CMP $auto$opt_reduce.cc:137:opt_pmux$515 $procmux$479_CMP $procmux$478_CMP }
+    New ctrl vector for $pmux cell $procmux$466: { $procmux$483_CMP $procmux$470_CMP $auto$opt_reduce.cc:137:opt_pmux$519 $auto$opt_reduce.cc:137:opt_pmux$517 }
+  Optimizing cells in module \morse_encoder.
+Performed a total of 2 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 59 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 58 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 19 unused wires.
+<suppressed ~1 debug messages>
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~36 debug messages>
+
+3.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.10.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 58 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.10.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.10.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing FSM pass (extract and optimize FSM).
+
+3.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking morse_encoder.cur_pat as FSM state register:
+    Users of register don't seem to benefit from recoding.
+Not marking morse_encoder.cur_len as FSM state register:
+    Users of register don't seem to benefit from recoding.
+Not marking morse_encoder.state as FSM state register:
+    Users of register don't seem to benefit from recoding.
+
+3.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 58 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~36 debug messages>
+
+3.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 58 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$503 ($adff) from module morse_encoder (D = $0\output_r[0:0], Q = \output_r).
+Adding EN signal on $procdff$493 ($adff) from module morse_encoder (D = $0\timer[15:0], Q = \timer).
+Adding EN signal on $procdff$508 ($adff) from module morse_encoder (D = \length, Q = \cur_len).
+Adding EN signal on $procdff$513 ($adff) from module morse_encoder (D = \pattern, Q = \cur_pat).
+Adding EN signal on $procdff$498 ($adff) from module morse_encoder (D = $0\state[1:0], Q = \state).
+Adding EN signal on $procdff$488 ($adff) from module morse_encoder (D = $0\elem_idx[2:0], Q = \elem_idx).
+
+3.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 4 unused cells and 4 unused wires.
+<suppressed ~5 debug messages>
+
+3.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~4 debug messages>
+
+3.12.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.12.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~31 debug messages>
+
+3.12.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.12.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 64 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+3.12.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.12.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+3.12.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.12.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.12.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~31 debug messages>
+
+3.12.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.12.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 64 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.12.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.12.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.12.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.12.23. Finished fast OPT passes. (There is nothing left to do.)
+
+3.13. Executing WREDUCE pass (reducing word size of cells).
+Removed top 31 bits (of 32) from port B of cell morse_encoder.$gt$morse_encoder.v:64$6 ($gt).
+Removed top 31 bits (of 32) from port B of cell morse_encoder.$sub$morse_encoder.v:77$9 ($sub).
+Removed top 28 bits (of 32) from port Y of cell morse_encoder.$sub$morse_encoder.v:77$9 ($sub).
+Removed top 16 bits (of 32) from port B of cell morse_encoder.$ge$morse_encoder.v:78$13 ($ge).
+Removed top 18 bits (of 32) from port B of cell morse_encoder.$ge$morse_encoder.v:94$16 ($ge).
+Removed top 31 bits (of 32) from port B of cell morse_encoder.$add$morse_encoder.v:97$18 ($add).
+Removed top 28 bits (of 32) from port Y of cell morse_encoder.$add$morse_encoder.v:97$18 ($add).
+Removed top 28 bits (of 32) from port A of cell morse_encoder.$ge$morse_encoder.v:97$19 ($ge).
+Removed top 1 bits (of 2) from mux cell morse_encoder.$procmux$426 ($mux).
+Removed top 1 bits (of 2) from port B of cell morse_encoder.$procmux$454_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$467_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$470_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$478_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$479_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$480_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$481_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$482_CMP0 ($eq).
+Removed top 1 bits (of 7) from port B of cell morse_encoder.$procmux$483_CMP0 ($eq).
+Removed top 1 bits (of 2) from wire morse_encoder.$procmux$426_Y.
+Removed top 28 bits (of 32) from wire morse_encoder.$add$morse_encoder.v:97$18_Y.
+
+3.14. Executing PEEPOPT pass (run peephole optimizers).
+
+3.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+3.16. Executing SHARE pass (SAT-based resource sharing).
+
+3.17. Executing TECHMAP pass (map to technology primitives).
+
+3.17.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+3.17.2. Continuing TECHMAP pass.
+Using template $paramod$145abe87336b813af869805af52840f8eaed9f1a\_90_lut_cmp_ for cells of type $gt.
+No more expansions possible.
+<suppressed ~118 debug messages>
+
+3.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module morse_encoder:
+  creating $macc model for $add$morse_encoder.v:97$18 ($add).
+  creating $macc model for $add$morse_encoder.v:96$17 ($add).
+  creating $macc model for $add$morse_encoder.v:93$15 ($add).
+  creating $macc model for $sub$morse_encoder.v:77$10 ($sub).
+  creating $macc model for $sub$morse_encoder.v:77$9 ($sub).
+  creating $alu model for $macc $sub$morse_encoder.v:77$9.
+  creating $alu model for $macc $sub$morse_encoder.v:77$10.
+  creating $alu model for $macc $add$morse_encoder.v:93$15.
+  creating $alu model for $macc $add$morse_encoder.v:96$17.
+  creating $alu model for $macc $add$morse_encoder.v:97$18.
+  creating $alu model for $ge$morse_encoder.v:97$19 ($ge): new $alu
+  creating $alu model for $ge$morse_encoder.v:94$16 ($ge): new $alu
+  creating $alu model for $ge$morse_encoder.v:78$13 ($ge): new $alu
+  creating $alu cell for $ge$morse_encoder.v:78$13: $auto$alumacc.cc:512:replace_alu$566
+  creating $alu cell for $ge$morse_encoder.v:94$16: $auto$alumacc.cc:512:replace_alu$579
+  creating $alu cell for $ge$morse_encoder.v:97$19: $auto$alumacc.cc:512:replace_alu$592
+  creating $alu cell for $add$morse_encoder.v:97$18: $auto$alumacc.cc:512:replace_alu$605
+  creating $alu cell for $add$morse_encoder.v:96$17: $auto$alumacc.cc:512:replace_alu$608
+  creating $alu cell for $add$morse_encoder.v:93$15: $auto$alumacc.cc:512:replace_alu$611
+  creating $alu cell for $sub$morse_encoder.v:77$10: $auto$alumacc.cc:512:replace_alu$614
+  creating $alu cell for $sub$morse_encoder.v:77$9: $auto$alumacc.cc:512:replace_alu$617
+  created 8 $alu and 0 $macc cells.
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 79 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~31 debug messages>
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 79 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~31 debug messages>
+
+3.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 79 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.21.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing MEMORY pass.
+
+3.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+
+3.25. Executing TECHMAP pass (map to technology primitives).
+
+3.25.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+3.25.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+3.25.3. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.26. Executing ICE40_BRAMINIT pass.
+
+3.27. Executing OPT pass (performing simple optimizations).
+
+3.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~13 debug messages>
+
+3.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 9 unused wires.
+<suppressed ~1 debug messages>
+
+3.27.5. Finished fast OPT passes.
+
+3.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.29. Executing OPT pass (performing simple optimizations).
+
+3.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+    Consolidated identical input bits for $pmux cell $procmux$477:
+      Old ports: A=4'0000, B=20'01001010100000101100, Y=\pattern
+      New ports: A=3'000, B=15'010101100001110, Y=\pattern [3:1]
+      New connections: \pattern [0] = 1'0
+  Optimizing cells in module \morse_encoder.
+Performed a total of 1 changes.
+
+3.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.29.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.29.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.29.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.29.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.29.13. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$533 ($adffe) from module morse_encoder.
+
+3.29.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.29.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.29.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.29.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+3.29.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.29.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 70 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.29.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.29.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.29.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.29.23. Finished fast OPT passes. (There is nothing left to do.)
+
+3.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.31. Executing TECHMAP pass (map to technology primitives).
+
+3.31.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.31.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+3.31.3. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$1a9b2adc0e90ccf2d22dba8d72430d10741e65ed\_80_ice40_alu for cells of type $alu.
+Using template $paramod$3e92930b84a1f8e99102decb41b57db2b77e2f7a\_80_ice40_alu for cells of type $alu.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_80_ice40_alu for cells of type $alu.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_80_ice40_alu for cells of type $alu.
+Using template $paramod$bfceb922395790c0ce92e9f9b5b428d4fc72cc30\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$f956edc9fe4df758d9fdb10bfc518a364c99e75e\_80_ice40_alu for cells of type $alu.
+Using template $paramod$cf7613839d500415f5b0bc26b1d563f7648e9cd6\_80_ice40_alu for cells of type $alu.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $lut.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$constmap:91b19ca865c28113a4ad00c5b35905091d07680e$paramod$21667f49f7b910cf44620f16fb42b2cc3e340dea\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$521ce43182eecb9f60c72393a788160d2c356bf5\_90_pmux for cells of type $pmux.
+Using template $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod$d31bf4d7d72e59528d18fbd4f322e9d608532043\_90_pmux for cells of type $pmux.
+Using template $paramod$56f7ce6d87f8add68ca646dc02d7695a3189f8e5\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $pos.
+Using extmapper simplemap for cells of type $and.
+No more expansions possible.
+<suppressed ~772 debug messages>
+
+3.32. Executing OPT pass (performing simple optimizations).
+
+3.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~390 debug messages>
+
+3.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 547 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 469 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 454 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 447 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~300 debug messages>
+Removed a total of 100 cells.
+
+3.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 44 unused cells and 388 unused wires.
+<suppressed ~45 debug messages>
+
+3.32.5. Finished fast OPT passes.
+
+3.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.33.1. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$566.slice[0].carry: CO=\timer [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$579.slice[0].carry: CO=\timer [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$605.slice[0].carry: CO=\elem_idx [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$605.slice[3].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$608.slice[0].carry: CO=\elem_idx [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$611.slice[0].carry: CO=\timer [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$617.slice[0].carry: CO=\cur_len [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) morse_encoder.$auto$alumacc.cc:512:replace_alu$617.slice[3].carry: CO=$auto$alumacc.cc:512:replace_alu$617.C [3]
+
+3.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~5 debug messages>
+
+3.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 398 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 396 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+3.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 1 unused cells and 4 unused wires.
+<suppressed ~2 debug messages>
+
+3.33.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.33.7. Running ICE40 specific optimizations.
+
+3.33.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.33.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 395 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.33.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.33.12. Finished OPT passes. (There is nothing left to do.)
+
+3.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+3.35. Executing TECHMAP pass (map to technology primitives).
+
+3.35.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.35.2. Continuing TECHMAP pass.
+Using template $_DFFE_PP0P_ for cells of type $_DFFE_PP0P_.
+No more expansions possible.
+<suppressed ~50 debug messages>
+
+3.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping morse_encoder.$auto$alumacc.cc:512:replace_alu$605.slice[0].carry ($lut).
+Mapping morse_encoder.$auto$alumacc.cc:512:replace_alu$605.slice[3].carry ($lut).
+Mapping morse_encoder.$auto$alumacc.cc:512:replace_alu$611.slice[0].carry ($lut).
+Mapping morse_encoder.$auto$alumacc.cc:512:replace_alu$617.slice[0].carry ($lut).
+Mapping morse_encoder.$auto$alumacc.cc:512:replace_alu$617.slice[3].carry ($lut).
+
+3.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.38.1. Running ICE40 specific optimizations.
+
+3.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~96 debug messages>
+
+3.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 423 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 393 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~90 debug messages>
+Removed a total of 30 cells.
+
+3.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 216 unused wires.
+<suppressed ~1 debug messages>
+
+3.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.38.7. Running ICE40 specific optimizations.
+
+3.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 393 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.38.12. Finished OPT passes. (There is nothing left to do.)
+
+3.39. Executing TECHMAP pass (map to technology primitives).
+
+3.39.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `$_DLATCH_N_'.
+Generating RTLIL representation for module `$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+3.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.40. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_CARRY_WRAPPER'.
+Successfully finished Verilog frontend.
+
+3.41. Executing ABC9 pass.
+
+3.41.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.3. Executing PROC pass (convert processes to netlists).
+
+3.41.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211 in module SB_DFFER.
+Removed a total of 0 dead cases.
+
+3.41.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.41.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$214'.
+  Set init value: \Q = 1'0
+
+3.41.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \R in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211'.
+
+3.41.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.41.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$214'.
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211'.
+     1/1: $0\Q[0:0]
+
+3.41.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211'.
+  created $adff cell `$procdff$2209' with positive edge clock and positive level reset.
+
+3.41.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$214'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211'.
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$211'.
+Cleaned up 1 empty switch.
+
+3.41.4. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module morse_encoder.
+Found 0 SCCs.
+
+3.41.5. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.6. Executing TECHMAP pass (map to technology primitives).
+
+3.41.6.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.6.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~131 debug messages>
+
+3.41.7. Executing OPT pass (performing simple optimizations).
+
+3.41.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+
+3.41.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Removed a total of 0 cells.
+
+3.41.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \SB_DFFER..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \SB_DFFER.
+Performed a total of 0 changes.
+
+3.41.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Removed a total of 0 cells.
+
+3.41.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \SB_DFFER..
+
+3.41.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+
+3.41.7.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.8. Executing TECHMAP pass (map to technology primitives).
+
+3.41.8.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v' to AST representation.
+Successfully finished Verilog frontend.
+
+3.41.8.2. Continuing TECHMAP pass.
+Using template SB_DFFER for cells of type SB_DFFER.
+No more expansions possible.
+<suppressed ~31 debug messages>
+
+3.41.9. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+3.41.10. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.11. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.12. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.13. Executing TECHMAP pass (map to technology primitives).
+
+3.41.13.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.13.2. Continuing TECHMAP pass.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+Using template SB_CARRY for cells of type SB_CARRY.
+Using template $paramod\SB_LUT4\LUT_INIT=16'0110100110010110 for cells of type SB_LUT4.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $logic_and.
+No more expansions possible.
+<suppressed ~150 debug messages>
+
+3.41.14. Executing OPT pass (performing simple optimizations).
+
+3.41.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+<suppressed ~4 debug messages>
+
+3.41.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 30 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 20 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Computing hashes of 18 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+<suppressed ~29 debug messages>
+Removed a total of 12 cells.
+
+3.41.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.41.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 18 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.41.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+Removed 0 unused cells and 24 unused wires.
+<suppressed ~1 debug messages>
+
+3.41.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.41.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.41.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \morse_encoder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \morse_encoder.
+Performed a total of 0 changes.
+
+3.41.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\morse_encoder'.
+Computing hashes of 18 cells of `\morse_encoder'.
+Finding duplicate cells in `\morse_encoder'.
+Removed a total of 0 cells.
+
+3.41.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \morse_encoder..
+
+3.41.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module morse_encoder.
+
+3.41.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.15. Executing AIGMAP pass (map logic to AIG).
+Module morse_encoder: replaced 7 cells with 43 new cells, skipped 11 cells.
+  replaced 2 cell types:
+       5 $_MUX_
+       2 $_OR_
+  not replaced 3 cell types:
+       2 $_AND_
+       1 $_NOT_
+       8 $specify2
+
+3.41.16. Executing AIGMAP pass (map logic to AIG).
+Module morse_encoder: replaced 137 cells with 725 new cells, skipped 284 cells.
+  replaced 3 cell types:
+      56 $_MUX_
+      78 $_OR_
+       3 $_XOR_
+  not replaced 5 cell types:
+      95 $_AND_
+      46 $_NOT_
+      28 SB_DFFER
+      28 SB_DFFER_$abc9_byp
+      87 $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1
+
+3.41.16.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.16.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.16.3. Executing XAIGER backend.
+<suppressed ~39 debug messages>
+Extracted 350 AND gates and 1116 wires from module `morse_encoder' to a netlist network with 39 inputs and 36 outputs.
+
+3.41.16.4. Executing ABC9_EXE pass (technology mapping using ABC9).
+
+3.41.16.5. Executing ABC9.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_lut <abc-temp-dir>/input.lut 
+ABC: + read_box <abc-temp-dir>/input.box 
+ABC: + &read <abc-temp-dir>/input.xaig 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     39/     36  and =     277  lev =   15 (   0.62)  mem = 0.02 MB  box = 115  bb = 28
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 6 carries.
+ABC: + &scorr 
+ABC: Warning: The network is combinational.
+ABC: + &sweep 
+ABC: + &dc2 
+ABC: + &dch -f -r 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     39/     36  and =     104  lev =   10 (   0.59)  mem = 0.01 MB  ch =   11  box = 82  bb = 28
+ABC: cst =       0  cls =     11  lit =      11  unused =     257  proof =     0
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 5 carries.
+ABC: + &if -W 250 -v 
+ABC: K = 4. Memory (bytes): Truth =    0. Cut =   64. Obj =  144. Set =  672. CutMin = no
+ABC: Node =     104.  Ch =    11.  Total mem =    0.10 MB. Peak cut mem =    0.01 MB.
+ABC: P:  Del = 3817.00.  Ar =      58.0.  Edge =      181.  Cut =      465.  T =     0.00 sec
+ABC: P:  Del = 3817.00.  Ar =      57.0.  Edge =      198.  Cut =      460.  T =     0.00 sec
+ABC: P:  Del = 4383.00.  Ar =      49.0.  Edge =      139.  Cut =      488.  T =     0.00 sec
+ABC: F:  Del = 4383.00.  Ar =      49.0.  Edge =      139.  Cut =      526.  T =     0.00 sec
+ABC: A:  Del = 4612.00.  Ar =      49.0.  Edge =      135.  Cut =      518.  T =     0.00 sec
+ABC: A:  Del = 4612.00.  Ar =      49.0.  Edge =      135.  Cut =      518.  T =     0.00 sec
+ABC: Total time =     0.00 sec
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &mfs 
+ABC: The network is not changed by "&mfs".
+ABC: + &ps -l 
+ABC: <abc-temp-dir>/input : i/o =     39/     36  and =      99  lev =   10 (   0.59)  mem = 0.01 MB  box = 82  bb = 28
+ABC: Mapping (K=4)  :  lut =     49  edge =     135  lev =    8 (0.39)  levB =   19  mem = 0.00 MB
+ABC: LUT = 49 : 2=24 49.0 %  3=13 26.5 %  4=12 24.5 %  Ave = 2.76
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 5 carries.
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &verify 
+ABC: Networks are equivalent.  Time =     0.01 sec
+ABC: + time 
+ABC: elapse: 0.03 seconds, total: 0.03 seconds
+
+3.41.16.6. Executing AIGER frontend.
+<suppressed ~194 debug messages>
+Removed 102 unused cells and 661 unused wires.
+
+3.41.16.7. Executing ABC9_OPS pass (helper functions for ABC9).
+ABC RESULTS:              $lut cells:       55
+ABC RESULTS:   \SB_DFFER_$abc9_byp cells:       28
+ABC RESULTS:   $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 cells:       54
+ABC RESULTS:           input signals:       32
+ABC RESULTS:          output signals:       14
+Removing temp directory.
+
+3.41.17. Executing TECHMAP pass (map to technology primitives).
+
+3.41.17.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v' to AST representation.
+Generating RTLIL representation for module `$__DFF_x__$abc9_flop'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Successfully finished Verilog frontend.
+
+3.41.17.2. Continuing TECHMAP pass.
+Using template SB_DFFER_$abc9_byp for cells of type SB_DFFER_$abc9_byp.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+No more expansions possible.
+<suppressed ~89 debug messages>
+
+3.42. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.43. Executing TECHMAP pass (map to technology primitives).
+
+3.43.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.43.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 48 unused cells and 1675 unused wires.
+
+3.44. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:       75
+  1-LUT                6
+  2-LUT               26
+  3-LUT               31
+  4-LUT               12
+  with \SB_CARRY    (#0)   18
+  with \SB_CARRY    (#1)   17
+
+Eliminating LUTs.
+Number of LUTs:       75
+  1-LUT                6
+  2-LUT               26
+  3-LUT               31
+  4-LUT               12
+  with \SB_CARRY    (#0)   18
+  with \SB_CARRY    (#1)   17
+
+Combining LUTs.
+Number of LUTs:       58
+  1-LUT                5
+  2-LUT                9
+  3-LUT               17
+  4-LUT               27
+  with \SB_CARRY    (#0)   18
+  with \SB_CARRY    (#1)   17
+
+Eliminated 0 LUTs.
+Combined 17 LUTs.
+<suppressed ~449 debug messages>
+
+3.45. Executing TECHMAP pass (map to technology primitives).
+
+3.45.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+3.45.2. Continuing TECHMAP pass.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11001010 for cells of type $lut.
+Using template $paramod$949912d41b6703327b37a3cbe8a7a7bc923219b7$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0010 for cells of type $lut.
+Using template $paramod$ce3956c966acb67743cb55a9100788a51ece0f5f$lut for cells of type $lut.
+Using template $paramod$e8b1383c6901b56df73ac402d78a5e0a42461be0$lut for cells of type $lut.
+Using template $paramod$3ea5e1aff67d5158d4abe40f7c4e0ca909124912$lut for cells of type $lut.
+Using template $paramod$a59507d273cd827eb6c46c37820d50a1b717efdf$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000010 for cells of type $lut.
+Using template $paramod$9d707d218adbd63b6f9a0c79d7ee037306fb6296$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000100 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00010000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
+Using template $paramod$364c9ffbffac467d60dfec81bba4e18476c15602$lut for cells of type $lut.
+Using template $paramod$a5516fc31d1e552de2435200bb732b4d4ad63a9c$lut for cells of type $lut.
+Using template $paramod$722bfd9af0ae56ca9d1d12a221cb5ede16461f26$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1110 for cells of type $lut.
+Using template $paramod$b4f85a6321a00b090afc4e21d68e7b99eb94d149$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01000000 for cells of type $lut.
+Using template $paramod$153c6cdaaddbc43e6ef3facd06aa851de33910ae$lut for cells of type $lut.
+Using template $paramod$d4fae2c0d9ad2966369cd4e39b81c71bcd1327c9$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11110110 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10011101 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0111 for cells of type $lut.
+Using template $paramod$01dca83a46715e34148c4c00ba35d18cd8b7f479$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11101100 for cells of type $lut.
+Using template $paramod$e87f431398fe61dc3cef677df705fdf1c11aa0f7$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11111000 for cells of type $lut.
+Using template $paramod$c471af5667a682bd131a5b479e58e470d1b2b7cd$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0001 for cells of type $lut.
+No more expansions possible.
+<suppressed ~490 debug messages>
+Removed 0 unused cells and 143 unused wires.
+
+3.46. Executing AUTONAME pass.
+Renamed 238 objects in module morse_encoder (104 iterations).
+<suppressed ~238 debug messages>
+
+3.47. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `morse_encoder'. Setting top module to morse_encoder.
+
+3.47.1. Analyzing design hierarchy..
+Top module:  \morse_encoder
+
+3.47.2. Analyzing design hierarchy..
+Top module:  \morse_encoder
+Removed 0 unused modules.
+
+3.48. Printing statistics.
+
+=== morse_encoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+      137 submodules
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - morse_encoder
+
+        +----------Count including submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      137 submodules
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module morse_encoder...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+4. Printing statistics.
+
+=== morse_encoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+      137 cells
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4
+
+End of script. Logfile hash: cc17600486
+Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+Time spent: 1% 31x opt_expr (0 sec), 1% 26x opt_clean (0 sec), ...
+
+--- STDERR ---

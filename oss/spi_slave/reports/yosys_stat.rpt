@@ -1,0 +1,65 @@
+=== spi_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       37 wires
+      209 wire bits
+       37 public wires
+      209 public wire bits
+        8 ports
+       39 port bits
+        2 cells
+        2   $scopeinfo
+       51 submodules
+        3   CCU2C
+        9   LUT4
+       39   TRELLIS_FF
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        2 spi_top
+
+        +----------Count including submodules.
+        | 
+       37 wires
+      209 wire bits
+       37 public wires
+      209 public wire bits
+        8 ports
+       39 port bits
+        - memories
+        - memory bits
+        - processes
+        2 cells
+        2   $scopeinfo
+       51 submodules
+        3   CCU2C
+        9   LUT4
+       39   TRELLIS_FF
+
+5.50. Executing CHECK pass (checking for obvious problems).
+Checking module spi_top...
+Found and reported 0 problems.
+
+5.51. Executing JSON backend.
+
+
+=== spi_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       37 wires
+      209 wire bits
+       37 public wires
+      209 public wire bits
+        8 ports
+       39 port bits
+       53 cells
+        2   $scopeinfo
+        3   CCU2C
+        9   LUT4
+       39   TRELLIS_FF
+
+Warnings: 1 unique messages, 1 total

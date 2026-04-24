@@ -1,0 +1,58 @@
+Synthesis Analysis & Elaboration Stage Report for clock_divider
+Thu Apr 23 21:25:04 2026
+Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Elaboration Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Synthesis
+    Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+    Info: Processing started: Thu Apr 23 21:25:00 2026
+    Info: System process ID: 19748
+Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off clock_divider -c clock_divider --dni
+Info: qis_default_flow_script.tcl version: #2
+Info: Initializing Synthesis...
+Info: Project = "clock_divider"
+Info: Revision = "clock_divider"
+Info (21958): Initialized Quartus Message Database
+Info: Analyzing source files
+Info: Elaborating from top-level entity "clock_divider"
+Info: Found 1 design entities
+Info: There are 1 partitions after elaboration.
+Info: DA report generation in native DNI mode
+Info (21615): Running Design Assistant Rules for snapshot 'partitioned'
+Info: No waiver waived any violations
+Info (22360): Design Assistant Results: 3 of 3 enabled rules passed, and 0 rules was disabled, in snapshot 'partitioned'
+Info (21622): Design Assistant Results: 0 of 3 Low severity rules issued violations in snapshot 'partitioned'
+
+

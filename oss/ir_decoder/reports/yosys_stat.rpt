@@ -1,0 +1,65 @@
+=== ir_decoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      163 wires
+      345 wire bits
+      163 public wires
+      345 public wire bits
+        7 ports
+       21 port bits
+      248 submodules
+       98   SB_CARRY
+       74   SB_DFFER
+        7   SB_DFFR
+        2   SB_DFFS
+       67   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - ir_decoder
+
+        +----------Count including submodules.
+        | 
+      163 wires
+      345 wire bits
+      163 public wires
+      345 public wire bits
+        7 ports
+       21 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      248 submodules
+       98   SB_CARRY
+       74   SB_DFFER
+        7   SB_DFFR
+        2   SB_DFFS
+       67   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module ir_decoder...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== ir_decoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      163 wires
+      345 wire bits
+      163 public wires
+      345 public wire bits
+        7 ports
+       21 port bits
+      248 cells
+       98   SB_CARRY
+       74   SB_DFFER
+        7   SB_DFFR
+        2   SB_DFFS
+       67   SB_LUT4

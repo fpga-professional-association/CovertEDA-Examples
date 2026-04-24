@@ -1,0 +1,59 @@
+=== morse_encoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+      137 submodules
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - morse_encoder
+
+        +----------Count including submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      137 submodules
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module morse_encoder...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== morse_encoder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      111 wires
+      230 wire bits
+      111 public wires
+      230 public wire bits
+        6 ports
+       13 port bits
+      137 cells
+       51   SB_CARRY
+       28   SB_DFFER
+       58   SB_LUT4

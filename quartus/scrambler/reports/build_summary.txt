@@ -1,0 +1,7 @@
+Project:   scrambler
+Family:    Cyclone 10 GX
+Device:    10CX085YU484E5G
+Top:       scrambler
+Quartus:   25.3 Pro
+Status:    PASS
+Reports:   4

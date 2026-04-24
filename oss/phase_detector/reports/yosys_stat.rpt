@@ -1,0 +1,62 @@
+=== phase_detector ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      157 wires
+      339 wire bits
+      157 public wires
+      339 public wire bits
+        7 ports
+       22 port bits
+      227 submodules
+       59   SB_CARRY
+       50   SB_DFFER
+        2   SB_DFFR
+      116   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - phase_detector
+
+        +----------Count including submodules.
+        | 
+      157 wires
+      339 wire bits
+      157 public wires
+      339 public wire bits
+        7 ports
+       22 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      227 submodules
+       59   SB_CARRY
+       50   SB_DFFER
+        2   SB_DFFR
+      116   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module phase_detector...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== phase_detector ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      157 wires
+      339 wire bits
+      157 public wires
+      339 public wire bits
+        7 ports
+       22 port bits
+      227 cells
+       59   SB_CARRY
+       50   SB_DFFER
+        2   SB_DFFR
+      116   SB_LUT4

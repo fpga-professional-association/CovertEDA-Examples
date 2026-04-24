@@ -1,0 +1,19 @@
+{
+  "name": "axi_dma_engine",
+  "description": "axi dma engine example \u2014 top module dma_top",
+  "backendId": "vivado",
+  "device": "XC7K325T",
+  "topModule": "dma_top",
+  "sourcePatterns": [
+    "src/**/*.sv"
+  ],
+  "constraintFiles": [
+    "constraints/*.xdc"
+  ],
+  "implDir": "impl_1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}

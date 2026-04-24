@@ -1,0 +1,65 @@
+=== led_chaser ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       46 wires
+      129 wire bits
+       46 public wires
+      129 public wire bits
+        5 ports
+       19 port bits
+      101 submodules
+       22   SB_CARRY
+        7   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+       47   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - led_chaser
+
+        +----------Count including submodules.
+        | 
+       46 wires
+      129 wire bits
+       46 public wires
+      129 public wire bits
+        5 ports
+       19 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      101 submodules
+       22   SB_CARRY
+        7   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+       47   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module led_chaser...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+
+=== led_chaser ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       46 wires
+      129 wire bits
+       46 public wires
+      129 public wire bits
+        5 ports
+       19 port bits
+      101 cells
+       22   SB_CARRY
+        7   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+       47   SB_LUT4

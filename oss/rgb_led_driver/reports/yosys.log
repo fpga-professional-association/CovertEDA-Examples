@@ -1,0 +1,1565 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+
+-- Executing script file `build.ys' --
+
+1. Executing Verilog-2005 frontend: rgb_led_driver.v
+Parsing Verilog input from `rgb_led_driver.v' to AST representation.
+Generating RTLIL representation for module `\rgb_led_driver'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+
+2.2. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+Removed 0 unused modules.
+
+3. Executing SYNTH_ICE40 pass.
+
+3.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+3.2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `rgb_led_driver'. Setting top module to rgb_led_driver.
+
+3.2.1. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+
+3.2.2. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+Removed 0 unused modules.
+
+3.3. Executing PROC pass (convert processes to netlists).
+
+3.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$rgb_led_driver.v:47$9 in module rgb_led_driver.
+Marked 4 switch rules as full_case in process $proc$rgb_led_driver.v:23$1 in module rgb_led_driver.
+Removed a total of 0 dead cases.
+
+3.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\rgb_led_driver.$proc$rgb_led_driver.v:47$9'.
+Found async reset \rst_n in `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+
+3.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~4 debug messages>
+
+3.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\rgb_led_driver.$proc$rgb_led_driver.v:47$9'.
+     1/1: $0\pwm_cnt[7:0]
+Creating decoders for process `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+     1/3: $0\breathe_cnt[15:0]
+     2/3: $0\breathe_dir[0:0]
+     3/3: $0\breathe_val[7:0]
+
+3.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\rgb_led_driver.\pwm_cnt' using process `\rgb_led_driver.$proc$rgb_led_driver.v:47$9'.
+  created $adff cell `$procdff$427' with positive edge clock and positive level reset.
+Creating register for signal `\rgb_led_driver.\breathe_cnt' using process `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+  created $adff cell `$procdff$432' with positive edge clock and positive level reset.
+Creating register for signal `\rgb_led_driver.\breathe_val' using process `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+  created $adff cell `$procdff$437' with positive edge clock and positive level reset.
+Creating register for signal `\rgb_led_driver.\breathe_dir' using process `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+  created $adff cell `$procdff$442' with positive edge clock and positive level reset.
+
+3.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `rgb_led_driver.$proc$rgb_led_driver.v:47$9'.
+Found and cleaned up 4 empty switches in `\rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+Removing empty process `rgb_led_driver.$proc$rgb_led_driver.v:23$1'.
+Cleaned up 4 empty switches.
+
+3.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~9 debug messages>
+
+3.4. Executing FLATTEN pass (flatten design).
+
+3.5. Executing TRIBUF pass.
+
+3.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+3.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 6 unused cells and 28 unused wires.
+<suppressed ~7 debug messages>
+
+3.9. Executing CHECK pass (checking for obvious problems).
+Checking module rgb_led_driver...
+Found and reported 0 problems.
+
+3.10. Executing OPT pass (performing simple optimizations).
+
+3.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 28 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$406: \breathe_dir -> 1'1
+      Replacing known input bits on port A of cell $procmux$402: \breathe_dir -> 1'0
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~16 debug messages>
+
+3.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 28 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.10.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.11. Executing FSM pass (extract and optimize FSM).
+
+3.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.12. Executing OPT pass (performing simple optimizations).
+
+3.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 28 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~16 debug messages>
+
+3.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 28 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$442 ($adff) from module rgb_led_driver (D = $procmux$408_Y, Q = \breathe_dir).
+Adding EN signal on $procdff$437 ($adff) from module rgb_led_driver (D = $procmux$419_Y, Q = \breathe_val).
+
+3.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 2 unused cells and 2 unused wires.
+<suppressed ~3 debug messages>
+
+3.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.12.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.12.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+3.12.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.12.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 29 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.12.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.12.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.12.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.12.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.13. Executing WREDUCE pass (reducing word size of cells).
+
+3.14. Executing PEEPOPT pass (run peephole optimizers).
+
+3.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.16. Executing SHARE pass (SAT-based resource sharing).
+Found 3 cells in module rgb_led_driver that may be considered for resource sharing.
+  Analyzing resource sharing options for $mul$rgb_led_driver.v:55$12 ($mul):
+    Found 1 activation_patterns using ctrl signal \breathe_en.
+    Found 2 candidates: $mul$rgb_led_driver.v:56$14 $mul$rgb_led_driver.v:57$16
+    Analyzing resource sharing with $mul$rgb_led_driver.v:56$14 ($mul):
+      Found 1 activation_patterns using ctrl signal \breathe_en.
+      Activation pattern for cell $mul$rgb_led_driver.v:55$12: \breathe_en = 1'1
+      Activation pattern for cell $mul$rgb_led_driver.v:56$14: \breathe_en = 1'1
+      Size of SAT problem: 0 cells, 5 variables, 9 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: \breathe_en = 1'1
+    Analyzing resource sharing with $mul$rgb_led_driver.v:57$16 ($mul):
+      Found 1 activation_patterns using ctrl signal \breathe_en.
+      Activation pattern for cell $mul$rgb_led_driver.v:55$12: \breathe_en = 1'1
+      Activation pattern for cell $mul$rgb_led_driver.v:57$16: \breathe_en = 1'1
+      Size of SAT problem: 0 cells, 5 variables, 9 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: \breathe_en = 1'1
+  Analyzing resource sharing options for $mul$rgb_led_driver.v:56$14 ($mul):
+    Found 1 activation_patterns using ctrl signal \breathe_en.
+    Found 1 candidates: $mul$rgb_led_driver.v:57$16
+    Analyzing resource sharing with $mul$rgb_led_driver.v:57$16 ($mul):
+      Found 1 activation_patterns using ctrl signal \breathe_en.
+      Activation pattern for cell $mul$rgb_led_driver.v:56$14: \breathe_en = 1'1
+      Activation pattern for cell $mul$rgb_led_driver.v:57$16: \breathe_en = 1'1
+      Size of SAT problem: 0 cells, 5 variables, 9 clauses
+      According to the SAT solver this pair of cells can not be shared.
+      Model from SAT solver: \breathe_en = 1'1
+  Analyzing resource sharing options for $mul$rgb_led_driver.v:57$16 ($mul):
+    Found 1 activation_patterns using ctrl signal \breathe_en.
+    No candidates found.
+
+3.17. Executing TECHMAP pass (map to technology primitives).
+
+3.17.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+3.17.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~36 debug messages>
+
+3.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module rgb_led_driver:
+  creating $macc model for $mul$rgb_led_driver.v:57$16 ($mul).
+  creating $macc model for $mul$rgb_led_driver.v:56$14 ($mul).
+  creating $macc model for $mul$rgb_led_driver.v:55$12 ($mul).
+  creating $macc model for $add$rgb_led_driver.v:51$11 ($add).
+  creating $macc model for $sub$rgb_led_driver.v:40$8 ($sub).
+  creating $macc model for $add$rgb_led_driver.v:35$6 ($add).
+  creating $macc model for $add$rgb_led_driver.v:29$3 ($add).
+  creating $alu model for $macc $add$rgb_led_driver.v:29$3.
+  creating $alu model for $macc $add$rgb_led_driver.v:35$6.
+  creating $alu model for $macc $sub$rgb_led_driver.v:40$8.
+  creating $alu model for $macc $add$rgb_led_driver.v:51$11.
+  creating $macc cell for $mul$rgb_led_driver.v:55$12: $auto$alumacc.cc:382:replace_macc$452
+  creating $macc cell for $mul$rgb_led_driver.v:56$14: $auto$alumacc.cc:382:replace_macc$453
+  creating $macc cell for $mul$rgb_led_driver.v:57$16: $auto$alumacc.cc:382:replace_macc$454
+  creating $alu model for $lt$rgb_led_driver.v:61$20 ($lt): new $alu
+  creating $alu model for $lt$rgb_led_driver.v:60$19 ($lt): new $alu
+  creating $alu model for $lt$rgb_led_driver.v:59$18 ($lt): new $alu
+  creating $alu cell for $lt$rgb_led_driver.v:59$18: $auto$alumacc.cc:512:replace_alu$458
+  creating $alu cell for $lt$rgb_led_driver.v:60$19: $auto$alumacc.cc:512:replace_alu$463
+  creating $alu cell for $lt$rgb_led_driver.v:61$20: $auto$alumacc.cc:512:replace_alu$468
+  creating $alu cell for $add$rgb_led_driver.v:51$11: $auto$alumacc.cc:512:replace_alu$473
+  creating $alu cell for $sub$rgb_led_driver.v:40$8: $auto$alumacc.cc:512:replace_alu$476
+  creating $alu cell for $add$rgb_led_driver.v:35$6: $auto$alumacc.cc:512:replace_alu$479
+  creating $alu cell for $add$rgb_led_driver.v:29$3: $auto$alumacc.cc:512:replace_alu$482
+  created 7 $alu and 3 $macc cells.
+
+3.21. Executing OPT pass (performing simple optimizations).
+
+3.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 32 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+3.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 32 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+3.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 32 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.21.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.22. Executing MEMORY pass.
+
+3.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+
+3.25. Executing TECHMAP pass (map to technology primitives).
+
+3.25.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+3.25.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+3.25.3. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.26. Executing ICE40_BRAMINIT pass.
+
+3.27. Executing OPT pass (performing simple optimizations).
+
+3.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~3 debug messages>
+
+3.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 29 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.27.5. Finished fast OPT passes.
+
+3.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.29. Executing OPT pass (performing simple optimizations).
+
+3.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 29 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~11 debug messages>
+
+3.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 29 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.29.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.31. Executing TECHMAP pass (map to technology primitives).
+
+3.31.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.31.2. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+3.31.3. Continuing TECHMAP pass.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_80_ice40_alu for cells of type $alu.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_80_ice40_alu for cells of type $alu.
+Using template $paramod$403a3c2fa431a154c52a6a5429d7a6260b5d144f\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_80_ice40_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \blue * \breathe_val (8x8 bits, unsigned)
+  add \green * \breathe_val (8x8 bits, unsigned)
+  add \red * \breathe_val (8x8 bits, unsigned)
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $pos.
+Using extmapper simplemap for cells of type $or.
+No more expansions possible.
+<suppressed ~397 debug messages>
+
+3.32. Executing OPT pass (performing simple optimizations).
+
+3.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~1170 debug messages>
+
+3.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1298 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Computing hashes of 1264 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+<suppressed ~102 debug messages>
+Removed a total of 34 cells.
+
+3.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 138 unused cells and 369 unused wires.
+<suppressed ~139 debug messages>
+
+3.32.5. Finished fast OPT passes.
+
+3.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.33.1. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$632.slice[0].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$670.slice[0].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$708.slice[0].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$alumacc.cc:512:replace_alu$473.slice[0].carry: CO=\pwm_cnt [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$alumacc.cc:512:replace_alu$476.slice[0].carry: CO=\breathe_val [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$alumacc.cc:512:replace_alu$479.slice[0].carry: CO=\breathe_val [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$alumacc.cc:512:replace_alu$482.slice[0].carry: CO=\breathe_cnt [0]
+
+3.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~24 debug messages>
+
+3.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1126 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 6 unused cells and 0 unused wires.
+<suppressed ~6 debug messages>
+
+3.33.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.33.7. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$632.slice[1].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$670.slice[1].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$708.slice[1].carry: CO=1'0
+
+3.33.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.33.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1120 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.33.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 6 unused cells and 0 unused wires.
+<suppressed ~6 debug messages>
+
+3.33.12. Rerunning OPT passes. (Removed registers in this run.)
+
+3.33.13. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$632.slice[2].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$670.slice[2].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) rgb_led_driver.$auto$maccmap.cc:240:synth$708.slice[2].carry: CO=1'0
+
+3.33.14. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.33.15. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1114 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.33.16. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 6 unused cells and 0 unused wires.
+<suppressed ~6 debug messages>
+
+3.33.18. Rerunning OPT passes. (Removed registers in this run.)
+
+3.33.19. Running ICE40 specific optimizations.
+
+3.33.20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.33.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1108 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.33.22. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.33.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.33.24. Finished OPT passes. (There is nothing left to do.)
+
+3.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+3.35. Executing TECHMAP pass (map to technology primitives).
+
+3.35.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.35.2. Continuing TECHMAP pass.
+Using template $_DFF_PP0_ for cells of type $_DFF_PP0_.
+Using template $_DFFE_PP1P_ for cells of type $_DFFE_PP1P_.
+Using template $_DFFE_PP0P_ for cells of type $_DFFE_PP0P_.
+No more expansions possible.
+<suppressed ~55 debug messages>
+
+3.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping rgb_led_driver.$auto$alumacc.cc:512:replace_alu$473.slice[0].carry ($lut).
+Mapping rgb_led_driver.$auto$alumacc.cc:512:replace_alu$476.slice[0].carry ($lut).
+Mapping rgb_led_driver.$auto$alumacc.cc:512:replace_alu$479.slice[0].carry ($lut).
+Mapping rgb_led_driver.$auto$alumacc.cc:512:replace_alu$482.slice[0].carry ($lut).
+
+3.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+3.38.1. Running ICE40 specific optimizations.
+
+3.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~55 debug messages>
+
+3.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1142 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Computing hashes of 1106 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+<suppressed ~108 debug messages>
+Removed a total of 36 cells.
+
+3.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 0 unused cells and 223 unused wires.
+<suppressed ~1 debug messages>
+
+3.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+3.38.7. Running ICE40 specific optimizations.
+
+3.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~1 debug messages>
+
+3.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1105 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.38.12. Rerunning OPT passes. (Removed registers in this run.)
+
+3.38.13. Running ICE40 specific optimizations.
+
+3.38.14. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.38.15. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 1105 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.38.16. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.38.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.38.18. Finished OPT passes. (There is nothing left to do.)
+
+3.39. Executing TECHMAP pass (map to technology primitives).
+
+3.39.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `$_DLATCH_N_'.
+Generating RTLIL representation for module `$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+3.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+3.40. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ICE40_CARRY_WRAPPER'.
+Successfully finished Verilog frontend.
+
+3.41. Executing ABC9 pass.
+
+3.41.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.3. Executing PROC pass (convert processes to netlists).
+
+3.41.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212 in module SB_DFFER.
+Removed a total of 0 dead cases.
+
+3.41.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.41.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$215'.
+  Set init value: \Q = 1'0
+
+3.41.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \R in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212'.
+
+3.41.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.41.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$215'.
+Creating decoders for process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212'.
+     1/1: $0\Q[0:0]
+
+3.41.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212'.
+  created $adff cell `$procdff$3329' with positive edge clock and positive level reset.
+
+3.41.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:660$215'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212'.
+Removing empty process `SB_DFFER.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:662$212'.
+Cleaned up 1 empty switch.
+
+3.41.4. Executing PROC pass (convert processes to netlists).
+
+3.41.4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223 in module SB_DFFES.
+Removed a total of 0 dead cases.
+
+3.41.4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1 assignment to connection.
+
+3.41.4.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$226'.
+  Set init value: \Q = 1'0
+
+3.41.4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223'.
+
+3.41.4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.41.4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$226'.
+Creating decoders for process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223'.
+     1/1: $0\Q[0:0]
+
+3.41.4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFES.\Q' using process `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223'.
+  created $adff cell `$procdff$3334' with positive edge clock and positive level reset.
+
+3.41.4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:801$226'.
+Found and cleaned up 1 empty switch in `\SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223'.
+Removing empty process `SB_DFFES.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:803$223'.
+Cleaned up 1 empty switch.
+
+3.41.5. Executing PROC pass (convert processes to netlists).
+
+3.41.5.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.41.5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$196 in module SB_DFFR.
+Removed a total of 0 dead cases.
+
+3.41.5.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 1 assignment to connection.
+
+3.41.5.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$198'.
+  Set init value: \Q = 1'0
+
+3.41.5.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \R in `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$196'.
+
+3.41.5.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.41.5.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$198'.
+Creating decoders for process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$196'.
+     1/1: $0\Q[0:0]
+
+3.41.5.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.41.5.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFR.\Q' using process `\SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$196'.
+  created $adff cell `$procdff$3337' with positive edge clock and positive level reset.
+
+3.41.5.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.41.5.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:404$198'.
+Removing empty process `SB_DFFR.$proc$C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_sim.v:406$196'.
+Cleaned up 0 empty switches.
+
+3.41.6. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module rgb_led_driver.
+Found 0 SCCs.
+
+3.41.7. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.8. Executing TECHMAP pass (map to technology primitives).
+
+3.41.8.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.8.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~133 debug messages>
+
+3.41.9. Executing OPT pass (performing simple optimizations).
+
+3.41.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+Optimizing module SB_DFFES.
+Optimizing module SB_DFFR.
+
+3.41.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Finding identical cells in module `\SB_DFFES'.
+Computing hashes of 2 cells of `\SB_DFFES'.
+Finding duplicate cells in `\SB_DFFES'.
+Finding identical cells in module `\SB_DFFR'.
+Computing hashes of 2 cells of `\SB_DFFR'.
+Finding duplicate cells in `\SB_DFFR'.
+Removed a total of 0 cells.
+
+3.41.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \SB_DFFER..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \SB_DFFES..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \SB_DFFR..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \SB_DFFER.
+  Optimizing cells in module \SB_DFFES.
+  Optimizing cells in module \SB_DFFR.
+Performed a total of 0 changes.
+
+3.41.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\SB_DFFER'.
+Computing hashes of 2 cells of `\SB_DFFER'.
+Finding duplicate cells in `\SB_DFFER'.
+Finding identical cells in module `\SB_DFFES'.
+Computing hashes of 2 cells of `\SB_DFFES'.
+Finding duplicate cells in `\SB_DFFES'.
+Finding identical cells in module `\SB_DFFR'.
+Computing hashes of 2 cells of `\SB_DFFR'.
+Finding duplicate cells in `\SB_DFFR'.
+Removed a total of 0 cells.
+
+3.41.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \SB_DFFER..
+Finding unused cells or wires in module \SB_DFFES..
+Finding unused cells or wires in module \SB_DFFR..
+
+3.41.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module SB_DFFER.
+Optimizing module SB_DFFES.
+Optimizing module SB_DFFR.
+
+3.41.9.9. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.10. Executing TECHMAP pass (map to technology primitives).
+
+3.41.10.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_map.v' to AST representation.
+Successfully finished Verilog frontend.
+
+3.41.10.2. Continuing TECHMAP pass.
+Using template SB_DFFR for cells of type SB_DFFR.
+Using template SB_DFFES for cells of type SB_DFFES.
+Using template SB_DFFER for cells of type SB_DFFER.
+No more expansions possible.
+<suppressed ~38 debug messages>
+
+3.41.11. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+3.41.12. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.13. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.14. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+3.41.15. Executing TECHMAP pass (map to technology primitives).
+
+3.41.15.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.41.15.2. Continuing TECHMAP pass.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+Using template $paramod\SB_LUT4\LUT_INIT=16'0110100110010110 for cells of type SB_LUT4.
+Using template SB_CARRY for cells of type SB_CARRY.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+No more expansions possible.
+<suppressed ~152 debug messages>
+
+3.41.16. Executing OPT pass (performing simple optimizations).
+
+3.41.16.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+<suppressed ~4 debug messages>
+
+3.41.16.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 30 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Computing hashes of 20 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Computing hashes of 18 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+<suppressed ~29 debug messages>
+Removed a total of 12 cells.
+
+3.41.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.41.16.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 18 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.41.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+Removed 0 unused cells and 24 unused wires.
+<suppressed ~1 debug messages>
+
+3.41.16.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.41.16.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.41.16.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rgb_led_driver..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+3.41.16.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rgb_led_driver.
+Performed a total of 0 changes.
+
+3.41.16.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rgb_led_driver'.
+Computing hashes of 18 cells of `\rgb_led_driver'.
+Finding duplicate cells in `\rgb_led_driver'.
+Removed a total of 0 cells.
+
+3.41.16.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.41.16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rgb_led_driver..
+
+3.41.16.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rgb_led_driver.
+
+3.41.16.16. Finished fast OPT passes. (There is nothing left to do.)
+
+3.41.17. Executing AIGMAP pass (map logic to AIG).
+Module rgb_led_driver: replaced 7 cells with 43 new cells, skipped 11 cells.
+  replaced 2 cell types:
+       5 $_MUX_
+       2 $_OR_
+  not replaced 3 cell types:
+       2 $_AND_
+       1 $_NOT_
+       8 $specify2
+
+3.41.18. Executing AIGMAP pass (map logic to AIG).
+Module rgb_led_driver: replaced 444 cells with 2709 new cells, skipped 694 cells.
+  replaced 3 cell types:
+      32 $_MUX_
+     133 $_OR_
+     279 $_XOR_
+  not replaced 9 cell types:
+     473 $_AND_
+      56 $_NOT_
+      24 SB_DFFR
+       8 SB_DFFER
+       1 SB_DFFES
+      24 SB_DFFR_$abc9_byp
+       1 SB_DFFES_$abc9_byp
+       8 SB_DFFER_$abc9_byp
+      99 $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1
+
+3.41.18.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.18.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+3.41.18.3. Executing XAIGER backend.
+<suppressed ~44 debug messages>
+Extracted 1539 AND gates and 3599 wires from module `rgb_led_driver' to a netlist network with 60 inputs and 39 outputs.
+
+3.41.18.4. Executing ABC9_EXE pass (technology mapping using ABC9).
+
+3.41.18.5. Executing ABC9.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_lut <abc-temp-dir>/input.lut 
+ABC: + read_box <abc-temp-dir>/input.box 
+ABC: + &read <abc-temp-dir>/input.xaig 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     60/     39  and =    1262  lev =   17 (   1.87)  mem = 0.03 MB  box = 132  bb = 33
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 4 carries.
+ABC: + &scorr 
+ABC: Warning: The network is combinational.
+ABC: + &sweep 
+ABC: + &dc2 
+ABC: + &dch -f -r 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     60/     39  and =    1433  lev =   17 (   1.84)  mem = 0.03 MB  ch =  100  box = 132  bb = 33
+ABC: cst =       0  cls =     99  lit =     100  unused =    1525  proof =     0
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 4 carries.
+ABC: + &if -W 250 -v 
+ABC: K = 4. Memory (bytes): Truth =    0. Cut =   64. Obj =  144. Set =  672. CutMin = no
+ABC: Node =    1433.  Ch =    99.  Total mem =    0.35 MB. Peak cut mem =    0.02 MB.
+ABC: P:  Del = 5683.00.  Ar =     531.0.  Edge =     1664.  Cut =    11866.  T =     0.00 sec
+ABC: P:  Del = 5683.00.  Ar =     516.0.  Edge =     1690.  Cut =    11575.  T =     0.00 sec
+ABC: P:  Del = 7730.00.  Ar =     578.0.  Edge =     1705.  Cut =    12033.  T =     0.00 sec
+ABC: F:  Del = 6941.00.  Ar =     473.0.  Edge =     1533.  Cut =    12448.  T =     0.00 sec
+ABC: A:  Del = 6501.00.  Ar =     458.0.  Edge =     1495.  Cut =    13584.  T =     0.00 sec
+ABC: A:  Del = 6501.00.  Ar =     458.0.  Edge =     1495.  Cut =    13689.  T =     0.00 sec
+ABC: Total time =     0.01 sec
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &mfs 
+ABC: + &ps -l 
+ABC: <abc-temp-dir>/input : i/o =     60/     39  and =    2206  lev =   18 (   1.95)  mem = 0.04 MB  box = 132  bb = 33
+ABC: Mapping (K=4)  :  lut =    458  edge =    1492  lev =    6 (0.74)  levB =   20  mem = 0.02 MB
+ABC: LUT = 458 : 2=81 17.7 %  3=178 38.9 %  4=199 43.4 %  Ave = 3.26
+ABC: Warning: AIG with boxes has internal fanout in 0 complex flops and 4 carries.
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &verify 
+ABC: Networks are equivalent.  Time =     0.03 sec
+ABC: + time 
+ABC: elapse: 0.39 seconds, total: 0.39 seconds
+
+3.41.18.6. Executing AIGER frontend.
+<suppressed ~209 debug messages>
+Removed 3498 unused cells and 4420 unused wires.
+
+3.41.18.7. Executing ABC9_OPS pass (helper functions for ABC9).
+ABC RESULTS:              $lut cells:      465
+ABC RESULTS:   \SB_DFFR_$abc9_byp cells:       24
+ABC RESULTS:   \SB_DFFES_$abc9_byp cells:        1
+ABC RESULTS:   \SB_DFFER_$abc9_byp cells:        8
+ABC RESULTS:   $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 cells:       99
+ABC RESULTS:           input signals:       39
+ABC RESULTS:          output signals:       12
+Removing temp directory.
+
+3.41.19. Executing TECHMAP pass (map to technology primitives).
+
+3.41.19.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/abc9_unmap.v' to AST representation.
+Generating RTLIL representation for module `$__DFF_x__$abc9_flop'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Successfully finished Verilog frontend.
+
+3.41.19.2. Continuing TECHMAP pass.
+Using template SB_DFFER_$abc9_byp for cells of type SB_DFFER_$abc9_byp.
+Using template SB_DFFR_$abc9_byp for cells of type SB_DFFR_$abc9_byp.
+Using template $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1 for cells of type $paramod$__ICE40_CARRY_WRAPPER\LUT=16'0110100110010110\I3_IS_CI=1'1.
+Using template SB_DFFES_$abc9_byp for cells of type SB_DFFES_$abc9_byp.
+No more expansions possible.
+<suppressed ~141 debug messages>
+
+3.42. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+3.43. Executing TECHMAP pass (map to technology primitives).
+
+3.43.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFF_N_'.
+Generating RTLIL representation for module `$_DFF_P_'.
+Generating RTLIL representation for module `$_DFFE_NP_'.
+Generating RTLIL representation for module `$_DFFE_PP_'.
+Generating RTLIL representation for module `$_DFF_NP0_'.
+Generating RTLIL representation for module `$_DFF_NP1_'.
+Generating RTLIL representation for module `$_DFF_PP0_'.
+Generating RTLIL representation for module `$_DFF_PP1_'.
+Generating RTLIL representation for module `$_DFFE_NP0P_'.
+Generating RTLIL representation for module `$_DFFE_NP1P_'.
+Generating RTLIL representation for module `$_DFFE_PP0P_'.
+Generating RTLIL representation for module `$_DFFE_PP1P_'.
+Generating RTLIL representation for module `$_SDFF_NP0_'.
+Generating RTLIL representation for module `$_SDFF_NP1_'.
+Generating RTLIL representation for module `$_SDFF_PP0_'.
+Generating RTLIL representation for module `$_SDFF_PP1_'.
+Generating RTLIL representation for module `$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+3.43.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 90 unused cells and 4096 unused wires.
+
+3.44. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:      524
+  1-LUT                7
+  2-LUT               85
+  3-LUT              233
+  4-LUT              199
+  with \SB_CARRY    (#0)   52
+  with \SB_CARRY    (#1)   56
+
+Eliminating LUTs.
+Number of LUTs:      524
+  1-LUT                7
+  2-LUT               85
+  3-LUT              233
+  4-LUT              199
+  with \SB_CARRY    (#0)   52
+  with \SB_CARRY    (#1)   56
+
+Combining LUTs.
+Number of LUTs:      519
+  1-LUT                7
+  2-LUT               80
+  3-LUT              228
+  4-LUT              204
+  with \SB_CARRY    (#0)   52
+  with \SB_CARRY    (#1)   56
+
+Eliminated 0 LUTs.
+Combined 5 LUTs.
+<suppressed ~2203 debug messages>
+
+3.45. Executing TECHMAP pass (map to technology primitives).
+
+3.45.1. Executing Verilog-2005 frontend: C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+3.45.2. Continuing TECHMAP pass.
+Using template $paramod$08a5251094e6791f0c6a19a79c33ed46d064f1e7$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01111000 for cells of type $lut.
+Using template $paramod$571404c0889eaf57f492cb5e37f8acb5df5852f9$lut for cells of type $lut.
+Using template $paramod$1b53a9695a0f80de7517b50863b438fd2b7f56da$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00010111 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10010110 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01110001 for cells of type $lut.
+Using template $paramod$50b99034fbf984a51c265442496081454147f31e$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1001 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01001101 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01101001 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
+Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1000 for cells of type $lut.
+Using template $paramod$c01d1f1a2c22a23f58c65a92a9c94eaeebcde834$lut for cells of type $lut.
+Using template $paramod$679c0497bd344cd028193ec8906efb780eb00cd8$lut for cells of type $lut.
+Using template $paramod$ede67ae6159d4864b11272c4fe0692c3419120cd$lut for cells of type $lut.
+Using template $paramod$78e1751931755f088c8bc676bcbc3bb642c26bfc$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+Using template $paramod$24cb03f785a7266405db948962b05e5cdc54d8ab$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0110 for cells of type $lut.
+Using template $paramod$fddb87a19dd9200b6161309e26c00c73ebbba317$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0001 for cells of type $lut.
+Using template $paramod$d6a246575d0ba3dcbbccd768ad41b602f82ff057$lut for cells of type $lut.
+Using template $paramod$729aa850e969bb9bb1c205734876853e142656d4$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10001110 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0010 for cells of type $lut.
+Using template $paramod$35672d2b9fa51186a5b8f71a431de86d23cc3dde$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10101001 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00101011 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001000 for cells of type $lut.
+Using template $paramod$d89b437f6e04585fb6ec63e66c2a620393b6245e$lut for cells of type $lut.
+Using template $paramod$94775d1003fd9a8c5868b35a33db1df43efa5b1a$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11100001 for cells of type $lut.
+Using template $paramod$658b9ed803f0d3d335616d3858b53e0a2522f1e8$lut for cells of type $lut.
+Using template $paramod$6e238df02989b317f10820a22773676e71120644$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00010000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11110010 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11011000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+Using template $paramod$097592bb16245531f0716c5ddb18d7090f9c7d9d$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00011011 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000100 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001110 for cells of type $lut.
+No more expansions possible.
+<suppressed ~1094 debug messages>
+Removed 0 unused cells and 1241 unused wires.
+
+3.46. Executing AUTONAME pass.
+Renamed 1060 objects in module rgb_led_driver (263 iterations).
+<suppressed ~1060 debug messages>
+
+3.47. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `rgb_led_driver'. Setting top module to rgb_led_driver.
+
+3.47.1. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+
+3.47.2. Analyzing design hierarchy..
+Top module:  \rgb_led_driver
+Removed 0 unused modules.
+
+3.48. Printing statistics.
+
+=== rgb_led_driver ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+      644 submodules
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        - rgb_led_driver
+
+        +----------Count including submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+        - memories
+        - memory bits
+        - processes
+        - cells
+      644 submodules
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4
+
+3.49. Executing CHECK pass (checking for obvious problems).
+Checking module rgb_led_driver...
+Found and reported 0 problems.
+
+3.50. Executing JSON backend.
+
+4. Printing statistics.
+
+=== rgb_led_driver ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      428 wires
+     1155 wire bits
+      428 public wires
+     1155 public wire bits
+        9 ports
+       30 port bits
+      644 cells
+       92   SB_CARRY
+        8   SB_DFFER
+        1   SB_DFFES
+       24   SB_DFFR
+      519   SB_LUT4
+
+End of script. Logfile hash: b646b8a04f
+Yosys 0.64+68 (git sha1 413169663-dirty, x86_64-w64-mingw32-g++ 13.2.1 -O3)
+Time spent: 1% 28x opt_expr (0 sec), 1% 25x opt_clean (0 sec), ...
+
+--- STDERR ---

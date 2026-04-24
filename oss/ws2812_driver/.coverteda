@@ -1,0 +1,19 @@
+{
+  "name": "ws2812_driver",
+  "description": "ws2812 driver example \u2014 top module ws2812_top",
+  "backendId": "oss",
+  "device": "iCE40HX8K-CT256",
+  "topModule": "ws2812_top",
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.pcf"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}

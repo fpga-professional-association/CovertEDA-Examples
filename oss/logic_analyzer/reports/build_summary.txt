@@ -1,0 +1,6 @@
+Project:  logic_analyzer
+Device:   ECP5 LFE5U-25F
+Family:   ecp5
+Top:      logic_analyzer
+yosys:    PASS
+nextpnr:  PASS

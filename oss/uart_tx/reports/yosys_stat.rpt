@@ -1,0 +1,69 @@
+=== uart_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       56 wires
+      153 wire bits
+       56 public wires
+      153 public wire bits
+        6 ports
+       13 port bits
+        2 cells
+        2   $scopeinfo
+       60 submodules
+        7   SB_CARRY
+        5   SB_DFFER
+        9   SB_DFFES
+        8   SB_DFFR
+       31   SB_LUT4
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+        2 uart_top
+
+        +----------Count including submodules.
+        | 
+       56 wires
+      153 wire bits
+       56 public wires
+      153 public wire bits
+        6 ports
+       13 port bits
+        - memories
+        - memory bits
+        - processes
+        2 cells
+        2   $scopeinfo
+       60 submodules
+        7   SB_CARRY
+        5   SB_DFFER
+        9   SB_DFFES
+        8   SB_DFFR
+       31   SB_LUT4
+
+5.49. Executing CHECK pass (checking for obvious problems).
+Checking module uart_top...
+Found and reported 0 problems.
+
+5.50. Executing JSON backend.
+
+
+=== uart_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       56 wires
+      153 wire bits
+       56 public wires
+      153 public wire bits
+        6 ports
+       13 port bits
+       62 cells
+        2   $scopeinfo
+        7   SB_CARRY
+        5   SB_DFFER
+        9   SB_DFFES
+        8   SB_DFFR
+       31   SB_LUT4

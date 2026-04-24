@@ -1,0 +1,6 @@
+Project:  uart_tx
+Device:   iCE40UP5K
+Family:   ice40
+Top:      uart_top
+yosys:    PASS
+nextpnr:  PASS

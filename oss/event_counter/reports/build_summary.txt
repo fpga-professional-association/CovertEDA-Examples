@@ -1,0 +1,6 @@
+Project:  event_counter
+Device:   iCE40UP5K
+Family:   ice40
+Top:      event_counter
+yosys:    PASS
+nextpnr:  PASS

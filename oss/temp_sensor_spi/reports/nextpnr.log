@@ -1,0 +1,87 @@
+
+--- STDERR ---
+Info: constrained 'clk' to bel 'X12/Y31/io1'
+Info: constrained 'rst_n' to bel 'X13/Y31/io1'
+Info: constrained 'start' to bel 'X8/Y0/io0'
+Info: constrained 'spi_clk' to bel 'X24/Y0/io0'
+Info: constrained 'spi_cs_n' to bel 'X24/Y0/io1'
+Info: constrained 'spi_miso' to bel 'X23/Y0/io1'
+Warning: IO 'threshold[15]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[14]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[13]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[12]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[11]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[10]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[9]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[8]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[7]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[6]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[5]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[4]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[3]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[2]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[1]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'threshold[0]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_valid' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[15]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[14]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[13]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[12]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[11]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[10]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[9]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[8]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[7]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[6]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[5]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[4]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[3]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[2]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[1]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'temp_data[0]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'over_threshold' is unconstrained in PCF and will be automatically placed
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:       40 LCs used as LUT4 only
+Info:       34 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:       18 LCs used as DFF only
+Info: Packing carries..
+Info:       16 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:       15 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting clk$SB_IO_IN (fanout 52)
+Info: promoting rst_n_SB_LUT4_I3_O [reset] (fanout 52)
+Info: promoting spi_clk_SB_LUT4_I2_1_O_SB_LUT4_I3_O [cen] (fanout 21)
+Info: promoting start_SB_LUT4_I1_I3[0] [cen] (fanout 17)
+Info: Constraining chains...
+Info:        2 LCs used to legalise carry chains.
+Info: Checksum: 0x2e556cae
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:      97/   5280     1%
+Info: 	        ICESTORM_RAM:       0/     30     0%
+Info: 	               SB_IO:      40/     39   102%
+Info: 	               SB_GB:       4/      8    50%
+Info: 	        ICESTORM_PLL:       0/      1     0%
+Info: 	         SB_WARMBOOT:       0/      1     0%
+Info: 	        ICESTORM_DSP:       0/      8     0%
+Info: 	      ICESTORM_HFOSC:       0/      1     0%
+Info: 	      ICESTORM_LFOSC:       0/      1     0%
+Info: 	              SB_I2C:       0/      2     0%
+Info: 	              SB_SPI:       0/      2     0%
+Info: 	              IO_I3C:       0/      2     0%
+Info: 	         SB_LEDDA_IP:       0/      1     0%
+Info: 	         SB_RGBA_DRV:       0/      1     0%
+Info: 	      ICESTORM_SPRAM:       0/      4     0%
+
+Info: Placed 6 cells based on constraints.
+ERROR: Unable to find a placement location for cell 'temp_data[1]$sb_io'
+34 warnings, 1 error

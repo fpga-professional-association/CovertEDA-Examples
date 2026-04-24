@@ -1,152 +1,318 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun Apr 19 13:26:04 2026
+| Host         : tcovert running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -file C:/Users/tcove/OneDrive/Desktop/Projects/CovertEDA-Examples/vivado_reports/axi_dma_engine_timing.rpt
+| Design       : dma_top
+| Device       : 7a35ti-csg324
+| Speed File   : -1L  PRODUCTION 1.23 2018-06-13
+| Design State : Synthesized
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
-================================================================================
-*                           TIMING SUMMARY REPORT
-*
-* Vivado v2023.2 (64-bit)
-* Design: dma_top
-* Device: xc7k325tffg900-2
-* Speed Grade: -2
-* Compiled on: Wed Jan 15 17:45:12 2025
-*
-================================================================================
+Timing Summary Report
 
-1. Design Timing Summary
-================================================================================
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
 
-   WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints      WPWS(ns)      TPWS(ns)
------------ ----------- ---------------------- ----------------------- ----------- ----------- ---------------------- ----------------------- ----------- -----------
-    0.087      0.000                 0                    67890        0.045        0.000                 0                    67890        1.234        0.000
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
 
-All user specified timing constraints are met. (Ultra-tight timing)
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
 
-================================================================================
-2. Timing Details (Ultra-High-Speed 250 MHz)
-================================================================================
 
-Static Timing Analysis on clock domain: clk_250
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
 
-Worst slack in design: 0.087 ns (CRITICAL)
+No report available as report_methodology has not been run prior. Run report_methodology on the current design for the summary of methodology violations.
 
-Timing constraint: freq_MHz = 250.0 (PERIOD = 4.000 ns)
 
-Path: axi_read/addr_r_reg[28]/C to axi_read/m_axi_araddr[29]/O
-  SLICE_X234Y456.CLK                  0.000        0.000  r
-  SLICE_X234Y456/O6                   Comb         0.067        0.067  r
-  SLICE_X235Y456/D1                   Net          0.178        0.245  r
-  SLICE_X235Y456/LUT6                 Comb         0.061        0.306  r
-  SLICE_X235Y456/DMUX                 Comb         0.045        0.351  r
-  SLICE_X236Y457/C2                   Net          0.123        0.474  r
-  SLICE_X236Y457/FDRE/D               Net          0.089        0.563  r
-  clock uncertainty                              -0.476        0.087
-  clock arrival                                  4.000         4.000
-  data required time                                        4.000
-  data arrival time                                        0.563
-  slack                                                    3.437 ns
 
-Setup Slack Details (Worst 5 - CRITICAL):
+check_timing report
 
-Slack: 0.087 ns (PASS - Ultra-tight)
-  Source: axi_read/addr_r_reg[28]/C
-  Destination: m_axi_araddr[29]
-  Data Path Delay: 3.913 ns
-  Clock Uncertainty: 0.476 ns (Very tight)
+Table of Contents
+-----------------
+1. checking no_clock (0)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (0)
+5. checking no_input_delay (3)
+6. checking no_output_delay (33)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
 
-Slack: 0.056 ns (PASS - Ultra-tight)
-  Source: axi_read/burst_cnt[15]/C
-  Destination: axi_read/m_axi_arlen[7]
-  Data Path Delay: 3.944 ns
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
 
-Slack: 0.023 ns (PASS - Critical Margin)
-  Source: dma_top/state_reg[2]/C
-  Destination: axi_master/m_axi_arvalid
-  Data Path Delay: 3.977 ns
 
-Slack: -0.012 ns (FAIL - TIMING VIOLATION - Auto-fixed by retiming)
-  Source: sg_engine/sg_index_reg[20]/C
-  Destination: sg_engine/src_addr[21]
-  Data Path Delay: 4.012 ns
-  Retiming Applied: YES (one level)
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
 
-Slack: 0.001 ns (PASS - Marginal)
-  Source: descriptor_cache/cache_ptr_reg[4]/C
-  Destination: descriptor_cache/cache[0][127]
-  Data Path Delay: 3.999 ns
 
-================================================================================
-3. Hold Timing
-================================================================================
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
 
-Worst Slack: 0.045 ns
 
-Slack: 0.045 ns (PASS)
-  Source: axi_read/addr_r_reg[15]/C
-  Destination: axi_read/addr_r_reg[16]/D
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
 
-Slack: 0.032 ns (PASS)
-  Source: dma_top/state_reg[1]/C
-  Destination: dma_top/state_reg[2]/D
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
 
-Slack: 0.018 ns (PASS)
-  Source: sg_engine/state_reg[0]/C
-  Destination: sg_engine/state_reg[1]/D
 
-================================================================================
-4. Clock to Output
-================================================================================
+5. checking no_input_delay (3)
+------------------------------
+ There are 2 input ports with no input delay specified. (HIGH)
 
-Slack: 0.456 ns (PASS)
-  Source: dma_top/state_reg[0]/C
-  Destination: dma_interrupt/O
-  Data Path Delay: 3.544 ns
+ There is 1 input port with no input delay but user has a false path constraint. (MEDIUM)
 
-Slack: 0.234 ns (PASS)
-  Source: axi_read/addr_r_reg[0]/C
-  Destination: m_axi_araddr[0]/O
-  Data Path Delay: 3.766 ns
 
-Slack: 0.123 ns (PASS)
-  Source: axi_write/burst_cnt_reg[7]/C
-  Destination: m_axi_awlen[0]/O
-  Data Path Delay: 3.877 ns
+6. checking no_output_delay (33)
+--------------------------------
+ There are 33 ports with no output delay specified. (HIGH)
 
-================================================================================
-5. AXI Master Timing
-================================================================================
+ There are 0 ports with no output delay but user has a false path constraint
 
-AXI Read Address Channel (Critical):
-  Slack: 0.087 ns
-  Source: axi_read/addr_r_reg[28]
-  Destination: m_axi_araddr[29]
-  Path Delay: 3.913 ns
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
 
-AXI Read Data Channel:
-  Slack: 0.156 ns
-  Source: m_axi_rdata[31]/I
-  Destination: axi_write/m_axi_wdata[31]/O
-  Path Delay: 3.844 ns
 
-AXI Write Address Channel:
-  Slack: 0.234 ns
-  Source: axi_write/addr_r_reg[12]
-  Destination: m_axi_awaddr[12]/O
-  Path Delay: 3.766 ns
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
 
-================================================================================
-6. Pulse Width
-================================================================================
 
-Slack: 1.234 ns (PASS)
-  Source: clk_250 (rising edge at 0.000 ns)
-  Pulse Width: 2.000 ns
-  Low Pulse Width Slack: 1.234 ns
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
 
-================================================================================
-7. Retiming Report
-================================================================================
 
-Retiming applied to resolve timing violations:
-  One level of retiming applied to sg_engine datapath
-  Total registers moved: 8
-  Final Slack after retiming: 0.001 ns (PASS)
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
 
-End of Timing Report
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+     -6.368      -17.257                      3                  300       -1.096     -182.936                    280                  300        1.500        0.000                       0                   151  
+
+
+Timing constraints are not met.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+Clock    Waveform(ns)         Period(ns)      Frequency(MHz)
+-----    ------------         ----------      --------------
+clk_250  {0.000 2.000}        4.000           250.000         
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk_250            -6.368      -17.257                      3                  300       -1.096     -182.936                    280                  300        1.500        0.000                       0                   151  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_250
+  To Clock:  clk_250
+
+Setup :            3  Failing Endpoints,  Worst Slack       -6.368ns,  Total Violation      -17.257ns
+Hold  :          280  Failing Endpoints,  Worst Slack       -1.096ns,  Total Violation     -182.936ns
+PW    :            0  Failing Endpoints,  Worst Slack        1.500ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack (VIOLATED) :        -6.368ns  (required time - arrival time)
+  Source:                 s_axi_awvalid
+                            (input port clocked by clk_250  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            s_axi_awready
+                            (output port clocked by clk_250  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             clk_250
+  Path Type:              Max at Slow Process Corner
+  Requirement:            4.000ns  (clk_250 rise@4.000ns - clk_250 rise@0.000ns)
+  Data Path Delay:        5.333ns  (logic 3.733ns (70.007%)  route 1.599ns (29.993%))
+  Logic Levels:           3  (IBUF=1 LUT2=1 OBUF=1)
+  Input Delay:            3.000ns
+  Output Delay:           2.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_250 rise edge)    0.000     0.000 r  
+                         input delay                  3.000     3.000    
+                                                      0.000     3.000 r  s_axi_awvalid (IN)
+                         net (fo=0)                   0.000     3.000    s_axi_awvalid
+                         IBUF (Prop_ibuf_I_O)         0.973     3.973 r  s_axi_awvalid_IBUF_inst/O
+                         net (fo=2, unplaced)         0.800     4.773    s_axi_awvalid_IBUF
+                         LUT2 (Prop_lut2_I0_O)        0.124     4.897 r  s_axi_awready_OBUF_inst_i_1/O
+                         net (fo=1, unplaced)         0.800     5.697    s_axi_awready_OBUF
+                         OBUF (Prop_obuf_I_O)         2.636     8.333 r  s_axi_awready_OBUF_inst/O
+                         net (fo=0)                   0.000     8.333    s_axi_awready
+                                                                      r  s_axi_awready (OUT)
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_250 rise edge)    4.000     4.000 r  
+                         clock pessimism              0.000     4.000    
+                         clock uncertainty           -0.035     3.965    
+                         output delay                -2.000     1.965    
+  -------------------------------------------------------------------
+                         required time                          1.965    
+                         arrival time                          -8.333    
+  -------------------------------------------------------------------
+                         slack                                 -6.368    
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack (VIOLATED) :        -1.096ns  (arrival time - required time)
+  Source:                 s_axi_wdata[0]
+                            (input port clocked by clk_250  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Destination:            dst_addr_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by clk_250  {rise@0.000ns fall@2.000ns period=4.000ns})
+  Path Group:             clk_250
+  Path Type:              Hold (Min at Slow Process Corner)
+  Requirement:            0.000ns  (clk_250 rise@0.000ns - clk_250 rise@0.000ns)
+  Data Path Delay:        1.599ns  (logic 0.840ns (52.497%)  route 0.760ns (47.503%))
+  Logic Levels:           1  (IBUF=1)
+  Input Delay:            0.000ns
+  Clock Path Skew:        2.453ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.453ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_250 rise edge)    0.000     0.000 r  
+                         input delay                  0.000     0.000    
+                                                      0.000     0.000 r  s_axi_wdata[0] (IN)
+                         net (fo=0)                   0.000     0.000    s_axi_wdata[0]
+                         IBUF (Prop_ibuf_I_O)         0.840     0.840 r  s_axi_wdata_IBUF[0]_inst/O
+                         net (fo=6, unplaced)         0.760     1.599    s_axi_wdata_IBUF[0]
+                         FDCE                                         r  dst_addr_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_250 rise edge)    0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+                         IBUF (Prop_ibuf_I_O)         0.973     0.973 r  clk_IBUF_inst/O
+                         net (fo=1, unplaced)         0.800     1.773    clk_IBUF
+                         BUFG (Prop_bufg_I_O)         0.096     1.869 r  clk_IBUF_BUFG_inst/O
+                         net (fo=150, unplaced)       0.584     2.453    clk_IBUF_BUFG
+                         FDCE                                         r  dst_addr_reg[0]/C
+                         clock pessimism              0.000     2.453    
+                         clock uncertainty            0.035     2.488    
+                         FDCE (Hold_fdce_C_D)         0.207     2.695    dst_addr_reg[0]
+  -------------------------------------------------------------------
+                         required time                         -2.695    
+                         arrival time                           1.599    
+  -------------------------------------------------------------------
+                         slack                                 -1.096    
+
+
+
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_250
+Waveform(ns):       { 0.000 2.000 }
+Period(ns):         4.000
+Sources:            { clk }
+
+Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location  Pin
+Min Period        n/a     BUFG/I   n/a            2.155         4.000       1.845                clk_IBUF_BUFG_inst/I
+Low Pulse Width   Slow    FDPE/C   n/a            0.500         2.000       1.500                FSM_onehot_state_reg[0]/C
+High Pulse Width  Slow    FDPE/C   n/a            0.500         2.000       1.500                FSM_onehot_state_reg[0]/C
+
+
+

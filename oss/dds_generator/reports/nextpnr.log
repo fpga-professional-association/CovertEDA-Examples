@@ -1,0 +1,318 @@
+
+--- STDERR ---
+Info: constrained 'clk' to bel 'X12/Y31/io1'
+Info: constrained 'rst_n' to bel 'X13/Y31/io1'
+Info: constrained 'dac_out[0]' to bel 'X19/Y31/io0'
+Info: constrained 'dac_out[1]' to bel 'X19/Y31/io1'
+Info: constrained 'dac_out[2]' to bel 'X18/Y31/io0'
+Info: constrained 'dac_out[3]' to bel 'X18/Y31/io1'
+Info: constrained 'dac_out[4]' to bel 'X16/Y31/io1'
+Info: constrained 'dac_out[5]' to bel 'X16/Y31/io0'
+Info: constrained 'dac_out[6]' to bel 'X9/Y31/io1'
+Info: constrained 'dac_out[7]' to bel 'X13/Y31/io0'
+Warning: IO 'waveform[1]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'waveform[0]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[15]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[14]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[13]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[12]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[11]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[10]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[9]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[8]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[7]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[6]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[5]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[4]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[3]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[2]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[1]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'freq_word[0]' is unconstrained in PCF and will be automatically placed
+Warning: IO 'dac_valid' is unconstrained in PCF and will be automatically placed
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:       11 LCs used as LUT4 only
+Info:       24 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:        1 LCs used as DFF only
+Info: Packing carries..
+Info:        2 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:        1 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting clk$SB_IO_IN (fanout 25)
+Info: promoting rst_n_SB_LUT4_I3_O [reset] (fanout 25)
+Info: Constraining chains...
+Info:        1 LCs used to legalise carry chains.
+Info: Checksum: 0xc5070a38
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:      40/   5280     0%
+Info: 	        ICESTORM_RAM:       0/     30     0%
+Info: 	               SB_IO:      29/     39    74%
+Info: 	               SB_GB:       2/      8    25%
+Info: 	        ICESTORM_PLL:       0/      1     0%
+Info: 	         SB_WARMBOOT:       0/      1     0%
+Info: 	        ICESTORM_DSP:       0/      8     0%
+Info: 	      ICESTORM_HFOSC:       0/      1     0%
+Info: 	      ICESTORM_LFOSC:       0/      1     0%
+Info: 	              SB_I2C:       0/      2     0%
+Info: 	              SB_SPI:       0/      2     0%
+Info: 	              IO_I3C:       0/      2     0%
+Info: 	         SB_LEDDA_IP:       0/      1     0%
+Info: 	         SB_RGBA_DRV:       0/      1     0%
+Info: 	      ICESTORM_SPRAM:       0/      4     0%
+
+Info: Placed 10 cells based on constraints.
+Info: Creating initial analytic placement for 23 cells, random placement wirelen = 1255.
+Info:     at initial placer iter 0, wirelen = 580
+Info:     at initial placer iter 1, wirelen = 571
+Info:     at initial placer iter 2, wirelen = 566
+Info:     at initial placer iter 3, wirelen = 571
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type ICESTORM_LC: wirelen solved = 567, spread = 587, legal = 593; time = 0.00s
+Info:     at iteration #1, type SB_GB: wirelen solved = 591, spread = 592, legal = 593; time = 0.00s
+Info:     at iteration #1, type ALL: wirelen solved = 567, spread = 587, legal = 596; time = 0.00s
+Info: HeAP Placer Time: 0.00s
+Info:   of which solving equations: 0.00s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 31, wirelen = 596
+Info:   at iteration #3: temp = 0.000000, timing cost = 25, wirelen = 585 
+Info: SA placement time 0.00s
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 105.13 MHz (PASS at 12.00 MHz)
+
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 11.61 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 7.56 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 73821,  74084) |* 
+Info: [ 74084,  74347) | 
+Info: [ 74347,  74610) |**** 
+Info: [ 74610,  74873) |** 
+Info: [ 74873,  75136) |** 
+Info: [ 75136,  75399) |*** 
+Info: [ 75399,  75662) |****** 
+Info: [ 75662,  75925) |**** 
+Info: [ 75925,  76188) |*** 
+Info: [ 76188,  76451) |******* 
+Info: [ 76451,  76714) | 
+Info: [ 76714,  76977) | 
+Info: [ 76977,  77240) |** 
+Info: [ 77240,  77503) |** 
+Info: [ 77503,  77766) |*** 
+Info: [ 77766,  78029) |** 
+Info: [ 78029,  78292) |** 
+Info: [ 78292,  78555) |*** 
+Info: [ 78555,  78818) |** 
+Info: [ 78818,  79081) |****** 
+Info: Checksum: 0x5a31829a
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 163 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:        167 |        4        148 |    4   148 |         0|       0.06       0.06|
+Info: Routing complete.
+Info: Router1 time 0.06s
+Info: Checksum: 0x08ad5d88
+
+Info: Critical path report for clock 'clk$SB_IO_IN_$glb_clk' (posedge -> posedge):
+Info:       type curr  total name
+Info:   clk-to-q  1.39  1.39 Source freq_word_SB_LUT4_I1_3_LC.O
+Info:    routing  1.76  3.15 Net clk_SB_DFFR_C_14_Q (14,9) -> (15,8)
+Info:                          Sink $nextpnr_ICESTORM_LC_0.I1
+Info:                          Defined in:
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:      logic  0.68  3.83 Source $nextpnr_ICESTORM_LC_0.COUT
+Info:    routing  0.00  3.83 Net $nextpnr_ICESTORM_LC_0$O (15,8) -> (15,8)
+Info:                          Sink waveform_SB_LUT4_I1_1_I3_SB_CARRY_CO_CI_SB_CARRY_CO$CARRY.CIN
+Info:      logic  0.28  4.10 Source waveform_SB_LUT4_I1_1_I3_SB_CARRY_CO_CI_SB_CARRY_CO$CARRY.COUT
+Info:    routing  0.00  4.10 Net waveform_SB_LUT4_I1_1_I3_SB_CARRY_CO_CI (15,8) -> (15,8)
+Info:                          Sink waveform_SB_LUT4_I1_1_I3_SB_CARRY_CO$CARRY.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:41.36-41.53
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  4.38 Source waveform_SB_LUT4_I1_1_I3_SB_CARRY_CO$CARRY.COUT
+Info:    routing  0.66  5.04 Net waveform_SB_LUT4_I1_1_I3 (15,8) -> (15,8)
+Info:                          Sink waveform_SB_LUT4_I1_1_LC.I3
+Info:                          Defined in:
+Info:                               dds_generator.v:41.36-41.53
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.87  5.92 Source waveform_SB_LUT4_I1_1_LC.O
+Info:    routing  2.95  8.87 Net waveform_SB_LUT4_I1_2_O[3] (15,8) -> (14,12)
+Info:                          Sink dac_out_SB_DFFR_Q_D_SB_LUT4_O_7_LC.I3
+Info:                          Defined in:
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:      setup  0.82  9.69 Source dac_out_SB_DFFR_Q_D_SB_LUT4_O_7_LC.I3
+Info: 4.32 ns logic, 5.38 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge clk$SB_IO_IN_$glb_clk':
+Info:       type curr  total name
+Info:     source  0.00  0.00 Source freq_word[0]$sb_io.D_IN_0
+Info:    routing  6.28  6.28 Net clk_SB_DFFR_C_11_Q[1] (17,31) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_6_LC.I1
+Info:                          Defined in:
+Info:                               dds_generator.v:8.19-8.28
+Info:      logic  0.68  6.96 Source freq_word_SB_LUT4_I1_6_LC.COUT
+Info:    routing  0.00  6.96 Net clk_SB_DFFR_C_10_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_13_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  7.24 Source freq_word_SB_LUT4_I1_13_LC.COUT
+Info:    routing  0.00  7.24 Net clk_SB_DFFR_C_9_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_14_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  7.52 Source freq_word_SB_LUT4_I1_14_LC.COUT
+Info:    routing  0.00  7.52 Net clk_SB_DFFR_C_8_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_15_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  7.79 Source freq_word_SB_LUT4_I1_15_LC.COUT
+Info:    routing  0.00  7.79 Net clk_SB_DFFR_C_7_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_2_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  8.07 Source freq_word_SB_LUT4_I1_2_LC.COUT
+Info:    routing  0.00  8.07 Net clk_SB_DFFR_C_6_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_11_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  8.35 Source freq_word_SB_LUT4_I1_11_LC.COUT
+Info:    routing  0.00  8.35 Net clk_SB_DFFR_C_5_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_9_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  8.63 Source freq_word_SB_LUT4_I1_9_LC.COUT
+Info:    routing  0.00  8.63 Net clk_SB_DFFR_C_4_Q[3] (14,8) -> (14,8)
+Info:                          Sink freq_word_SB_LUT4_I1_5_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  8.91 Source freq_word_SB_LUT4_I1_5_LC.COUT
+Info:    routing  0.56  9.46 Net clk_SB_DFFR_C_3_Q[3] (14,8) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_7_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  9.74 Source freq_word_SB_LUT4_I1_7_LC.COUT
+Info:    routing  0.00  9.74 Net clk_SB_DFFR_C_2_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_8_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  10.02 Source freq_word_SB_LUT4_I1_8_LC.COUT
+Info:    routing  0.00  10.02 Net clk_SB_DFFR_C_1_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_1_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  10.30 Source freq_word_SB_LUT4_I1_1_LC.COUT
+Info:    routing  0.00  10.30 Net clk_SB_DFFR_C_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_10_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  10.57 Source freq_word_SB_LUT4_I1_10_LC.COUT
+Info:    routing  0.00  10.57 Net clk_SB_DFFR_C_15_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_12_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  10.85 Source freq_word_SB_LUT4_I1_12_LC.COUT
+Info:    routing  0.00  10.85 Net freq_word_SB_CARRY_I0_8_CO (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_3_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  11.13 Source freq_word_SB_LUT4_I1_3_LC.COUT
+Info:    routing  0.00  11.13 Net clk_SB_DFFR_C_13_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_4_LC.CIN
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      logic  0.28  11.41 Source freq_word_SB_LUT4_I1_4_LC.COUT
+Info:    routing  0.66  12.07 Net clk_SB_DFFR_C_12_Q[3] (14,9) -> (14,9)
+Info:                          Sink freq_word_SB_LUT4_I1_LC.I3
+Info:                          Defined in:
+Info:                               dds_generator.v:34.26-34.47
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/arith_map.v:62.5-70.4
+Info:                               C:\OSS-CA~1\OSS-CA~1\bin\../share/yosys/ice40/abc9_model.v:4.9-4.11
+Info:      setup  0.82  12.89 Source freq_word_SB_LUT4_I1_LC.I3
+Info: 5.39 ns logic, 7.50 ns routing
+
+Info: Critical path report for cross-domain path 'posedge clk$SB_IO_IN_$glb_clk' -> '<async>':
+Info:       type curr  total name
+Info:   clk-to-q  1.39  1.39 Source dac_out_SB_DFFR_Q_D_SB_LUT4_O_6_LC.O
+Info:    routing  6.55  7.94 Net dac_out[6]$SB_IO_OUT (14,7) -> (9,31)
+Info:                          Sink dac_out[6]$sb_io.D_OUT_0
+Info:                          Defined in:
+Info:                               dds_generator.v:15.16-15.24
+Info: 1.39 ns logic, 6.55 ns routing
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 103.16 MHz (PASS at 12.00 MHz)
+
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 12.89 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 7.94 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 73639,  73909) |*** 
+Info: [ 73909,  74179) |** 
+Info: [ 74179,  74449) |*** 
+Info: [ 74449,  74719) |** 
+Info: [ 74719,  74989) |******** 
+Info: [ 74989,  75259) |** 
+Info: [ 75259,  75529) |**** 
+Info: [ 75529,  75799) |** 
+Info: [ 75799,  76069) |****** 
+Info: [ 76069,  76339) | 
+Info: [ 76339,  76609) |** 
+Info: [ 76609,  76879) |** 
+Info: [ 76879,  77149) |** 
+Info: [ 77149,  77419) |** 
+Info: [ 77419,  77689) |** 
+Info: [ 77689,  77959) |*** 
+Info: [ 77959,  78229) |** 
+Info: [ 78229,  78499) |* 
+Info: [ 78499,  78769) | 
+Info: [ 78769,  79039) |****** 
+19 warnings, 0 errors
+
+Info: Program finished normally.

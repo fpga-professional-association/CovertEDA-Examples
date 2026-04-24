@@ -1,0 +1,7 @@
+Project:   pcie_endpoint
+Family:    Cyclone 10 GX
+Device:    10CX085YU484E5G
+Top:       pcie_top
+Quartus:   25.3 Pro
+Status:    PASS
+Reports:   4

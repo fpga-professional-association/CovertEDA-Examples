@@ -1,0 +1,19 @@
+{
+  "name": "pwm_audio",
+  "description": "pwm audio example \u2014 top module audio_top",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "audio_top",
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.pcf"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}

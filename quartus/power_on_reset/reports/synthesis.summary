@@ -1,0 +1,9 @@
+Synthesis Status : Successful - Thu Apr 23 21:26:24 2026
+Revision Name : power_on_reset
+Top-level Entity Name : power_on_reset
+Family : Cyclone 10 GX
+Quartus Prime Version : 25.3.0 Build 109 09/24/2025 SC Pro Edition
+Device : 10CX085YU484E5G
+Logic utilization estimate (in ALMs) : 12 / 31,000 ( < 1 % )
+Total registers : 10
+Estimated DSP Blocks Post-Merging : 0

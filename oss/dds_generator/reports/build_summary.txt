@@ -1,0 +1,6 @@
+Project:  dds_generator
+Device:   iCE40UP5K
+Family:   ice40
+Top:      dds_generator
+yosys:    PASS
+nextpnr:  PASS

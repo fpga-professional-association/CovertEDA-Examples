@@ -1,0 +1,19 @@
+{
+  "name": "uart_bridge",
+  "description": "uart bridge example \u2014 top module uart_top",
+  "backendId": "diamond",
+  "device": "LFE5U-45F-8BG381C",
+  "topModule": "uart_top",
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.lpf"
+  ],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-24T02:33:58.137820000+00:00",
+  "updatedAt": "2026-04-24T02:33:58.137820000+00:00"
+}
