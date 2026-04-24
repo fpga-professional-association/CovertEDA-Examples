@@ -1,0 +1,14 @@
+# PCF for iCE40UP5K Morse Encoder
+
+set_io clk 35
+set_io rst_n 34
+set_io char_in[0] 2
+set_io char_in[1] 3
+set_io char_in[2] 4
+set_io char_in[3] 6
+set_io char_in[4] 9
+set_io char_in[5] 10
+set_io char_in[6] 11
+set_io char_in[7] 12
+set_io char_valid 13
+set_io morse_out 23

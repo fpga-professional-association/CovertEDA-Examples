@@ -1,0 +1,15 @@
+{
+  "name": "cache_direct",
+  "description": "4-way direct-mapped cache, 256 lines x 32-bit",
+  "backendId": "diamond",
+  "device": "LFE5U-85F",
+  "topModule": "cache_direct",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.lpf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

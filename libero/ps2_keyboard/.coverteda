@@ -1,0 +1,15 @@
+{
+  "name": "ps2_keyboard",
+  "description": "PS/2 keyboard interface with scancode output",
+  "backendId": "libero",
+  "device": "MPF100T",
+  "topModule": "ps2_keyboard",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "gpio_controller",
+  "description": "8-bit GPIO with direction register and output enable",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "gpio_controller",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc", "constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

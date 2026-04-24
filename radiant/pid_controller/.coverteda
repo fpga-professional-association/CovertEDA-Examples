@@ -1,0 +1,15 @@
+{
+  "name": "pid_controller",
+  "description": "16-bit PID controller with setpoint, feedback, output",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "pid_controller",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc", "constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

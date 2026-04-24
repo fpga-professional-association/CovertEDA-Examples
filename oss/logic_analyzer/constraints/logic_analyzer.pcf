@@ -1,0 +1,13 @@
+# PCF for ECP5 LFE5U-25F Logic Analyzer
+
+set_io clk A10
+set_io rst_n C1
+set_io probe_in[0] B2
+set_io probe_in[1] C2
+set_io probe_in[2] D2
+set_io probe_in[3] E2
+set_io probe_in[4] F2
+set_io probe_in[5] G2
+set_io probe_in[6] H2
+set_io probe_in[7] J2
+set_io arm A2

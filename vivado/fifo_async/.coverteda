@@ -1,0 +1,15 @@
+{
+  "name": "fifo_async",
+  "description": "16-deep x 8-bit asynchronous FIFO with Gray-code CDC pointers",
+  "backendId": "vivado",
+  "device": "XC7K325T-2FFG900C",
+  "topModule": "fifo_async",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.xdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

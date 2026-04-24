@@ -1,0 +1,15 @@
+{
+  "name": "iir_filter",
+  "description": "2nd-order IIR biquad filter with 16-bit fixed-point arithmetic",
+  "backendId": "vivado",
+  "device": "XC7A35T-1CPG236C",
+  "topModule": "iir_filter",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.xdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

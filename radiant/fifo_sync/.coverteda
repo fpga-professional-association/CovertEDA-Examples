@@ -1,0 +1,15 @@
+{
+  "name": "fifo_sync",
+  "description": "8-deep x 8-bit synchronous FIFO with full/empty flags",
+  "backendId": "radiant",
+  "device": "LIFCL-40-7BG400I",
+  "topModule": "fifo_sync",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pdc", "constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

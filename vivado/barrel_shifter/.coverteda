@@ -1,0 +1,15 @@
+{
+  "name": "barrel_shifter",
+  "description": "32-bit barrel shifter with left/right/arithmetic shift modes",
+  "backendId": "vivado",
+  "device": "XC7A35T-1CPG236C",
+  "topModule": "barrel_shifter",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.xdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

@@ -44,7 +44,7 @@ module traffic_gen_standalone #(
     end
 
     // Pattern data
-    wire [31:0] data_32;
+    reg [31:0] data_32;
     always @(*) begin
         case (pattern_sel)
             8'h00: data_32 = 32'h00000000;

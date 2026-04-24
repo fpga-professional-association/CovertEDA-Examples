@@ -1,0 +1,15 @@
+{
+  "name": "arbiter_rr",
+  "description": "8-port round-robin arbiter with fair scheduling and one-hot grant output",
+  "backendId": "ace",
+  "device": "AC7t1500",
+  "topModule": "arbiter_rr",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

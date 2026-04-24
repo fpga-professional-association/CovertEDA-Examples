@@ -1,0 +1,15 @@
+{
+  "name": "keypad_scanner",
+  "description": "4x4 matrix keypad scanner with key code output and debounce",
+  "backendId": "quartus",
+  "device": "10CX085YU484E5G",
+  "topModule": "keypad_scanner",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "output_files",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

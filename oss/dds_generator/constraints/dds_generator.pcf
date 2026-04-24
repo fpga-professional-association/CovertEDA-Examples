@@ -1,0 +1,12 @@
+# PCF for iCE40UP5K DDS Generator
+
+set_io clk 35
+set_io rst_n 34
+set_io dac_out[0] 23
+set_io dac_out[1] 25
+set_io dac_out[2] 26
+set_io dac_out[3] 27
+set_io dac_out[4] 31
+set_io dac_out[5] 32
+set_io dac_out[6] 36
+set_io dac_out[7] 37

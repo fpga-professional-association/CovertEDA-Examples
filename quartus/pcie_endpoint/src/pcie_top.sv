@@ -38,7 +38,7 @@ module pcie_top (
     wire bar_valid;
     wire [15:0] bar_address;
 
-    // PCIe Core Instance (Altera IP)
+    // PCIe Core Instance (Altera IP stub for synthesis)
     pcie_ip pcie_core_inst (
         .pcie_rxn(pcie_rx),
         .pcie_txn(pcie_tx),
@@ -55,7 +55,7 @@ module pcie_top (
         .clk250_out(pcie_clk),
         .pcie_core_clk(pcie_clk),
         .test_in(8'h0),
-        .sim_only_analysis_p('0)
+        .sim_only_analysis_p(1'b0)
     );
 
     // Reset synchronizer

@@ -1,0 +1,15 @@
+{
+  "name": "power_on_reset",
+  "description": "Power-on reset generator with configurable delay count",
+  "backendId": "quartus",
+  "device": "10CX085YU484E5G",
+  "topModule": "power_on_reset",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.sdc"],
+  "implDir": "output_files",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

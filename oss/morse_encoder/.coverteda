@@ -1,0 +1,15 @@
+{
+  "name": "morse_encoder",
+  "description": "ASCII to Morse code encoder with LED/audio output and timing control",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "morse_encoder",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

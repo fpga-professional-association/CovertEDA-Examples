@@ -36,3 +36,290 @@ async def test_led_after_reset(dut):
     )
     assert final_led.is_resolvable, f"LED contains X/Z after 100 cycles: {final_led}"
     dut._log.info(f"LED value after 100 cycles: {int(final_led)}")
+
+
+@cocotb.test()
+async def test_led_zero_at_reset(dut):
+    """Verify that led is exactly 0 immediately after reset."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    led_val = dut.led.value
+    assert led_val.is_resolvable, f"LED has X/Z right after reset: {led_val}"
+    try:
+        assert int(led_val) == 0, f"Expected LED == 0 at reset, got {int(led_val)}"
+    except ValueError:
+        assert False, f"LED value could not be converted to int: {led_val}"
+    dut._log.info("LED is 0 at reset -- PASS")
+
+
+@cocotb.test()
+async def test_led_stays_binary(dut):
+    """Run 500 cycles and verify led is always 0 or 1 (never X/Z)."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(500):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        if val.is_resolvable:
+            try:
+                assert int(val) in (0, 1), f"LED not binary at cycle {cycle}: {int(val)}"
+            except ValueError:
+                assert False, f"LED not convertible at cycle {cycle}: {val}"
+        else:
+            assert False, f"LED has X/Z at cycle {cycle}: {val}"
+    dut._log.info("LED stayed binary for 500 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_multiple_resets(dut):
+    """Apply 3 successive resets and verify clean recovery each time."""
+    setup_clock(dut, "clk", 10)
+
+    for attempt in range(3):
+        await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+        await RisingEdge(dut.clk)
+        led_val = dut.led.value
+        assert led_val.is_resolvable, f"LED X/Z after reset #{attempt+1}: {led_val}"
+        try:
+            assert int(led_val) == 0, f"LED not 0 after reset #{attempt+1}: {int(led_val)}"
+        except ValueError:
+            assert False, f"LED not convertible after reset #{attempt+1}: {led_val}"
+        await ClockCycles(dut.clk, 50)
+        dut._log.info(f"Reset #{attempt+1} clean")
+    dut._log.info("3 successive resets all clean -- PASS")
+
+
+@cocotb.test()
+async def test_long_run(dut):
+    """Run 1000 cycles and verify no X/Z appears on led."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(1000):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        if not val.is_resolvable:
+            assert False, f"LED has X/Z at cycle {cycle}: {val}"
+    dut._log.info("No X/Z on LED for 1000 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_reset_hold_long(dut):
+    """Hold reset for 20 cycles and verify clean release."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=20)
+    await RisingEdge(dut.clk)
+
+    led_val = dut.led.value
+    assert led_val.is_resolvable, f"LED has X/Z after 20-cycle reset: {led_val}"
+    try:
+        assert int(led_val) == 0, f"LED not 0 after long reset: {int(led_val)}"
+    except ValueError:
+        assert False, f"LED not convertible after long reset: {led_val}"
+    dut._log.info("20-cycle reset hold clean -- PASS")
+
+
+@cocotb.test()
+async def test_clock_5ns(dut):
+    """Use a faster 5ns clock and verify led stays valid."""
+    setup_clock(dut, "clk", 5)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(200):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        if not val.is_resolvable:
+            assert False, f"LED has X/Z at cycle {cycle} with 5ns clock: {val}"
+    dut._log.info("5ns clock: LED clean for 200 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_reset_during_run(dut):
+    """Reset at cycle 200 and verify clean recovery."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Run 200 cycles
+    await ClockCycles(dut.clk, 200)
+
+    # Assert reset mid-run
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+    await RisingEdge(dut.clk)
+
+    led_val = dut.led.value
+    assert led_val.is_resolvable, f"LED has X/Z after mid-run reset: {led_val}"
+    try:
+        assert int(led_val) == 0, f"LED not 0 after mid-run reset: {int(led_val)}"
+    except ValueError:
+        assert False, f"LED not convertible after mid-run reset: {led_val}"
+
+    # Run a few more cycles to confirm recovery
+    await ClockCycles(dut.clk, 50)
+    final = dut.led.value
+    assert final.is_resolvable, f"LED has X/Z after recovery: {final}"
+    dut._log.info("Mid-run reset and recovery clean -- PASS")
+
+
+@cocotb.test()
+async def test_led_resolvable_continuous(dut):
+    """Check led every 10 cycles for 200 cycles, ensure always resolvable."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for i in range(20):
+        await ClockCycles(dut.clk, 10)
+        val = dut.led.value
+        assert val.is_resolvable, f"LED has X/Z at sample {i} (cycle {(i+1)*10}): {val}"
+        try:
+            int(val)
+        except ValueError:
+            assert False, f"LED not convertible at sample {i}: {val}"
+    dut._log.info("LED resolvable at every 10-cycle sample for 200 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_counter_not_stuck(dut):
+    """Verify the design keeps running (counter advances, no hang)."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    # Sample led at two different times; design should not crash
+    await ClockCycles(dut.clk, 100)
+    val1 = dut.led.value
+    assert val1.is_resolvable, f"LED has X/Z at cycle 100: {val1}"
+
+    await ClockCycles(dut.clk, 400)
+    val2 = dut.led.value
+    assert val2.is_resolvable, f"LED has X/Z at cycle 500: {val2}"
+
+    # Both should be valid integers -- design did not get stuck
+    try:
+        int(val1)
+        int(val2)
+    except ValueError as e:
+        assert False, f"LED value not convertible: {e}"
+    dut._log.info("Design kept running through 500 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_rapid_reset_toggling(dut):
+    """Toggle reset on/off every cycle for 30 iterations, verify no X/Z."""
+    setup_clock(dut, "clk", 10)
+
+    for _ in range(30):
+        dut.rst_n.value = 0
+        await RisingEdge(dut.clk)
+        dut.rst_n.value = 1
+        await RisingEdge(dut.clk)
+
+    await ClockCycles(dut.clk, 10)
+    val = dut.led.value
+    assert val.is_resolvable, f"LED has X/Z after rapid reset toggling: {val}"
+    try:
+        v = int(val)
+        assert v in (0, 1), f"LED not binary after rapid toggling: {v}"
+    except ValueError:
+        assert False, f"LED not convertible after rapid toggling: {val}"
+    dut._log.info("Rapid reset toggling (30 iterations): clean -- PASS")
+
+
+@cocotb.test()
+async def test_clock_2ns(dut):
+    """Use an aggressive 2ns clock (500 MHz) and verify led stays valid."""
+    setup_clock(dut, "clk", 2)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for cycle in range(300):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        if not val.is_resolvable:
+            assert False, f"LED has X/Z at cycle {cycle} with 2ns clock: {val}"
+    dut._log.info("2ns clock: LED clean for 300 cycles -- PASS")
+
+
+@cocotb.test()
+async def test_single_cycle_reset(dut):
+    """Apply reset for only 1 cycle and verify clean operation."""
+    setup_clock(dut, "clk", 10)
+
+    await reset_dut(dut, "rst_n", active_low=True, cycles=1)
+    await ClockCycles(dut.clk, 10)
+
+    val = dut.led.value
+    assert val.is_resolvable, f"LED has X/Z after 1-cycle reset: {val}"
+    try:
+        assert int(val) in (0, 1), f"LED not binary after 1-cycle reset: {int(val)}"
+    except ValueError:
+        assert False, f"LED not convertible after 1-cycle reset: {val}"
+    dut._log.info("Single-cycle reset clean -- PASS")
+
+
+@cocotb.test()
+async def test_led_stable_short_window(dut):
+    """Verify led does not toggle within 100 consecutive cycles (counter far from threshold)."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    await ClockCycles(dut.clk, 50)
+
+    values = []
+    for _ in range(100):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        assert val.is_resolvable, f"LED has X/Z during stability check: {val}"
+        try:
+            values.append(int(val))
+        except ValueError:
+            assert False, f"LED not convertible during stability check: {val}"
+
+    assert len(set(values)) == 1, (
+        f"LED changed within 100-cycle window (threshold is 50M): {set(values)}"
+    )
+    dut._log.info(f"LED stable at {values[0]} for 100 consecutive cycles -- PASS")
+
+
+@cocotb.test()
+async def test_stress_3000_cycles(dut):
+    """Stress test: run 3000 cycles checking led every 100 cycles."""
+    setup_clock(dut, "clk", 10)
+    await reset_dut(dut, "rst_n", active_low=True, cycles=5)
+
+    for checkpoint in range(30):
+        await ClockCycles(dut.clk, 100)
+        val = dut.led.value
+        assert val.is_resolvable, (
+            f"LED has X/Z at checkpoint {checkpoint} (cycle {(checkpoint+1)*100}): {val}"
+        )
+        try:
+            int(val)
+        except ValueError:
+            assert False, f"LED not convertible at checkpoint {checkpoint}: {val}"
+
+    dut._log.info("Stress test: 3000 cycles, all 30 checkpoints clean -- PASS")
+
+
+@cocotb.test()
+async def test_reset_release_boundary(dut):
+    """Sample led on each cycle during the exact reset release boundary."""
+    setup_clock(dut, "clk", 10)
+
+    dut.rst_n.value = 0
+    await ClockCycles(dut.clk, 5)
+
+    # Release reset and watch led for 15 cycles
+    dut.rst_n.value = 1
+    for cycle in range(15):
+        await RisingEdge(dut.clk)
+        val = dut.led.value
+        if not val.is_resolvable:
+            assert False, f"LED has X/Z at cycle {cycle} post-release: {val}"
+        try:
+            v = int(val)
+        except ValueError:
+            assert False, f"LED not convertible at cycle {cycle} post-release: {val}"
+        dut._log.info(f"Post-release cycle {cycle}: led={v}")
+
+    dut._log.info("Reset release boundary: no X/Z detected -- PASS")

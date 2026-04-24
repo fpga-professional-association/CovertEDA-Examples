@@ -1,0 +1,15 @@
+{
+  "name": "event_counter",
+  "description": "4-channel event counter with snapshot latch and selectable readback",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "event_counter",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}

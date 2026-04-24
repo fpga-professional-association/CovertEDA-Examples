@@ -1,0 +1,28 @@
+Vivado Synthesis Report Summary
+Target: xc7a35ticsg324-1L (Artix-7)
+Date: Sun Apr 19 13:25:15 -0500 2026
+========================================
+
+PASS: axi_dma_engine
+PASS: axi_fifo
+PASS: barrel_shifter
+PASS: blinky_led
+PASS: ddr3_test
+PASS: divider
+PASS: dpram
+PASS: fifo_async
+PASS: hamming_encoder
+PASS: iir_filter
+PASS: interrupt_controller
+PASS: leading_zeros
+PASS: manchester_encoder
+PASS: nco
+PASS: pulse_width_measure
+PASS: pwm_rgb
+PASS: timer_watchdog
+PASS: traffic_light
+PASS: uart_echo
+PASS: vga_controller
+
+========================================
+TOTAL: 20 | PASS: 20 | FAIL: 0

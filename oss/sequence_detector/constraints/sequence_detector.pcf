@@ -1,0 +1,7 @@
+# PCF for iCE40UP5K Sequence Detector
+
+set_io clk 35
+set_io rst_n 34
+set_io bit_in 2
+set_io bit_valid 3
+set_io detected 23

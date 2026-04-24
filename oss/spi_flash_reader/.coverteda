@@ -1,0 +1,15 @@
+{
+  "name": "spi_flash_reader",
+  "description": "SPI flash read-only controller with address and data byte interface",
+  "backendId": "oss",
+  "device": "iCE40UP5K",
+  "topModule": "spi_flash_reader",
+  "sourcePatterns": ["src/**/*.v"],
+  "constraintFiles": ["constraints/*.pcf"],
+  "implDir": "impl1",
+  "backendConfig": {},
+  "buildStages": [],
+  "buildOptions": {},
+  "createdAt": "2026-04-18T12:00:00.000000000+00:00",
+  "updatedAt": "2026-04-18T12:00:00.000000000+00:00"
+}
