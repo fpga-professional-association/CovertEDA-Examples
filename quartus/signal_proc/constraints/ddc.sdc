@@ -5,8 +5,8 @@
 create_clock -name {clk_200m} -period 5.000 -waveform { 0.000 2.500 } [get_ports {clk_200m}]
 
 # Clock uncertainties
-set_clock_uncertainty -setup 0.150 [get_clocks {clk_200m}]
-set_clock_uncertainty -hold 0.100 [get_clocks {clk_200m}]
+set_clock_uncertainty -setup -to [get_clocks {clk_200m}] 0.150
+set_clock_uncertainty -hold -to [get_clocks {clk_200m}] 0.100
 
 # ADC Input timing constraints
 set_input_delay -clock {clk_200m} -min 0.800 [get_ports {adc_data[*]}]

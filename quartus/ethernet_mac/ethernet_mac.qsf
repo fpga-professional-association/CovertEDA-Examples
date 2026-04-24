@@ -101,3 +101,48 @@ set_global_assignment -name SDC_FILE constraints/eth.sdc
 # Device & Compiler Settings
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH SOME AIR CIRCULATION"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+
+# ========== Virtual pin assignments ==========
+# These examples are IP/reference designs — not full FPGA board
+# designs. Every top-level port is marked as a virtual pin so the
+# fitter doesn't attempt physical pin placement, which would require
+# a specific board-level pinout we don't want to pick for the user.
+set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION ALWAYS
+set_instance_assignment -name VIRTUAL_PIN ON -to clk_125m
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clk_125m
+set_instance_assignment -name VIRTUAL_PIN ON -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rst_n
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_txd
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_txd
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_tx_en
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_tx_en
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_tx_er
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_tx_er
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_tx_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_tx_clk
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_rxd
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rxd
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_rx_dv
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rx_dv
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_rx_er
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rx_er
+set_instance_assignment -name VIRTUAL_PIN ON -to mii_rx_clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mii_rx_clk
+set_instance_assignment -name VIRTUAL_PIN ON -to mac_addr
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to mac_addr
+set_instance_assignment -name VIRTUAL_PIN ON -to eth_type
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to eth_type
+set_instance_assignment -name VIRTUAL_PIN ON -to tx_data
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_data
+set_instance_assignment -name VIRTUAL_PIN ON -to tx_valid
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_valid
+set_instance_assignment -name VIRTUAL_PIN ON -to tx_ready
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to tx_ready
+set_instance_assignment -name VIRTUAL_PIN ON -to rx_data
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_data
+set_instance_assignment -name VIRTUAL_PIN ON -to rx_valid
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_valid
+set_instance_assignment -name VIRTUAL_PIN ON -to rx_last
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_last
+set_instance_assignment -name VIRTUAL_PIN ON -to rx_ready
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rx_ready

@@ -12,8 +12,8 @@ set_output_delay -clock {clk_50m} -min -1.500 [get_ports {led[*]}]
 set_output_delay -clock {clk_50m} -max 5.500 [get_ports {led[*]}]
 
 # Set minimum/maximum delay across clock domains
-set_clock_uncertainty -setup 0.100 [get_clocks {clk_50m}]
-set_clock_uncertainty -hold 0.050 [get_clocks {clk_50m}]
+set_clock_uncertainty -setup -to [get_clocks {clk_50m}] 0.100
+set_clock_uncertainty -hold -to [get_clocks {clk_50m}] 0.050
 
 # Maximum frequency constraint
 set_max_delay 20.000 -from [all_inputs] -to [all_outputs]

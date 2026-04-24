@@ -1,0 +1,387 @@
+Fitter report for i2c_master
+Fri Apr 24 13:05:02 2026
+Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Fitter Summary
+  3. Fitter Settings
+  4. Parallel Compilation
+  5. Fitter Partition Summary
+  6. I/O Assignment Warnings
+  7. Global & Other Fast Signals Details
+  8. Fitter Netlist Optimizations
+  9. Fitter Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++----------------------------------------------------------------------+
+; Fitter Summary                                                       ;
++-------------------------+--------------------------------------------+
+; Fitter Status           ; Failed - Fri Apr 24 13:05:02 2026          ;
+; Quartus Prime Version   ; 25.3.0 Build 109 09/24/2025 SC Pro Edition ;
+; Revision Name           ; i2c_master                                 ;
+; Top-level Entity Name   ; i2c_master                                 ;
+; Family                  ; Cyclone 10 GX                              ;
+; Device                  ; 10CX220YF780I5G                            ;
+; Timing Models           ; Final                                      ;
+; Power Models            ; Final                                      ;
+; Device Status           ; Final                                      ;
+; Total registers         ; 36                                         ;
+; Total pins              ; 33 / 340 ( 10 % )                          ;
+; Total virtual pins      ; 0                                          ;
+; Total block memory bits ; 0 / 12,021,760 ( 0 % )                     ;
+; Total RAM Blocks        ; 0 / 587 ( 0 % )                            ;
+; Total DSP Blocks        ; 0 / 192 ( 0 % )                            ;
+; Total HSSI RX channels  ; 0 / 12 ( 0 % )                             ;
+; Total HSSI TX channels  ; 0 / 12 ( 0 % )                             ;
+; Total PLLs              ; 0 / 30 ( 0 % )                             ;
++-------------------------+--------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Settings                                                                                                                                              ;
++------------------------------------------------------------------------------+---------------------------------------+---------------------------------------+
+; Option                                                                       ; Setting                               ; Default Value                         ;
++------------------------------------------------------------------------------+---------------------------------------+---------------------------------------+
+; Device                                                                       ; 10CX220YF780I5G                       ;                                       ;
+; Enable parallel Assembler and Timing Analyzer during compilation             ; On                                    ; On                                    ;
+; Enable compact report table                                                  ; Off                                   ; Off                                   ;
+; Design Assistant include IP blocks                                           ; Off                                   ; Off                                   ;
+; High fanout net threshold for RAM inference                                  ; 15                                    ; 15                                    ;
+; Design Assistant limit on reported violations per rule                       ; 5000                                  ; 5000                                  ;
+; Perform Simultaneous Multicorner Analysis                                    ; On                                    ; On                                    ;
+; Optimization Mode                                                            ; Balanced                              ; Balanced                              ;
+; Allow Register Merging                                                       ; On                                    ; On                                    ;
+; Allow Register Duplication                                                   ; On                                    ; On                                    ;
+; Allow Register Retiming                                                      ; On                                    ; On                                    ;
+; Router Timing Optimization Level                                             ; Normal                                ; Normal                                ;
+; Perform Clocking Topology Analysis During Routing                            ; Off                                   ; Off                                   ;
+; Placement Effort Multiplier                                                  ; 1.0                                   ; 1.0                                   ;
+; Advanced Physical Synthesis                                                  ; Off                                   ; Off                                   ;
+; Enable unused RX clock workaround                                            ; Off                                   ; Off                                   ;
+; Preserve unused RX/TX channels                                               ; Off                                   ; Off                                   ;
+; Ignore the power supply of HSSI column when preserving unused RX/TX channels ; On                                    ; On                                    ;
+; Automatically reserve CLKUSR pin for calibration purposes                    ; On                                    ; On                                    ;
+; Configuration clock source                                                   ; INIT_INTOSC                           ; INIT_INTOSC                           ;
+; Optimize Hold Timing                                                         ; All Paths                             ; All Paths                             ;
+; Optimize Multi-Corner Timing                                                 ; On                                    ; On                                    ;
+; Auto RAM to MLAB Conversion                                                  ; On                                    ; On                                    ;
+; Report Packed DSP Register Names                                             ; On                                    ; On                                    ;
+; Equivalent RAM and MLAB Power Up                                             ; Auto                                  ; Auto                                  ;
+; Equivalent RAM and MLAB Paused Read Capabilities                             ; Care                                  ; Care                                  ;
+; Programmable Power Technology Optimization                                   ; Automatic                             ; Automatic                             ;
+; Programmable Power Maximum High-Speed Fraction of Used LAB Tiles             ; 1.0                                   ; 1.0                                   ;
+; Power Optimization During Fitting                                            ; Normal compilation                    ; Normal compilation                    ;
+; Optimize Timing                                                              ; Normal compilation                    ; Normal compilation                    ;
+; Optimize IOC Register Placement for Timing                                   ; Normal                                ; Normal                                ;
+; Final Placement Optimizations                                                ; Automatically                         ; Automatically                         ;
+; Fitter Aggressive Routability Optimizations                                  ; Automatically                         ; Automatically                         ;
+; Fitter Initial Placement Seed                                                ; 1                                     ; 1                                     ;
+; Weak Pull-Up Resistor                                                        ; Off                                   ; Off                                   ;
+; Enable Bus-Hold Circuitry                                                    ; Off                                   ; Off                                   ;
+; Auto Packed Registers                                                        ; Auto                                  ; Auto                                  ;
+; Auto Delay Chains                                                            ; On                                    ; On                                    ;
+; Auto Delay Chains for High Fanout Input Pins                                 ; Off                                   ; Off                                   ;
+; Treat Bidirectional Pin as Output Pin                                        ; Off                                   ; Off                                   ;
+; Fitter Effort                                                                ; Auto Fit                              ; Auto Fit                              ;
+; Logic Cell Insertion - Logic Duplication                                     ; Auto                                  ; Auto                                  ;
+; Auto Register Duplication                                                    ; Auto                                  ; Auto                                  ;
+; Auto Global Clock                                                            ; On                                    ; On                                    ;
+; Auto Global Register Control Signals                                         ; On                                    ; On                                    ;
+; Reserve all unused pins                                                      ; As input tri-stated with weak pull-up ; As input tri-stated with weak pull-up ;
+; Synchronizer Identification                                                  ; Auto                                  ; Auto                                  ;
+; Optimize Design for Metastability                                            ; On                                    ; On                                    ;
+; Analyze Auto-Detected Synchronizers for Metastability                        ; Off                                   ; Off                                   ;
+; Active Serial clock source                                                   ; FREQ_100MHz                           ; FREQ_100MHz                           ;
+; Enable input tri-state on active configuration pins in user mode             ; Off                                   ; Off                                   ;
+; Physical Placement Effort                                                    ; Normal                                ; Normal                                ;
+; Number of Example Nodes Reported in Fitter Messages                          ; 50                                    ; 50                                    ;
+; Enable Intermediate Fitter Snapshots                                         ; Off                                   ; Off                                   ;
+; The Maximum physical M20Ks reported in the physical RAM report               ; 500                                   ; 500                                   ;
++------------------------------------------------------------------------------+---------------------------------------+---------------------------------------+
+
+
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 16     ;
+; Maximum allowed            ; 16     ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------+
+; Fitter Partition Summary                                                                   ;
++----------------+----------------+---------+--------------+-------+-------------------------+
+; Partition Name ; Hierarchy Path ; Type    ; Preservation ; Empty ; Partition Database File ;
++----------------+----------------+---------+--------------+-------+-------------------------+
+; root_partition ; |              ; Default ;              ;       ;                         ;
++----------------+----------------+---------+--------------+-------+-------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; I/O Assignment Warnings                                                                                       ;
++---------------+-----------------------------------------------------------------------------------------------+
+; Pin Name      ; Reason                                                                                        ;
++---------------+-----------------------------------------------------------------------------------------------+
+; data_out[0]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[1]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[2]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[3]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[4]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[5]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[6]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; data_out[7]   ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; busy          ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; done          ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; ack_err       ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; scl_out       ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; sda_out       ; Incomplete set of assignments. Missing I/O standard, drive strength and slew rate assignments ;
+; clk           ; Missing I/O standard                                                                          ;
+; rst_n         ; Missing I/O standard                                                                          ;
+; start         ; Missing I/O standard                                                                          ;
+; sda_in        ; Missing I/O standard                                                                          ;
+; rw            ; Missing I/O standard                                                                          ;
+; data_in[0]    ; Missing I/O standard                                                                          ;
+; slave_addr[0] ; Missing I/O standard                                                                          ;
+; data_in[1]    ; Missing I/O standard                                                                          ;
+; slave_addr[1] ; Missing I/O standard                                                                          ;
+; data_in[2]    ; Missing I/O standard                                                                          ;
+; slave_addr[2] ; Missing I/O standard                                                                          ;
+; data_in[3]    ; Missing I/O standard                                                                          ;
+; slave_addr[3] ; Missing I/O standard                                                                          ;
+; data_in[4]    ; Missing I/O standard                                                                          ;
+; slave_addr[4] ; Missing I/O standard                                                                          ;
+; data_in[5]    ; Missing I/O standard                                                                          ;
+; slave_addr[5] ; Missing I/O standard                                                                          ;
+; data_in[6]    ; Missing I/O standard                                                                          ;
+; slave_addr[6] ; Missing I/O standard                                                                          ;
+; data_in[7]    ; Missing I/O standard                                                                          ;
+; data_out[0]   ; Missing location assignment                                                                   ;
+; data_out[1]   ; Missing location assignment                                                                   ;
+; data_out[2]   ; Missing location assignment                                                                   ;
+; data_out[3]   ; Missing location assignment                                                                   ;
+; data_out[4]   ; Missing location assignment                                                                   ;
+; data_out[5]   ; Missing location assignment                                                                   ;
+; data_out[6]   ; Missing location assignment                                                                   ;
+; data_out[7]   ; Missing location assignment                                                                   ;
+; busy          ; Missing location assignment                                                                   ;
+; done          ; Missing location assignment                                                                   ;
+; ack_err       ; Missing location assignment                                                                   ;
+; scl_out       ; Missing location assignment                                                                   ;
+; sda_out       ; Missing location assignment                                                                   ;
+; clk           ; Missing location assignment                                                                   ;
+; rst_n         ; Missing location assignment                                                                   ;
+; start         ; Missing location assignment                                                                   ;
+; sda_in        ; Missing location assignment                                                                   ;
+; rw            ; Missing location assignment                                                                   ;
+; data_in[0]    ; Missing location assignment                                                                   ;
+; slave_addr[0] ; Missing location assignment                                                                   ;
+; data_in[1]    ; Missing location assignment                                                                   ;
+; slave_addr[1] ; Missing location assignment                                                                   ;
+; data_in[2]    ; Missing location assignment                                                                   ;
+; slave_addr[2] ; Missing location assignment                                                                   ;
+; data_in[3]    ; Missing location assignment                                                                   ;
+; slave_addr[3] ; Missing location assignment                                                                   ;
+; data_in[4]    ; Missing location assignment                                                                   ;
+; slave_addr[4] ; Missing location assignment                                                                   ;
+; data_in[5]    ; Missing location assignment                                                                   ;
+; slave_addr[5] ; Missing location assignment                                                                   ;
+; data_in[6]    ; Missing location assignment                                                                   ;
+; slave_addr[6] ; Missing location assignment                                                                   ;
+; data_in[7]    ; Missing location assignment                                                                   ;
++---------------+-----------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Global & Other Fast Signals Details                           ;
++----------------------------------------+----------------------+
+; Property                               ; Value                ;
++----------------------------------------+----------------------+
+; Name                                   ; clk                  ;
+;     -- Source Type                     ; I/O pad              ;
+;     -- Source Location                 ; PIN_AA7              ;
+;     -- Fan-Out                         ; 36                   ;
+;     -- Promotion Type                  ; Automatic Promotion  ;
+;     -- Global Buffer                   ; clk~inputCLKENA0     ;
+;     -- Global Buffer Location          ; CLKCTRL_3A_G_I22     ;
+;     -- Global Signal Type              ; Global               ;
+;     -- Region Drivable by Buffer       ; Global Clock Region  ;
+;     -- Bounding Box Drivable by Buffer ; (0, 0) to (102, 115) ;
+;     -- Clock Region Line               ; 22                   ;
++----------------------------------------+----------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Fitter Netlist Optimizations                                                                                       ;
++-------------------+---------+-----------+------------------------+-----------+------------------+------------------+
+; Node              ; Action  ; Operation ; Reason                 ; Node Port ; Destination Node ; Destination Port ;
++-------------------+---------+-----------+------------------------+-----------+------------------+------------------+
+; scl_reg~_wirecell ; Deleted ; Placement ; PLL Usage Optimization ;           ;                  ;                  ;
+; sda_reg~_wirecell ; Deleted ; Placement ; PLL Usage Optimization ;           ;                  ;                  ;
++-------------------+---------+-----------+------------------------+-----------+------------------+------------------+
+Note: Retiming optimizations are not included in this table. 
+
+
++-----------------+
+; Fitter Messages ;
++-----------------+
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+    Info: Processing started: Fri Apr 24 13:04:49 2026
+    Info: System process ID: 9620
+Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off i2c_master -c i2c_master --dni
+Info (16677): Loading synthesized database.
+Info (16734): Loading "synthesized" snapshot for partition "root_partition".
+Info (16678): Successfully loaded synthesized database: elapsed time is 00:00:01.
+Info (119006): Selected device 10CX220YF780I5G for design "i2c_master"
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '100'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '-40'.
+Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Info (12262): Starting Fitter periphery placement operations
+Info (12290): Loading the periphery placement data.
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:03
+Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AE10
+Warning (25315): Some pins are missing drive strength (current strength) and/or slew rate assignments. Refer to the I/O Assignment Warnings report for details.
+Critical Warning (15714): Some pins are missing I/O Standard assignments. Refer to the I/O Assignment Warnings report for details.
+Critical Warning (12677): No exact pin location assignment(s) for 33 pins of 33 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
+Info (16210): Plan updated with currently enabled project assignments.
+Info (12295): Periphery placement of all unplaced cells complete: elapsed time is 00:00:00
+Critical Warning (17951): There are 12 unused RX channels in the design.
+    Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
+    Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
+Critical Warning (18655): There are 12 unused TX channels in the design.
+    Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
+    Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
+Info (11191): Automatically promoted 1 clock (1 global)
+    Info (13173): clk~inputCLKENA0 (36 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_3A_G_I22
+Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
+Info (332104): Reading SDC File: 'constraints/i2c_master.sdc'
+Error (332000): More than 1 positional argument specified: "0.100", "_col4"
+---------------------------------------------------------------------------
+
+Usage: set_clock_uncertainty [-h] [-help] [-long_help] [-add] [-enable_same_physical_edge] [-fall_from <fall_from_clock>] [-fall_to <fall_to_clock>] [-from <from_clock>] [-hold] [-rise_from <rise_from_clock>] [-rise_to <rise_to_clock>] [-setup] [-to <to_clock>] <uncertainty>
+
+        -h: Quick usage
+        -help: Short help
+        -long_help: Long help with examples and possible return values
+
+        -add: Specifies that this assignment is an addition to the clock uncertainty derived by derive_clock_uncertainty call
+        -enable_same_physical_edge: Enable setting uncertainty value for same physical clock edge
+        -fall_from <fall_from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -fall_to <fall_to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -from <from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -hold: Only apply the uncertainty value to hold and removal checks
+        -rise_from <rise_from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -rise_to <rise_to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -setup: Only apply the uncertainty value to setup and recovery checks
+        -to <to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        <uncertainty>: Uncertainty
+
+---------------------------------------------------------------------------
+
+    while executing
+"set_clock_uncertainty -setup 0.100 [get_clocks {clk}]"
+    (file "constraints/i2c_master.sdc" line 21)
+Critical Warning (332008): Read_sdc failed due to errors in the SDC file
+Info (19449): Reading SDC files elapsed 00:00:00.
+Warning (332070): Port "data_in[0]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[0]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[1]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[1]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[2]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[2]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[3]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[3]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[4]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[4]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[5]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[5]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[6]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[6]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[7]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[7]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "rw" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "rw" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[0]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[0]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[1]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[1]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[2]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[2]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[3]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[3]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[4]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[4]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[5]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[5]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[6]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[6]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "start" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "start" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "ack_err" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "ack_err" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "busy" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "busy" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[0]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[0]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[1]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[1]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[2]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[2]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[3]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[3]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[4]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[4]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[5]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[5]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[6]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[6]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[7]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[7]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "done" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "done" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "scl_out" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "scl_out" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "sda_out" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "sda_out" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
+Info (20274): Successfully committed planned database.
+Error: ERROR: An error occurred during automatic periphery placement
+
+Error: Quartus Prime Fitter was unsuccessful. 2 errors, 66 warnings
+    Error: Peak virtual memory: 2637 megabytes
+    Error: Processing ended: Fri Apr 24 13:05:03 2026
+    Error: Elapsed time: 00:00:14
+    Error: System process ID: 9620
+
+

@@ -11,14 +11,14 @@ create_generated_clock -name {mii_tx_clk} -source [get_ports {clk_125m}] -divide
 create_generated_clock -name {mii_rx_clk} -source [get_ports {clk_125m}] -divide_by 5 [get_ports {mii_rx_clk}]
 
 # Clock uncertainties
-set_clock_uncertainty -setup 0.150 [get_clocks {clk_125m}]
-set_clock_uncertainty -hold 0.100 [get_clocks {clk_125m}]
+set_clock_uncertainty -setup -to [get_clocks {clk_125m}] 0.150
+set_clock_uncertainty -hold -to [get_clocks {clk_125m}] 0.100
 
-set_clock_uncertainty -setup 0.200 [get_clocks {mii_tx_clk}]
-set_clock_uncertainty -hold 0.150 [get_clocks {mii_tx_clk}]
+set_clock_uncertainty -setup -to [get_clocks {mii_tx_clk}] 0.200
+set_clock_uncertainty -hold -to [get_clocks {mii_tx_clk}] 0.150
 
-set_clock_uncertainty -setup 0.200 [get_clocks {mii_rx_clk}]
-set_clock_uncertainty -hold 0.150 [get_clocks {mii_rx_clk}]
+set_clock_uncertainty -setup -to [get_clocks {mii_rx_clk}] 0.200
+set_clock_uncertainty -hold -to [get_clocks {mii_rx_clk}] 0.150
 
 # MII Interface Timing Constraints (IEEE 802.3)
 # TX timing: data valid on rising edge, hold time 0ns

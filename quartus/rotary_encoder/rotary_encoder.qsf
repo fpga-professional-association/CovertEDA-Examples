@@ -19,3 +19,26 @@ set_global_assignment -name SDC_FILE constraints/rotary_encoder.sdc
 # Device & Compiler Settings
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH SOME AIR CIRCULATION"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+
+# ========== Virtual pin assignments ==========
+# These examples are IP/reference designs — not full FPGA board
+# designs. Every top-level port is marked as a virtual pin so the
+# fitter doesn't attempt physical pin placement, which would require
+# a specific board-level pinout we don't want to pick for the user.
+set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION ALWAYS
+set_instance_assignment -name VIRTUAL_PIN ON -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clk
+set_instance_assignment -name VIRTUAL_PIN ON -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to rst_n
+set_instance_assignment -name VIRTUAL_PIN ON -to enc_a
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to enc_a
+set_instance_assignment -name VIRTUAL_PIN ON -to enc_b
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to enc_b
+set_instance_assignment -name VIRTUAL_PIN ON -to clear
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clear
+set_instance_assignment -name VIRTUAL_PIN ON -to position
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to position
+set_instance_assignment -name VIRTUAL_PIN ON -to dir
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to dir
+set_instance_assignment -name VIRTUAL_PIN ON -to step_event
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to step_event

@@ -8,8 +8,8 @@ create_clock -name {clk_100m} -period 10.000 -waveform { 0.000 5.000 } [get_port
 create_generated_clock -name {clk_sys} -source [get_ports {clk_100m}] -divide_by 1 [get_pins {pll_inst|altpll_component|clk[0]}]
 
 # Set clock uncertainties
-set_clock_uncertainty -setup 0.120 [get_clocks {clk_sys}]
-set_clock_uncertainty -hold 0.080 [get_clocks {clk_sys}]
+set_clock_uncertainty -setup -to [get_clocks {clk_sys}] 0.120
+set_clock_uncertainty -hold -to [get_clocks {clk_sys}] 0.080
 
 # Input timing constraints (asynchronous reset and switches)
 set_false_path -from [get_ports {rst_n}]

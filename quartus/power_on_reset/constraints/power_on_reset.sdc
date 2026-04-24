@@ -10,5 +10,5 @@ set_output_delay -clock {clk} -max 5.500 [get_ports {rst_n_out}]
 set_output_delay -clock {clk} -max 5.500 [get_ports {rst_done}]
 set_output_delay -clock {clk} -max 5.500 [get_ports {count_out[*]}]
 
-set_clock_uncertainty -setup 0.100 [get_clocks {clk}]
-set_clock_uncertainty -hold 0.050 [get_clocks {clk}]
+set_clock_uncertainty -setup -to [get_clocks {clk}] 0.100
+set_clock_uncertainty -hold -to [get_clocks {clk}] 0.050

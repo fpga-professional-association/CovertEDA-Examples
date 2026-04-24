@@ -8,11 +8,11 @@ create_clock -name {clk_250m} -period 4.000 -waveform { 0.000 2.000 } [get_ports
 create_generated_clock -name {pcie_clk} -source [get_ports {clk_250m}] -divide_by 1 [get_pins {pcie_core_inst|clk250_out}]
 
 # Clock uncertainties
-set_clock_uncertainty -setup 0.200 [get_clocks {clk_250m}]
-set_clock_uncertainty -hold 0.150 [get_clocks {clk_250m}]
+set_clock_uncertainty -setup -to [get_clocks {clk_250m}] 0.200
+set_clock_uncertainty -hold -to [get_clocks {clk_250m}] 0.150
 
-set_clock_uncertainty -setup 0.200 [get_clocks {pcie_clk}]
-set_clock_uncertainty -hold 0.150 [get_clocks {pcie_clk}]
+set_clock_uncertainty -setup -to [get_clocks {pcie_clk}] 0.200
+set_clock_uncertainty -hold -to [get_clocks {pcie_clk}] 0.150
 
 # PCIe differential signaling constraints
 set_output_delay -clock {pcie_clk} -min -2.0 [get_ports {pcie_tx[*]}]

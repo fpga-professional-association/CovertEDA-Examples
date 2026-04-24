@@ -1,0 +1,193 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Shell
+    Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Fri Apr 24 13:04:38 2026
+    Info: System process ID: 27704
+Info: Command: quartus_sh -t C:\Users\tcove\OneDrive\Desktop\Projects\CovertEDA-Examples\quartus\i2c_master\.coverteda_build.tcl
+Info (125061): Changed top-level design entity name to "i2c_master"
+Info: *******************************************************************
+Info: Running Quartus Prime Synthesis
+    Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+    Info: Processing started: Fri Apr 24 13:04:39 2026
+    Info: System process ID: 26964
+Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off i2c_master -c i2c_master --dni
+Info: qis_default_flow_script.tcl version: #2
+Info: Initializing Synthesis...
+Info: Project = "i2c_master"
+Info: Revision = "i2c_master"
+Info (21958): Initialized Quartus Message Database
+Info: Analyzing source files
+Info: Elaborating from top-level entity "i2c_master"
+Info: Found 1 design entities
+Info: There are 1 partitions after elaboration.
+Info: DA report generation in native DNI mode
+Info (21615): Running Design Assistant Rules for snapshot 'partitioned'
+Info: No waiver waived any violations
+Info (22360): Design Assistant Results: 3 of 3 enabled rules passed, and 0 rules was disabled, in snapshot 'partitioned'
+Info (21622): Design Assistant Results: 0 of 3 Low severity rules issued violations in snapshot 'partitioned'
+Info: Synthesizing partition "root_partition"
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (21057): Implemented 95 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
+    Info (21059): Implemented 13 output pins
+    Info (21061): Implemented 62 logic cells
+Info: Successfully synthesized partition
+Info: Saving post-synthesis snapshots for 1 partition(s)
+Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 802 megabytes
+    Info: Processing ended: Fri Apr 24 13:04:48 2026
+    Info: Elapsed time: 00:00:09
+    Info: System process ID: 26964
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info: *******************************************************************
+Info: Running Quartus Prime Fitter
+    Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+    Info: Processing started: Fri Apr 24 13:04:49 2026
+    Info: System process ID: 9620
+Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off i2c_master -c i2c_master --dni
+Info: qfit2_default_script.tcl version: #1
+Info: Project  = i2c_master
+Info: Revision = i2c_master
+Info (16677): Loading synthesized database.
+Info (16734): Loading "synthesized" snapshot for partition "root_partition".
+Info (16678): Successfully loaded synthesized database: elapsed time is 00:00:01.
+Info (119006): Selected device 10CX220YF780I5G for design "i2c_master"
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '100'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '-40'.
+Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
+Info (12262): Starting Fitter periphery placement operations
+Info (12290): Loading the periphery placement data.
+Info (12291): Periphery placement data loaded: elapsed time is 00:00:03
+Info (12627): Pin ~ALTERA_DATA0~ is reserved at location AE10
+Warning (25315): Some pins are missing drive strength (current strength) and/or slew rate assignments. Refer to the I/O Assignment Warnings report for details.
+Critical Warning (15714): Some pins are missing I/O Standard assignments. Refer to the I/O Assignment Warnings report for details.
+Critical Warning (12677): No exact pin location assignment(s) for 33 pins of 33 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report
+Info (16210): Plan updated with currently enabled project assignments.
+Info (12295): Periphery placement of all unplaced cells complete: elapsed time is 00:00:00
+Critical Warning (17951): There are 12 unused RX channels in the design.
+    Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
+    Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
+Critical Warning (18655): There are 12 unused TX channels in the design.
+    Info (19540): Add the QSF assignment 'set_instance_assignment -name PRESERVE_UNUSED_XCVR_CHANNEL ON -to <pin_name>' for each unused channel that will be used in future.
+    Info (19541): The above QSF assignment will preserve the performance of specified channels over time, and works only if the design uses at least 1 transceiver channel.
+Info (11191): Automatically promoted 1 clock (1 global)
+    Info (13173): clk~inputCLKENA0 (36 fanout) drives Global Clock Region, with the buffer placed at CLKCTRL_3A_G_I22
+Info (19539): Reading the HDL-embedded SDC files elapsed 00:00:00.
+Info (332104): Reading SDC File: 'constraints/i2c_master.sdc'
+Error (332000): More than 1 positional argument specified: "0.100", "_col4"
+---------------------------------------------------------------------------
+
+Usage: set_clock_uncertainty [-h] [-help] [-long_help] [-add] [-enable_same_physical_edge] [-fall_from <fall_from_clock>] [-fall_to <fall_to_clock>] [-from <from_clock>] [-hold] [-rise_from <rise_from_clock>] [-rise_to <rise_to_clock>] [-setup] [-to <to_clock>] <uncertainty>
+
+        -h: Quick usage
+        -help: Short help
+        -long_help: Long help with examples and possible return values
+
+        -add: Specifies that this assignment is an addition to the clock uncertainty derived by derive_clock_uncertainty call
+        -enable_same_physical_edge: Enable setting uncertainty value for same physical clock edge
+        -fall_from <fall_from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -fall_to <fall_to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -from <from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -hold: Only apply the uncertainty value to hold and removal checks
+        -rise_from <rise_from_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -rise_to <rise_to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        -setup: Only apply the uncertainty value to setup and recovery checks
+        -to <to_clock>: Valid destinations (string patterns are matched using Tcl string matching)
+        <uncertainty>: Uncertainty
+
+---------------------------------------------------------------------------
+
+    while executing
+"set_clock_uncertainty -setup 0.100 [get_clocks {clk}]"
+    (file "constraints/i2c_master.sdc" line 21)
+Critical Warning (332008): Read_sdc failed due to errors in the SDC file
+Info (19449): Reading SDC files elapsed 00:00:00.
+Warning (332070): Port "data_in[0]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[0]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[1]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[1]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[2]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[2]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[3]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[3]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[4]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[4]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[5]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[5]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[6]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[6]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "data_in[7]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "data_in[7]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "rw" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "rw" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[0]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[0]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[1]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[1]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[2]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[2]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[3]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[3]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[4]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[4]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[5]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[5]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "slave_addr[6]" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "slave_addr[6]" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "start" relative to the rising edge of clock "clk" does not specify a min-fall input delay
+Warning (332070): Port "start" relative to the rising edge of clock "clk" does not specify a min-rise input delay
+Warning (332070): Port "ack_err" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "ack_err" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "busy" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "busy" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[0]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[0]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[1]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[1]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[2]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[2]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[3]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[3]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[4]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[4]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[5]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[5]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[6]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[6]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "data_out[7]" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "data_out[7]" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "done" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "done" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "scl_out" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "scl_out" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Warning (332070): Port "sda_out" relative to the rising edge of clock "clk" does not specify a min-fall output delay
+Warning (332070): Port "sda_out" relative to the rising edge of clock "clk" does not specify a min-rise output delay
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (20273): Intermediate fitter snapshots will not be committed because ENABLE_INTERMEDIATE_SNAPSHOTS QSF assignment is disabled during compilation.
+Info (20274): Successfully committed planned database.
+Error: ERROR: An error occurred during automatic periphery placement
+
+Error: Quartus Prime Fitter was unsuccessful. 2 errors, 66 warnings
+    Error: Peak virtual memory: 2637 megabytes
+    Error: Processing ended: Fri Apr 24 13:05:03 2026
+    Error: Elapsed time: 00:00:14
+    Error: System process ID: 9620
+Error (293001): Quartus Prime Fitter was unsuccessful. 4 errors, 66 warnings
+ERROR: Stage 'fit' failed: ERROR: Error(s) found while running an executable. See report file(s) for error message(s). Message log indicates which executable was run last.
+
+═══ BUILD FAILED ═══  exit code: 1 (0m 25s)

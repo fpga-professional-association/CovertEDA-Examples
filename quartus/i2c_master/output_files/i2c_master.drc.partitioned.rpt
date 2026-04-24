@@ -1,0 +1,74 @@
+Design Assistant report for i2c_master
+Fri Apr 24 13:04:42 2026
+Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Design Assistant (Elaborated) Results - 0 of 3 Rules Failed
+  3. LNT-30020 - Same Signal Source Drives Synchronous and Asynchronous Ports of the Same Register
+  4. LNT-30021 - Same Signal Source Drives More Than One Asynchronous Port of a Register
+  5. LNT-30022 - Same Signal Source Drives Clock Port and Another Port of a Register
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Design Assistant (Elaborated) Results - 0 of 3 Rules Failed                                                                                         ;
++-----------------------------------------------------------------------------------------------+----------+------------+--------+--------------------+
+; Rule                                                                                          ; Severity ; Violations ; Waived ; Tags               ;
++-----------------------------------------------------------------------------------------------+----------+------------+--------+--------------------+
+; LNT-30020 - Same Signal Source Drives Synchronous and Asynchronous Ports of the Same Register ; Low      ; 0          ; 0      ; nonstandard-timing ;
+; LNT-30021 - Same Signal Source Drives More Than One Asynchronous Port of a Register           ; Low      ; 0          ; 0      ; nonstandard-timing ;
+; LNT-30022 - Same Signal Source Drives Clock Port and Another Port of a Register               ; Low      ; 0          ; 0      ; nonstandard-timing ;
++-----------------------------------------------------------------------------------------------+----------+------------+--------+--------------------+
+
+
+Status:		PASS
+Severity:		Low
+Number of violations: 	0
+Rule Parameters:      	max_violations = 5000
++-----------------------------------------------------------------------------------------------+
+; LNT-30020 - Same Signal Source Drives Synchronous and Asynchronous Ports of the Same Register ;
++-----------------------------------------------------------------------------------------------+
+
+
+Status:		PASS
+Severity:		Low
+Number of violations: 	0
+Rule Parameters:      	max_violations = 5000
++-------------------------------------------------------------------------------------+
+; LNT-30021 - Same Signal Source Drives More Than One Asynchronous Port of a Register ;
++-------------------------------------------------------------------------------------+
+
+
+Status:		PASS
+Severity:		Low
+Number of violations: 	0
+Rule Parameters:      	max_violations = 5000
++---------------------------------------------------------------------------------+
+; LNT-30022 - Same Signal Source Drives Clock Port and Another Port of a Register ;
++---------------------------------------------------------------------------------+
+
+
