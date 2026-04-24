@@ -1,5 +1,5 @@
 Synthesis report
-Thu Apr 23 21:24:46 2026
+Fri Apr 24 12:38:11 2026
 Quartus Prime Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
 
 
@@ -44,7 +44,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Synthesis Summary                                                                 ;
 +--------------------------------------+--------------------------------------------+
-; Synthesis Status                     ; Successful - Thu Apr 23 21:24:46 2026      ;
+; Synthesis Status                     ; Successful - Fri Apr 24 12:38:11 2026      ;
 ; Revision Name                        ; blinky_led                                 ;
 ; Top-level Entity Name                ; blinky_top                                 ;
 ; Family                               ; Cyclone 10 GX                              ;
@@ -269,8 +269,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Synthesis
     Info: Version 25.3.0 Build 109 09/24/2025 SC Pro Edition
-    Info: Processing started: Thu Apr 23 21:24:37 2026
-    Info: System process ID: 24124
+    Info: Processing started: Fri Apr 24 12:38:02 2026
+    Info: System process ID: 25332
 Info: Command: quartus_syn --read_settings_files=on --write_settings_files=off blinky_led -c blinky_led --dni
 Info: qis_default_flow_script.tcl version: #2
 Info: Initializing Synthesis...
@@ -294,9 +294,9 @@ Info (21057): Implemented 144 device resources after synthesis - the final resou
 Info: Successfully synthesized partition
 Info: Saving post-synthesis snapshots for 1 partition(s)
 Info: Quartus Prime Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 802 megabytes
-    Info: Processing ended: Thu Apr 23 21:24:47 2026
-    Info: Elapsed time: 00:00:10
-    Info: System process ID: 24124
+    Info: Peak virtual memory: 801 megabytes
+    Info: Processing ended: Fri Apr 24 12:38:11 2026
+    Info: Elapsed time: 00:00:09
+    Info: System process ID: 25332
 
 

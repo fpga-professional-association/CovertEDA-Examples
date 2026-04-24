@@ -1,0 +1,6 @@
+QUARTUS_VERSION = "25.3"
+DATE = "12:37:34  April 24, 2026"
+
+# Revisions
+
+PROJECT_REVISION = "nios_hello"

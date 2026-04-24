@@ -43,9 +43,13 @@ def build(project: str, root: Path, timeout: int = 600) -> tuple[bool, str]:
 
     src_files = list((proj_dir / "src").glob("*.v")) + list((proj_dir / "src").glob("*.sv"))
     constr_dir = proj_dir / "constraints"
-    qsf_files = list(constr_dir.glob("*.qsf"))
+    # QSF now lives at the project root alongside its .qpf; older copies in
+    # constraints/ are supported as a fallback for older checkouts.
+    qsf_files = list(proj_dir.glob("*.qsf"))
+    if not qsf_files and constr_dir.exists():
+        qsf_files = list(constr_dir.glob("*.qsf"))
     if not qsf_files:
-        return False, "no .qsf in constraints/"
+        return False, "no .qsf at project root or in constraints/"
 
     qsf = qsf_files[0]
     family, device, top, sdc_refs = read_qsf(qsf)
