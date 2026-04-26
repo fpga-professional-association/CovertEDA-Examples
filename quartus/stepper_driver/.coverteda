@@ -1,11 +1,15 @@
 {
   "name": "stepper_driver",
   "description": "Stepper motor driver with full/half step modes and 4-phase output",
-  "backendId": "quartus",
+  "backendId": "quartus_pro",
   "device": "10CX085YU484E5G",
   "topModule": "stepper_driver",
-  "sourcePatterns": ["src/**/*.v"],
-  "constraintFiles": ["constraints/*.sdc"],
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.sdc"
+  ],
   "implDir": "output_files",
   "backendConfig": {},
   "buildStages": [],

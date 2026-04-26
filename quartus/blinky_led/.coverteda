@@ -1,11 +1,15 @@
 {
   "name": "blinky_led",
   "description": "Blinking LED example with 50MHz clock and 4-bit LED output",
-  "backendId": "quartus",
+  "backendId": "quartus_pro",
   "device": "10CX085YU484E5G",
   "topModule": "blinky_top",
-  "sourcePatterns": ["src/**/*.v"],
-  "constraintFiles": ["constraints/*.sdc"],
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.sdc"
+  ],
   "implDir": "output_files",
   "backendConfig": {},
   "buildStages": [],

@@ -1,11 +1,15 @@
 {
   "name": "servo_controller",
   "description": "4-channel RC servo PWM generator (50Hz, 1-2ms pulses)",
-  "backendId": "quartus",
+  "backendId": "quartus_pro",
   "device": "10CX085YU484E5G",
   "topModule": "servo_controller",
-  "sourcePatterns": ["src/**/*.v"],
-  "constraintFiles": ["constraints/*.sdc"],
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.sdc"
+  ],
   "implDir": "output_files",
   "backendConfig": {},
   "buildStages": [],

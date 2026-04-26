@@ -1,11 +1,15 @@
 {
   "name": "bus_monitor",
   "description": "Bus activity monitor with read/write transaction counters",
-  "backendId": "quartus",
+  "backendId": "quartus_pro",
   "device": "10CX085YU484E5G",
   "topModule": "bus_monitor",
-  "sourcePatterns": ["src/**/*.v"],
-  "constraintFiles": ["constraints/*.sdc"],
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.sdc"
+  ],
   "implDir": "output_files",
   "backendConfig": {},
   "buildStages": [],

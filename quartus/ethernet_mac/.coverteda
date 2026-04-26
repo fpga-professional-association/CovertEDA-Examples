@@ -1,11 +1,15 @@
 {
   "name": "ethernet_mac",
   "description": "10/100 Ethernet MAC with MII interface, CRC32, TX and RX paths",
-  "backendId": "quartus",
+  "backendId": "quartus_pro",
   "device": "10CX085YU484E5G",
   "topModule": "eth_top",
-  "sourcePatterns": ["src/**/*.v"],
-  "constraintFiles": ["constraints/*.sdc"],
+  "sourcePatterns": [
+    "src/**/*.v"
+  ],
+  "constraintFiles": [
+    "constraints/*.sdc"
+  ],
   "implDir": "output_files",
   "backendConfig": {},
   "buildStages": [],
