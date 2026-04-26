@@ -31,8 +31,7 @@ __pycache__/
 **/incremental_db/
 
 # CovertEDA scratch files written when building/opening a project
-**/.coverteda_build.bat
-**/.coverteda_build.log
+**/.coverteda_build.*
 **/.coverteda_history.json
 **/.build/
 **/.build_full/
