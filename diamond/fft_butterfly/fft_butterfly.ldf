@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="fft_butterfly" family="ECP5" device="LFE5U-25F-6BG256C" package="CABGA256" performance_grade="6" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="fft_butterfly" synthesis="synplify" default_strategy="Area">
+        <Options top="fft_butterfly"/>
+        <Source name="src/fft_butterfly.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/fft_butterfly.lpf" type="Logical_Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>

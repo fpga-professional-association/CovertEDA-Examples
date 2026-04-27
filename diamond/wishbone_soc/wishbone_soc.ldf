@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="wishbone_soc" family="ECP5" device="LFE5U-25F-6BG256C" package="CABGA256" performance_grade="6" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="wishbone_soc" synthesis="synplify" default_strategy="Area">
+        <Options top="soc_top"/>
+        <Source name="src/soc_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/wb_gpio.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/wb_intercon.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/wb_sram.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/wb_timer.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/soc.lpf" type="Logical_Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>

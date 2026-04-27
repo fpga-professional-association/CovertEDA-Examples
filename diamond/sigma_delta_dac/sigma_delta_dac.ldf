@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="sigma_delta_dac" family="ECP5" device="LFE5U-25F-6BG256C" package="CABGA256" performance_grade="6" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="sigma_delta_dac" synthesis="synplify" default_strategy="Area">
+        <Options top="sigma_delta_dac"/>
+        <Source name="src/sigma_delta_dac.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/sigma_delta_dac.lpf" type="Logical_Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>

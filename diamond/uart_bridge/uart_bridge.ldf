@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="uart_bridge" family="ECP5" device="LFE5U-25F-6BG256C" package="CABGA256" performance_grade="6" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="uart_bridge" synthesis="synplify" default_strategy="Area">
+        <Options top="fifo_sync"/>
+        <Source name="src/fifo_sync.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/uart_core.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/uart_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/uart.lpf" type="Logical_Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>
