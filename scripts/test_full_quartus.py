@@ -35,7 +35,11 @@ def main(project: str = "blinky_led"):
     )
 
     env = os.environ.copy()
-    env["PATH"] = r"C:\altera_pro\25.3\quartus\bin64" + os.pathsep + env.get("PATH", "")
+    # Prepend Quartus bin to PATH if QUARTUS_BIN is set, so the subprocess can
+    # find quartus_sh without requiring a system-wide PATH change.
+    quartus_bin = os.environ.get("QUARTUS_BIN")
+    if quartus_bin and Path(quartus_bin).is_dir():
+        env["PATH"] = quartus_bin + os.pathsep + env.get("PATH", "")
 
     t0 = time.time()
     result = subprocess.run(

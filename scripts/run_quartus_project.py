@@ -17,8 +17,46 @@ from __future__ import annotations
 import argparse, os, re, shutil, subprocess, sys, time
 from pathlib import Path
 
-QUARTUS_BIN = r"C:\altera_pro\25.3\quartus\bin64"
-QUARTUS_SH  = Path(QUARTUS_BIN) / "quartus_sh.exe"
+
+def _resolve_quartus_bin() -> Path:
+    """Find the Quartus bin directory holding quartus_sh.
+
+    Order:
+      1. $QUARTUS_BIN env var (explicit override).
+      2. quartus_sh on PATH.
+      3. Common install roots scanned for the highest version.
+    """
+    env_bin = os.environ.get("QUARTUS_BIN")
+    if env_bin and Path(env_bin).is_dir():
+        return Path(env_bin)
+    on_path = shutil.which("quartus_sh") or shutil.which("quartus_sh.exe")
+    if on_path:
+        return Path(on_path).parent
+    candidates = [
+        Path(r"C:\intelFPGA_pro"), Path(r"C:\altera_pro"),
+        Path(r"C:\intelFPGA"),     Path(r"C:\altera"),
+        Path("/opt/intelFPGA_pro"), Path("/opt/intelFPGA"),
+        Path("/opt/altera_pro"),    Path("/opt/altera"),
+    ]
+    found: list[Path] = []
+    for root in candidates:
+        if not root.is_dir():
+            continue
+        for ver in sorted(root.iterdir(), reverse=True):
+            for sub in ("quartus/bin64", "quartus/bin"):
+                p = ver / sub
+                if (p / "quartus_sh.exe").exists() or (p / "quartus_sh").exists():
+                    found.append(p)
+    if found:
+        return found[0]
+    raise SystemExit(
+        "quartus_sh not found. Set QUARTUS_BIN to your Quartus bin directory "
+        "(e.g. C:\\intelFPGA_pro\\23.1\\quartus\\bin64) or add it to PATH."
+    )
+
+
+QUARTUS_BIN = _resolve_quartus_bin()
+QUARTUS_SH  = QUARTUS_BIN / ("quartus_sh.exe" if os.name == "nt" else "quartus_sh")
 
 def read_qsf(qsf_path: Path):
     """Pull family, device, top-level entity out of the existing QSF."""
