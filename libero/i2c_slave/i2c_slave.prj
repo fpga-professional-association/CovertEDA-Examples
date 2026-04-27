@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for i2c_slave
+new_project -name "i2c_slave" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/i2c_slave.v}
+import_files -fp_pdc {constraints/i2c_slave.pdc}
+set_root i2c_slave
+save_project
+close_project

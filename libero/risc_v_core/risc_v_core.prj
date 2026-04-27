@@ -1,0 +1,14 @@
+# CovertEDA-managed Libero SoC project script for risc_v_core
+new_project -name "risc_v_core" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/alu.v}
+import_files -hdl_source {src/decoder.v}
+import_files -hdl_source {src/pc_unit.v}
+import_files -hdl_source {src/regfile.v}
+import_files -hdl_source {src/rv32i_top.v}
+import_files -fp_pdc {constraints/risc_v.pdc}
+import_files -sdc {constraints/risc_v.sdc}
+set_root rv32i_top
+save_project
+close_project

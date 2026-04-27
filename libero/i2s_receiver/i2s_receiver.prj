@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for i2s_receiver
+new_project -name "i2s_receiver" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/i2s_receiver.v}
+import_files -fp_pdc {constraints/i2s_receiver.pdc}
+set_root i2s_receiver
+save_project
+close_project

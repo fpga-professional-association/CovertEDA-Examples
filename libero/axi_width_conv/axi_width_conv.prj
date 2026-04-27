@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for axi_width_conv
+new_project -name "axi_width_conv" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/axi_width_conv.v}
+import_files -fp_pdc {constraints/axi_width_conv.pdc}
+set_root axi_width_conv
+save_project
+close_project

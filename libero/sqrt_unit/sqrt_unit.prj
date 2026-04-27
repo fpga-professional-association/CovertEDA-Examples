@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for sqrt_unit
+new_project -name "sqrt_unit" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/sqrt_unit.v}
+import_files -fp_pdc {constraints/sqrt_unit.pdc}
+set_root sqrt_unit
+save_project
+close_project

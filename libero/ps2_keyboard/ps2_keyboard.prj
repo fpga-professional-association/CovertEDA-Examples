@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for ps2_keyboard
+new_project -name "ps2_keyboard" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/ps2_keyboard.v}
+import_files -fp_pdc {constraints/ps2_keyboard.pdc}
+set_root ps2_keyboard
+save_project
+close_project

@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for dma_controller
+new_project -name "dma_controller" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/dma_controller.v}
+import_files -fp_pdc {constraints/dma_controller.pdc}
+set_root dma_controller
+save_project
+close_project

@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for pdm_filter
+new_project -name "pdm_filter" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/pdm_filter.v}
+import_files -fp_pdc {constraints/pdm_filter.pdc}
+set_root pdm_filter
+save_project
+close_project

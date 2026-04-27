@@ -1,0 +1,10 @@
+# CovertEDA-managed Libero SoC project script for blinky_led
+new_project -name "blinky_led" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/blinky_top.v}
+import_files -fp_pdc {constraints/blinky.pdc}
+import_files -sdc {constraints/blinky.sdc}
+set_root blinky_top
+save_project
+close_project

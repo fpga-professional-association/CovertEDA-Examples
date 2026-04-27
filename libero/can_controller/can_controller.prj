@@ -1,0 +1,13 @@
+# CovertEDA-managed Libero SoC project script for can_controller
+new_project -name "can_controller" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/bit_timing.v}
+import_files -hdl_source {src/can_core.v}
+import_files -hdl_source {src/can_top.v}
+import_files -hdl_source {src/msg_filter.v}
+import_files -fp_pdc {constraints/can.pdc}
+import_files -sdc {constraints/can.sdc}
+set_root can_top
+save_project
+close_project

@@ -1,0 +1,9 @@
+# CovertEDA-managed Libero SoC project script for clock_crossing
+new_project -name "clock_crossing" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/clock_crossing.v}
+import_files -fp_pdc {constraints/clock_crossing.pdc}
+set_root clock_crossing
+save_project
+close_project

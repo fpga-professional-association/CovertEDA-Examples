@@ -1,0 +1,13 @@
+# CovertEDA-managed Libero SoC project script for motor_pwm
+new_project -name "motor_pwm" -location "./libero_proj" \
+            -hdl "VERILOG" -family "PolarFire" -die "MPF300T" \
+            -package "FCG484" -speed "-1" -part_range "COM"
+import_files -hdl_source {src/dead_time.v}
+import_files -hdl_source {src/encoder_intf.v}
+import_files -hdl_source {src/motor_top.v}
+import_files -hdl_source {src/pwm_gen.v}
+import_files -fp_pdc {constraints/motor.pdc}
+import_files -sdc {constraints/motor.sdc}
+set_root motor_top
+save_project
+close_project
