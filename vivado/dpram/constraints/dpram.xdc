@@ -20,7 +20,7 @@ set_property -dict { PACKAGE_PIN E3 IOSTANDARD LVCMOS33 } [get_ports {clk_a}]
 set_property -dict { PACKAGE_PIN H16 IOSTANDARD LVCMOS33 } [get_ports {clk_b}]
 
 # ========== Virtual-port assignments ==========
-# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+# Suppresses IOB inference â€” matches VIRTUAL_PIN semantics in Quartus.
 set_property IO_BUFFER_TYPE NONE [get_ports {clk_a}]
 set_property IO_BUFFER_TYPE NONE [get_ports {en_a}]
 set_property IO_BUFFER_TYPE NONE [get_ports {we_a}]

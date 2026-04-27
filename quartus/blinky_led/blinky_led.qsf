@@ -59,7 +59,7 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name SDC_FILE constraints/blinky.sdc
 
 # ========== Virtual pin assignments ==========
-# These examples are IP/reference designs — not full FPGA board
+# These examples are IP/reference designs â€” not full FPGA board
 # designs. Every top-level port is marked as a virtual pin so the
 # fitter doesn't attempt physical pin placement, which would require
 # a specific board-level pinout we don't want to pick for the user.

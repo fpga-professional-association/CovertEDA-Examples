@@ -122,7 +122,7 @@ set_false_path -to [get_ports test_passed]
 set_false_path -to [get_ports test_failed]
 
 # ========== Virtual-port assignments ==========
-# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+# Suppresses IOB inference â€” matches VIRTUAL_PIN semantics in Quartus.
 set_property IO_BUFFER_TYPE NONE [get_ports {clk_sys}]
 set_property IO_BUFFER_TYPE NONE [get_ports {clk_200_in}]
 set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]

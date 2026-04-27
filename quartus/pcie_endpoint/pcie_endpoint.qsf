@@ -89,7 +89,7 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "HEAT SINK WITH 31 CFM
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 
 # ========== Virtual pin assignments ==========
-# These examples are IP/reference designs — not full FPGA board
+# These examples are IP/reference designs â€” not full FPGA board
 # designs. Every top-level port is marked as a virtual pin so the
 # fitter doesn't attempt physical pin placement, which would require
 # a specific board-level pinout we don't want to pick for the user.

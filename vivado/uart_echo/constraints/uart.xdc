@@ -45,7 +45,7 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
 set_false_path -from [get_clocks clk_16x_divider/clk_16x] -to [get_clocks sys_clk]
 
 # ========== Virtual-port assignments ==========
-# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+# Suppresses IOB inference â€” matches VIRTUAL_PIN semantics in Quartus.
 set_property IO_BUFFER_TYPE NONE [get_ports {clk}]
 set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
 set_property IO_BUFFER_TYPE NONE [get_ports {din}]

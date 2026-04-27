@@ -29,7 +29,7 @@ set_output_delay -clock ps_clk -max 2.0 [get_ports {pwm_red pwm_green pwm_blue}]
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [current_design]
 
 # ========== Virtual-port assignments ==========
-# Suppresses IOB inference — matches VIRTUAL_PIN semantics in Quartus.
+# Suppresses IOB inference â€” matches VIRTUAL_PIN semantics in Quartus.
 set_property IO_BUFFER_TYPE NONE [get_ports {clk}]
 set_property IO_BUFFER_TYPE NONE [get_ports {rst_n}]
 set_property IO_BUFFER_TYPE NONE [get_ports {axi_awaddr}]
