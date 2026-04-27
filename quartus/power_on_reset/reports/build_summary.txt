@@ -1,7 +1,0 @@
-Project:   power_on_reset
-Family:    Cyclone 10 GX
-Device:    10CX085YU484E5G
-Top:       power_on_reset
-Quartus:   25.3 Pro
-Status:    PASS
-Reports:   4

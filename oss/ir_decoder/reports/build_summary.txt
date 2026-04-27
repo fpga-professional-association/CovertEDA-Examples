@@ -1,6 +1,0 @@
-Project:  ir_decoder
-Device:   iCE40UP5K
-Family:   ice40
-Top:      ir_decoder
-yosys:    PASS
-nextpnr:  PASS

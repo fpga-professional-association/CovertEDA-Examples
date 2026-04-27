@@ -1,6 +1,0 @@
-Project:  pwm_multi
-Device:   iCE40UP5K
-Family:   ice40
-Top:      pwm_multi
-yosys:    PASS
-nextpnr:  PASS

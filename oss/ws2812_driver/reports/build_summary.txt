@@ -1,6 +1,0 @@
-Project:  ws2812_driver
-Device:   None
-Family:   ice40
-Top:      ws2812_top
-yosys:    PASS
-nextpnr:  PASS

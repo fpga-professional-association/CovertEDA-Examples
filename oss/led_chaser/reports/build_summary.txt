@@ -1,6 +1,0 @@
-Project:  led_chaser
-Device:   iCE40UP5K
-Family:   ice40
-Top:      led_chaser
-yosys:    PASS
-nextpnr:  PASS

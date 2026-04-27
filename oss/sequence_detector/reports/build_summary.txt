@@ -1,6 +1,0 @@
-Project:  sequence_detector
-Device:   iCE40UP5K
-Family:   ice40
-Top:      sequence_detector
-yosys:    PASS
-nextpnr:  PASS

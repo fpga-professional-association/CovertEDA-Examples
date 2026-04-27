@@ -1,9 +1,0 @@
-Synthesis Status : Successful - Fri Apr 24 13:20:40 2026
-Revision Name : i2c_master
-Top-level Entity Name : i2c_master
-Family : Cyclone 10 GX
-Quartus Prime Version : 25.3.0 Build 109 09/24/2025 SC Pro Edition
-Device : 10CX220YF780I5G
-Logic utilization estimate (in ALMs) : 42 / 80,330 ( < 1 % )
-Total registers : 36
-Estimated DSP Blocks Post-Merging : 0

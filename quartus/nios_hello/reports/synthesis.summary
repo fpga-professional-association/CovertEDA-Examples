@@ -1,9 +1,0 @@
-Synthesis Status : Successful - Fri Apr 24 13:21:12 2026
-Revision Name : nios_hello
-Top-level Entity Name : nios_top
-Family : Cyclone 10 GX
-Quartus Prime Version : 25.3.0 Build 109 09/24/2025 SC Pro Edition
-Device : 10CX085YU484E5G
-Logic utilization estimate (in ALMs) : 8 / 31,000 ( < 1 % )
-Total registers : 0
-Estimated DSP Blocks Post-Merging : 0

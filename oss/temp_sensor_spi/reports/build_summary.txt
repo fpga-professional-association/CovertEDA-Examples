@@ -1,6 +1,0 @@
-Project:  temp_sensor_spi
-Device:   iCE40UP5K
-Family:   ice40
-Top:      temp_sensor_spi
-yosys:    PASS
-nextpnr:  FAIL (timing/routing)

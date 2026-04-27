@@ -1,6 +1,0 @@
-Project:  blinky_led
-Device:   None
-Family:   ice40
-Top:      blinky_top
-yosys:    PASS
-nextpnr:  PASS

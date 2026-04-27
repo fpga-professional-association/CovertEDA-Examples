@@ -1,9 +1,0 @@
-Synthesis Status : Successful - Fri Apr 24 13:23:14 2026
-Revision Name : stepper_driver
-Top-level Entity Name : stepper_driver
-Family : Cyclone 10 GX
-Quartus Prime Version : 25.3.0 Build 109 09/24/2025 SC Pro Edition
-Device : 10CX085YU484E5G
-Logic utilization estimate (in ALMs) : 6 / 31,000 ( < 1 % )
-Total registers : 8
-Estimated DSP Blocks Post-Merging : 0

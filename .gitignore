@@ -1,5 +1,6 @@
-# Radiant build artifacts
+# Radiant / Diamond build artifacts
 **/impl1/
+**/impl_*/
 **/*.rdf
 **/promote.xml
 **/promote.pfl
@@ -11,24 +12,69 @@
 **/*.jed
 **/*.sof
 **/*.bin
+**/*.svf
+**/*.pof
+**/*.acxbit
+**/*.rbf
 
 # Simulation artifacts
 sim_build/
 results.xml
 __pycache__/
 *.vcd
+*.fst
+*.gtkw
 
 # Quartus build artifacts
 **/qdb/
 **/dni/
-**/*.done
-**/*.flow.rpt
-**/*.syn.rpt
-**/*.syn.ae.rpt
-**/*.ipg.rpt
-**/output_files/
 **/db/
 **/incremental_db/
+**/output_files/
+**/tmp/
+**/greybox_tmp/
+**/simulation/
+**/reports/
+**/.qsys_edit/
+**/*.rpt
+**/*.summary
+**/*.smsg
+**/*.qws
+**/*.done
+**/*.jdi
+**/*.pin
+**/*.sld
+**/*.dpf
+**/*.bak
+**/*.qpa.cdf
+**/*.qmsgdb
+
+# Vivado build artifacts
+**/*.runs/
+**/*.cache/
+**/*.hw/
+**/*.ip_user_files/
+**/.Xil/
+**/*.jou
+**/*.str
+**/*.dir/
+**/*.dcp
+**/*.ltx
+**/*.xsa
+
+# Lattice Diamond / Radiant log files
+**/*.twr
+**/*.mrp
+**/*.par
+**/synlog.srp
+**/*.srp
+**/*.synproj
+**/*_synthesize.tcl
+**/hdr_log
+
+# Vendor build logs
+**/build.log
+**/*.log
 
 # CovertEDA scratch files written when building/opening a project
 **/.coverteda_build.*
@@ -38,3 +84,16 @@ __pycache__/
 
 # Virtual environment
 .venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+*.Zone.Identifier
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

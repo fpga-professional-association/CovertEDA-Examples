@@ -1,7 +1,0 @@
-Project:   bus_monitor
-Family:    Cyclone 10 GX
-Device:    10CX085YU484E5G
-Top:       bus_monitor
-Quartus:   25.3 Pro
-Status:    PASS
-Reports:   4

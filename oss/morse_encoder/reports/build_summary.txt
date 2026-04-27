@@ -1,6 +1,0 @@
-Project:  morse_encoder
-Device:   iCE40UP5K
-Family:   ice40
-Top:      morse_encoder
-yosys:    PASS
-nextpnr:  PASS

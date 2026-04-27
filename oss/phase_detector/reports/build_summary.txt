@@ -1,6 +1,0 @@
-Project:  phase_detector
-Device:   iCE40UP5K
-Family:   ice40
-Top:      phase_detector
-yosys:    PASS
-nextpnr:  PASS
