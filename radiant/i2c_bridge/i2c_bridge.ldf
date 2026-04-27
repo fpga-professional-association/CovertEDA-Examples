@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="i2c_bridge" family="LFD2NX" device="LFD2NX-40" package="MG672" performance_grade="7" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="I2C Bridge Implementation" synthesis="synplify" default_strategy="Area">
+        <Options top="i2c_top"/>
+        <Source name="src/i2c_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/i2c_slave.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/wb_master.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/i2c.pdc" type="Physical_Constraint" type_short="PDC">
+            <Options/>
+        </Source>
+        <Source name="constraints/i2c.sdc" type="Timing_Constraint" type_short="SDC">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>

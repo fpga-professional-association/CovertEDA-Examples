@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="uart_controller" family="LIFCL" device="LIFCL-40" package="BG400" performance_grade="7" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="UART Controller Implementation" synthesis="synplify" default_strategy="Area">
+        <Options top="uart_top"/>
+        <Source name="src/uart_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/uart_tx.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/uart_rx.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/baud_gen.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/uart.pdc" type="Physical_Constraint" type_short="PDC">
+            <Options/>
+        </Source>
+        <Source name="constraints/uart.sdc" type="Timing_Constraint" type_short="SDC">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>

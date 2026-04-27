@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="spi_flash" family="LIFCL" device="LIFCL-40" package="BG400" performance_grade="9" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="SPI Flash Controller Implementation" synthesis="synplify" default_strategy="Timing">
+        <Options top="spi_top"/>
+        <Source name="src/spi_top.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/spi_master.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="src/spi_fifo.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/spi.pdc" type="Physical_Constraint" type_short="PDC">
+            <Options/>
+        </Source>
+        <Source name="constraints/spi.sdc" type="Timing_Constraint" type_short="SDC">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>
