@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="2.0" BSPVersion="1.0" name="shift_register" family="LIFCL" device="LIFCL-40" package="BG400" performance_grade="7" default_implementation="impl_1">
+    <Options/>
+    <Implementation title="impl_1" dir="impl_1" description="shift_register" synthesis="synplify" default_strategy="Area">
+        <Options top="shift_register"/>
+        <Source name="src/shift_register.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="constraints/shift_register.pdc" type="Physical_Constraint" type_short="PDC">
+            <Options/>
+        </Source>
+        <Source name="constraints/shift_register.sdc" type="Timing_Constraint" type_short="SDC">
+            <Options/>
+        </Source>
+    </Implementation>
+</BaliProject>
