@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="ethernet_400g" device="AC7t1500ES0" speed="-1">
+    <toplevel>eth400g_top</toplevel>
+    <sources>
+      <file path="src/eth400g_top.sv" type="verilog"/>
+      <file path="src/mac_engine.sv" type="verilog"/>
+      <file path="src/pcs_layer.sv" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/eth400g.pdc" type="pdc"/>
+      <file path="constraints/eth400g.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

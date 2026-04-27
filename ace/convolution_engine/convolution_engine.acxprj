@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="convolution_engine" device="AC7t1500ES0" speed="-1">
+    <toplevel>convolution_engine</toplevel>
+    <sources>
+      <file path="src/convolution_engine.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/convolution_engine.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

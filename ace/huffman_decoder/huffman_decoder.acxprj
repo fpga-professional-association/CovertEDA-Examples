@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="huffman_decoder" device="AC7t1500ES0" speed="-1">
+    <toplevel>huffman_decoder</toplevel>
+    <sources>
+      <file path="src/huffman_decoder.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/huffman_decoder.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

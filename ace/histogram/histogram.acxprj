@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="histogram" device="AC7t1500ES0" speed="-1">
+    <toplevel>histogram</toplevel>
+    <sources>
+      <file path="src/histogram.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/histogram.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

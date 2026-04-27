@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="arbiter_rr" device="AC7t1500ES0" speed="-1">
+    <toplevel>arbiter_rr</toplevel>
+    <sources>
+      <file path="src/arbiter_rr.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/arbiter_rr.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

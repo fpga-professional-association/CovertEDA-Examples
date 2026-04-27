@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="reed_solomon" device="AC7t1500ES0" speed="-1">
+    <toplevel>reed_solomon</toplevel>
+    <sources>
+      <file path="src/reed_solomon.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/reed_solomon.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

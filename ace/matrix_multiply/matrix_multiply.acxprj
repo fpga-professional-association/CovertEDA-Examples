@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="matrix_multiply" device="AC7t1500ES0" speed="-1">
+    <toplevel>matrix_multiply</toplevel>
+    <sources>
+      <file path="src/matrix_multiply.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/matrix_multiply.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

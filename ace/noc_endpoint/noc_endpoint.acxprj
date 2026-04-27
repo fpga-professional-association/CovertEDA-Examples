@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="noc_endpoint" device="AC7t1500ES0" speed="-1">
+    <toplevel>noc_top</toplevel>
+    <sources>
+      <file path="src/noc_adapter.v" type="verilog"/>
+      <file path="src/noc_top.v" type="verilog"/>
+      <file path="src/packet_builder.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/noc.pdc" type="pdc"/>
+      <file path="constraints/noc.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

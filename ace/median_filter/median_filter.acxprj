@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="median_filter" device="AC7t1500ES0" speed="-1">
+    <toplevel>median_filter</toplevel>
+    <sources>
+      <file path="src/median_filter.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/median_filter.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

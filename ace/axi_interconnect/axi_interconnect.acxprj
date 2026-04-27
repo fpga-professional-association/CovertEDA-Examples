@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="axi_interconnect" device="AC7t1500ES0" speed="-1">
+    <toplevel>axi_interconnect</toplevel>
+    <sources>
+      <file path="src/axi_interconnect.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/axi_interconnect.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

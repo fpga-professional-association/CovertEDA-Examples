@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="blinky_led" device="AC7t1500ES0" speed="-1">
+    <toplevel>blinky_top</toplevel>
+    <sources>
+      <file path="src/blinky_top.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/blinky.pdc" type="pdc"/>
+      <file path="constraints/blinky.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

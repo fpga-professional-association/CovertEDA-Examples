@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="fir_symmetric" device="AC7t1500ES0" speed="-1">
+    <toplevel>fir_symmetric</toplevel>
+    <sources>
+      <file path="src/fir_symmetric.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/fir_symmetric.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>

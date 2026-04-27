@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acxprj version="1.0">
+  <project name="gddr6_test" device="AC7t1500ES0" speed="-1">
+    <toplevel>gddr6_top</toplevel>
+    <sources>
+      <file path="src/data_checker.v" type="verilog"/>
+      <file path="src/gddr6_top.v" type="verilog"/>
+      <file path="src/traffic_gen.v" type="verilog"/>
+    </sources>
+    <constraints>
+      <file path="constraints/gddr6.pdc" type="pdc"/>
+      <file path="constraints/gddr6.sdc" type="sdc"/>
+    </constraints>
+  </project>
+</acxprj>
